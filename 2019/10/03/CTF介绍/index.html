@@ -5,15 +5,20 @@
   
 
   
-  <title>Archives | Hexo</title>
+  <title>CTF介绍 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="前言刚开始接触CTF,对于misc，reverse等等都傻傻分不清，所以专门去查了下这些名词，给没有接触CTF的童鞋一点入门基础。如果有不对的地方，欢迎大佬指点。 CTF是什么CTF（Capture The Flag）中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF起源于1996年DEFCON全球黑客大会，以代替之前黑客们通过互相发起真实攻击进行技术">
+<meta name="keywords" content="CTF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF介绍">
+<meta property="og:url" content="http://yoursite.com/2019/10/03/CTF介绍/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言刚开始接触CTF,对于misc，reverse等等都傻傻分不清，所以专门去查了下这些名词，给没有接触CTF的童鞋一点入门基础。如果有不对的地方，欢迎大佬指点。 CTF是什么CTF（Capture The Flag）中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF起源于1996年DEFCON全球黑客大会，以代替之前黑客们通过互相发起真实攻击进行技术">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-05-16T15:23:47.448Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="CTF介绍">
+<meta name="twitter:description" content="前言刚开始接触CTF,对于misc，reverse等等都傻傻分不清，所以专门去查了下这些名词，给没有接触CTF的童鞋一点入门基础。如果有不对的地方，欢迎大佬指点。 CTF是什么CTF（Capture The Flag）中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF起源于1996年DEFCON全球黑客大会，以代替之前黑客们通过互相发起真实攻击进行技术">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,216 +65,103 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/远程文件包含错误解决方法/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.052Z" itemprop="datePublished">Oct 4</time>
+        <section id="main"><article id="post-CTF介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/03/CTF介绍/" class="article-date">
+  <time datetime="2019-10-03T11:50:11.912Z" itemprop="datePublished">2019-10-03</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/远程文件包含错误解决方法/">错误提示【URL file-access is disabled in the server configuration in】解决</a>
+    <h1 class="article-title" itemprop="name">
+      CTF介绍
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/删除github的某个文件/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.051Z" itemprop="datePublished">Oct 4</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/删除github的某个文件/">删除github的某个文件</a>
-    </h1>
-  
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚开始接触CTF,对于misc，reverse等等都傻傻分不清，所以专门去查了下这些名词，给没有接触CTF的童鞋一点入门基础。如果有不对的地方，欢迎大佬指点。</p>
+<h1 id="CTF是什么"><a href="#CTF是什么" class="headerlink" title="CTF是什么"></a>CTF是什么</h1><p>CTF（Capture The Flag）中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。<br>CTF起源于1996年DEFCON全球黑客大会，以代替之前黑客们通过互相发起真实攻击进行技术比拼的方式。<br>发展至今，已经成为全球范围网络安全圈流行的竞赛形式。<br>附上参考链接：<a href="https://baike.baidu.com/item/ctf/9548546?fr=aladdin" target="_blank" rel="noopener">CTF</a></p>
+<h1 id="CTF-介绍"><a href="#CTF-介绍" class="headerlink" title="CTF 介绍"></a>CTF 介绍</h1><h2 id="赛事介绍"><a href="#赛事介绍" class="headerlink" title="赛事介绍"></a>赛事介绍</h2><p>我们把CTF简称为夺旗赛，是因为出题的人把答案都放一个叫flag的文件下或者用flag{}形式展示给我们。一般是我们在某个站点或者某个文件下去寻找或分析得到的</p>
+<h2 id="模式介绍"><a href="#模式介绍" class="headerlink" title="模式介绍"></a>模式介绍</h2><p>  一般分为三类：<code>解题模式</code>、<code>攻防模式</code>,<code>混合模式</code>  </p>
+<ol>
+<li><p>解题模式</p>
+<blockquote>
+<p>通过解决主办方出的题目得到相应的分数，从而获得排名。参赛有个人和团队之分。<br>赛题主要分为以下几个方向：CHOICE(比较少，适合初学者)、BASIC(这个也不多见，适合刚入门的童鞋)、WEB、REVERSE、PWN、MISC等<br>以上名词等下会有介绍</p>
+</blockquote>
+</li>
+<li><p>攻防模式</p>
+<blockquote>
+<p>一般我们叫AWD,这个模式不仅看眼技术还考验手速，参赛队伍在网络空间中互相攻击和防守，挖掘漏洞并攻击对手来得分。并防御其他对手攻击自己。攻防很考验技术和应急。也考研团队的合作能力</p>
+</blockquote>
+</li>
+<li><p>混合模式</p>
+<blockquote>
+<p>将上述的两个模式结合起来。就是两个都玩，最后用分数一较高下<br>一般更多的是国际赛的比赛方式</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="题型介绍"><a href="#题型介绍" class="headerlink" title="题型介绍"></a>题型介绍</h2><p>没错，这就是我刚接触最头疼的了，我内个去，这是啥啊！ 这就给你介绍介绍</p>
+<ol>
+<li>CHOICE:选择题包含关于信息安全的各类知识点，难度系数偏低，适合刚接触信息安全的人士来全面的了解安全行业的情况</li>
+<li>BASIC: 主要考察基础的计算机与网络安全知识，涉及信息发掘、搜索、嗅探、无线安全、正则表达式、SQL、脚本语言、汇编、C语言以及简单的破解、溢出等知识。旨在普及信息安全知识，引领信息安全爱好者入门</li>
+<li>WEB: 考察脚本注入、欺骗和跨站等脚本攻击技术</li>
+<li>REVERSE: 考察逆向破解的相关技术，要求有较高的汇编语言读写能力，以及对操作系统原理的认识</li>
+<li>PWN: 考察软件漏洞挖掘、分析及利用技术，探索二进制代码背后的秘密，要求对漏洞有一定理解，掌握操作系统原理的相关知识(自我感觉最有难度的)</li>
+<li>MOBILE: 考察移动终端安全相关知识</li>
+<li>MISC: 即杂项，考察各种计算机系统与网络安全知识，涉及隐写术、流量分析、内核安全等信息安全的各个领域。</li>
+<li>PPC:即编程类题目，题目涉及到编程算法</li>
+<li>CRYPTO:即密码学，题目考察各种加解密技术，包括古典加密技术、现代加密技术甚至出题者自创加密技术。<blockquote>
+<p>对AWD等不过多介绍，因为我好菜啊，还没玩过，不敢发言</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>看了这么多，大家应该知道ctf是什么了吧！那么开始起航吧，之后我会一步一脚印的更新。形成一个完整的体系。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/配置nat实现网络互通/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.050Z" itemprop="datePublished">Oct 4</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/配置nat实现网络互通/">配置NAT实现网络互通</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/利用js文件反弹shell/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.048Z" itemprop="datePublished">Oct 4</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/03/CTF介绍/" data-id="ck1avz65b0001acv45omwyhvr" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/利用js文件反弹shell/">利用js文件反弹shell</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/解决wireshark没有捕获端口的问题/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.047Z" itemprop="datePublished">Oct 4</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/解决wireshark没有捕获端口的问题/">解决wireshark没有捕获端口的问题</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/04/ActiveMQ任意文件写入漏洞分析溯源md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ActiveMQ任意文件写入漏洞分析溯源
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/03/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub之DC-1[find提权]/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.046Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub之DC-1[find提权]/">Vulnhub之DC-1 find 提权骚思路</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub靶机之DC-4/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.045Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub靶机之DC-4/">DC-4 复现</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub靶机之DC-3/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.043Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub靶机之DC-3/">Vulnhub之DC-3 joomla注入和ubutnu16.04 提权</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub 之 DC-6 靶机复现/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.042Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub 之 DC-6 靶机复现/">Vulnhub 之 DC-6 靶机复现</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub 之 DC-5 靶机复现/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.041Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub 之 DC-5 靶机复现/">DC-5 复现</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         

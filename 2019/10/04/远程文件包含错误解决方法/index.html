@@ -5,15 +5,27 @@
   
 
   
-  <title>Archives | Hexo</title>
+  <title>错误提示【URL file-access is disabled in the server configuration in】解决 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="前言今天在做dvwa的file inclusion，发现远程 文件包含出错 解决方法可以看到提示的服务器配置中禁用url文件访问。Warning: include() [function.include]: URL file-access is disabled in the server configuration in /var/www/dvwa/vulnerabilities/fi/inde">
+<meta name="keywords" content="远程文件包含,错误解决方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="错误提示【URL file-access is disabled in the server configuration in】解决">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/远程文件包含错误解决方法/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言今天在做dvwa的file inclusion，发现远程 文件包含出错 解决方法可以看到提示的服务器配置中禁用url文件访问。Warning: include() [function.include]: URL file-access is disabled in the server configuration in /var/www/dvwa/vulnerabilities/fi/inde">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190520194643142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190520195041822.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190520195551210.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190520195846677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019052020005065.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190520200259826.png">
+<meta property="og:updated_time" content="2019-05-24T00:35:22.576Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="错误提示【URL file-access is disabled in the server configuration in】解决">
+<meta name="twitter:description" content="前言今天在做dvwa的file inclusion，发现远程 文件包含出错 解决方法可以看到提示的服务器配置中禁用url文件访问。Warning: include() [function.include]: URL file-access is disabled in the server configuration in /var/www/dvwa/vulnerabilities/fi/inde">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190520194643142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,216 +72,75 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/远程文件包含错误解决方法/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.052Z" itemprop="datePublished">Oct 4</time>
+        <section id="main"><article id="post-远程文件包含错误解决方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/远程文件包含错误解决方法/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.052Z" itemprop="datePublished">2019-10-04</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/靶机/">靶机</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/远程文件包含错误解决方法/">错误提示【URL file-access is disabled in the server configuration in】解决</a>
+    <h1 class="article-title" itemprop="name">
+      错误提示【URL file-access is disabled in the server configuration in】解决
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/删除github的某个文件/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.051Z" itemprop="datePublished">Oct 4</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/删除github的某个文件/">删除github的某个文件</a>
-    </h1>
-  
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天在做dvwa的file inclusion，发现远程 文件包含出错</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>可以看到提示的服务器配置中禁用url文件访问。<br><code>Warning: include() [function.include]: URL file-access is disabled in the server configuration in /var/www/dvwa/vulnerabilities/fi/index.php on line 35</code><br><img src="https://img-blog.csdnimg.cn/20190520194643142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ol>
+<li><p>在linux中搜索php.ini文件  </p>
+<p> 命令：<code>find / -name php.ini</code><br><img src="https://img-blog.csdnimg.cn/20190520195041822.png" alt="在这里插入图片描述">我们去修改<code>/etc/php5/cgi/php,ini</code></p>
+</li>
+<li><p>vim 打开文件 <code>vim /etc/php5/cgi/php.ini</code><br><img src="https://img-blog.csdnimg.cn/20190520195551210.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>搜索关键字<code>allow_url_include或者allow_url_ fopen</code>设置两个都为<code>On</code><br> 可以发现<code>allow_url_include为off</code> 我们修改它为<code>On</code><br><img src="https://img-blog.csdnimg.cn/20190520195846677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>重新尝试远程访问，访问成功。<br><img src="https://img-blog.csdnimg.cn/2019052020005065.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<hr>
+<h2 id="自己遇到的坑"><a href="#自己遇到的坑" class="headerlink" title="自己遇到的坑"></a>自己遇到的坑</h2><blockquote>
+<p>当我发现问题的时候，我没有意识的修改的是php的php.ini，而是去查看了我的dvwa的php.ini 发现没有错误，自己研究了半天，才发现想错了，可以查看自己的dvwa下大的php发现是对的。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20190520200259826.png" alt="在这里插入图片描述"></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/配置nat实现网络互通/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.050Z" itemprop="datePublished">Oct 4</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/配置nat实现网络互通/">配置NAT实现网络互通</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/利用js文件反弹shell/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.048Z" itemprop="datePublished">Oct 4</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/远程文件包含错误解决方法/" data-id="ck1avz65w000wacv41wu2apq0" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/利用js文件反弹shell/">利用js文件反弹shell</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/解决wireshark没有捕获端口的问题/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.047Z" itemprop="datePublished">Oct 4</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/解决wireshark没有捕获端口的问题/">解决wireshark没有捕获端口的问题</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/远程文件包含/">远程文件包含</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/错误解决方案/">错误解决方案</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/04/删除github的某个文件/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">删除github的某个文件</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub之DC-1[find提权]/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.046Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub之DC-1[find提权]/">Vulnhub之DC-1 find 提权骚思路</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub靶机之DC-4/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.045Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub靶机之DC-4/">DC-4 复现</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub靶机之DC-3/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.043Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub靶机之DC-3/">Vulnhub之DC-3 joomla注入和ubutnu16.04 提权</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub 之 DC-6 靶机复现/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.042Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub 之 DC-6 靶机复现/">Vulnhub 之 DC-6 靶机复现</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub 之 DC-5 靶机复现/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.041Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub 之 DC-5 靶机复现/">DC-5 复现</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         

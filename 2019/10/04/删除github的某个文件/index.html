@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>删除github的某个文件 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 今天用github做图床，上传的文件没有改名字并且都在同一个文件中散乱，然后想要删除的时候发现没有删除的选项。 然后百度了下相关的内容，并把操作记录以备查看，并给和我一样不会的小伙伴们一个参考  开始前的准备首先看看我现在的情况  之后我们需要有git这个软件支持，我这里用的是Git-2.21.0-64-bit.exe这个版本 附上下载地址：git官方下载地址 git的安装比较简单，如果需要">
+<meta name="keywords" content="文件删除">
+<meta property="og:type" content="article">
+<meta property="og:title" content="删除github的某个文件">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/删除github的某个文件/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言 今天用github做图床，上传的文件没有改名字并且都在同一个文件中散乱，然后想要删除的时候发现没有删除的选项。 然后百度了下相关的内容，并把操作记录以备查看，并给和我一样不会的小伙伴们一个参考  开始前的准备首先看看我现在的情况  之后我们需要有git这个软件支持，我这里用的是Git-2.21.0-64-bit.exe这个版本 附上下载地址：git官方下载地址 git的安装比较简单，如果需要">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9B%B4%E6%94%B9%E5%89%8D%E7%9A%84%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E5%88%9A%E4%B8%8B%E8%BD%BDgit%E7%9A%84%E5%88%9D%E5%A7%8B%E6%AD%A5%E9%AA%A4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/github%E6%8B%89%E5%8F%96%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%8B%89%E5%8F%96%E4%B8%8B%E6%9D%A5%E6%9F%A5%E7%9C%8B.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/dir%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%8F%90%E4%BA%A4%E6%B7%BB%E5%8A%A0%E5%A3%B0%E6%98%8E.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9B%B4%E6%96%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9F%A5%E7%9C%8B%E6%9B%B4%E6%96%B0%E5%90%8E%E7%9A%84%E5%86%85%E5%AE%B9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%B2%A1%E6%9C%89%E5%88%9D%E5%A7%8B%E5%8C%96.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190710083208278.png">
+<meta property="og:updated_time" content="2019-07-10T15:03:51.305Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="删除github的某个文件">
+<meta name="twitter:description" content="前言 今天用github做图床，上传的文件没有改名字并且都在同一个文件中散乱，然后想要删除的时候发现没有删除的选项。 然后百度了下相关的内容，并把操作记录以备查看，并给和我一样不会的小伙伴们一个参考  开始前的准备首先看看我现在的情况  之后我们需要有git这个软件支持，我这里用的是Git-2.21.0-64-bit.exe这个版本 附上下载地址：git官方下载地址 git的安装比较简单，如果需要">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9B%B4%E6%94%B9%E5%89%8D%E7%9A%84%E6%83%85%E5%86%B5.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-删除github的某个文件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/删除github的某个文件/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.051Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/实用技术/">实用技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      删除github的某个文件
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>今天用github做图床，上传的文件没有改名字并且都在同一个文件中散乱，然后想要删除的时候发现没有删除的选项。</p>
+<p>然后百度了下相关的内容，并把操作记录以备查看，并给和我一样不会的小伙伴们一个参考</p>
+</blockquote>
+<h2 id="开始前的准备"><a href="#开始前的准备" class="headerlink" title="开始前的准备"></a>开始前的准备</h2><p>首先看看我现在的情况</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9B%B4%E6%94%B9%E5%89%8D%E7%9A%84%E6%83%85%E5%86%B5.png" alt></p>
+<p>之后我们需要有git这个软件支持，我这里用的是<code>Git-2.21.0-64-bit.exe</code>这个版本</p>
+<p>附上下载地址：<a href="https://git-scm.com/download/" target="_blank" rel="noopener">git官方下载地址</a></p>
+<p>git的安装比较简单，如果需要过程请参考网上的教程，这里就不多说了</p>
+<p>下载好之后，鼠标右键就可以打开<code>git bash here</code></p>
+<h2 id="删除不需要的文件"><a href="#删除不需要的文件" class="headerlink" title="删除不需要的文件"></a>删除不需要的文件</h2><p>1 如果是刚下载git的请跟着下面的步骤走，</p>
+<p>首先先配置自己的git信息，</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E5%88%9A%E4%B8%8B%E8%BD%BDgit%E7%9A%84%E5%88%9D%E5%A7%8B%E6%AD%A5%E9%AA%A4.png" alt></p>
+<p>之后初始化，在设置自己的</p>
+<p>2 首先需要把github的项目拉倒本地，如果刚下载git请移步第一步</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">​</span><br><span class="line">1 添加origin  </span><br><span class="line">如果有.git 就不需要 git init  </span><br><span class="line">$ git init  </span><br><span class="line">$ git remote add origin git@github.com:ST0new/picture.git  </span><br><span class="line">2 拉取github文件  </span><br><span class="line">$ git pull origin master   </span><br><span class="line">3 查看文件  </span><br><span class="line">$ dir  </span><br><span class="line">4 删除不需要的文件  </span><br><span class="line">$ git rm -r --cached 0n7nye49.bmp  </span><br><span class="line">5 添加说明  </span><br><span class="line">$ git commit -m '删除了 0n7nye49.bmp '  </span><br><span class="line">6 更新github仓库  </span><br><span class="line">$ git add .  </span><br><span class="line">$ git push -u origin master  </span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+
+<p>拉取github上的文件</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/github%E6%8B%89%E5%8F%96%E6%96%87%E4%BB%B6.png" alt></p>
+<p>输入dir查看目录</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%8B%89%E5%8F%96%E4%B8%8B%E6%9D%A5%E6%9F%A5%E7%9C%8B.png" alt></p>
+<p>选择不需要的文件删除</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/dir%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95.png" alt></p>
+<p>提交添加声明</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%8F%90%E4%BA%A4%E6%B7%BB%E5%8A%A0%E5%A3%B0%E6%98%8E.png" alt></p>
+<p>更新远程仓库</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9B%B4%E6%96%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93.png" alt></p>
+<p>查看</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9F%A5%E7%9C%8B%E6%9B%B4%E6%96%B0%E5%90%8E%E7%9A%84%E5%86%85%E5%AE%B9.png" alt></p>
+<h3 id="报错1-没有初始化"><a href="#报错1-没有初始化" class="headerlink" title="报错1 没有初始化"></a>报错1 没有初始化</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin master</span><br><span class="line">fatal: not a git repository (or any of the parent directories): .git</span><br></pre></td></tr></table></figure>
+
+<p>解决：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%B2%A1%E6%9C%89%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt></p>
+<h3 id="报错2-添加远程库失败"><a href="#报错2-添加远程库失败" class="headerlink" title="报错2 添加远程库失败"></a>报错2 添加远程库失败</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github:ST0new/picture</span><br><span class="line">fatal: remote origin already exists.</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190710083208278.png" alt="在这里插入图片描述"></p>
+<p>解决：删除重新添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rm origin</span><br><span class="line">$ git remote add origin git@github.com:ST0new/picture.git</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>希望能解决你的问题</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/删除github的某个文件/" data-id="ck1avz65t000qacv4nkarkjm4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件删除/">文件删除</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/04/远程文件包含错误解决方法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          错误提示【URL file-access is disabled in the server configuration in】解决
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/04/配置nat实现网络互通/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">配置NAT实现网络互通</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB安全/">WEB安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/sql注入/">sql注入</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/实用技术/">实用技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/靶机/">靶机</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DVWA/">DVWA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Suid-提权/">Suid 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git提权/">git提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http方法利用/">http方法利用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/joomla-cms-注入/">joomla cms 注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js反弹shell/">js反弹shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql注入/">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/suid提权/">suid提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-16-04-bpf-提权/">ubuntu 16.04 bpf 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wireshark/">wireshark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/提权/">提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件删除/">文件删除</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/时间盲注/">时间盲注</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地文件包含/">本地文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂项/">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞/">漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程命令执行/">远程命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程文件包含/">远程文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/错误解决方案/">错误解决方案</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/DVWA/" style="font-size: 20px;">DVWA</a> <a href="/tags/Suid-提权/" style="font-size: 10px;">Suid 提权</a> <a href="/tags/git提权/" style="font-size: 10px;">git提权</a> <a href="/tags/http方法利用/" style="font-size: 10px;">http方法利用</a> <a href="/tags/joomla-cms-注入/" style="font-size: 10px;">joomla cms 注入</a> <a href="/tags/js反弹shell/" style="font-size: 10px;">js反弹shell</a> <a href="/tags/sql注入/" style="font-size: 10px;">sql注入</a> <a href="/tags/suid提权/" style="font-size: 10px;">suid提权</a> <a href="/tags/ubuntu-16-04-bpf-提权/" style="font-size: 10px;">ubuntu 16.04 bpf 提权</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/wireshark/" style="font-size: 10px;">wireshark</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/文件删除/" style="font-size: 10px;">文件删除</a> <a href="/tags/时间盲注/" style="font-size: 10px;">时间盲注</a> <a href="/tags/本地文件包含/" style="font-size: 10px;">本地文件包含</a> <a href="/tags/杂项/" style="font-size: 20px;">杂项</a> <a href="/tags/漏洞/" style="font-size: 20px;">漏洞</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/远程命令执行/" style="font-size: 10px;">远程命令执行</a> <a href="/tags/远程文件包含/" style="font-size: 10px;">远程文件包含</a> <a href="/tags/错误解决方案/" style="font-size: 10px;">错误解决方案</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/04/远程文件包含错误解决方法/">错误提示【URL file-access is disabled in the server configuration in】解决</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/删除github的某个文件/">删除github的某个文件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/配置nat实现网络互通/">配置NAT实现网络互通</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/利用js文件反弹shell/">利用js文件反弹shell</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/解决wireshark没有捕获端口的问题/">解决wireshark没有捕获端口的问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

