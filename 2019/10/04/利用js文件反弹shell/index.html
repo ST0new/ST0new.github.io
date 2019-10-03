@@ -1,105 +1,128 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="ST0new">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="利用js文件反弹shell">
+  <meta property="og:description" content="一个Ctfer，web渗透测试的小白">
+  <meta property="og:site_name" content="ST0new">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
   
-
-  
-  <title>利用js文件反弹shell | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言本篇文章是按照大佬的文章复现本文只用于测试，请不要将其用于非法途径公众号： 洛米唯熊 环境 攻击： kaliip: 192.168.248.132 测试： windows 7 x64ip: 192.168.248.136工具地址https://github.com/CroweCybersecurity/ps1encode克隆在kali克隆工具命令：git clone https://githu">
-<meta name="keywords" content="js反弹shell">
-<meta property="og:type" content="article">
-<meta property="og:title" content="利用js文件反弹shell">
-<meta property="og:url" content="http://yoursite.com/2019/10/04/利用js文件反弹shell/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前言本篇文章是按照大佬的文章复现本文只用于测试，请不要将其用于非法途径公众号： 洛米唯熊 环境 攻击： kaliip: 192.168.248.132 测试： windows 7 x64ip: 192.168.248.136工具地址https://github.com/CroweCybersecurity/ps1encode克隆在kali克隆工具命令：git clone https://githu">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%94%9F%E6%88%90js%E8%84%9A%E6%9C%AC2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%94%9F%E6%88%90.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190707191042260.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/windows%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%89%A7%E8%A1%8C.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E5%85%81%E8%AE%B8%E8%84%9A%E6%9C%AC.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%9B%91%E5%90%AC%E6%8E%A5%E5%8F%A3%E5%8F%8D%E5%BC%B9shell2.png">
-<meta property="og:updated_time" content="2019-07-10T11:32:58.655Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用js文件反弹shell">
-<meta name="twitter:description" content="前言本篇文章是按照大佬的文章复现本文只用于测试，请不要将其用于非法途径公众号： 洛米唯熊 环境 攻击： kaliip: 192.168.248.132 测试： windows 7 x64ip: 192.168.248.136工具地址https://github.com/CroweCybersecurity/ps1encode克隆在kali克隆工具命令：git clone https://githu">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%94%9F%E6%88%90js%E8%84%9A%E6%9C%AC2.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="ST0new" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
+
+  <!-- Site Title -->
+  <title>ST0new</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
   
-  <link rel="stylesheet" href="/css/style.css">
+
 </head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">利用js文件反弹shell</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-利用js文件反弹shell" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/04/利用js文件反弹shell/" class="article-date">
-  <time datetime="2019-10-03T16:00:18.048Z" itemprop="datePublished">2019-10-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/shell/">shell</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ST0new</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-10-04</span>
+            <span class="time">00:08:16</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/shell/">shell</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
         
-  
-    <h1 class="article-title" itemprop="name">
-      利用js文件反弹shell
-    </h1>
-  
+          <div class="post-tags text-muted">
+            Tags: 
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇文章是按照大佬的文章复现<br>本文只用于测试，请不要将其用于非法途径<br>公众号： 洛米唯熊</p>
+<a class="tag" href="/tags/js反弹shell/">#js反弹shell</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇文章是按照大佬的文章复现<br>本文只用于测试，请不要将其用于非法途径<br>公众号： 洛米唯熊</p>
 <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
 <li>攻击： kali<pre><code>ip: 192.168.248.132</code></pre></li>
 <li>测试： windows 7 x64<pre><code>ip: 192.168.248.136</code></pre><h1 id="工具地址"><a href="#工具地址" class="headerlink" title="工具地址"></a>工具地址</h1><a href="https://github.com/CroweCybersecurity/ps1encode" target="_blank" rel="noopener">https://github.com/CroweCybersecurity/ps1encode</a><h1 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h1>在kali克隆工具<br>命令：<code>git clone https://github.com/CroweCybersecurity/ps1encode.git</code></li>
@@ -113,147 +136,42 @@
 <h1 id="windows执行文件"><a href="#windows执行文件" class="headerlink" title="windows执行文件"></a>windows执行文件</h1><p>直接执行的话可能比较明显，所以参照文章我们写了一个1.html文件<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/windows%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6.png" alt><br>执行1.html文件，选择运行-&gt;允许阻止内容-&gt;选择是，就反弹成功了<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%89%A7%E8%A1%8C.png" alt><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E5%85%81%E8%AE%B8%E8%84%9A%E6%9C%AC.png" alt></p>
 <h1 id="获取shell"><a href="#获取shell" class="headerlink" title="获取shell"></a>获取shell</h1><h2 id><a href="#" class="headerlink" title></a><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E7%9B%91%E5%90%AC%E6%8E%A5%E5%8F%A3%E5%8F%8D%E5%BC%B9shell2.png" alt></h2><p>复现完成，过程简单，值得一学</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/04/利用js文件反弹shell/" data-id="ck1avz65v000sacv4wpiicqad" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js反弹shell/">js反弹shell</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/10/04/配置nat实现网络互通/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          配置NAT实现网络互通
-        
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2019/10/04/解决wireshark没有捕获端口的问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">解决wireshark没有捕获端口的问题</div>
-    </a>
-  
-</nav>
-
-  
+    </div>
+  </div>
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB安全/">WEB安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/sql注入/">sql注入</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/实用技术/">实用技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/靶机/">靶机</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DVWA/">DVWA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Suid-提权/">Suid 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git提权/">git提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http方法利用/">http方法利用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/joomla-cms-注入/">joomla cms 注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js反弹shell/">js反弹shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql注入/">sql注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/suid提权/">suid提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-16-04-bpf-提权/">ubuntu 16.04 bpf 提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wireshark/">wireshark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/提权/">提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件删除/">文件删除</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/时间盲注/">时间盲注</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地文件包含/">本地文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂项/">杂项</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞/">漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程命令执行/">远程命令执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/远程文件包含/">远程文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/错误解决方案/">错误解决方案</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/DVWA/" style="font-size: 20px;">DVWA</a> <a href="/tags/Suid-提权/" style="font-size: 10px;">Suid 提权</a> <a href="/tags/git提权/" style="font-size: 10px;">git提权</a> <a href="/tags/http方法利用/" style="font-size: 10px;">http方法利用</a> <a href="/tags/joomla-cms-注入/" style="font-size: 10px;">joomla cms 注入</a> <a href="/tags/js反弹shell/" style="font-size: 10px;">js反弹shell</a> <a href="/tags/sql注入/" style="font-size: 10px;">sql注入</a> <a href="/tags/suid提权/" style="font-size: 10px;">suid提权</a> <a href="/tags/ubuntu-16-04-bpf-提权/" style="font-size: 10px;">ubuntu 16.04 bpf 提权</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/wireshark/" style="font-size: 10px;">wireshark</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/文件删除/" style="font-size: 10px;">文件删除</a> <a href="/tags/时间盲注/" style="font-size: 10px;">时间盲注</a> <a href="/tags/本地文件包含/" style="font-size: 10px;">本地文件包含</a> <a href="/tags/杂项/" style="font-size: 20px;">杂项</a> <a href="/tags/漏洞/" style="font-size: 20px;">漏洞</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/远程命令执行/" style="font-size: 10px;">远程命令执行</a> <a href="/tags/远程文件包含/" style="font-size: 10px;">远程文件包含</a> <a href="/tags/错误解决方案/" style="font-size: 10px;">错误解决方案</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/10/04/远程文件包含错误解决方法/">错误提示【URL file-access is disabled in the server configuration in】解决</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/04/删除github的某个文件/">删除github的某个文件</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/04/配置nat实现网络互通/">配置NAT实现网络互通</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/04/利用js文件反弹shell/">利用js文件反弹shell</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/04/解决wireshark没有捕获端口的问题/">解决wireshark没有捕获端口的问题</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
 
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
-</body>
+  </body>
 </html>
+
