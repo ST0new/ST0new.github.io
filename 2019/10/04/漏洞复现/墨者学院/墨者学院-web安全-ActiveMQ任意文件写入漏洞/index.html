@@ -8,10 +8,10 @@
   <meta name="description" content>
   <meta name="author" content="ST0new">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="ST0new的小站">
+  <meta property="og:title" content="ActiveMQ任意文件写入漏洞分析溯源">
   <meta property="og:description" content="一个ctfer，web渗透测试小白">
   <meta property="og:site_name" content="ST0new的小站">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:image" content="http://yoursite.com">
   
     <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Untitled Post</p>
+          <p class="title">ActiveMQ任意文件写入漏洞分析溯源</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -100,15 +100,31 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-10-04</span>
-            <span class="time">10:22:27</span>
+            <span class="time">10:31:12</span>
           </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/漏洞复现/">漏洞复现</a>
+</span>
           
         </div>
         <!-- Tags -->
         
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/任意文件写入/">#任意文件写入</a>
+
+
+          </div>
+        
         <!-- Post Main Content -->
         <div class="post-content">
-          <p> 墨者学院WEB安全ActiveMQ任意文件写入漏洞分析溯源ActiveMQ 简介漏洞复现参考链接</p>
+          <p>fileserver是一个RESTful API接口，我们可以通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，导致的任意文件写入漏洞</p>
+<a id="more"></a>
+
 <h1 id="墨者学院"><a href="#墨者学院" class="headerlink" title="墨者学院"></a>墨者学院</h1><h2 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h2><h3 id="ActiveMQ任意文件写入漏洞分析溯源"><a href="#ActiveMQ任意文件写入漏洞分析溯源" class="headerlink" title="ActiveMQ任意文件写入漏洞分析溯源"></a>ActiveMQ任意文件写入漏洞分析溯源</h3><h4 id="ActiveMQ-简介"><a href="#ActiveMQ-简介" class="headerlink" title="ActiveMQ 简介"></a>ActiveMQ 简介</h4><p>ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java  的 web 容器，例如 JSP 和 servlet 提供运行环境。ActiveMQ 5.0 及以后版本默认集成了jetty。在启动后提供一个监控 ActiveMQ 的 Web 应用</p>
 <p>fileserver是一个RESTful API接口，我们可以通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，其设计目的是为了弥补消息队列操作不能传输、存储二进制文件的缺陷，但后来发现：</p>
 <ol>
