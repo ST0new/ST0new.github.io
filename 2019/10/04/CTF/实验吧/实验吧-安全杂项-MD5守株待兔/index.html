@@ -8,10 +8,10 @@
   <meta name="description" content>
   <meta name="author" content="ST0new">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="ST0new的小站">
+  <meta property="og:title" content="MD5之守株待兔">
   <meta property="og:description" content="一个ctfer，web渗透测试小白">
   <meta property="og:site_name" content="ST0new的小站">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:image" content="http://yoursite.com">
   
     <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
@@ -35,8 +35,7 @@
 </head>
 
   <body>
-    <!-- Archive Header -->
-<!-- Page Header -->
+    <!-- Page Header -->
 
 
 <header class="site-header header-background" style="background-image: url(/img/default-banner-light.jpg)">
@@ -44,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Blog Archives</p>
+          <p class="title">MD5之守株待兔</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -89,34 +88,60 @@
   </div>
 </header>
 
-<!-- Archive List -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      
-        <div class="archive-item">
-  <a href="/2019/10/04/web安全/sql注入/sql-lab-通关宝典/" class="post-title">
-    sql-lab 复现通关（深入学习）
-  </a>
-  <div class="date text-muted">Posted on 2019-10-04 10:20:35</div>
-</div>
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ST0new</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-10-04</span>
+            <span class="time">11:04:45</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
 
-      
+<a href="/categories/CTF/">CTF</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
 
+<a class="tag" href="/tags/misc/">#misc</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>实验吧-安全杂项-MD5之守株待兔 ，通过md5加密时间戳获取flag</p>
+<a id="more"></a>
+
+<h1 id="实验吧"><a href="#实验吧" class="headerlink" title="实验吧"></a>实验吧</h1><h2 id="安全杂项"><a href="#安全杂项" class="headerlink" title="安全杂项"></a>安全杂项</h2><h3 id="MD5之守株待兔，你需要找到和系统锁匹配的钥匙"><a href="#MD5之守株待兔，你需要找到和系统锁匹配的钥匙" class="headerlink" title="MD5之守株待兔，你需要找到和系统锁匹配的钥匙"></a>MD5之守株待兔，你需要找到和系统锁匹配的钥匙</h3><p>做题感受，这个题难道就只能一直刷新等吗，太不亲民了</p>
+<ol>
+<li><p>访问url</p>
+<p>[<a href="http://ctf5.shiyanbar.com/misc/keys/keys.php(http://ctf5.shiyanbar.com/misc/keys/keys.php)" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/misc/keys/keys.php(http://ctf5.shiyanbar.com/misc/keys/keys.php)</a></p>
+</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/18851353-8dbec36a3755ee97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>查看自己的密钥，发现是空的，经过尝试后发现，需要通过get一个数，这个数代表时间，然后md5解密系统的密钥，发现是个时间戳，而且每次都会变就更加确认了。
+
+之后通过自己get的时间，一直刷新，基本大30 就可以获取到了。</code></pre><p>  <img src="https://upload-images.jianshu.io/upload_images/18851353-d85751dc9c69c33d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<p>拿到flag，直接照格式提交就行，不要和我傻得还去md5一下，然后提交几次都没有成功</p>
+
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<!-- Pagination -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-10 col-md-10 col-md-offset-1">
-      <ul class="pagination">
-          
-          
-      </ul>
-    </div>
-  </div>
-</div>
+</article>
 
 
 
@@ -144,14 +169,6 @@
     var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
     codeBlocks.forEach(function(block, index) {
       hljs.highlightBlock(block);
-    });
-  });
-</script>
-
-  </body>
-</html>
-
-s.highlightBlock(block);
     });
   });
 </script>

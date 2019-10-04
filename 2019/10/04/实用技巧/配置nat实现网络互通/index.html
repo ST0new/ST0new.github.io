@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="ST0new">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="配置NAT实现网络互通">
+  <meta property="og:description" content="一个ctfer，web渗透测试小白">
+  <meta property="og:site_name" content="ST0new的小站">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ST0new的小站</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-light.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">配置NAT实现网络互通</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/ST0new/">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ST0new</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-10-04</span>
+            <span class="time">11:04:45</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/实用技巧/">实用技巧</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/NAT/">#NAT</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>配置nat 实现主机互通</p>
+<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>参加了拼客学院的第十期五天速成白帽子培训课，然后把一些常见的知识分享给大家</p>
+<h2 id="安装靶机"><a href="#安装靶机" class="headerlink" title="安装靶机"></a>安装靶机</h2><p>下载的话网上都有直接去下就好了。</p>
+<p>安装比较简单，这里推荐安装过程</p>
+<p><a href="https://jingyan.baidu.com/article/b24f6c821cb98d86bfe5da83.html" target="_blank" rel="noopener">Winxp安装教程</a></p>
+<p><a href="https://jingyan.baidu.com/article/9989c746d4f914f648ecfe2f.html" target="_blank" rel="noopener">Win2003安装教程</a></p>
+<h1 id="配置NAT-实现互通"><a href="#配置NAT-实现互通" class="headerlink" title="配置NAT 实现互通"></a>配置NAT 实现互通</h1><p>配置nat过程都一样，所以这里只演示一种方式<br>以<code>winxp</code>为例  </p>
+<ul>
+<li><p>打开虚拟机，选择以vmmware形式打开<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20190710230814.png" alt></p>
+</li>
+<li><p>配置网卡为NAT模式<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710231547.png" alt></p>
+</li>
+<li><p>打开cmd 输入ipconfig 即可查看配置<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710231222.png" alt><br>3 ping win2003主机，查看是否连通</p>
+</li>
+<li><p>ping 网络中的某个网站，测试是否连通<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710231326.png" alt></p>
+</li>
+</ul>
+<h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><p>如果你得vmnet8 没有配置正确是不能访问网络的<br>附上我的配置，如果有错误可以照着我的改</p>
+<ul>
+<li>虚拟网络适配器<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710232159.png" alt></li>
+<li>NAT 配置<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710232249.png" alt></li>
+<li>网络适配器的配置<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710232403.png" alt></li>
+</ul>
+<hr>
+<p>希望能给刚入门的小伙伴一点启发</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

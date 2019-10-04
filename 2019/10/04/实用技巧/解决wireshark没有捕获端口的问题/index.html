@@ -8,10 +8,10 @@
   <meta name="description" content>
   <meta name="author" content="ST0new">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="ST0new的小站">
+  <meta property="og:title" content="解决wireshark没有捕获端口的问题">
   <meta property="og:description" content="一个ctfer，web渗透测试小白">
   <meta property="og:site_name" content="ST0new的小站">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:image" content="http://yoursite.com">
   
     <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
@@ -35,8 +35,7 @@
 </head>
 
   <body>
-    <!-- Archive Header -->
-<!-- Page Header -->
+    <!-- Page Header -->
 
 
 <header class="site-header header-background" style="background-image: url(/img/default-banner-light.jpg)">
@@ -44,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Blog Archives</p>
+          <p class="title">解决wireshark没有捕获端口的问题</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -89,34 +88,56 @@
   </div>
 </header>
 
-<!-- Archive List -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      
-        <div class="archive-item">
-  <a href="/2019/10/04/web安全/sql注入/sql-lab-通关宝典/" class="post-title">
-    sql-lab 复现通关（深入学习）
-  </a>
-  <div class="date text-muted">Posted on 2019-10-04 10:20:35</div>
-</div>
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ST0new</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-10-04</span>
+            <span class="time">11:04:45</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
 
-      
+<a href="/categories/实用技术/">实用技术</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
 
+<a class="tag" href="/tags/wireshark/">#wireshark</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>流量捕获时发现没有端口解决方法</p>
+<a id="more"></a>
+
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>今天打开wireshark发现没有捕获的接口，然后查了下需要开启npf<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712125750.png" alt></p>
+<p>1 以管理员模式启动cmd<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712125903.png" alt></p>
+<p>2 输入命令 <code>net start npf</code><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712125750.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712130050.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712130142.png" alt></p>
+<hr>
+<p>希望可以帮助到各位小伙伴</p>
+
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<!-- Pagination -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-10 col-md-10 col-md-offset-1">
-      <ul class="pagination">
-          
-          
-      </ul>
-    </div>
-  </div>
-</div>
+</article>
 
 
 
@@ -144,14 +165,6 @@
     var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
     codeBlocks.forEach(function(block, index) {
       hljs.highlightBlock(block);
-    });
-  });
-</script>
-
-  </body>
-</html>
-
-s.highlightBlock(block);
     });
   });
 </script>

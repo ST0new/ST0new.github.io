@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="ST0new">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="实验吧-隐写-欢迎来到地狱">
+  <meta property="og:description" content="一个ctfer，web渗透测试小白">
+  <meta property="og:site_name" content="ST0new的小站">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ST0new的小站</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-light.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">实验吧-隐写-欢迎来到地狱</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/ST0new/">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ST0new</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-10-04</span>
+            <span class="time">11:04:45</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/CTF/">CTF</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/misc/">#misc</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>多重隐写+加密，需要清醒的认识，才能不坠入地狱</p>
+<a id="more"></a>
+
+<h1 id="实验吧"><a href="#实验吧" class="headerlink" title="实验吧"></a>实验吧</h1><h2 id="隐写题"><a href="#隐写题" class="headerlink" title="隐写题"></a>隐写题</h2><h3 id="欢迎来到地狱"><a href="#欢迎来到地狱" class="headerlink" title="欢迎来到地狱"></a>欢迎来到地狱</h3><ol>
+<li><p>解压</p>
+<p>访问url，获取一个zip文件，解压发现存在3个文件 分别是jpg，doc，zip</p>
+<p>根据文件名去，首先我们去打开第一个文件地狱伊始.jpg 打开提示文件错误。</p>
+</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/18851353-4f5b9c8d0c0ada24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>使用winhex打开查看，发现是jfif的文件，之后看到文件头标识不对，查询发现jfif的文件头是`FFD8FFFE00, .JPEG;.JPE;.JPG, &quot;JPGGraphic File&quot;` 我们添加文件头，方法：右键-&gt;edit-&gt;Paste zero bytes -&gt; 4 添加四个比特
+
+之后添加为
+
+![图片.png](https://upload-images.jianshu.io/upload_images/18851353-865de8c22816711b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+打开图片</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/18851353-ec5161d4032bdab8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>图片链接失效，这里需要去隔壁wp里面找一个
+
+[https://pan.baidu.com/s/1i49Jhlj](https://pan.baidu.com/s/1i49Jhlj)
+
+注意这里的字母，打开是个音频</code></pre><ol start="2">
+<li><p>音频隐写</p>
+<p>使用audacity.exe 打开文件，然后猜测可能是莫尔斯码</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18851353-e928ef5cc6139bf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<p>101 0 1011 0100 0 1 001 000 110 111 通过对莫尔斯码对比得到密码</p>
+<p>key letusgo</p>
+</li>
+<li><p>图片隐写</p>
+<p>使用一个web网址上传图片直接出结果，这个参考评论，我使用stegsolve 没有查看到</p>
+<p><a href="http://www.atool9.com/steganography.php" target="_blank" rel="noopener">http://www.atool9.com/steganography.php</a></p>
+</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/18851353-4329b373e9c8b879.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>这里试了n久 没弄出来 ，之后查看了下wp 发现解密的信息错误,以下的为正确的 key{you are in finally hell now}
+
+这里和dalao商量了下，可能是图片的问题。
+
+终点
+
+有一个txt和一个图片，先看txt文档，0和1组成的可能是二进制，试试解字符串
+
+[![图片.png](https://upload-images.jianshu.io/upload_images/18851353-80915ee08664e99a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+ruokouling = 弱口令
+
+然后查看图片 地狱大门.jpg 使用winhex 打开，在最后看到有小姐姐.txt 文件 使用kali的foremost 分离</code></pre><p> <img src="https://upload-images.jianshu.io/upload_images/18851353-1d6b0f89f4cc437d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18851353-8176f44aae59b878.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"><br><img src="https://upload-images.jianshu.io/upload_images/18851353-6edb263d38578fb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>测试发现弱口令为Password</code></pre><p>   <img src="https://upload-images.jianshu.io/upload_images/18851353-93ef5c7e3d1d37c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>VTJGc2RHVmtYMTlwRG9yWjJoVFArNXcwelNBOWJYaFZlekp5MnVtRlRTcDZQZE42elBLQ01BPT0=
+
+可能是base系列
+
+base64 解密一次 U2FsdGVkX19pDorZ2hTP+5w0zSA9bXhVezJy2umFTSp6PdN6zPKCMA==
+
+rabbit 解密 一次 fxbqrwrvnwmngrjxsrnsrnhx
+
+凯撒 解密一次 woshinimendexiaojiejieyo
+
+附上凯撒解密的脚本</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">​</span><br><span class="line">import os</span><br><span class="line">​</span><br><span class="line">str = &quot;fxbqrwrvnwmngrjxsrnsrnhx&quot;</span><br><span class="line">for i in range(0,26):</span><br><span class="line"> for j in str:</span><br><span class="line"> if ord(j) -i &gt;= 97:</span><br><span class="line"> print(chr(ord(j)-i),end=&quot;&quot;)</span><br><span class="line"> else:</span><br><span class="line"> print(chr(ord(j)-i+26),end=&quot;&quot;)</span><br><span class="line"> print()&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>flag</p>
+<p>CTF{woshinimendexiaojiejieyo}</p>
+</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

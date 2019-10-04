@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="ST0new">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="实验吧-逆向工程-debug">
+  <meta property="og:description" content="一个ctfer，web渗透测试小白">
+  <meta property="og:site_name" content="ST0new的小站">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ST0new的小站</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-light.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">实验吧-逆向工程-debug</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/ST0new/">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ST0new</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-10-04</span>
+            <span class="time">11:04:45</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/CTF/">CTF</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/reverse/">#reverse</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>了解函数运行，合适添加断点判断，获取一闪而过的flag</p>
+<a id="more"></a>
+
+<h1 id="实验吧"><a href="#实验吧" class="headerlink" title="实验吧"></a>实验吧</h1><h2 id="逆向工程"><a href="#逆向工程" class="headerlink" title="逆向工程"></a>逆向工程</h2><h3 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h3><ol>
+<li>下载文件，然后用idaq打开，<br><img src="https://upload-images.jianshu.io/upload_images/18851353-bcffaf7509872cfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></li>
+</ol>
+<pre><code>尝试在linux下打开发现么没有返回值，
+
+在idaq里面去查看shift+F12 查看字符串，发现有个printing flag
+
+这里想着如何可以进去，</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/18851353-4a18b4c4c1542a79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>可以看到其实位置在0x804849b</code></pre><ol start="2">
+<li><p>设置断点，查看</p>
+<p>一般设置在main 但是main没有定义</p>
+<p>[图片上传失败…(image-12bd86-1566818035404)] </p>
+<p>这里查了下发现这几个可以代替</p>
+<p>程序启动的过程应该是这样的：</p>
+<p>_start -&gt; __libc_start_main -&gt; main. 具体一点就是：</p>
+<p>_start -&gt; <strong>libc_start_main -&gt;</strong> libc_csu_init -&gt; main. 再具体一点就是：</p>
+<p>_start -&gt; <strong>libc_start_main -&gt;</strong> libc_csu_init -&gt; _init -&gt; main -&gt; _fini.</p>
+<p>官方点的解释：__libc_start_main sets up the environment and then calls the <code>main()</code> function when the binary is run.</p>
+<p>所以我们设置在libc_start_main 也可以达到相同的效果</p>
+</li>
+<li><p>获取flag<br><img src="https://upload-images.jianshu.io/upload_images/18851353-2ac2fd5eab49c9f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+</li>
+</ol>
+<pre><code>设置入口</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/18851353-9dc087b284760cc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>运行，之后在设置断点 ， 先 r 在 set $eip=0x804849b</code></pre><p>  <img src="https://upload-images.jianshu.io/upload_images/18851353-7f80c2c362487886.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>成功拿到flag</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
