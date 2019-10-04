@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-10-04T03:14:36.176Z</updated>
+  <updated>2019-10-04T05:44:24.525Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>配置NAT实现网络互通</title>
+    <link href="http://yoursite.com/2019/10/04/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/%E9%85%8D%E7%BD%AEnat%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BA%92%E9%80%9A/"/>
+    <id>http://yoursite.com/2019/10/04/实用技巧/配置nat实现网络互通/</id>
+    <published>2019-10-04T05:44:23.000Z</published>
+    <updated>2019-10-04T05:44:24.525Z</updated>
+    
+    <content type="html"><![CDATA[<p>配置nat 实现主机互通</p><a id="more"></a><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>参加了拼客学院的第十期五天速成白帽子培训课，然后把一些常见的知识分享给大家</p><h2 id="安装靶机"><a href="#安装靶机" class="headerlink" title="安装靶机"></a>安装靶机</h2><p>下载的话网上都有直接去下就好了。</p><p>安装比较简单，这里推荐安装过程</p><p><a href="https://jingyan.baidu.com/article/b24f6c821cb98d86bfe5da83.html" target="_blank" rel="noopener">Winxp安装教程</a></p><p><a href="https://jingyan.baidu.com/article/9989c746d4f914f648ecfe2f.html" target="_blank" rel="noopener">Win2003安装教程</a></p><h1 id="配置NAT-实现互通"><a href="#配置NAT-实现互通" class="headerlink" title="配置NAT 实现互通"></a>配置NAT 实现互通</h1><p>配置nat过程都一样，所以这里只演示一种方式<br>以<code>winxp</code>为例  </p><ul><li><p>打开虚拟机，选择以vmmware形式打开<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/20190710230814.png" alt></p></li><li><p>配置网卡为NAT模式<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710231547.png" alt></p></li><li><p>打开cmd 输入ipconfig 即可查看配置<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710231222.png" alt><br>3 ping win2003主机，查看是否连通</p></li><li><p>ping 网络中的某个网站，测试是否连通<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710231326.png" alt></p></li></ul><h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><p>如果你得vmnet8 没有配置正确是不能访问网络的<br>附上我的配置，如果有错误可以照着我的改</p><ul><li>虚拟网络适配器<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710232159.png" alt></li><li>NAT 配置<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710232249.png" alt></li><li>网络适配器的配置<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/9/20190710232403.png" alt></li></ul><hr><p>希望能给刚入门的小伙伴一点启发</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;配置nat 实现主机互通&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="实用技巧" scheme="http://yoursite.com/categories/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
+    
+    
+      <category term="NAT" scheme="http://yoursite.com/tags/NAT/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CTF介绍</title>
     <link href="http://yoursite.com/2019/10/04/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/CTF%E4%BB%8B%E7%BB%8D/"/>
     <id>http://yoursite.com/2019/10/04/实用技巧/CTF介绍/</id>
     <published>2019-10-04T03:14:02.000Z</published>
-    <updated>2019-10-04T03:14:36.176Z</updated>
+    <updated>2019-10-04T05:43:48.519Z</updated>
     
     <content type="html"><![CDATA[<p>刚开始接触CTF,对于misc，reverse等等都傻傻分不清，所以专门去查了下这些名词，给没有接触CTF的童鞋一点入门基础.</p><a id="more"></a><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚开始接触CTF,对于misc，reverse等等都傻傻分不清，所以专门去查了下这些名词，给没有接触CTF的童鞋一点入门基础。如果有不对的地方，欢迎大佬指点。</p><h1 id="CTF是什么"><a href="#CTF是什么" class="headerlink" title="CTF是什么"></a>CTF是什么</h1><p>CTF（Capture The Flag）中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。<br>CTF起源于1996年DEFCON全球黑客大会，以代替之前黑客们通过互相发起真实攻击进行技术比拼的方式。<br>发展至今，已经成为全球范围网络安全圈流行的竞赛形式。<br>附上参考链接：<a href="https://baike.baidu.com/item/ctf/9548546?fr=aladdin" target="_blank" rel="noopener">CTF</a></p><h1 id="CTF-介绍"><a href="#CTF-介绍" class="headerlink" title="CTF 介绍"></a>CTF 介绍</h1><h2 id="赛事介绍"><a href="#赛事介绍" class="headerlink" title="赛事介绍"></a>赛事介绍</h2><p>我们把CTF简称为夺旗赛，是因为出题的人把答案都放一个叫flag的文件下或者用flag{}形式展示给我们。一般是我们在某个站点或者某个文件下去寻找或分析得到的</p><h2 id="模式介绍"><a href="#模式介绍" class="headerlink" title="模式介绍"></a>模式介绍</h2><p>  一般分为三类：<code>解题模式</code>、<code>攻防模式</code>,<code>混合模式</code>  </p><ol><li><p>解题模式</p><blockquote><p>通过解决主办方出的题目得到相应的分数，从而获得排名。参赛有个人和团队之分。<br>赛题主要分为以下几个方向：CHOICE(比较少，适合初学者)、BASIC(这个也不多见，适合刚入门的童鞋)、WEB、REVERSE、PWN、MISC等<br>以上名词等下会有介绍</p></blockquote></li><li><p>攻防模式</p><blockquote><p>一般我们叫AWD,这个模式不仅看眼技术还考验手速，参赛队伍在网络空间中互相攻击和防守，挖掘漏洞并攻击对手来得分。并防御其他对手攻击自己。攻防很考验技术和应急。也考研团队的合作能力</p></blockquote></li><li><p>混合模式</p><blockquote><p>将上述的两个模式结合起来。就是两个都玩，最后用分数一较高下<br>一般更多的是国际赛的比赛方式</p></blockquote></li></ol><h2 id="题型介绍"><a href="#题型介绍" class="headerlink" title="题型介绍"></a>题型介绍</h2><p>没错，这就是我刚接触最头疼的了，我内个去，这是啥啊！ 这就给你介绍介绍</p><ol><li>CHOICE:选择题包含关于信息安全的各类知识点，难度系数偏低，适合刚接触信息安全的人士来全面的了解安全行业的情况</li><li>BASIC: 主要考察基础的计算机与网络安全知识，涉及信息发掘、搜索、嗅探、无线安全、正则表达式、SQL、脚本语言、汇编、C语言以及简单的破解、溢出等知识。旨在普及信息安全知识，引领信息安全爱好者入门</li><li>WEB: 考察脚本注入、欺骗和跨站等脚本攻击技术</li><li>REVERSE: 考察逆向破解的相关技术，要求有较高的汇编语言读写能力，以及对操作系统原理的认识</li><li>PWN: 考察软件漏洞挖掘、分析及利用技术，探索二进制代码背后的秘密，要求对漏洞有一定理解，掌握操作系统原理的相关知识(自我感觉最有难度的)</li><li>MOBILE: 考察移动终端安全相关知识</li><li>MISC: 即杂项，考察各种计算机系统与网络安全知识，涉及隐写术、流量分析、内核安全等信息安全的各个领域。</li><li>PPC:即编程类题目，题目涉及到编程算法</li><li>CRYPTO:即密码学，题目考察各种加解密技术，包括古典加密技术、现代加密技术甚至出题者自创加密技术。<blockquote><p>对AWD等不过多介绍，因为我好菜啊，还没玩过，不敢发言</p></blockquote></li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>看了这么多，大家应该知道ctf是什么了吧！那么开始起航吧，之后我会一步一脚印的更新。形成一个完整的体系。</p>]]></content>
     
@@ -32,7 +55,7 @@
     </summary>
     
     
-      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+      <category term="实用技巧" scheme="http://yoursite.com/categories/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
     
     
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
@@ -301,7 +324,7 @@
     <link href="http://yoursite.com/2019/10/04/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/%E8%A7%A3%E5%86%B3wireshark%E6%B2%A1%E6%9C%89%E6%8D%95%E8%8E%B7%E7%AB%AF%E5%8F%A3%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2019/10/04/实用技巧/解决wireshark没有捕获端口的问题/</id>
     <published>2019-10-04T02:55:33.000Z</published>
-    <updated>2019-10-04T02:56:11.516Z</updated>
+    <updated>2019-10-04T05:44:08.723Z</updated>
     
     <content type="html"><![CDATA[<p>流量捕获时发现没有端口解决方法</p><a id="more"></a><h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>今天打开wireshark发现没有捕获的接口，然后查了下需要开启npf<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712125750.png" alt></p><p>1 以管理员模式启动cmd<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712125903.png" alt></p><p>2 输入命令 <code>net start npf</code><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712125750.png" alt></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712130050.png" alt></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/12/20190712130142.png" alt></p><hr><p>希望可以帮助到各位小伙伴</p>]]></content>
     
@@ -312,7 +335,7 @@
     </summary>
     
     
-      <category term="实用技术" scheme="http://yoursite.com/categories/%E5%AE%9E%E7%94%A8%E6%8A%80%E6%9C%AF/"/>
+      <category term="实用技巧" scheme="http://yoursite.com/categories/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
     
     
       <category term="wireshark" scheme="http://yoursite.com/tags/wireshark/"/>
@@ -347,7 +370,7 @@
     <link href="http://yoursite.com/2019/10/04/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/%E5%88%A0%E9%99%A4github%E7%9A%84%E6%9F%90%E4%B8%AA%E6%96%87%E4%BB%B6/"/>
     <id>http://yoursite.com/2019/10/04/实用技巧/删除github的某个文件/</id>
     <published>2019-10-04T02:52:35.000Z</published>
-    <updated>2019-10-04T02:52:37.475Z</updated>
+    <updated>2019-10-04T05:44:33.962Z</updated>
     
     <content type="html"><![CDATA[<p>搭建图床的时候，位置弄错不会删除，这里总结一下</p><a id="more"></a><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote><p>今天用github做图床，上传的文件没有改名字并且都在同一个文件中散乱，然后想要删除的时候发现没有删除的选项。</p><p>然后百度了下相关的内容，并把操作记录以备查看，并给和我一样不会的小伙伴们一个参考</p></blockquote><h2 id="开始前的准备"><a href="#开始前的准备" class="headerlink" title="开始前的准备"></a>开始前的准备</h2><p>首先看看我现在的情况</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9B%B4%E6%94%B9%E5%89%8D%E7%9A%84%E6%83%85%E5%86%B5.png" alt></p><p>之后我们需要有git这个软件支持，我这里用的是<code>Git-2.21.0-64-bit.exe</code>这个版本</p><p>附上下载地址：<a href="https://git-scm.com/download/" target="_blank" rel="noopener">git官方下载地址</a></p><p>git的安装比较简单，如果需要过程请参考网上的教程，这里就不多说了</p><p>下载好之后，鼠标右键就可以打开<code>git bash here</code></p><h2 id="删除不需要的文件"><a href="#删除不需要的文件" class="headerlink" title="删除不需要的文件"></a>删除不需要的文件</h2><p>1 如果是刚下载git的请跟着下面的步骤走，</p><p>首先先配置自己的git信息，</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E5%88%9A%E4%B8%8B%E8%BD%BDgit%E7%9A%84%E5%88%9D%E5%A7%8B%E6%AD%A5%E9%AA%A4.png" alt></p><p>之后初始化，在设置自己的</p><p>2 首先需要把github的项目拉倒本地，如果刚下载git请移步第一步</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1 添加origin  </span><br><span class="line">如果有.git 就不需要 git init  </span><br><span class="line">$ git init  </span><br><span class="line">$ git remote add origin git@github.com:ST0new/picture.git  </span><br><span class="line">2 拉取github文件  </span><br><span class="line">$ git pull origin master   </span><br><span class="line">3 查看文件  </span><br><span class="line">$ dir  </span><br><span class="line">4 删除不需要的文件  </span><br><span class="line">$ git rm -r --cached 0n7nye49.bmp  </span><br><span class="line">5 添加说明  </span><br><span class="line">$ git commit -m '删除了 0n7nye49.bmp '  </span><br><span class="line">6 更新github仓库  </span><br><span class="line">$ git add .  </span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure><p>拉取github上的文件</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/github%E6%8B%89%E5%8F%96%E6%96%87%E4%BB%B6.png" alt></p><p>输入dir查看目录</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%8B%89%E5%8F%96%E4%B8%8B%E6%9D%A5%E6%9F%A5%E7%9C%8B.png" alt></p><p>选择不需要的文件删除</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/dir%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95.png" alt></p><p>提交添加声明</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%8F%90%E4%BA%A4%E6%B7%BB%E5%8A%A0%E5%A3%B0%E6%98%8E.png" alt></p><p>更新远程仓库</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9B%B4%E6%96%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93.png" alt></p><p>查看</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%9F%A5%E7%9C%8B%E6%9B%B4%E6%96%B0%E5%90%8E%E7%9A%84%E5%86%85%E5%AE%B9.png" alt></p><h3 id="报错1-没有初始化"><a href="#报错1-没有初始化" class="headerlink" title="报错1 没有初始化"></a>报错1 没有初始化</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin master</span><br><span class="line">fatal: not a git repository (or any of the parent directories): .git</span><br></pre></td></tr></table></figure><p>解决：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/%E6%B2%A1%E6%9C%89%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt></p><h3 id="报错2-添加远程库失败"><a href="#报错2-添加远程库失败" class="headerlink" title="报错2 添加远程库失败"></a>报错2 添加远程库失败</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github:ST0new/picture</span><br><span class="line">fatal: remote origin already exists.</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20190710083208278.png" alt="在这里插入图片描述"></p><p>解决：删除重新添加</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rm origin</span><br><span class="line">$ git remote add origin git@github.com:ST0new/picture.git</span><br></pre></td></tr></table></figure><hr><p>希望能解决你的问题</p>]]></content>
     
@@ -358,7 +381,7 @@
     </summary>
     
     
-      <category term="实用技术" scheme="http://yoursite.com/categories/%E5%AE%9E%E7%94%A8%E6%8A%80%E6%9C%AF/"/>
+      <category term="实用技巧" scheme="http://yoursite.com/categories/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
     
     
       <category term="文件删除" scheme="http://yoursite.com/tags/%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4/"/>
@@ -446,29 +469,6 @@
     <summary type="html">
     
       &lt;p&gt;多种加密结合，一步一步解密，追寻真理&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
-    
-    
-      <category term="crypto" scheme="http://yoursite.com/tags/crypto/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>变异凯撒</title>
-    <link href="http://yoursite.com/2019/10/04/CTF/%E5%AE%9E%E9%AA%8C%E5%90%A7/%E5%AE%9E%E9%AA%8C%E5%90%A7-%E5%AF%86%E7%A0%81%E5%AD%A6-%E5%8F%98%E5%BC%82%E5%87%AF%E6%92%92/"/>
-    <id>http://yoursite.com/2019/10/04/CTF/实验吧/实验吧-密码学-变异凯撒/</id>
-    <published>2019-10-04T02:37:47.000Z</published>
-    <updated>2019-10-04T02:40:13.895Z</updated>
-    
-    <content type="html"><![CDATA[<p>仔细观察凯撒加密，找寻其中的规律</p><a id="more"></a><h1 id="实验吧"><a href="#实验吧" class="headerlink" title="实验吧"></a>实验吧</h1><h2 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h2><h3 id="变异凯撒"><a href="#变异凯撒" class="headerlink" title="变异凯撒"></a>变异凯撒</h3><blockquote><p>凯撒密码</p><p>在<a href="https://baike.baidu.com/item/%E5%AF%86%E7%A0%81%E5%AD%A6" target="_blank" rel="noopener">密码学</a>中，<strong>恺撒密码</strong>（英语：Caesar cipher），或称<strong>恺撒加密</strong>、<strong>恺撒变换</strong>、<strong>变换加密</strong>，是一种最简单且最广为人知的加密技术。它是一种替换加密的技术，<a href="https://baike.baidu.com/item/%E6%98%8E%E6%96%87" target="_blank" rel="noopener">明文</a>中的所有字母都在<a href="https://baike.baidu.com/item/%E5%AD%97%E6%AF%8D%E8%A1%A8" target="_blank" rel="noopener">字母表</a>上向后（或向前）按照一个固定数目进行偏移后被替换成<a href="https://baike.baidu.com/item/%E5%AF%86%E6%96%87" target="_blank" rel="noopener">密文</a>。例如，当偏移量是3的时候，所有的字母A将被替换成D，B变成E，以此类推。这个加密方法是以罗马共和时期<a href="https://baike.baidu.com/item/%E6%81%BA%E6%92%92" target="_blank" rel="noopener">恺撒</a>的名字命名的，当年恺撒曾用此方法与其将军们进行联系。</p></blockquote><ol><li><p>看一下加密的密文</p><p>加密密文：afZ_r9VYfScOeO_UL^RWUc  格式：flag{ }</p></li><li><p>将加密的密文转成二进制</p><p>97 102 90 95 114 57 86 89 102 83 99 79 101 79 95 85 76 94 82 87 85 99</p></li><li><p>根据flag的格式 比较发现</p><p>f = 102，l = 108, a = 97 , g = 103</p><p>可以发现 第一位 偏移5，第二位偏移6 ， 第三位偏移7 ，第四位偏移8</p></li><li><p>写个python脚本跑一下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">k = 5 </span><br><span class="line">str = &apos;afZ_r9VYfScOeO_UL^RWUc&apos; </span><br><span class="line">for i in str:                    </span><br><span class="line"> print(chr(ord(i)+k),end=&quot;&quot;)</span><br><span class="line"> k +=1</span><br></pre></td></tr></table></figure><p>结果：flag{Caesar_variation}</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;仔细观察凯撒加密，找寻其中的规律&lt;/p&gt;
     
     </summary>
     
