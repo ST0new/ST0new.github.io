@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="ST0new">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="DVWA 查看默认密码">
+  <meta property="og:description" content="一个ctfer，web渗透测试小白">
+  <meta property="og:site_name" content="ST0new的小站">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ST0new的小站</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-light.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">DVWA 查看默认密码</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/ST0new/">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ST0new</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-10-04</span>
+            <span class="time">11:14:57</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/实用技巧/">实用技巧</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/DVWA/">#DVWA</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>如何数据库查看dvwa的密码，跳过密码验证</p>
+<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天登录dvwa的时候发现密码错误，尝试了我自己常设置的密码后都没有结果，就决定去数据库查看dvwa的密码。话不多说，直接开始操作</p>
+<h2 id="dvwa默认密码"><a href="#dvwa默认密码" class="headerlink" title="dvwa默认密码"></a>dvwa默认密码</h2><p>如果小伙伴们只需要dvwa的默认密码去登录dvwa，这里给出dvwa的默认密码<br>|    用户名    |    密码    |<br>|————-|————|<br>|    admin    |    password    |<br>|    gordonb    |    abc123    |<br>|    1337    |    charley    |<br>|    pablo    |    letmein    |<br>|    smithy|    password    |</p>
+<h2 id="获取dvwa的密码"><a href="#获取dvwa的密码" class="headerlink" title="获取dvwa的密码"></a>获取dvwa的密码</h2><ol>
+<li><p>登录靶机，定位到dvwa的当前目录下，我的位置是<code>/var/www/dvwa</code>，这里看自己的dvwa目录在哪。<br><img src="https://img-blog.csdnimg.cn/201904301206138.png" alt="dvwa目录位置"></p>
+</li>
+<li><p>查看dvwa的登录文件<code>login.php</code>，查看相关信息<br> 查看代码，发现密码是md5加密保存的，并且存放在数据库的users表下。<img src="https://img-blog.csdnimg.cn/20190430120820998.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="dvwa的login.php文件"></p>
+</li>
+<li><p>查看配置文件中关于数据库的相关信息，文件位于：<code>/var/www/dvwa/config/config.inc.php</code></p>
+<p>  <img src="https://img-blog.csdnimg.cn/20190430124811146.png" alt="配置文件位置"><br>  查看配置文件,发现DBMS是<code>mysql</code>，dvwa的数据库是<code>dvwa</code>,数据库的登录用户名是<code>root</code>,密码是<code>root</code>.<br><img src="https://img-blog.csdnimg.cn/20190430125042833.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="配置文件"></p>
+<ol start="4">
+<li><p>登录数据库查看密码</p>
+<p>命令：mysql -u root -p<br>  输入密码root,连接到数据库<br><img src="https://img-blog.csdnimg.cn/20190430130748132.png" alt="mysql登录"></p>
+<p>根据刚才的信息，我们知道数据库是dvwa，跳转到dvwa的数据库下，<br><img src="https://img-blog.csdnimg.cn/20190430130852961.png" alt="在这里插入图片描述"></p>
+<p>查找表，发现存在user表，我们查看表的信息<br><img src="https://img-blog.csdnimg.cn/20190430130934281.png" alt="在这里插入图片描述"></p>
+<p>查看users表，发现存在4个账户<br><img src="https://img-blog.csdnimg.cn/20190430131002233.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+</li>
+<li><p>破解密码<br>  将值放到somd5解密，发现居然是空密码，无语了。<br><img src="https://img-blog.csdnimg.cn/20190430131131482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>修改密码<br> 如果md5解密不出来，那么我们就需要去修改密码了。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> md5(<span class="string">"password"</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">md5值:<span class="number">5</span>f4dcc3b5aa765d61d8327deb882cf99</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;修改admin的密码</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> <span class="keyword">set</span> <span class="keyword">password</span>=” <span class="number">5</span>f4dcc3b5aa765d61d8327deb882cf99” <span class="keyword">where</span> user_id=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>登录dvwa<br>使用修改后的密码登录dvwa，发现登录成功。然后你就可以开始你的靶机学习之路了。</li>
+</ol>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>希望可以帮到需要的各位，学安全不易，一步一脚印，多练习，总会有收获。</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

