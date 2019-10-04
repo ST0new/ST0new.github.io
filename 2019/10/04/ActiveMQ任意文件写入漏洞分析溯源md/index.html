@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="文章描述，即要在首页显示的摘要（仅部分主题支持）">
+  <meta name="description" content>
   <meta name="author" content="ST0new">
   <!-- Open Graph Data -->
   <meta property="og:title" content="ActiveMQ任意文件写入漏洞分析溯源">
-  <meta property="og:description" content="文章描述，即要在首页显示的摘要（仅部分主题支持）">
+  <meta property="og:description" content="一个ctfer，web渗透测试小白">
   <meta property="og:site_name" content="ST0new的小站">
   <meta property="og:type" content="article">
   <meta property="og:image" content="http://yoursite.com">
@@ -66,7 +66,7 @@
               </li>
             
               <li>
-                <a href="https://github.com/<your-github-username>">
+                <a href="https://github.com/ST0new/">
                   
                   Github
                   
@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-10-04</span>
-            <span class="time">09:20:37</span>
+            <span class="time">09:25:49</span>
           </span>
           
           <!--  Categories  -->
@@ -122,11 +122,11 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java</p>
+          <p>ActiveMQ&lt;5.12.x版本存在fileserver 应用，可以通过fileserver写入文件（不解析jsp文件）通过移动到任意位置，就可以造成任意文件写入漏洞。</p>
 <a id="more"></a>
 
 <p>[TOC]</p>
-<h1 id="墨者学院"><a href="#墨者学院" class="headerlink" title="墨者学院"></a>墨者学院</h1><h2 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h2><h3 id="ActiveMQ任意文件写入漏洞分析溯源"><a href="#ActiveMQ任意文件写入漏洞分析溯源" class="headerlink" title="ActiveMQ任意文件写入漏洞分析溯源"></a>ActiveMQ任意文件写入漏洞分析溯源</h3><h4 id="ActiveMQ-简介"><a href="#ActiveMQ-简介" class="headerlink" title="ActiveMQ 简介"></a>ActiveMQ 简介</h4><p>ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java<br>的 web 容器，例如 JSP 和 servlet 提供运行环境。ActiveMQ 5.0<br>及以后版本默认集成了jetty。在启动后提供一个监控 ActiveMQ 的 Web 应用</p>
+<h1 id="墨者学院"><a href="#墨者学院" class="headerlink" title="墨者学院"></a>墨者学院</h1><h2 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h2><h3 id="ActiveMQ任意文件写入漏洞分析溯源"><a href="#ActiveMQ任意文件写入漏洞分析溯源" class="headerlink" title="ActiveMQ任意文件写入漏洞分析溯源"></a>ActiveMQ任意文件写入漏洞分析溯源</h3><h4 id="ActiveMQ-简介"><a href="#ActiveMQ-简介" class="headerlink" title="ActiveMQ 简介"></a>ActiveMQ 简介</h4><p>ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java的 web 容器，例如 JSP 和 servlet 提供运行环境。ActiveMQ 5.0<br>及以后版本默认集成了jetty。在启动后提供一个监控 ActiveMQ 的 Web 应用</p>
 <p>fileserver是一个RESTful API接口，我们可以通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，其设计目的是为了弥补消息队列操作不能传输、存储二进制文件的缺陷，但后来发现：</p>
 <ol>
 <li>其使用率并不高</li>
