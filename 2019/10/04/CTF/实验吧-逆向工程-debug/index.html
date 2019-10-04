@@ -8,10 +8,10 @@
   <meta name="description" content>
   <meta name="author" content="ST0new">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="Hello World">
+  <meta property="og:title" content="ST0new的小站">
   <meta property="og:description" content="一个ctfer，web渗透测试小白">
   <meta property="og:site_name" content="ST0new的小站">
-  <meta property="og:type" content="article">
+  <meta property="og:type" content="website">
   <meta property="og:image" content="http://yoursite.com">
   
     <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Hello World</p>
+          <p class="title">Untitled Post</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -99,7 +99,7 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-10-03</span>
+            <span class="date">2019-10-04</span>
             <span class="time">10:12:23</span>
           </span>
           
@@ -108,20 +108,32 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+          <h1 id="实验吧"><a href="#实验吧" class="headerlink" title="实验吧"></a>实验吧</h1><h2 id="逆向工程"><a href="#逆向工程" class="headerlink" title="逆向工程"></a>逆向工程</h2><h3 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h3><ol>
+<li>下载文件，然后用idaq打开，<br><img src="https://upload-images.jianshu.io/upload_images/18851353-bcffaf7509872cfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></li>
+</ol>
+<pre><code>尝试在linux下打开发现么没有返回值，
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+在idaq里面去查看shift+F12 查看字符串，发现有个printing flag
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+这里想着如何可以进去，</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/18851353-4a18b4c4c1542a79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>可以看到其实位置在0x804849b</code></pre><ol start="2">
+<li><p>设置断点，查看</p>
+<p>一般设置在main 但是main没有定义</p>
+<p>[图片上传失败…(image-12bd86-1566818035404)] </p>
+<p>这里查了下发现这几个可以代替</p>
+<p>程序启动的过程应该是这样的：</p>
+<p>_start -&gt; __libc_start_main -&gt; main. 具体一点就是：</p>
+<p>_start -&gt; <strong>libc_start_main -&gt;</strong> libc_csu_init -&gt; main. 再具体一点就是：</p>
+<p>_start -&gt; <strong>libc_start_main -&gt;</strong> libc_csu_init -&gt; _init -&gt; main -&gt; _fini.</p>
+<p>官方点的解释：__libc_start_main sets up the environment and then calls the <code>main()</code> function when the binary is run.</p>
+<p>所以我们设置在libc_start_main 也可以达到相同的效果</p>
+</li>
+<li><p>获取flag<br><img src="https://upload-images.jianshu.io/upload_images/18851353-2ac2fd5eab49c9f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+</li>
+</ol>
+<pre><code>设置入口</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/18851353-9dc087b284760cc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>运行，之后在设置断点 ， 先 r 在 set $eip=0x804849b</code></pre><p>  <img src="https://upload-images.jianshu.io/upload_images/18851353-7f80c2c362487886.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>成功拿到flag</code></pre>
         </div>
       </div>
     </div>

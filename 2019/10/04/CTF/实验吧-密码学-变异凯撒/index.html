@@ -8,10 +8,10 @@
   <meta name="description" content>
   <meta name="author" content="ST0new">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="Hello World">
+  <meta property="og:title" content="ST0new的小站">
   <meta property="og:description" content="一个ctfer，web渗透测试小白">
   <meta property="og:site_name" content="ST0new的小站">
-  <meta property="og:type" content="article">
+  <meta property="og:type" content="website">
   <meta property="og:image" content="http://yoursite.com">
   
     <link rel="alternate" href="/atom.xml" title="ST0new的小站" type="application/atom+xml">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Hello World</p>
+          <p class="title">Untitled Post</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -99,7 +99,7 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-10-03</span>
+            <span class="date">2019-10-04</span>
             <span class="time">10:12:23</span>
           </span>
           
@@ -108,19 +108,27 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+          <h1 id="实验吧"><a href="#实验吧" class="headerlink" title="实验吧"></a>实验吧</h1><h2 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h2><h3 id="变异凯撒"><a href="#变异凯撒" class="headerlink" title="变异凯撒"></a>变异凯撒</h3><blockquote>
+<p>凯撒密码</p>
+<p>在<a href="https://baike.baidu.com/item/%E5%AF%86%E7%A0%81%E5%AD%A6" target="_blank" rel="noopener">密码学</a>中，<strong>恺撒密码</strong>（英语：Caesar cipher），或称<strong>恺撒加密</strong>、<strong>恺撒变换</strong>、<strong>变换加密</strong>，是一种最简单且最广为人知的加密技术。它是一种替换加密的技术，<a href="https://baike.baidu.com/item/%E6%98%8E%E6%96%87" target="_blank" rel="noopener">明文</a>中的所有字母都在<a href="https://baike.baidu.com/item/%E5%AD%97%E6%AF%8D%E8%A1%A8" target="_blank" rel="noopener">字母表</a>上向后（或向前）按照一个固定数目进行偏移后被替换成<a href="https://baike.baidu.com/item/%E5%AF%86%E6%96%87" target="_blank" rel="noopener">密文</a>。例如，当偏移量是3的时候，所有的字母A将被替换成D，B变成E，以此类推。这个加密方法是以罗马共和时期<a href="https://baike.baidu.com/item/%E6%81%BA%E6%92%92" target="_blank" rel="noopener">恺撒</a>的名字命名的，当年恺撒曾用此方法与其将军们进行联系。</p>
+</blockquote>
+<ol>
+<li><p>看一下加密的密文</p>
+<p>加密密文：afZ_r9VYfScOeO_UL^RWUc  格式：flag{ }</p>
+</li>
+<li><p>将加密的密文转成二进制</p>
+<p>97 102 90 95 114 57 86 89 102 83 99 79 101 79 95 85 76 94 82 87 85 99</p>
+</li>
+<li><p>根据flag的格式 比较发现</p>
+<p>f = 102，l = 108, a = 97 , g = 103</p>
+<p>可以发现 第一位 偏移5，第二位偏移6 ， 第三位偏移7 ，第四位偏移8</p>
+</li>
+<li><p>写个python脚本跑一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">k = 5 </span><br><span class="line">str = &apos;afZ_r9VYfScOeO_UL^RWUc&apos; </span><br><span class="line">for i in str:                    </span><br><span class="line"> print(chr(ord(i)+k),end=&quot;&quot;)</span><br><span class="line"> k +=1</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>结果：flag{Caesar_variation}</p>
+</li>
+</ol>
 
         </div>
       </div>
