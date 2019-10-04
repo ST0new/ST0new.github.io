@@ -332,7 +332,22 @@
 		
 		
 
+	
+    <span class="leancloud_visitors" id="/2019/10/04/实用技巧/CTF介绍/_visitors" data-url="/2019/10/04/实用技巧/CTF介绍/" data-title="CTF介绍">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
 
+
+
+	
+    <span class="leancloud_likes" id="/2019/10/04/实用技巧/CTF介绍/_likes" data-url="/2019/10/04/实用技巧/CTF介绍/" data-title="CTF介绍" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
 
 	</div>
 
@@ -778,6 +793,14 @@ dvwa v1.0.7
 -->
 
 
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
 	
 
 
@@ -1021,6 +1044,23 @@ dvwa v1.0.7
 		<div class="local-search-footer">
 			<div class="topN-post">				
 				
+
+   
+	<div id="topN">
+		<div class="topN-title" data-title= "热门文章"></div> 
+	</div>
+	
+    <script>
+        var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT',
+            limitCount = 10;
+        if( $('#topN').length ){
+            AV.initialize(appid, appkey);
+            var Counter = AV.Object.extend("Counter");  
+            topNPost(Counter, limitCount);
+        }
+    </script>
+   
 								
 			</div>
 		</div>

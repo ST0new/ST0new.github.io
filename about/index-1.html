@@ -396,6 +396,23 @@
 		<div class="local-search-footer">
 			<div class="topN-post">				
 				
+
+   
+	<div id="topN">
+		<div class="topN-title" data-title= "热门文章"></div> 
+	</div>
+	
+    <script>
+        var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT',
+            limitCount = 10;
+        if( $('#topN').length ){
+            AV.initialize(appid, appkey);
+            var Counter = AV.Object.extend("Counter");  
+            topNPost(Counter, limitCount);
+        }
+    </script>
+   
 								
 			</div>
 		</div>
