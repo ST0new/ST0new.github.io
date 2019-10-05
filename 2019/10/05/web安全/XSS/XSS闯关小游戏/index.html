@@ -373,9 +373,8 @@
 <p>看一下前端的页面，是否存在过滤，没有绕过，只需要输入弹xss的语句就可以了</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-27c076c5cd8fdaaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570178710972.png"></p>
 <p>上payload</p>
-<blockquote>
-<script>alert(3444)</script>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(3444)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
 <p>成功</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-04d75558e7ae7e07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570178885846.png"></p>
 <p>最后看一下源码</p>
@@ -627,10 +626,6 @@
 				
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
-		
-			<a href="/2019/10/05/web安全/XSS/测试/" title="" rel="prev">
-				&laquo;上一篇
-			</a>
 		
 		
 			<a href="/2019/10/04/实用技巧/配置nat实现网络互通/" title="配置NAT实现网络互通" rel="next">
