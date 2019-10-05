@@ -320,7 +320,7 @@
 
 	<a href="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" itemprop="url">
 		<time datetime="2019-10-04T02:44:30.000Z" itemprop="dateUpdated">
-	  		2019-10-04
+	  		2019-10-05
 	  </time>
 	</a> 
 
@@ -369,7 +369,7 @@
 <p>根据文件名去，首先我们去打开第一个文件地狱伊始.jpg 打开提示文件错误。</p>
 </li>
 </ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/18851353-4f5b9c8d0c0ada24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175715.png" alt></p>
 <pre><code>使用winhex打开查看，发现是jfif的文件，之后看到文件头标识不对，查询发现jfif的文件头是`FFD8FFFE00, .JPEG;.JPE;.JPG, &quot;JPGGraphic File&quot;` 我们添加文件头，方法：右键-&gt;edit-&gt;Paste zero bytes -&gt; 4 添加四个比特
 
 之后添加为
@@ -377,7 +377,7 @@
 ![图片.png](https://upload-images.jianshu.io/upload_images/18851353-865de8c22816711b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-打开图片</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/18851353-ec5161d4032bdab8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+打开图片</code></pre><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175722.png" alt></p>
 <pre><code>图片链接失效，这里需要去隔壁wp里面找一个
 
 [https://pan.baidu.com/s/1i49Jhlj](https://pan.baidu.com/s/1i49Jhlj)
@@ -385,7 +385,7 @@
 注意这里的字母，打开是个音频</code></pre><ol start="2">
 <li><p>音频隐写</p>
 <p>使用audacity.exe 打开文件，然后猜测可能是莫尔斯码</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/18851353-e928ef5cc6139bf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175731.png" alt></p>
 <p>101 0 1011 0100 0 1 001 000 110 111 通过对莫尔斯码对比得到密码</p>
 <p>key letusgo</p>
 </li>
@@ -394,7 +394,7 @@
 <p><a href="http://www.atool9.com/steganography.php" target="_blank" rel="noopener">http://www.atool9.com/steganography.php</a></p>
 </li>
 </ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/18851353-4329b373e9c8b879.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175740.png" alt></p>
 <pre><code>这里试了n久 没弄出来 ，之后查看了下wp 发现解密的信息错误,以下的为正确的 key{you are in finally hell now}
 
 这里和dalao商量了下，可能是图片的问题。
@@ -408,9 +408,9 @@
 
 ruokouling = 弱口令
 
-然后查看图片 地狱大门.jpg 使用winhex 打开，在最后看到有小姐姐.txt 文件 使用kali的foremost 分离</code></pre><p> <img src="https://upload-images.jianshu.io/upload_images/18851353-1d6b0f89f4cc437d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/18851353-8176f44aae59b878.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"><br><img src="https://upload-images.jianshu.io/upload_images/18851353-6edb263d38578fb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<pre><code>测试发现弱口令为Password</code></pre><p>   <img src="https://upload-images.jianshu.io/upload_images/18851353-93ef5c7e3d1d37c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+然后查看图片 地狱大门.jpg 使用winhex 打开，在最后看到有小姐姐.txt 文件 使用kali的foremost 分离</code></pre><p> <img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175748.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175756.png" alt><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175802.png" alt></p>
+<pre><code>测试发现弱口令为Password</code></pre><p>   <img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175809.png" alt></p>
 <pre><code>VTJGc2RHVmtYMTlwRG9yWjJoVFArNXcwelNBOWJYaFZlekp5MnVtRlRTcDZQZE42elBLQ01BPT0=
 
 可能是base系列
@@ -517,9 +517,11 @@ rabbit 解密 一次 fxbqrwrvnwmngrjxsrnsrnhx
 实验吧逆向工程debug
 下载文件，然后用idaq打开，
 
+
+
 尝试在linux下打开发现么没有返回值，
 
-在idaq里面去查看shift+F12 查看字符串，发现有个print...
+在idaq里面去查看shift+F12 查看字符串，发现有个pri...
 							</p>
 						</div>
 
@@ -635,10 +637,7 @@ key：CTF{}
 								十月 4日, 2019				
 							</p>
 							<p class="relate-post-content">
-								fileserver是一个RESTful API接口，我们可以通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，导致的任意文件写入漏洞
-
-
-墨者学院WEB安全ActiveMQ任意文件写入漏洞分析溯源Activ...
+								墨者学院WEB安全ActiveMQ任意文件写入漏洞分析溯源ActiveMQ 简介ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java  的 w...
 							</p>
 						</div>
 
@@ -661,9 +660,8 @@ key：CTF{}
 								十月 4日, 2019				
 							</p>
 							<p class="relate-post-content">
-								@TOC
-BUUCTFwebwarmup这里我直接上代码讲 菜鸡不会php，全是现查 哪里不对，欢迎大佬指点
-12345678910111213141516171819202122232425262728293031323334353...
+								BUUCTFwebwarmup这里我直接上代码讲 菜鸡不会php，全是现查 哪里不对，欢迎大佬指点
+1234567891011121314151617181920212223242526272829303132333435363738...
 							</p>
 						</div>
 
@@ -686,9 +684,7 @@ BUUCTFwebwarmup这里我直接上代码讲 菜鸡不会php，全是现查 哪里
 								十月 4日, 2019				
 							</p>
 							<p class="relate-post-content">
-								
-
-实验吧web后台登录
+								实验吧web后台登录
 burp抓包尝试爆破
 一般呢，ctf题是不涉及爆破的，因为这样会导致服务器处理压力太大
 
@@ -697,7 +693,7 @@ burp抓包尝试爆破
 那么我们的重点就是获取密码了
 
 寻找密码
-尝试了几次弱密码，注...
+尝试了几次弱密码，注入都...
 							</p>
 						</div>
 

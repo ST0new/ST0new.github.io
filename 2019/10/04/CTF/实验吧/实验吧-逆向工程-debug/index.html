@@ -320,7 +320,7 @@
 
 	<a href="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" itemprop="url">
 		<time datetime="2019-10-04T02:42:21.000Z" itemprop="dateUpdated">
-	  		2019-10-04
+	  		2019-10-05
 	  </time>
 	</a> 
 
@@ -364,13 +364,15 @@
 <a id="more"></a>
 
 <h1 id="实验吧"><a href="#实验吧" class="headerlink" title="实验吧"></a>实验吧</h1><h2 id="逆向工程"><a href="#逆向工程" class="headerlink" title="逆向工程"></a>逆向工程</h2><h3 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h3><ol>
-<li>下载文件，然后用idaq打开，<br><img src="https://upload-images.jianshu.io/upload_images/18851353-bcffaf7509872cfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></li>
+<li><p>下载文件，然后用idaq打开，</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175528.png" alt></p>
+</li>
 </ol>
 <pre><code>尝试在linux下打开发现么没有返回值，
 
 在idaq里面去查看shift+F12 查看字符串，发现有个printing flag
 
-这里想着如何可以进去，</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/18851353-4a18b4c4c1542a79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+这里想着如何可以进去，</code></pre><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175536.png" alt></p>
 <pre><code>可以看到其实位置在0x804849b</code></pre><ol start="2">
 <li><p>设置断点，查看</p>
 <p>一般设置在main 但是main没有定义</p>
@@ -383,11 +385,11 @@
 <p>官方点的解释：__libc_start_main sets up the environment and then calls the <code>main()</code> function when the binary is run.</p>
 <p>所以我们设置在libc_start_main 也可以达到相同的效果</p>
 </li>
-<li><p>获取flag<br><img src="https://upload-images.jianshu.io/upload_images/18851353-2ac2fd5eab49c9f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<li><p>获取flag<br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175456.png" alt></p>
 </li>
 </ol>
-<pre><code>设置入口</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/18851353-9dc087b284760cc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<pre><code>运行，之后在设置断点 ， 先 r 在 set $eip=0x804849b</code></pre><p>  <img src="https://upload-images.jianshu.io/upload_images/18851353-7f80c2c362487886.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<pre><code>设置入口</code></pre><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175505.png" alt></p>
+<pre><code>运行，之后在设置断点 ， 先 r 在 set $eip=0x804849b</code></pre><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175518.png" alt>  <img src="https://upload-images.jianshu.io/upload_images/18851353-7f80c2c362487886.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
 <pre><code>成功拿到flag</code></pre>	
 	</div>
 	
@@ -593,10 +595,7 @@ key：CTF{}
 								十月 4日, 2019				
 							</p>
 							<p class="relate-post-content">
-								fileserver是一个RESTful API接口，我们可以通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，导致的任意文件写入漏洞
-
-
-墨者学院WEB安全ActiveMQ任意文件写入漏洞分析溯源Activ...
+								墨者学院WEB安全ActiveMQ任意文件写入漏洞分析溯源ActiveMQ 简介ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java  的 w...
 							</p>
 						</div>
 
@@ -619,9 +618,8 @@ key：CTF{}
 								十月 4日, 2019				
 							</p>
 							<p class="relate-post-content">
-								@TOC
-BUUCTFwebwarmup这里我直接上代码讲 菜鸡不会php，全是现查 哪里不对，欢迎大佬指点
-12345678910111213141516171819202122232425262728293031323334353...
+								BUUCTFwebwarmup这里我直接上代码讲 菜鸡不会php，全是现查 哪里不对，欢迎大佬指点
+1234567891011121314151617181920212223242526272829303132333435363738...
 							</p>
 						</div>
 
@@ -644,9 +642,7 @@ BUUCTFwebwarmup这里我直接上代码讲 菜鸡不会php，全是现查 哪里
 								十月 4日, 2019				
 							</p>
 							<p class="relate-post-content">
-								
-
-实验吧web后台登录
+								实验吧web后台登录
 burp抓包尝试爆破
 一般呢，ctf题是不涉及爆破的，因为这样会导致服务器处理压力太大
 
@@ -655,7 +651,7 @@ burp抓包尝试爆破
 那么我们的重点就是获取密码了
 
 寻找密码
-尝试了几次弱密码，注...
+尝试了几次弱密码，注入都...
 							</p>
 						</div>
 
