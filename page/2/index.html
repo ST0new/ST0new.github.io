@@ -273,6 +273,108 @@
 				<div class="post-title" id="post-title-index">			
 					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 					
+	<a href="/2019/10/04/靶机/Vulnhub DC-5 /" itemprop="url">
+		DC-5 复现
+	</a>
+
+				</div>
+
+				<div class="post-content">
+					
+						掌握利用各种root权限的环境提权
+
+
+Vulnhub 之 DC-5 靶机复现前言本靶机只做学习使用，不要将其利用于非法途径。
+终于来到了倒数第二关，这一关将难度增加，所以我们需要借助搜索工具来帮助我们完成
+作者描述1234567891011DC-5是另一个专门建造的脆弱实验室，目的是获得渗透测试领域的经验。这个计划是为了让DC-5更上一层楼，所以这对初学者来说可能不太好，但对有中级或更好经验的人来说应该没问题。时间会证明一切(反馈也会证明)。据我所知，只有一个可利用的入口点可以进入(也没有SSH)。这个特定的入口点可能很难识别，但它就在那里。你需要寻找一些有点不寻常的东西(随着页面刷新...
+					
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
+
+
+
+
+
+
+	<a href="/2019/10/04/靶机/Vulnhub DC-5 /" itemprop="url">
+		<time datetime="2019-10-04T03:02:39.000Z" itemprop="datePublished">
+	  		2019-10-04
+	  </time>
+	</a> 
+
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2019/10/04/靶机/Vulnhub DC-5 /_visitors" data-url="/2019/10/04/靶机/Vulnhub DC-5 /" data-title="DC-5 复现">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2019/10/04/靶机/Vulnhub DC-5 /_likes" data-url="/2019/10/04/靶机/Vulnhub DC-5 /" data-title="DC-5 复现" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2019/10/04/靶机/Vulnhub DC-5 /" title="阅读全文">阅读全文</a>	
+						</span>
+					
+				</div>
+			</div>
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2019/10/04/靶机/Vulnhub DC-4/" itemprop="url">
 		Vulnhub DC-4
 	</a>
@@ -1212,120 +1314,6 @@ git的安装比较简单，如果需要过程请参考网上的教程，这里�
 					
 						<span class="right">      	
 							<a href="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" title="阅读全文">阅读全文</a>	
-						</span>
-					
-				</div>
-			</div>
-		</div>
-	
-		<div class="post" id="post">
-			<div class="post-text">
-				<div class="post-title" id="post-title-index">			
-					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-					
-	<a href="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" itemprop="url">
-		实验吧-逆向工程-debug
-	</a>
-
-				</div>
-
-				<div class="post-content">
-					
-						了解函数运行，合适添加断点判断，获取一闪而过的flag
-
-
-实验吧逆向工程debug
-下载文件，然后用idaq打开，
-
-尝试在linux下打开发现么没有返回值，
-
-在idaq里面去查看shift+F12 查看字符串，发现有个printing flag
-
-这里想着如何可以进去，
-可以看到其实位置在0x804849b
-设置断点，查看
-一般设置在main 但是main没有定义
-[图片上传失败…(image-12bd86-1566818035404)] 
-这里查了下发现这几个可以代替
-程序启动的过程应该是这样的：
-_start -&gt; __libc_start_main -&gt; main...
-					
-				</div>
-				
-				<div class="post-meta">
-					<span>
-						发布于
-						<i>
-							
-
-
-
-
-
-
-	<a href="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" itemprop="url">
-		<time datetime="2019-10-04T02:42:21.000Z" itemprop="datePublished">
-	  		2019-10-04
-	  </time>
-	</a> 
-
-						</i>
-					</span>
-					
-					
-
-	
-    <span class="leancloud_visitors" id="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/_visitors" data-url="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" data-title="实验吧-逆向工程-debug">
-       	<i class="fa fa-eye"></i>
-       	热度
-        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
-    </span>
-    
-
-
-
-	
-    <span class="leancloud_likes" id="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/_likes" data-url="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" data-title="实验吧-逆向工程-debug" rel="unlike">
-        <i class="fa fa-heart"></i>
-        喜欢
-        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
-    </span>
-
-					
-
-	<!-- leancloud -->
-	<!--
-	时间：2018-11-27
-	描述：
-		文章访问量：visitors
-		文章喜欢量：likes	
-		文章排行榜：topNPost
-		其他得说明：
-			01-Cookie相关的函数 
-				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
-			02-visitors相关的函数 
-				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
-				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
-			03-topNPost相关的函数
-				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
-			04-likes相关的函数，
-				参考了01 & 02进行简单的设计与实现
--->
-
-
-
-	<script>
-		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
-            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
-        AnnieLeancloud(appid, appkey);         
-	</script>
-    
-
-	
-
-					
-						<span class="right">      	
-							<a href="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" title="阅读全文">阅读全文</a>	
 						</span>
 					
 				</div>
