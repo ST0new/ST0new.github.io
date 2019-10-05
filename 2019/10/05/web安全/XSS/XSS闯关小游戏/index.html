@@ -378,7 +378,7 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-27c076c5cd8fdaaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570178710972.png"></p>
 <p>上payload</p>
 <blockquote>
-<script>alert(2)</script>
+<script>alert(3444)</script>
 </blockquote>
 <p>成功</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-04d75558e7ae7e07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570178885846.png"></p>
@@ -394,7 +394,7 @@
 <p>看一下前端，传入一个简单的xss，发现<code>&lt;&gt;</code>都被转义了。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-d284a9c6e4af1bed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570180493035.png"></p>
 <p>试试闭合</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload: &quot;&gt;&lt;script&gt;alert(2)&lt;/script&gt;&lt; // 绕过</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload: &quot;&gt;&lt;script&gt;alert(555)&lt;/script&gt;&lt; // 绕过</span><br></pre></td></tr></table></figure>
 
 <p>这里加“ 的目的是闭合前面的值，之后添加xss脚本即可成功弹shell</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-64e4334b34c3c335.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570181010970.png"></p>
