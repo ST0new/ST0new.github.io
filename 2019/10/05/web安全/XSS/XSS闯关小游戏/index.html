@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-       | ST0new Blog
+      xss通关小游戏 | ST0new Blog
     
   </title>
   <meta name="author" content="ST0new">
@@ -165,7 +165,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《》
+			当前文章&nbsp;:&nbsp;《xss通关小游戏》
 		
 	</p>
 
@@ -286,6 +286,10 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
+	<a href="/2019/10/05/web安全/XSS/XSS闯关小游戏/" itemprop="url">
+		xss通关小游戏
+	</a>
+
 	</div>
 
 	<div class="article-meta">
@@ -316,7 +320,7 @@
 
 	<a href="/2019/10/05/web安全/XSS/XSS闯关小游戏/" itemprop="url">
 		<time datetime="2019-10-05T08:26:06.000Z" itemprop="dateUpdated">
-	  		2019-10-05
+	  		2019-10-06
 	  </time>
 	</a> 
 
@@ -337,7 +341,7 @@
 		
 
 	
-    <span class="leancloud_visitors" id="/2019/10/05/web安全/XSS/XSS闯关小游戏/_visitors" data-url="/2019/10/05/web安全/XSS/XSS闯关小游戏/" data-title="">
+    <span class="leancloud_visitors" id="/2019/10/05/web安全/XSS/XSS闯关小游戏/_visitors" data-url="/2019/10/05/web安全/XSS/XSS闯关小游戏/" data-title="xss通关小游戏">
        	<i class="fa fa-eye"></i>
        	热度
         <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
@@ -347,7 +351,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2019/10/05/web安全/XSS/XSS闯关小游戏/_likes" data-url="/2019/10/05/web安全/XSS/XSS闯关小游戏/" data-title="" rel="unlike">
+    <span class="leancloud_likes" id="/2019/10/05/web安全/XSS/XSS闯关小游戏/_likes" data-url="/2019/10/05/web安全/XSS/XSS闯关小游戏/" data-title="xss通关小游戏" rel="unlike">
         <i class="fa fa-heart"></i>
         喜欢
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -600,10 +604,19 @@
 <p>这道题是flash xss</p>
 </blockquote>
 <p>不咋会做 放上payload</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">arg01=version&amp;arg02=&lt;a href=&quot;javascript:alert(40)&quot;&gt;123&lt;/a&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload</span><br><span class="line">arg01=version&amp;arg02=&lt;a href=&quot;javascript:alert(40)&quot;&gt;123&lt;/a&gt;</span><br></pre></td></tr></table></figure>
 
+<p>即不会做之后再次研究 flash xss</p>
+<p>首先下载<a href="https://github.com/jindrapetrik/jpexs-decompiler" target="_blank" rel="noopener">jpexs-decompiler</a>,安装需要java环境</p>
+<p>定位到sIFR 找到对应的getURL</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191006101304.png" alt></p>
+<p>之后在往下看，发现sIFR.version</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191006101607.png" alt></p>
+<p>可以看到version 传入loc4 ,但是getURL 只在内容为link时，分析contentlsLink</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191006102240.png" alt></p>
+<p>之后就可以知道构造的原理了，通过<code>&lt;a&gt;``&lt;/a&gt;</code> 去传值就可以了</p>
 <h3 id="Less-20"><a href="#Less-20" class="headerlink" title="Less-20"></a>Less-20</h3><p>不会做</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arg01=version&amp;arg02=&lt;a href=&quot;javascript:alert(41)&quot;&gt;123&lt;/a&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arg01=id&amp;arg02=\%22))&#125;catch(e)&#123;&#125;if(!self.a)self.a=!alert(1)//%26width%26height</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>参考文章：</p>

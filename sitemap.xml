@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/10/05/web%E5%AE%89%E5%85%A8/XSS/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F/</loc>
+    
+    <lastmod>2019-10-06T02:39:26.831Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/links/index.html</loc>
     
     <lastmod>2019-10-05T11:51:44.768Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>http://yoursite.com/2019/10/04/CTF/Buuoj/HCTF2018-warmup-writeup/</loc>
     
     <lastmod>2019-10-05T09:46:46.317Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/10/05/web%E5%AE%89%E5%85%A8/XSS/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F/</loc>
-    
-    <lastmod>2019-10-05T09:45:17.865Z</lastmod>
     
   </url>
   
