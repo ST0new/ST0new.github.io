@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub-DC-7/</loc>
+    
+    <lastmod>2019-10-10T05:12:33.877Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/10/06/web%E5%AE%89%E5%85%A8/OWASP/2019-10-6-OWASP-WebGoat-%E5%AD%A6%E4%B9%A0/</loc>
+    
+    <lastmod>2019-10-06T10:03:30.471Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/10/05/web%E5%AE%89%E5%85%A8/XSS/XSS%E9%97%AF%E5%85%B3%E5%B0%8F%E6%B8%B8%E6%88%8F/</loc>
     
     <lastmod>2019-10-06T02:39:26.831Z</lastmod>
