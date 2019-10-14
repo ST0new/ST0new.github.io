@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      Vulnhub DC-2 | ST0new Blog
+      xxe demo 练习 | ST0new Blog
     
   </title>
   <meta name="author" content="ST0new">
@@ -165,7 +165,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《Vulnhub DC-2》
+			当前文章&nbsp;:&nbsp;《xxe demo 练习》
 		
 	</p>
 
@@ -286,8 +286,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2019/10/04/靶机/Vulnhub DC-2/" itemprop="url">
-		Vulnhub DC-2
+	<a href="/2019/10/14/web安全/XXE/xxe-lab/" itemprop="url">
+		xxe demo 练习
 	</a>
 
 	</div>
@@ -300,9 +300,9 @@
 
 	发布于
 
-	<a href="/2019/10/04/靶机/Vulnhub DC-2/" itemprop="url">
-		<time datetime="2019-10-04T02:59:38.000Z" itemprop="datePublished">
-	  		2019-10-04
+	<a href="/2019/10/14/web安全/XXE/xxe-lab/" itemprop="url">
+		<time datetime="2019-10-14T06:57:48.000Z" itemprop="datePublished">
+	  		2019-10-14
 	  </time>
 	</a>
 	&nbsp;
@@ -318,9 +318,9 @@
 
 	更新于
 
-	<a href="/2019/10/04/靶机/Vulnhub DC-2/" itemprop="url">
-		<time datetime="2019-10-04T02:59:38.000Z" itemprop="dateUpdated">
-	  		2019-10-04
+	<a href="/2019/10/14/web安全/XXE/xxe-lab/" itemprop="url">
+		<time datetime="2019-10-14T06:57:48.000Z" itemprop="dateUpdated">
+	  		2019-10-14
 	  </time>
 	</a> 
 
@@ -331,8 +331,8 @@
 			<i class="fa fa-tags"></i>
 			
 	
-		<a href="/tags/git提权/" class=" ">
-			git提权
+		<a href="/tags/XXE/" class=" ">
+			XXE
 		</a>
 	
 		
@@ -341,7 +341,7 @@
 		
 
 	
-    <span class="leancloud_visitors" id="/2019/10/04/靶机/Vulnhub DC-2/_visitors" data-url="/2019/10/04/靶机/Vulnhub DC-2/" data-title="Vulnhub DC-2">
+    <span class="leancloud_visitors" id="/2019/10/14/web安全/XXE/xxe-lab/_visitors" data-url="/2019/10/14/web安全/XXE/xxe-lab/" data-title="xxe demo 练习">
        	<i class="fa fa-eye"></i>
        	热度
         <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
@@ -351,7 +351,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2019/10/04/靶机/Vulnhub DC-2/_likes" data-url="/2019/10/04/靶机/Vulnhub DC-2/" data-title="Vulnhub DC-2" rel="unlike">
+    <span class="leancloud_likes" id="/2019/10/14/web安全/XXE/xxe-lab/_likes" data-url="/2019/10/14/web安全/XXE/xxe-lab/" data-title="xxe demo 练习" rel="unlike">
         <i class="fa fa-heart"></i>
         喜欢
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -360,41 +360,31 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<p>掌握工具和提权方式</p>
-<a id="more"></a>
+		<p>[TOC]</p>
+<h1 id="xxe练习"><a href="#xxe练习" class="headerlink" title="xxe练习"></a>xxe练习</h1><h2 id="0x00-xxe-介绍"><a href="#0x00-xxe-介绍" class="headerlink" title="0x00 xxe 介绍"></a>0x00 xxe 介绍</h2><p>XXE漏洞全称XML External Entity Injection 即xml外部实体注入漏洞，XXE的漏洞发生在应用程序解析xml输入时，没有禁止外部实体加载而产生的<code>任意文件读取</code>,<code>远程命令执行</code>，<code>内网端口扫描</code>，<code>dos攻击</code>等危害。</p>
+<p>要了解xxe 需要先了解 <code>xml</code> 和 <code>dtd</code> , xml是一种可扩展标记性语言 和<code>html</code>比较相似，但是<code>xml</code> 是独立于软件和硬件的信息传输工具， <code>html</code>是用来显示数据的，<code>dtd</code> 是用来声明<code>xml</code>的内容格式规范的。</p>
+<p><strong>xml的文档实例</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;note&gt;//根元素</span><br><span class="line">&lt;to&gt;George&lt;/to&gt;// 四个子元素</span><br><span class="line">&lt;from&gt;John&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&apos;t forget the meeting!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt; //根元素结尾</span><br></pre></td></tr></table></figure>
 
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>关于Vulnhub  以及DC，以及如何使用ova安装，我已经在DC-1中介绍了 ，今天带来第二弹，比第一弹难度稍微大一点，重点还是考察工具的使用和命令的熟练程度<br>附上链接<a href="https://blog.csdn.net/wang_624/article/details/90509951" target="_blank" rel="noopener">Vulnhub DC Challenges之 DC-1</a></p>
-<h2 id="DC-2介绍"><a href="#DC-2介绍" class="headerlink" title="DC-2介绍"></a>DC-2介绍</h2><p>DC-2，我们主要是从web入手渗透拿到flag，需要大家对信息收集要有一定的了解，需要掌握的工具:nmap,hydra,cewl。</p>
-<h3 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h3><p>DC-2:192.168.248.154<br>ubuntu:192.168.248.149</p>
-<h2 id="前期配置"><a href="#前期配置" class="headerlink" title="前期配置"></a>前期配置</h2><p>这里作者提示我们需要设置hosts才能访问web服务。<br>提供linux和windows设置方式<br>Linux<br>    <code>vim  /etc/hosts</code><br>添加 <code>靶机ip DC-2</code><br><img src="https://img-blog.csdnimg.cn/20190526004434224.png" alt="在这里插入图片描述">Windows<br><code>C:\Windows\System32\drivers\etc\hosts</code><br>添加  <code>靶机ip DC-2</code><br><img src="https://img-blog.csdnimg.cn/20190526004644262.png" alt="在这里插入图片描述"></p>
-<h2 id="开始拿flag"><a href="#开始拿flag" class="headerlink" title="开始拿flag"></a>开始拿flag</h2><p>扫描网段<br><img src="https://img-blog.csdnimg.cn/20190526004741929.png" alt="在这里插入图片描述"><br>扫描端口<br>这里我只扫描了常用的端口，只有80端口啊，看来这是一次web提权之路。<br><img src="https://img-blog.csdnimg.cn/20190526004847309.png" alt="在这里插入图片描述">如果之前没有设置hosts ，这里访问就会失败。设置之后，接下来就可以正常去访问DC-2的web服务了。查看下网站的指纹信息，</p>
-<p><img src="https://img-blog.csdnimg.cn/20190526005047396.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">尝试直接去msf利用WordPress 去提权，发现需要admin的密码，作废</p>
-<h2 id="flag1"><a href="#flag1" class="headerlink" title="flag1"></a>flag1</h2><p>查看页面信息，发现了flag1<br><img src="https://img-blog.csdnimg.cn/20190526005155922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">tip：登录去找到下一个flag，可能需要账号和密码，这里提示你使用cewl工具，密码藏在页面里<br>先去看看页面都有什么，看看有没有登录的地方，尝试去试探login.php,admin.php,等等类似后台或者登录的页面，发现都会导向一个搜索页面<br><img src="https://img-blog.csdnimg.cn/20190526005358967.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">随便搜索点东西，发现flag1<br><img src="https://img-blog.csdnimg.cn/20190526005422453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">额，发现flag1 ，什么鬼，发现右下边的都可以点，试着点点看看有什么东西没，发现登录点，这是大收获啊。发现后台<br><img src="https://img-blog.csdnimg.cn/20190526005500558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="flag2"><a href="#flag2" class="headerlink" title="flag2"></a>flag2</h2><p>返回刚才的搜索页面继续去收集信息，flag2 也出来了，又是提示啊，看来这里有两个方法啊，<br><img src="https://img-blog.csdnimg.cn/20190526005530928.png" alt="在这里插入图片描述">接下来我们尝试利用cewl 生成密码字典<br><img src="https://img-blog.csdnimg.cn/20190526005618577.png" alt="在这里插入图片描述">然后有了密码， 没有用户名，找到了一款针对于wordpress的安全扫描软件</p>
-<p>简要介绍一下，<br>WPScan是一款针对wwordpress的安全扫描软件；WPScan可以扫描出wordpress的版本，主题，插件，后台用户以及爆破后台用户密码等（但是我的kali的工具一直要更新，如果大家有这个工具可以尝试一下）</p>
-<p>那么尝试利用burp去爆破通过对返回长度不同判断是否有当前用户，这里通过我强大的字典，跑出来了三个用户名:admin,jerry和tom<br><img src="https://img-blog.csdnimg.cn/20190526005842814.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">之后使用hydra去爆破wordpress后台，然后分别设置用户字典和密码字典，我们去爆破<br>提供两个爆破思路<br>使用hydra</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra -L user.txt  -P dc2.txt dc-2 http-form-post '/wp-login.php:log=^USER^&amp;pwd=^PASS^&amp;wp-submit=Log In&amp;testcookie=1:S=Location'</span><br></pre></td></tr></table></figure>
+<p><strong>DTD</strong></p>
+<p><code>DTD</code>的租用是定义<code>xml</code>的合法构建模块，<code>DTD</code>可被成行声明<code>xml</code>文档中，也可作为一个外部引用。</p>
+<p>内部DTD声明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE 根元素 [元素声明]&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://img-blog.csdnimg.cn/20190526010020733.png" alt="在这里插入图片描述">使用burp去爆破，截取数据包，然后<code>Ctrl+l</code>之后根据下图修改<br><img src="https://img-blog.csdnimg.cn/20190526010102130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">选择你的payload，分别导入用户字典和密码字典，<br>我的burp是专业版，可以跑多线程，设置多线程之后，可以很快的跑出来，线程加高，几秒跑出来了<br><img src="https://img-blog.csdnimg.cn/20190526010312990.png" alt="在这里插入图片描述">登录后台<br>|  username|  password |<br>|:——–:|——-  |<br>|  tom | parturient|<br>| jerry |adipiscing  |<br>这两个密码登录成功<br><img src="https://img-blog.csdnimg.cn/20190526010608665.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">既然拿到了密码， 我们尝试去使用密码去尝试去反弹shell，创建失败，需要更高的权限</p>
-<h2 id="flag3"><a href="#flag3" class="headerlink" title="flag3"></a>flag3</h2><p>这里就不知道怎么去弄了，重新查看之前收集的数据，扫描全端口，发现了新的端口<br>nmap -p- -sV 192.168.248.154<br>发现了ssh端口，尝试我们得到的用户去登录<br><img src="https://img-blog.csdnimg.cn/20190526010638857.png" alt="在这里插入图片描述">使用tom用户直接登录成功<br><img src="https://img-blog.csdnimg.cn/20190526010700380.png" alt="在这里插入图片描述">发现-rbash 命令没有找到<br><img src="https://img-blog.csdnimg.cn/20190526010714658.png" alt="在这里插入图片描述"><br>查找绕过方法</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BASH_CMDS[a]=/bin/sh;a</span><br><span class="line">$ /bin/bash</span><br><span class="line">bash: groups: command not found</span><br><span class="line">tom@DC-2:~$  export PATH=$PATH:/bin/</span><br><span class="line">tom@DC-2:~$  export PATH=$PATH:/usr/bin</span><br></pre></td></tr></table></figure>
+<p>外部DTD声明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE 根元素 SYSTEM &quot;文件名&quot;&gt;</span><br></pre></td></tr></table></figure>
 
-<p>参考链接：<a href="https://www.cnblogs.com/xiaoxiaoleo/p/8450379.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaoxiaoleo/p/8450379.html</a><br><img src="https://img-blog.csdnimg.cn/20190526010834281.png" alt="在这里插入图片描述"><br>查看flag3<br><img src="https://img-blog.csdnimg.cn/20190526010851201.png" alt="在这里插入图片描述"></p>
-<h2 id="flag4"><a href="#flag4" class="headerlink" title="flag4"></a>flag4</h2><p>查看passwd，发现jerry用户<br><img src="https://img-blog.csdnimg.cn/2019052601090790.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">尝试切换到jerry （这里我尝试直接登录jerry 显示权限被拒绝）<br>切换登录成功</p>
-<p>查看目录发现flag4</p>
-<p><img src="https://img-blog.csdnimg.cn/20190526010949944.png" alt="在这里插入图片描述"></p>
-<h2 id="最终flag"><a href="#最终flag" class="headerlink" title="最终flag"></a>最终flag</h2><p>sudo 查看 发现可以使用git命令，并且是可以是root权限不需要密码<br><img src="https://img-blog.csdnimg.cn/20190526011019444.png" alt="在这里插入图片描述">继续百度，搜索git提权<br>命令：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git -p help</span><br><span class="line">!/bin/sh</span><br></pre></td></tr></table></figure>
+<h2 id="0x01-xxe-demo-学习"><a href="#0x01-xxe-demo-学习" class="headerlink" title="0x01 xxe demo 学习"></a>0x01 xxe demo 学习</h2><p>初次了解xxe，从网上找到了一个demo，下载下来尝试练习</p>
+<h2 id="0x02安装"><a href="#0x02安装" class="headerlink" title="0x02安装"></a>0x02安装</h2><p>下载源码后，放到phpstudy下即可，作者为了适合大家的环境，特定准备了4种环境：php，java，python，c#</p>
+<h2 id="0x03-分析源码"><a href="#0x03-分析源码" class="headerlink" title="0x03 分析源码"></a>0x03 分析源码</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* autor: c0ny1</span></span><br><span class="line"><span class="comment">* date: 2018-2-7</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">$USERNAME = <span class="string">'admin'</span>; <span class="comment">//账号</span></span><br><span class="line">$PASSWORD = <span class="string">'admin'</span>; <span class="comment">//密码</span></span><br><span class="line">$result = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">libxml_disable_entity_loader(<span class="keyword">false</span>);<span class="comment">// 这里可以引用外部实体，在正常情况需要改为true，放置xxe的出现</span></span><br><span class="line">$xmlfile = file_get_contents(<span class="string">'php://input'</span>);<span class="comment">// 通过php伪协议获取我们发送的xml文档</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	$dom = <span class="keyword">new</span> DOMDocument();<span class="comment">// 创建xml对象</span></span><br><span class="line">	$dom-&gt;loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD);</span><br><span class="line">	$creds = simplexml_import_dom($dom);<span class="comment">//函数把 DOM 节点转换为 SimpleXMLElement 对象。</span></span><br><span class="line"></span><br><span class="line">	$username = $creds-&gt;username;</span><br><span class="line">	$password = $creds-&gt;password;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>($username == $USERNAME &amp;&amp; $password == $PASSWORD)&#123;</span><br><span class="line">		$result = sprintf(<span class="string">"&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;"</span>,<span class="number">1</span>,$username);<span class="comment">//判断通过输出username,这里也是控制的关键，需要通过username去返回其他内容</span></span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		$result = sprintf(<span class="string">"&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;"</span>,<span class="number">0</span>,$username);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;<span class="keyword">catch</span>(<span class="keyword">Exception</span> $e)&#123;</span><br><span class="line">	$result = sprintf(<span class="string">"&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;"</span>,<span class="number">3</span>,$e-&gt;getMessage());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">header(<span class="string">'Content-Type: text/html; charset=utf-8'</span>);</span><br><span class="line"><span class="keyword">echo</span> $result;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>参考链接<br><a href="https://gtfobins.github.io/gtfobins/git/#limited-suid" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/git/#limited-suid</a></p>
-<p><img src="https://img-blog.csdnimg.cn/20190526011129561.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">查看/root<br>拿到最后的flag<br><img src="https://img-blog.csdnimg.cn/20190526011142208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>前台爆破，需要社工到用户名和密码</li>
-<li>-rbash 绕过</li>
-<li>git 提权</li>
-</ol>
-<hr>
-<p>永远不要停下学习的脚步</p>
+<h2 id="0x04-漏洞复现"><a href="#0x04-漏洞复现" class="headerlink" title="0x04 漏洞复现"></a>0x04 漏洞复现</h2><p>打开主页</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191014165841.png" alt></p>
+<p>抓包 ，构造payload， 发包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt; // 这一句可以省略</span><br><span class="line">&lt;!DOCTYPE a[</span><br><span class="line">&lt;!ENTITY test SYSTEM &quot;file:///c:/windows/win.ini&quot;&gt;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191014170004.png" alt></p>
+<p>一个简单的xxe漏洞就出现了</p>
 	
 	</div>
 	
@@ -413,12 +403,8 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2019/10/04/靶机/Vulnhub DC-3/" title="Vulnhub之DC-3 joomla注入和ubutnu16.04 提权" rel="prev">
-				&laquo;上一篇
-			</a>
 		
-		
-			<a href="/2019/10/04/靶机/Vulnhub DC-1/" title="Vulnhub之DC-1 find 提权骚思路" rel="next">
+			<a href="/2019/10/06/web安全/OWASP/2019-10-6-OWASP-WebGoat-学习/" title="OWASP WebGoat 学习" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -436,201 +422,6 @@
 <div class="relate-post">
 	
 		<ul>
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/靶机/Vulnhub DC-6/" title="Vulnhub 之 DC-6 靶机复现">
-								Vulnhub 之 DC-6 靶机复现			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
-							</p>
-							<p class="relate-post-content">
-								掌握nmap，sudo 提权方式
-
-
-[TOC]
-Vulnhub 之 DC-6 靶机复现前言本靶机仅供学习使用，请不要用于其他路径，作者不承担任何法律责任
-终于打到dc的最后一个靶机了，花了几个月的闲暇时间来试试，越到后面靶机的难度就...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/10/04/靶机/Vulnhub DC-6/" title="Vulnhub 之 DC-6 靶机复现">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Vulnhub 之 DC-6 靶机复现"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/靶机/Vulnhub DC-5 /" title="DC-5 复现">
-								DC-5 复现			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
-							</p>
-							<p class="relate-post-content">
-								掌握利用各种root权限的环境提权
-
-
-Vulnhub 之 DC-5 靶机复现前言本靶机只做学习使用，不要将其利用于非法途径。
-终于来到了倒数第二关，这一关将难度增加，所以我们需要借助搜索工具来帮助我们完成
-作者描述123456789...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/10/04/靶机/Vulnhub DC-5 /" title="DC-5 复现">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="DC-5 复现"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/靶机/Vulnhub DC-4/" title="Vulnhub DC-4">
-								Vulnhub DC-4			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
-							</p>
-							<p class="relate-post-content">
-								熟悉提权步骤，和漏洞发现
-
-
-
-
-
-
-Vulnhub 之 DC-4前言DC已经做了一半了，前三次都是基于初学者的，这次的难度就提升了，适合初学者和入
-门的伙伴。
-还是按照常例看看作者是怎么描述的吧。
-下载地址描述12345678DC-...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/10/04/靶机/Vulnhub DC-4/" title="Vulnhub DC-4">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Vulnhub DC-4"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/靶机/Vulnhub-DC-7/" title="Vulnhub DC-7">
-								Vulnhub DC-7			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
-							</p>
-							<p class="relate-post-content">
-								Vulnhub 之 DC-7前言听朋友说dc出了7和8 ，下载尝试做一做，看能否通关
-下载地址dc-7
-描述
-读了下作者写的描述，基本对dc-7有个简单的认识，不需要爆破，而且要跳出惯性思维，掌握基本的linux语法和工具对于如何获取...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/10/04/靶机/Vulnhub-DC-7/" title="Vulnhub DC-7">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Vulnhub DC-7"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/靶机/Vulnhub DC-3/" title="Vulnhub之DC-3 joomla注入和ubutnu16.04 提权">
-								Vulnhub之DC-3 joomla注入和ubutnu16.04 提权			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
-							</p>
-							<p class="relate-post-content">
-								常见cms漏洞 和系统版本提权
-
-
-Vulnhub靶机之DC-3前言
- 刚考完试，然而不能放弃对技术的热爱，又重新拾起了dc准备把他们6个做完  
- 今天介绍的是dc-3 ，来看看作者对他的评价
-
-123456789101112描述：...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/10/04/靶机/Vulnhub DC-3/" title="Vulnhub之DC-3 joomla注入和ubutnu16.04 提权">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Vulnhub之DC-3 joomla注入和ubutnu16.04 提权"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/靶机/Vulnhub DC-1/" title="Vulnhub之DC-1 find 提权骚思路">
-								Vulnhub之DC-1 find 提权骚思路			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
-							</p>
-							<p class="relate-post-content">
-								DC-1 学习
-
-
-Vulnhub简介Vulnhub是一个提供各种漏洞环境的靶场平台，供安全爱好者学习渗透使用，大部分环境是做好的虚拟机镜像文件，镜像预先设计了多种漏洞，需要使用VMware或者VirtualBox运行。每个镜像会有破...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/10/04/靶机/Vulnhub DC-1/" title="Vulnhub之DC-1 find 提权骚思路">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Vulnhub之DC-1 find 提权骚思路"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/14/web安全/XXE/xxe-lab/" title="xxe demo 练习">
-								xxe demo 练习			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十月 14日, 2019				
-							</p>
-							<p class="relate-post-content">
-								[TOC]
-xxe练习0x00 xxe 介绍XXE漏洞全称XML External Entity Injection 即xml外部实体注入漏洞，XXE的漏洞发生在应用程序解析xml输入时，没有禁止外部实体加载而产生的任意文件读取,远程...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/10/14/web安全/XXE/xxe-lab/" title="xxe demo 练习">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="xxe demo 练习"/>
-							</a>
-						</div>
-					</li>											
-			
 			
 					<li>
 						<div class="relate-post-text">
@@ -686,6 +477,119 @@ WebGoat0x00介绍WebGoat是一个用于讲解典型web漏洞的基于J2EE架构�
 			
 					<li>
 						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/04/web安全/sql注入/DVWA 之SQL Injection/" title="DVWA 之SQL Injection">
+								DVWA 之SQL Injection			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 4日, 2019				
+							</p>
+							<p class="relate-post-content">
+								SQL注入就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令
+
+
+前言本文属于学习贴，我自己在学习的时候总结的，如有错误，请大家及时指出
+
+dvwa v1.0.7
+
+何为S...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/04/web安全/sql注入/DVWA 之SQL Injection/" title="DVWA 之SQL Injection">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="DVWA 之SQL Injection"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/04/web安全/shell/利用js文件反弹shell/" title="利用js文件反弹shell">
+								利用js文件反弹shell			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 4日, 2019				
+							</p>
+							<p class="relate-post-content">
+								前言本篇文章是按照大佬的文章复现本文只用于测试，请不要将其用于非法途径公众号： 洛米唯熊
+环境
+攻击： kaliip: 192.168.248.132
+测试： windows 7 x64ip: 192.168.248.136工具地址h...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/04/web安全/shell/利用js文件反弹shell/" title="利用js文件反弹shell">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="利用js文件反弹shell"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/04/web安全/远程文件包含/远程文件包含错误解决方法/" title="错误提示【URL file-access is disabled in the server configuration in】解决">
+								错误提示【URL file-access is disabled in the server configuration in】解决			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 4日, 2019				
+							</p>
+							<p class="relate-post-content">
+								DVWA 初体验 远程文件包含错误，需要开启allow_url_include或者allow_url_ fopen
+
+
+前言今天在做dvwa的file inclusion，发现远程 文件包含出错
+解决方法可以看到提示的服务器配置中禁用...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/04/web安全/远程文件包含/远程文件包含错误解决方法/" title="错误提示【URL file-access is disabled in the server configuration in】解决">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="错误提示【URL file-access is disabled in the server configuration in】解决"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/04/web安全/sql注入/sql-lab-通关宝典/" title="sql-lab 复现通关（深入学习）">
+								sql-lab 复现通关（深入学习）			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 4日, 2019				
+							</p>
+							<p class="relate-post-content">
+								Docker 搭建环境 sql-labs 通关
+
+
+
+
+sql-lab 复现通关（深入学习）前言sqllab 从基础到复杂， 对于初学者练习非常有用。
+目的学习如何进攻才能懂得如何防守
+less-1 基于错误的单引号字符串123456...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/04/web安全/sql注入/sql-lab-通关宝典/" title="sql-lab 复现通关（深入学习）">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="sql-lab 复现通关（深入学习）"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
 							<a class="relate-post-title" href="/2019/10/04/实用技巧/配置nat实现网络互通/" title="配置NAT实现网络互通">
 								配置NAT实现网络互通			
 							</a>
@@ -710,6 +614,86 @@ Win2003安装教程
 							<a href="/2019/10/04/实用技巧/配置nat实现网络互通/" title="配置NAT实现网络互通">				
 								
 								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="配置NAT实现网络互通"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/04/实用技巧/CTF介绍/" title="CTF介绍">
+								CTF介绍			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 4日, 2019				
+							</p>
+							<p class="relate-post-content">
+								刚开始接触CTF,对于misc，reverse等等都傻傻分不清，所以专门去查了下这些名词，给没有接触CTF的童鞋一点入门基础.
+
+
+前言刚开始接触CTF,对于misc，reverse等等都傻傻分不清，所以专门去查了下这些名词，给没有接...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/04/实用技巧/CTF介绍/" title="CTF介绍">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="CTF介绍"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/04/实用技巧/DVWA 如何查看登录密码并修改/" title="DVWA 查看默认密码">
+								DVWA 查看默认密码			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 4日, 2019				
+							</p>
+							<p class="relate-post-content">
+								如何数据库查看dvwa的密码，跳过密码验证
+
+
+前言今天登录dvwa的时候发现密码错误，尝试了我自己常设置的密码后都没有结果，就决定去数据库查看dvwa的密码。话不多说，直接开始操作
+dvwa默认密码如果小伙伴们只需要dvwa的默认密...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/04/实用技巧/DVWA 如何查看登录密码并修改/" title="DVWA 查看默认密码">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="DVWA 查看默认密码"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/04/实用技巧/Markdown语法介绍/" title="Markdown编辑器语法">
+								Markdown编辑器语法			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 4日, 2019				
+							</p>
+							<p class="relate-post-content">
+								Markdown是一种轻量级标记语言,它允许人们“使用易读易写的纯文本格式编写文档，然后转换有效的XHTML或者HTML文档”，这种语言吸收了很多电子邮件中已有的纯文本标记的特性。
+
+
+前言为什么要写博客
+先谈论一个话外题，为什么选择...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/04/实用技巧/Markdown语法介绍/" title="Markdown编辑器语法">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Markdown编辑器语法"/>
 							</a>
 						</div>
 					</li>											

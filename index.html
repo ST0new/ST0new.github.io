@@ -273,6 +273,107 @@
 				<div class="post-title" id="post-title-index">			
 					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 					
+	<a href="/2019/10/14/web安全/XXE/xxe-lab/" itemprop="url">
+		xxe demo 练习
+	</a>
+
+				</div>
+
+				<div class="post-content">
+					
+						[TOC]
+xxe练习0x00 xxe 介绍XXE漏洞全称XML External Entity Injection 即xml外部实体注入漏洞，XXE的漏洞发生在应用程序解析xml输入时，没有禁止外部实体加载而产生的任意文件读取,远程命令执行，内网端口扫描，dos攻击等危害。
+要了解xxe 需要先了解 xml 和 dtd , xml是一种可扩展标记性语言 和html比较相似，但是xml 是独立于软件和硬件的信息传输工具， html是用来显示数据的，dtd 是用来声明xml的内容格式规范的。
+xml的文档实例
+1234567&lt;?xml version=&quot;1.0&quot; ...
+					
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
+
+
+
+
+
+
+	<a href="/2019/10/14/web安全/XXE/xxe-lab/" itemprop="url">
+		<time datetime="2019-10-14T06:57:48.000Z" itemprop="datePublished">
+	  		2019-10-14
+	  </time>
+	</a> 
+
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2019/10/14/web安全/XXE/xxe-lab/_visitors" data-url="/2019/10/14/web安全/XXE/xxe-lab/" data-title="xxe demo 练习">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2019/10/14/web安全/XXE/xxe-lab/_likes" data-url="/2019/10/14/web安全/XXE/xxe-lab/" data-title="xxe demo 练习" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2019/10/14/web安全/XXE/xxe-lab/" title="阅读全文">阅读全文</a>	
+						</span>
+					
+				</div>
+			</div>
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2019/10/06/web安全/OWASP/2019-10-6-OWASP-WebGoat-学习/" itemprop="url">
 		OWASP WebGoat 学习
 	</a>
@@ -282,10 +383,10 @@
 				<div class="post-content">
 					
 						[TOC]
-WebGoat介绍WebGoat是一个用于讲解典型web漏洞的基于J2EE架构的web应用，他由著名的WEB应用安全研究组织OWASP精心设计并不断更新，目前版本已经到了8.0，
+WebGoat0x00介绍WebGoat是一个用于讲解典型web漏洞的基于J2EE架构的web应用，他由著名的WEB应用安全研究组织OWASP精心设计并不断更新，目前版本已经到了8.0，
 其中包括：跨站点脚本攻击（XSS）、访问控制、线程安全、操作隐藏字段、操纵参数、弱会话cookie、SQL盲注、数字型SQL注入、字符串型SQL注入、web服务、Open Authentication失效、危险的HTML注释等等。WebGoat提供了一系列web安全学习的教程，准确提供存在的漏洞，适合初学者去查阅资料学习
 github地址：WebGoat
-环境搭建打开了尘封的OWASP Broken...
+0x01环境搭建打开了尘封的OWAS...
 					
 				</div>
 				
@@ -1217,113 +1318,6 @@ dvwa v1.0.7
 					
 						<span class="right">      	
 							<a href="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/" title="阅读全文">阅读全文</a>	
-						</span>
-					
-				</div>
-			</div>
-		</div>
-	
-		<div class="post" id="post">
-			<div class="post-text">
-				<div class="post-title" id="post-title-index">			
-					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-					
-	<a href="/2019/10/04/靶机/Vulnhub DC-6/" itemprop="url">
-		Vulnhub 之 DC-6 靶机复现
-	</a>
-
-				</div>
-
-				<div class="post-content">
-					
-						掌握nmap，sudo 提权方式
-
-
-[TOC]
-Vulnhub 之 DC-6 靶机复现前言本靶机仅供学习使用，请不要用于其他路径，作者不承担任何法律责任
-终于打到dc的最后一个靶机了，花了几个月的闲暇时间来试试，越到后面靶机的难度就会越来越大。所以也参考了一个资料 ，善于使用搜索引擎对您的学习很有进步。
-靶机描述按例做一个描述，获取一些关于靶机的提示，这对你如何去拿下它有很大的帮助
-下载地址：DC-6
-12获取有用的信息，这可能是爆破的密码cat /usr/share/wordlists/rockyou.txt | grep k01 &gt; passwords.txt
-
-复现环境12...
-					
-				</div>
-				
-				<div class="post-meta">
-					<span>
-						发布于
-						<i>
-							
-
-
-
-
-
-
-	<a href="/2019/10/04/靶机/Vulnhub DC-6/" itemprop="url">
-		<time datetime="2019-10-04T03:03:41.000Z" itemprop="datePublished">
-	  		2019-10-04
-	  </time>
-	</a> 
-
-						</i>
-					</span>
-					
-					
-
-	
-    <span class="leancloud_visitors" id="/2019/10/04/靶机/Vulnhub DC-6/_visitors" data-url="/2019/10/04/靶机/Vulnhub DC-6/" data-title="Vulnhub 之 DC-6 靶机复现">
-       	<i class="fa fa-eye"></i>
-       	热度
-        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
-    </span>
-    
-
-
-
-	
-    <span class="leancloud_likes" id="/2019/10/04/靶机/Vulnhub DC-6/_likes" data-url="/2019/10/04/靶机/Vulnhub DC-6/" data-title="Vulnhub 之 DC-6 靶机复现" rel="unlike">
-        <i class="fa fa-heart"></i>
-        喜欢
-        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
-    </span>
-
-					
-
-	<!-- leancloud -->
-	<!--
-	时间：2018-11-27
-	描述：
-		文章访问量：visitors
-		文章喜欢量：likes	
-		文章排行榜：topNPost
-		其他得说明：
-			01-Cookie相关的函数 
-				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
-			02-visitors相关的函数 
-				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
-				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
-			03-topNPost相关的函数
-				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
-			04-likes相关的函数，
-				参考了01 & 02进行简单的设计与实现
--->
-
-
-
-	<script>
-		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
-            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
-        AnnieLeancloud(appid, appkey);         
-	</script>
-    
-
-	
-
-					
-						<span class="right">      	
-							<a href="/2019/10/04/靶机/Vulnhub DC-6/" title="阅读全文">阅读全文</a>	
 						</span>
 					
 				</div>

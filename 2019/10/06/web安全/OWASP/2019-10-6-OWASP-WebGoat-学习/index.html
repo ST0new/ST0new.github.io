@@ -320,7 +320,7 @@
 
 	<a href="/2019/10/06/web安全/OWASP/2019-10-6-OWASP-WebGoat-学习/" itemprop="url">
 		<time datetime="2019-10-06T05:40:52.000Z" itemprop="dateUpdated">
-	  		2019-10-06
+	  		2019-10-14
 	  </time>
 	</a> 
 
@@ -361,10 +361,10 @@
 
 	<div class="article-content" id="article-content">
 		<p>[TOC]</p>
-<h1 id="WebGoat"><a href="#WebGoat" class="headerlink" title="WebGoat"></a>WebGoat</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>WebGoat是一个用于讲解典型web漏洞的基于J2EE架构的web应用，他由著名的WEB应用安全研究组织OWASP精心设计并不断更新，目前版本已经到了8.0，</p>
+<h1 id="WebGoat"><a href="#WebGoat" class="headerlink" title="WebGoat"></a>WebGoat</h1><h2 id="0x00介绍"><a href="#0x00介绍" class="headerlink" title="0x00介绍"></a>0x00介绍</h2><p>WebGoat是一个用于讲解典型web漏洞的基于J2EE架构的web应用，他由著名的WEB应用安全研究组织OWASP精心设计并不断更新，目前版本已经到了8.0，</p>
 <p>其中包括：跨站点脚本攻击（XSS）、访问控制、线程安全、操作隐藏字段、操纵参数、弱会话cookie、SQL盲注、数字型SQL注入、字符串型SQL注入、web服务、Open Authentication失效、危险的HTML注释等等。WebGoat提供了一系列web安全学习的教程，准确提供存在的漏洞，适合初学者去查阅资料学习</p>
 <p><code>github</code>地址：<a href="https://github.com/WebGoat/WebGoat" target="_blank" rel="noopener">WebGoat</a></p>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>打开了尘封的<code>OWASP Broken Web Apps</code> 版本才更新到4.5 搜索了下相关的资料，搭建一个最新版的环境去练习，搜素发现可以使用<code>docker</code>搭建，那么直接上手，节省搭建的大量时间。</p>
+<h2 id="0x01环境搭建"><a href="#0x01环境搭建" class="headerlink" title="0x01环境搭建"></a>0x01环境搭建</h2><p>打开了尘封的<code>OWASP Broken Web Apps</code> 版本才更新到4.5 搜索了下相关的资料，搭建一个最新版的环境去练习，搜素发现可以使用<code>docker</code>搭建，那么直接上手，节省搭建的大量时间。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search webgoat</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191006135511.png" alt></p>
@@ -377,9 +377,59 @@
 
 <p><img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5Cweb%E5%AE%89%E5%85%A8%5COWASP%5C2019-10-6-OWASP-WebGoat-%E5%AD%A6%E4%B9%A0.assets%5C20191006135956.png" alt></p>
 <p>等待完成即可通过本地<code>ip</code>登录开始学习之旅</p>
-<h2 id="WebGoat学习"><a href="#WebGoat学习" class="headerlink" title="WebGoat学习"></a>WebGoat学习</h2><p>安装成功，注册账号</p>
+<h2 id="0x02WebGoat学习"><a href="#0x02WebGoat学习" class="headerlink" title="0x02WebGoat学习"></a>0x02WebGoat学习</h2><p>安装成功，注册账号</p>
 <p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191006141532.png" alt></p>
-	
+<p>赶快开始吧</p>
+<h3 id="0x03Introduction"><a href="#0x03Introduction" class="headerlink" title="0x03Introduction"></a>0x03Introduction</h3><h3 id="What-is-WebGoat？"><a href="#What-is-WebGoat？" class="headerlink" title="What is WebGoat？"></a>What is WebGoat？</h3><blockquote>
+<p>?WebGoat是一个故意不安全的应用程序，它允许感兴趣的开发人员(就像您一样)测试基于java的应用程序中常见的漏洞，这些应用程序使用常见和流行的开放源码组件现在,我们绝不容忍造成故意伤害任何动物,山羊或否则,我们认为所有你能了解安全漏洞是必不可少的理解就会发生什么即使是很小的一些意想不到的代码进入应用程序更好的方法来做什么,而不是你自己的替罪羊?你愿意和他做什么就做什么。劈呀，戳呀，戳呀，如果这能让你好受些，那就吓吓他，直到你心满意足为止。去吧，把goat砍下来。我保证他喜欢。 (来自有道翻译)</p>
+</blockquote>
+<h3 id="Webwolf"><a href="#Webwolf" class="headerlink" title="Webwolf"></a>Webwolf</h3><blockquote>
+<p>You only need WebWolf if a lesson specifies you can use it. For a lot of lessons you use WebGoat without starting WebWolf. If you need to do an exercise with WebWolf make sure it is running along side WebGoat. Lessons where you can use WebWolf are marked with the following icon (top right in assignment):</p>
+<p>你只需要网络狼，如果一个教训指定你可以使用它。在很多课程中，你使用WebGoat而不是WebWolf。如果你需要做一个练习与网络狼，确保它是沿着侧网羊。可以使用WebWolf的课程使用如下图标(作业右上角):</p>
+<p>Even if the icon is present your are not obliged to use WebWolf, you can also use any intercepting tool you like. (<code>netcat</code> etc.)</p>
+<p>即使图标出现了，你也不必使用WebWolf，你也可以使用任何你喜欢的拦截工具。(netcat等等)。</p>
+<p>WebWolf is a separate web application which simulates an attackers machine. It makes it possible for us to make a clear distinction between what takes place on the attacked website and the actions you need to do as an “attacker”. WebWolf was introduced after a couple of workshops where we received feedback that there was no clear distinction between what was part of the “attackers” role and what was part of the “users” role on the website. The following items are supported in WebWolf:</p>
+<p>WebWolf是一个单独的web应用程序，它模拟攻击者的机器。它使我们有可能在被攻击的网站上发生的事情和作为“攻击者”需要采取的行动之间做出明确的区分。WebWolf是在几次研讨会之后推出的，我们在研讨会上得到的反馈是，网站上的“攻击者”角色和“用户”角色之间没有明显的区别。</p>
+<ul>
+<li>Hosting a file</li>
+<li>Receiving email</li>
+<li>Landing page for incoming requests</li>
+<li>举办一个文件</li>
+<li>接收电子邮件</li>
+<li>输入请求的登录页</li>
+</ul>
+<p>WebWolf runs as a separate web application. If you are using the Docker-compose file you can just point your browser <a href="http://192.168.64.1:9090/WebWolf" target="_blank" rel="noopener">here</a> to open WebWolf.<br>If you want to use the standalone version, you will need to download the jar file and start it:</p>
+<p>WebWolf作为一个单独的web应用程序运行。如果你正在使用Docker-compose文件，你可以将你的浏览器指向这里来打开WebWolf。如果你想使用独立版本，你需要下载jar文件并启动它:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;java -jar webwolf-&lt;&lt;version&gt;&gt;.jar [--server.port=9090] [--server.address=localhost]</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>By default WebWolf starts on port 9090 with <code>--server.port</code> you can specify a different port. With <code>server.address</code> you<br>can bind it to a different address (default localhost)</p>
+<p>默认情况下，WebWolf在端口9090上用——server启动。您可以指定一个不同的端口。与服务器。您可以将它绑定到另一个地址(默认的本地主机)</p>
+<p>Note: if you start WebGoat as standalone application you need to start WebWolf as standalone application as well.</p>
+<p>注意:如果你启动WebGoat作为一个独立的应用程序，你需要启动WebWolf作为一个独立的应用程序。</p>
+<p>This will start the application on port 9090, click <a href="http://192.168.64.1:9090/WebWolf" target="_blank" rel="noopener">here</a> to open WebWolf.<br>The first thing you need to do is login with the user you registered on WebGoat.</p>
+<p>这将在端口9090上启动应用程序，点击这里打开WebWolf。你需要做的第一件事是用你在WebGoat上注册的用户登录。</p>
+</blockquote>
+<h2 id="0x04-General"><a href="#0x04-General" class="headerlink" title="0x04 General"></a>0x04 General</h2><h3 id="Http-Proxies"><a href="#Http-Proxies" class="headerlink" title="Http Proxies"></a>Http Proxies</h3><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191014140557.png" alt></p>
+<ul>
+<li>Stage 2 </li>
+</ul>
+<p>在下面的输入框中输入您的名字，然后按“Go!”提交。服务器将接受请求，反转输入并将其显示给用户，说明处理HTTP请求的基础知识。</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191014140948.png" alt></p>
+<ul>
+<li>Stage 3</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191014141607.png" alt></p>
+<h3 id="HTTP-Proxies"><a href="#HTTP-Proxies" class="headerlink" title="HTTP Proxies"></a>HTTP Proxies</h3><p>前面几步介绍代理的流程，最后进行测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Change the Method to GET</span><br><span class="line"></span><br><span class="line">Add a header &apos;x-request-intercepted:true&apos;</span><br><span class="line"></span><br><span class="line">Change the input value &apos;changeMe&apos; to &apos;Requests are tampered easily&apos; (without the single quotes)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191014142707.png" alt></p>
+<h3 id="CIA-triad"><a href="#CIA-triad" class="headerlink" title="CIA triad"></a>CIA triad</h3><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191014143347.png" alt></p>
+<h3 id="goole-chrome-developer-tools"><a href="#goole-chrome-developer-tools" class="headerlink" title="goole chrome developer tools"></a>goole chrome developer tools</h3><p>-1551252461</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191014143931.png" alt></p>
+<p>stage 6</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191014144213.png" alt></p>
+<h3 id><a href="#" class="headerlink" title></a></h3>	
 	</div>
 	
 	<div id="current-post-cover" data-scr="/img/cart_cover.jpg"></div>
@@ -396,6 +446,10 @@
 				
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
+		
+			<a href="/2019/10/14/web安全/XXE/xxe-lab/" title="xxe demo 练习" rel="prev">
+				&laquo;上一篇
+			</a>
 		
 		
 			<a href="/2019/10/05/web安全/XSS/XSS闯关小游戏/" title="xss通关小游戏" rel="next">
@@ -416,6 +470,30 @@
 <div class="relate-post">
 	
 		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/14/web安全/XXE/xxe-lab/" title="xxe demo 练习">
+								xxe demo 练习			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 14日, 2019				
+							</p>
+							<p class="relate-post-content">
+								[TOC]
+xxe练习0x00 xxe 介绍XXE漏洞全称XML External Entity Injection 即xml外部实体注入漏洞，XXE的漏洞发生在应用程序解析xml输入时，没有禁止外部实体加载而产生的任意文件读取,远程...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/14/web安全/XXE/xxe-lab/" title="xxe demo 练习">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="xxe demo 练习"/>
+							</a>
+						</div>
+					</li>											
+			
 			
 					<li>
 						<div class="relate-post-text">
@@ -663,33 +741,6 @@ dvwa默认密码如果小伙伴们只需要dvwa的默认密...
 							<a href="/2019/10/04/实用技巧/Markdown语法介绍/" title="Markdown编辑器语法">				
 								
 								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Markdown编辑器语法"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/实用技巧/OWASP TOP 10/" title="OWASP Top 10简要介绍">
-								OWASP Top 10简要介绍			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
-							</p>
-							<p class="relate-post-content">
-								为了加深对owasp top 10 的印象 ，写一篇作为记录
-
-
-前言
-最近在找实习，看到招聘全是要求熟悉OWASP Top 10,为了加深印象所以写一个博客记录一下 ,也希望可以为有相同需求的小伙伴提供好的资料,之后我会陆续更新相关...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/10/04/实用技巧/OWASP TOP 10/" title="OWASP Top 10简要介绍">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="OWASP Top 10简要介绍"/>
 							</a>
 						</div>
 					</li>											
