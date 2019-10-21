@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub-DC-8/</loc>
+    
+    <lastmod>2019-10-21T03:40:01.593Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub%20DC-2/</loc>
+    
+    <lastmod>2019-10-20T13:59:28.704Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/10/14/web%E5%AE%89%E5%85%A8/XXE/xxe-lab/</loc>
     
     <lastmod>2019-10-14T09:53:01.973Z</lastmod>
@@ -222,13 +236,6 @@
     <loc>http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub%20DC-3/</loc>
     
     <lastmod>2019-10-04T03:00:54.489Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub%20DC-2/</loc>
-    
-    <lastmod>2019-10-04T02:59:59.237Z</lastmod>
     
   </url>
   

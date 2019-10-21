@@ -273,6 +273,116 @@
 				<div class="post-title" id="post-title-index">			
 					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 					
+	<a href="/2019/10/04/实用技巧/删除github的某个文件/" itemprop="url">
+		删除github的某个文件
+	</a>
+
+				</div>
+
+				<div class="post-content">
+					
+						搭建图床的时候，位置弄错不会删除，这里总结一下
+
+
+前言
+今天用github做图床，上传的文件没有改名字并且都在同一个文件中散乱，然后想要删除的时候发现没有删除的选项。
+然后百度了下相关的内容，并把操作记录以备查看，并给和我一样不会的小伙伴们一个参考
+
+开始前的准备首先看看我现在的情况
+
+之后我们需要有git这个软件支持，我这里用的是Git-2.21.0-64-bit.exe这个版本
+附上下载地址：git官方下载地址
+git的安装比较简单，如果需要过程请参考网上的教程，这里就不多说了
+下载好之后，鼠标右键就可以打开git bash here
+删除不需要的文件1 如果是刚下载git的请跟着...
+					
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
+
+
+
+
+
+
+	<a href="/2019/10/04/实用技巧/删除github的某个文件/" itemprop="url">
+		<time datetime="2019-10-04T02:52:35.000Z" itemprop="datePublished">
+	  		2019-10-04
+	  </time>
+	</a> 
+
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2019/10/04/实用技巧/删除github的某个文件/_visitors" data-url="/2019/10/04/实用技巧/删除github的某个文件/" data-title="删除github的某个文件">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2019/10/04/实用技巧/删除github的某个文件/_likes" data-url="/2019/10/04/实用技巧/删除github的某个文件/" data-title="删除github的某个文件" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2019/10/04/实用技巧/删除github的某个文件/" title="阅读全文">阅读全文</a>	
+						</span>
+					
+				</div>
+			</div>
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2019/10/04/web安全/远程文件包含/远程文件包含错误解决方法/" itemprop="url">
 		错误提示【URL file-access is disabled in the server configuration in】解决
 	</a>
@@ -1237,125 +1347,12 @@ less-1 基于错误的单引号字符串12345678910111213141516- 正常访问htt
 			</div>
 		</div>
 	
-		<div class="post" id="post">
-			<div class="post-text">
-				<div class="post-title" id="post-title-index">			
-					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-					
-	<a href="/2019/10/04/CTF/实验吧/实验吧-web-后台登录/" itemprop="url">
-		后台登录
-	</a>
-
-				</div>
-
-				<div class="post-content">
-					
-						实验吧web后台登录
-burp抓包尝试爆破
-一般呢，ctf题是不涉及爆破的，因为这样会导致服务器处理压力太大
-
-
-可以看到这里当我们输入正确的密码后，会返回flag。
-那么我们的重点就是获取密码了
-
-寻找密码
-尝试了几次弱密码，注入都没有效果，之后突然看到url：http://ctf5.shiyanbar.com/web/houtai/ffifdyop.php，发现文件名很怪异，之后尝试也发现了ffifdyop就是最终的密码
-
-
-
- 拿到flag
-
-解释
-为什么ffifdyop就可以拿到flag，
-ffifdop
-md5:  276f722736c95d99e921722cf9ed621...
-					
-				</div>
-				
-				<div class="post-meta">
-					<span>
-						发布于
-						<i>
-							
-
-
-
-
-
-
-	<a href="/2019/10/04/CTF/实验吧/实验吧-web-后台登录/" itemprop="url">
-		<time datetime="2019-10-03T16:16:36.000Z" itemprop="datePublished">
-	  		2019-10-04
-	  </time>
-	</a> 
-
-						</i>
-					</span>
-					
-					
-
-	
-    <span class="leancloud_visitors" id="/2019/10/04/CTF/实验吧/实验吧-web-后台登录/_visitors" data-url="/2019/10/04/CTF/实验吧/实验吧-web-后台登录/" data-title="后台登录">
-       	<i class="fa fa-eye"></i>
-       	热度
-        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
-    </span>
-    
-
-
-
-	
-    <span class="leancloud_likes" id="/2019/10/04/CTF/实验吧/实验吧-web-后台登录/_likes" data-url="/2019/10/04/CTF/实验吧/实验吧-web-后台登录/" data-title="后台登录" rel="unlike">
-        <i class="fa fa-heart"></i>
-        喜欢
-        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
-    </span>
-
-					
-
-	<!-- leancloud -->
-	<!--
-	时间：2018-11-27
-	描述：
-		文章访问量：visitors
-		文章喜欢量：likes	
-		文章排行榜：topNPost
-		其他得说明：
-			01-Cookie相关的函数 
-				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
-			02-visitors相关的函数 
-				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
-				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
-			03-topNPost相关的函数
-				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
-			04-likes相关的函数，
-				参考了01 & 02进行简单的设计与实现
--->
-
-
-
-	<script>
-		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
-            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
-        AnnieLeancloud(appid, appkey);         
-	</script>
-    
-
-	
-
-					
-						<span class="right">      	
-							<a href="/2019/10/04/CTF/实验吧/实验吧-web-后台登录/" title="阅读全文">阅读全文</a>	
-						</span>
-					
-				</div>
-			</div>
-		</div>
-	
 	</div>
 
 	
 	<div id="pagination">
+		
+			<a href="/page/4/" data-title="加载更多" data-status="没有了">加载更多</a>
 		
 	</div>
 
