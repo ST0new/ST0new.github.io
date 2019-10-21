@@ -329,33 +329,6 @@
   </entry>
   
   <entry>
-    <title>Vulnhub DC-8</title>
-    <link href="http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub-DC-8/"/>
-    <id>http://yoursite.com/2019/10/04/靶机/Vulnhub-DC-8/</id>
-    <published>2019-10-04T03:02:24.000Z</published>
-    <updated>2019-10-21T03:40:01.593Z</updated>
-    
-    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="vlunhub-dc8"><a href="#vlunhub-dc8" class="headerlink" title="vlunhub-dc8"></a>vlunhub-dc8</h1><h2 id="0x00-下载地址"><a href="#0x00-下载地址" class="headerlink" title="0x00 下载地址"></a>0x00 下载地址</h2><p><a href="http://www.five86.com/dc-8.html" target="_blank" rel="noopener">DC-8</a></p><h2 id="0x01-环境"><a href="#0x01-环境" class="headerlink" title="0x01 环境"></a>0x01 环境</h2><p>kali：192.168.64.133</p><p>dc-8：192.168.64.155</p><h2 id="0x02-复现"><a href="#0x02-复现" class="headerlink" title="0x02 复现"></a>0x02 复现</h2><ol><li><p>扫描端口</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191020221007.png" alt></p></li><li><p>查看网站，查找有用信息</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191020224511.png" alt></p><p>发现在访问时url处为nid=1 这种类型，可能存在sql注入，测试发现报错</p></li><li><p>获取用户名和密码</p><p>字段为1 </p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021093629.png" alt></p><p>数据库 <code>d7db</code></p><p><code>http://192.168.64.155/?nid=-1%20union%20all%20select%20database()%20--+</code></p><p>拿到用户名和密码</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021094308.png" alt></p><p>使用john破解</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021095827.png" alt></p><p>接下来通过之前扫描的的信息中获取到的登录界面登录</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021095720.png" alt></p></li><li><p>登录后台</p><p>和dc-7 一样，寻找可以执行php语句的地方</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021103459.png" alt></p><p>测试执行语句，在<code>form settings</code>写入phpinfo</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021103916.png" alt></p></li><li><p>反弹shell</p><p>尝试反弹shell</p><p>kali <code>nc -lvvp 4444</code></p><p>web页面处</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021104353.png" alt></p><p>kali处成功监听，获取交互式shell</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021104646.png" alt></p></li><li><p>信息收集</p><p>通过vps下载linenum 去获取服务器信息</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021105414.png" alt></p><p>这里尝试一下 sudo提权，需要密码 ，版本没有类似的漏洞，</p><p>之后在suid处存在一处可疑文件，查看版本，发现存在可利用漏洞</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021110950.png" alt></p></li><li><p>提权</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021111447.png" alt></p><p>利用此漏洞尝试提权</p><p>查看使用方式：<a href="https://www.exploit-db.com/exploits/46996" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/46996</a></p><p>尝试利用<code>./46996.sh -m setuid</code>或<code>./46996.sh -m netcat</code> 提权</p><p>报错：</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021112142.png" alt></p><p>搜索发现这个报错是由于windows下编辑上传到linux下执行导致的</p><p>解决方法</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113723.png" alt></p><p>成功获取root权限</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113857.png" alt></p><p>cd到root下 查看flag</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113941.png" alt></p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h1 id=&quot;vlunhub-dc8&quot;&gt;&lt;a href=&quot;#vlunhub-dc8&quot; class=&quot;headerlink&quot; title=&quot;vlunhub-dc8&quot;&gt;&lt;/a&gt;vlunhub-dc8&lt;/h1&gt;&lt;h2 id=&quot;0x00-下载地址&quot;&gt;&lt;a hr
-      
-    
-    </summary>
-    
-    
-      <category term="靶机" scheme="http://yoursite.com/categories/%E9%9D%B6%E6%9C%BA/"/>
-    
-    
-      <category term="drupal提权" scheme="http://yoursite.com/tags/drupal%E6%8F%90%E6%9D%83/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Vulnhub DC-7</title>
     <link href="http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub-DC-7/"/>
     <id>http://yoursite.com/2019/10/04/靶机/Vulnhub-DC-7/</id>
@@ -369,6 +342,33 @@
       
       
         &lt;h1 id=&quot;Vulnhub-之-DC-7&quot;&gt;&lt;a href=&quot;#Vulnhub-之-DC-7&quot; class=&quot;headerlink&quot; title=&quot;Vulnhub 之 DC-7&quot;&gt;&lt;/a&gt;Vulnhub 之 DC-7&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="靶机" scheme="http://yoursite.com/categories/%E9%9D%B6%E6%9C%BA/"/>
+    
+    
+      <category term="drupal提权" scheme="http://yoursite.com/tags/drupal%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhub DC-8</title>
+    <link href="http://yoursite.com/2019/10/04/%E9%9D%B6%E6%9C%BA/Vulnhub-DC-8/"/>
+    <id>http://yoursite.com/2019/10/04/靶机/Vulnhub-DC-8/</id>
+    <published>2019-10-04T03:02:24.000Z</published>
+    <updated>2019-10-21T03:42:41.988Z</updated>
+    
+    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="vlunhub-dc8"><a href="#vlunhub-dc8" class="headerlink" title="vlunhub-dc8"></a>vlunhub-dc8</h1><h2 id="0x00-下载地址"><a href="#0x00-下载地址" class="headerlink" title="0x00 下载地址"></a>0x00 下载地址</h2><p><a href="http://www.five86.com/dc-8.html" target="_blank" rel="noopener">DC-8</a></p><h2 id="0x01-环境"><a href="#0x01-环境" class="headerlink" title="0x01 环境"></a>0x01 环境</h2><p>kali：192.168.64.133</p><p>dc-8：192.168.64.155</p><h2 id="0x02-复现"><a href="#0x02-复现" class="headerlink" title="0x02 复现"></a>0x02 复现</h2><ol><li><p>扫描端口</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191020221007.png" alt></p></li><li><p>查看网站，查找有用信息</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191020224511.png" alt></p><p>发现在访问时url处为nid=1 这种类型，可能存在sql注入，测试发现报错</p></li><li><p>获取用户名和密码</p><p>字段为1 </p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021093629.png" alt></p><p>数据库 <code>d7db</code></p><p><code>http://192.168.64.155/?nid=-1%20union%20all%20select%20database()%20--+</code></p><p>拿到用户名和密码</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021094308.png" alt></p><p>使用john破解</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021095827.png" alt></p><p>接下来通过之前扫描的的信息中获取到的登录界面登录</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021095720.png" alt></p></li><li><p>登录后台</p><p>和dc-7 一样，寻找可以执行php语句的地方</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021103459.png" alt></p><p>测试执行语句，在<code>form settings</code>写入phpinfo</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021103916.png" alt></p></li><li><p>反弹shell</p><p>尝试反弹shell</p><p>kali <code>nc -lvvp 4444</code></p><p>web页面处</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021104353.png" alt></p><p>kali处成功监听，获取交互式shell</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021104646.png" alt></p></li><li><p>信息收集</p><p>通过vps下载linenum 去获取服务器信息</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021105414.png" alt></p><p>这里尝试一下 sudo提权，需要密码 ，版本没有类似的漏洞，</p><p>之后在suid处存在一处可疑文件，查看版本，发现存在可利用漏洞</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021110950.png" alt></p></li><li><p>提权</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021111447.png" alt></p><p>利用此漏洞尝试提权</p><p>查看使用方式：<a href="https://www.exploit-db.com/exploits/46996" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/46996</a></p><p>尝试利用<code>./46996.sh -m setuid</code>或<code>./46996.sh -m netcat</code> 提权</p><p>报错：</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021112142.png" alt></p><p>搜索发现这个报错是由于windows下编辑上传到linux下执行导致的</p><p>解决方法</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113723.png" alt></p><p>成功获取root权限</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113857.png" alt></p><p>cd到root下 查看flag</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191021113941.png" alt></p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;vlunhub-dc8&quot;&gt;&lt;a href=&quot;#vlunhub-dc8&quot; class=&quot;headerlink&quot; title=&quot;vlunhub-dc8&quot;&gt;&lt;/a&gt;vlunhub-dc8&lt;/h1&gt;&lt;h2 id=&quot;0x00-下载地址&quot;&gt;&lt;a hr
       
     
     </summary>
