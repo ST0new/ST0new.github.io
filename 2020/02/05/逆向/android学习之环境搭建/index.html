@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      ST0new Blog
+      android 安全之环境搭建（一） | ST0new Blog
     
   </title>
   <meta name="author" content="ST0new">
@@ -165,7 +165,7 @@
 	<!-- Page title -->
 	<p>
 		
-			主页
+			当前文章&nbsp;:&nbsp;《android 安全之环境搭建（一）》
 		
 	</p>
 
@@ -260,60 +260,85 @@
 			
 		<!--main-->
 		<main>
-			
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
 
-
-
-	<!--pure style-->
-	<div class="layout-pure">
-	<div id="layout-pure">	
 	
-		<div class="post" id="post">
-			<div class="post-text">
-				<div class="post-title" id="post-title-index">			
-					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-					
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+		<script src="/plugin/toc/katelog.min.js"></script>
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+	<div class="article-title">
+		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+		
 	<a href="/2020/02/05/逆向/android学习之环境搭建/" itemprop="url">
 		android 安全之环境搭建（一）
 	</a>
 
-				</div>
+	</div>
 
-				<div class="post-content">
-					
-						[TOC]
-android 安全（一）简单的学习做笔记
-android 现在基本都是以逆向脱壳为主，为了能够更加了解渗透测试，特地学习了一下逆向的基础知识。
-0x00 环境搭建不论从事那一方面的研究，第一件事都是搭建一个满意的环境，不然满是bug的环境会让你望而却步。
-硬件要求
-逆向需要的环境对系统要求不高，我自己是个游戏本，完全满足要求，就不需要在硬件上破费了。你只需要一个功能齐全的电脑都可以满足基本的学习要求。
-必备的一些软件安装推荐一个android下载站： https://www.androiddevtools.cn/#
-
-jdk ：这是android开发必备环境之一，由于一些软...
-					
-				</div>
-				
-				<div class="post-meta">
-					<span>
-						发布于
-						<i>
-							
+	<div class="article-meta">
+		<span>
+			<i class="fa fa-calendar"></i>
+			
 
 
-
-
-
+	发布于
 
 	<a href="/2020/02/05/逆向/android学习之环境搭建/" itemprop="url">
 		<time datetime="2020-02-05T12:49:39.000Z" itemprop="datePublished">
 	  		2020-02-05
 	  </time>
+	</a>
+	&nbsp;
+
+
+
+
+
+			
+
+
+
+
+	更新于
+
+	<a href="/2020/02/05/逆向/android学习之环境搭建/" itemprop="url">
+		<time datetime="2020-02-05T12:49:39.000Z" itemprop="dateUpdated">
+	  		2020-02-05
+	  </time>
 	</a> 
 
-						</i>
-					</span>
-					
-					
+
+
+		</span>
+		<span>
+			<i class="fa fa-tags"></i>
+			
+	
+		<a href="/tags/逆向/" class=" ">
+			逆向
+		</a>
+	
+		
+		</span>
+		
+		
 
 	
     <span class="leancloud_visitors" id="/2020/02/05/逆向/android学习之环境搭建/_visitors" data-url="/2020/02/05/逆向/android学习之环境搭建/" data-title="android 安全之环境搭建（一）">
@@ -332,7 +357,113 @@ jdk ：这是android开发必备环境之一，由于一些软...
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
     </span>
 
-					
+	</div>
+
+	<div class="article-content" id="article-content">
+		<p>[TOC]</p>
+<h1 id="android-安全（一）"><a href="#android-安全（一）" class="headerlink" title="android 安全（一）"></a>android 安全（一）</h1><p>简单的学习做笔记</p>
+<p>android 现在基本都是以逆向脱壳为主，为了能够更加了解渗透测试，特地学习了一下逆向的基础知识。</p>
+<h1 id="0x00-环境搭建"><a href="#0x00-环境搭建" class="headerlink" title="0x00 环境搭建"></a>0x00 环境搭建</h1><p>不论从事那一方面的研究，第一件事都是搭建一个满意的环境，不然满是bug的环境会让你望而却步。</p>
+<p><strong>硬件要求</strong></p>
+<p>逆向需要的环境对系统要求不高，我自己是个游戏本，完全满足要求，就不需要在硬件上破费了。你只需要一个功能齐全的电脑都可以满足基本的学习要求。</p>
+<h2 id="必备的一些软件安装"><a href="#必备的一些软件安装" class="headerlink" title="必备的一些软件安装"></a>必备的一些软件安装</h2><p>推荐一个android下载站： <a href="https://www.androiddevtools.cn/#" target="_blank" rel="noopener">https://www.androiddevtools.cn/#</a></p>
+<ol>
+<li><p><code>jdk</code> ：这是android开发必备环境之一，由于一些软件限制，我准备的是<code>jdk-8u121-windows-x64</code>和<code>jdk-8u121-windows-i586</code>,当然也可以下载最新的，但有时会在安装某个软件的时候出现莫名其妙的问题。</p>
+</li>
+<li><p><code>android sdk</code>: （由于已经没有了单独的下载包，所以可以通过下载包含有android sdk 的android studio: 另一种是网上提供下载的链接，这个倒是蛮多的  下载链接：<a href="https://developer.android.com/studio" target="_blank" rel="noopener">android studio</a>）</p>
+</li>
+</ol>
+<blockquote>
+<p>这里说一下android sdk 和android studio的区别</p>
+<p>Android SDK 是一个开发包。类似于JAVA SDK。里面包含了Android开发的各式各样的库文件。<br>Android studio是一个IDE（可视化开发工具）跟eclipse一样的东西。用来开发Android的工具。(studio 包含有sdk)</p>
+</blockquote>
+<ol start="3">
+<li><p><code>android NDK</code>:<code>Android NDK</code> 是一个工具集，可让您使用 C 和 C++ 等语言以原生代码实现应用的各个部分。对于特定类型的应用，这可以帮助您重复使用以这些语言编写的代码库<a href="https://developer.android.com/ndk/downloads" target="_blank" rel="noopener">NDK</a>   之后将ndk 安装的路径添加到<code>path</code> 环境变量中即可</p>
+</li>
+<li><p>开发环境安装 ，这里我安装的是<code>android studio</code> 因为<code>eclipse for Android Developers</code> 已经不在维护了。</p>
+</li>
+</ol>
+<hr>
+<p>刚开始学逆向，好多东西都是一知半解，如果有什么问题或者错误， 还望各位大佬狠狠的批评。</p>
+	
+	</div>
+	
+	<div id="current-post-cover" data-scr="/img/post-cover/1.jpg"></div>
+
+	<!-- relate post, comment...-->
+	<div class="investment-container">
+		<div class="investment-header">
+			<div class="investment-title-1">
+				<div class="on">相关文章</div>
+				<div>评论</div>
+				<div>分享</div>
+			</div>
+			<div class="investment-title-2">	            
+				
+	<span>
+		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
+		
+			
+	</span>
+
+
+      		
+			</div>	
+		</div>
+		
+		<div class="investment-content">
+			<div class="investment-content-list">
+				
+
+<div class="relate-post">
+	
+		<div>Please check the post_relate setting in config.yml of hexo-theme-Annie! You should make sure 'postsEnable == true' and the number of site posts greater than 1.</div>	
+	
+</div>	
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-comment">
+
+	
+
+		
+
+			<!-- I don't know !!!-->
+			<div>Please check the comment setting in config.yml of hexo-theme-Annie!</div>
+			
+		
+		
+	
+
+</div>
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-share">
+	
+	
+
+		
+			
+			<!-- socialShare share -->
+			<div class="social-share"></div>
+
+<!--  css & js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+			
+		
+		
+	
+</div>
+
+
+			</div>
+		</div>	
+	</div>
+	</div>
+</div>
+
+
 
 	<!-- leancloud -->
 	<!--
@@ -364,27 +495,133 @@ jdk ：这是android开发必备环境之一，由于一些软...
 
 	
 
-					
-						<span class="right">      	
-							<a href="/2020/02/05/逆向/android学习之环境搭建/" title="阅读全文">阅读全文</a>	
-						</span>
-					
-				</div>
-			</div>
-		</div>
-	
-	</div>
 
-	
-	<div id="pagination">
+<!-- show math formula -->
+
+
+
+	 
+	<script src="/plugin/clipboard/clipboard.js"></script>
+	<script>
+		// Copy code !
+	    function codePreprocessing() {
+	        $("#article-content .highlight").each(function() {
+
+	            $(this).wrap('<div id="post-code"></div>');
+
+	        })
+
+	        $("#article-content #post-code").each(function() {
+
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            var temp = $(this).next().attr('class'),
+	                language = ((temp.length > 9) && (temp != null)) ? temp.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+
+	            $(this).append('<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i></span>');
+
+	        });
+	    }
+
+		function codeCopy() {
+		    $('#article-content #post-code').each(function(i) {
+		        var codeCopyId = 'codeCopy-' + i;
+
+		        var codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+
+		    
+			var clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn copy-status');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');
+			    
+			});
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
 		
-	</div>
 
-	
+		}
 
-</div>
+		if ($('.layout-post').length) {
+		    codePreprocessing();
+		    codeCopy();
+		} 
+	</script>
 
 
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+<script type="text/javascript">
+	var titleID = $('.article-title a'),
+		imageID = $('.article-content img'),
+		videoID = $('.article-content video');
+
+	var postTitle = titleID.text() ? titleID.text() : "No post title!";
+
+	imageID.each(function() {
+		var imgPath = $(this).attr('src'),
+			imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox="gallery" data-caption=" 《 ' + postTitle + ' 》 ' + imgTitle + ' "  href=" ' + imgPath + ' "> </a>');
+	});
+
+	videoID.each(function() {
+		var videoPath = $(this).attr('src');
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+	});
+	//TODO：支持html5 video
+
+	if($('#layout-post').length) {
+		$('[data-fancybox="gallery"]').fancybox({
+			loop: true,
+			buttons: [
+				"zoom",
+				"share",
+				"slideShow",
+				"fullScreen",
+				//"download",
+				"thumbs",
+				"close"
+			],
+			protect: false
+		});
+	}
+</script>
 		</main>
 
 		<!--footer-->
@@ -447,14 +684,10 @@ jdk ：这是android开发必备环境之一，由于一些软...
 	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	
 
-		<span id="busuanzi_container_site_pv">
-	    	本站总访问量<span id="busuanzi_value_site_pv"></span>次
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
 		</span>
 
-		<span id="busuanzi_container_site_uv">
-	  		本站访客数<span id="busuanzi_value_site_uv"></span>人次
-		</span>
-		
 	
 
 
