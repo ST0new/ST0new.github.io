@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      android 安全之环境搭建（一） | ST0new Blog
+      python 入门简介 | ST0new Blog
     
   </title>
   <meta name="author" content="ST0new">
@@ -165,7 +165,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《android 安全之环境搭建（一）》
+			当前文章&nbsp;:&nbsp;《python 入门简介》
 		
 	</p>
 
@@ -286,8 +286,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2020/02/05/逆向/android学习之环境搭建/" itemprop="url">
-		android 安全之环境搭建（一）
+	<a href="/2020/02/26/编程/python/python介绍/" itemprop="url">
+		python 入门简介
 	</a>
 
 	</div>
@@ -300,9 +300,9 @@
 
 	发布于
 
-	<a href="/2020/02/05/逆向/android学习之环境搭建/" itemprop="url">
-		<time datetime="2020-02-05T12:49:39.000Z" itemprop="datePublished">
-	  		2020-02-05
+	<a href="/2020/02/26/编程/python/python介绍/" itemprop="url">
+		<time datetime="2020-02-26T11:21:55.000Z" itemprop="datePublished">
+	  		2020-02-26
 	  </time>
 	</a>
 	&nbsp;
@@ -318,9 +318,9 @@
 
 	更新于
 
-	<a href="/2020/02/05/逆向/android学习之环境搭建/" itemprop="url">
-		<time datetime="2020-02-05T12:49:39.000Z" itemprop="dateUpdated">
-	  		2020-02-05
+	<a href="/2020/02/26/编程/python/python介绍/" itemprop="url">
+		<time datetime="2020-02-26T11:21:55.000Z" itemprop="dateUpdated">
+	  		2020-02-26
 	  </time>
 	</a> 
 
@@ -331,8 +331,8 @@
 			<i class="fa fa-tags"></i>
 			
 	
-		<a href="/tags/逆向/" class=" ">
-			逆向
+		<a href="/tags/python/" class=" ">
+			python
 		</a>
 	
 		
@@ -341,7 +341,7 @@
 		
 
 	
-    <span class="leancloud_visitors" id="/2020/02/05/逆向/android学习之环境搭建/_visitors" data-url="/2020/02/05/逆向/android学习之环境搭建/" data-title="android 安全之环境搭建（一）">
+    <span class="leancloud_visitors" id="/2020/02/26/编程/python/python介绍/_visitors" data-url="/2020/02/26/编程/python/python介绍/" data-title="python 入门简介">
        	<i class="fa fa-eye"></i>
        	热度
         <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
@@ -351,7 +351,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2020/02/05/逆向/android学习之环境搭建/_likes" data-url="/2020/02/05/逆向/android学习之环境搭建/" data-title="android 安全之环境搭建（一）" rel="unlike">
+    <span class="leancloud_likes" id="/2020/02/26/编程/python/python介绍/_likes" data-url="/2020/02/26/编程/python/python介绍/" data-title="python 入门简介" rel="unlike">
         <i class="fa fa-heart"></i>
         喜欢
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -360,31 +360,41 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<p>[TOC]</p>
-<h1 id="android-安全（一）"><a href="#android-安全（一）" class="headerlink" title="android 安全（一）"></a>android 安全（一）</h1><p>简单的学习做笔记</p>
-<p>android 现在基本都是以逆向脱壳为主，为了能够更加了解渗透测试，特地学习了一下逆向的基础知识。</p>
-<h1 id="0x00-环境搭建"><a href="#0x00-环境搭建" class="headerlink" title="0x00 环境搭建"></a>0x00 环境搭建</h1><p>不论从事那一方面的研究，第一件事都是搭建一个满意的环境，不然满是bug的环境会让你望而却步。</p>
-<p><strong>硬件要求</strong></p>
-<p>逆向需要的环境对系统要求不高，我自己是个游戏本，完全满足要求，就不需要在硬件上破费了。你只需要一个功能齐全的电脑都可以满足基本的学习要求。</p>
-<h2 id="必备的一些软件安装"><a href="#必备的一些软件安装" class="headerlink" title="必备的一些软件安装"></a>必备的一些软件安装</h2><p>推荐一个android下载站： <a href="https://www.androiddevtools.cn/#" target="_blank" rel="noopener">https://www.androiddevtools.cn/#</a></p>
-<ol>
-<li><p><code>jdk</code> ：这是android开发必备环境之一，由于一些软件限制，我准备的是<code>jdk-8u121-windows-x64</code>和<code>jdk-8u121-windows-i586</code>,当然也可以下载最新的，但有时会在安装某个软件的时候出现莫名其妙的问题。</p>
-</li>
-<li><p><code>android sdk</code>: （由于已经没有了单独的下载包，所以可以通过下载包含有android sdk 的android studio: 另一种是网上提供下载的链接，这个倒是蛮多的  下载链接：<a href="https://developer.android.com/studio" target="_blank" rel="noopener">android studio</a>）</p>
-</li>
-</ol>
-<blockquote>
-<p>这里说一下android sdk 和android studio的区别</p>
-<p>Android SDK 是一个开发包。类似于JAVA SDK。里面包含了Android开发的各式各样的库文件。<br>Android studio是一个IDE（可视化开发工具）跟eclipse一样的东西。用来开发Android的工具。(studio 包含有sdk)</p>
-</blockquote>
-<ol start="3">
-<li><p><code>android NDK</code>:<code>Android NDK</code> 是一个工具集，可让您使用 C 和 C++ 等语言以原生代码实现应用的各个部分。对于特定类型的应用，这可以帮助您重复使用以这些语言编写的代码库<a href="https://developer.android.com/ndk/downloads" target="_blank" rel="noopener">NDK</a>   之后将ndk 安装的路径添加到<code>path</code> 环境变量中即可</p>
-</li>
-<li><p>开发环境安装 ，这里我安装的是<code>android studio</code> 因为<code>eclipse for Android Developers</code> 已经不在维护了。</p>
-</li>
-</ol>
-<hr>
-<p>刚开始学逆向，好多东西都是一知半解，如果有什么问题或者错误， 还望各位大佬狠狠的批评。</p>
+		<h1 id="python-简介"><a href="#python-简介" class="headerlink" title="python 简介"></a>python 简介</h1><p>为了完成毕设 努力学习python</p>
+<ul>
+<li>python 是一种解释型语言</li>
+<li>pyhton 是交互式语言</li>
+<li>python是面向对象语言</li>
+<li>python是初学者语言 很简单</li>
+</ul>
+<h2 id="0x01-python区分"><a href="#0x01-python区分" class="headerlink" title="0x01 python区分"></a>0x01 python区分</h2><p>只要有python2 和python3 之分</p>
+<h2 id="0x02-python的特点"><a href="#0x02-python的特点" class="headerlink" title="0x02 python的特点"></a>0x02 python的特点</h2><p>这就不提了 全是优点</p>
+<p>python大法好</p>
+<h2 id="0x03-python-变量类型"><a href="#0x03-python-变量类型" class="headerlink" title="0x03 python 变量类型"></a>0x03 python 变量类型</h2><h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>一般由数字、字母、下划线组成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = &apos;xxxx&apos;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法</strong></p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>支持字符、数字、字符串 甚至可以包含列表（嵌套）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">list = [ &apos;runoob&apos;, 786 , 2.23, &apos;john&apos;, 70.2 ]</span><br><span class="line">tinylist = [123, &apos;john&apos;]</span><br></pre></td></tr></table></figure>
+
+<p>python中支持数据类型和类型的<code>连接</code>和<code>重复</code>操作</p>
+<h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><p>元组用<code>()</code>标识，内部元素用逗号隔开。但是元组不能二次赋值，</p>
+<p>元组不能通过修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tuple = ( &apos;runoob&apos;, 786 , 2.23, &apos;john&apos;, 70.2 )</span><br><span class="line">tinytuple = (123, &apos;john&apos;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><p>字典也是经常要使用的数据类型之一，和列表相比，列表是有序的对象集合，字典是无需的对象集合，列表是通过偏移存取，而字典是通过键来存取的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dict = &#123;&#125;</span><br><span class="line">dict[&apos;one&apos;] = &quot;This is one&quot;</span><br><span class="line">dict[2] = &quot;This is two&quot;</span><br><span class="line"> </span><br><span class="line">tinydict = &#123;&apos;name&apos;: &apos;john&apos;,&apos;code&apos;:6734, &apos;dept&apos;: &apos;sales&apos;&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="PythonTip"><a href="#PythonTip" class="headerlink" title="PythonTip"></a>PythonTip</h1><h2 id="每日一练"><a href="#每日一练" class="headerlink" title="每日一练"></a>每日一练</h2><p><strong>结尾为0的个数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给你一个正整数列表 L, 输出L内所有数字的乘积末尾0的个数。(提示:不要直接相乘,数字很多,相乘得到的结果可能会很大)。例如： L=[2,8,3,50],则输出：2</span><br></pre></td></tr></table></figure>
+
+<p>我拿到题第以想法就是乘，但无疑会增加算法的时间复杂度，所以，接下来就是分析如何更加简洁的利用</p>
+<p>需要的是末尾0的个数，而数字中任何可以得到末尾为0的个数的值都可以化为2x5x某个值</p>
+<p>所以接下来只要对每一位数字化一下是否可以通过2或者 5 得到</p>
+<p>最后求一下2和5分别有多少个，取最小的那个就可以了 因为2和5都是素数，所以不存在取得的数重复现象</p>
+<p>总结一下：求每一个数可以得到几个2和几个5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">L =[2,8,3,50]</span><br><span class="line"></span><br><span class="line">count_2 ,count_5= 0,0</span><br><span class="line"></span><br><span class="line">def count_2_5(i,n):</span><br><span class="line">    num = 0</span><br><span class="line">    while i % n == 0:</span><br><span class="line">        i  = i / 2</span><br><span class="line">        num += 1</span><br><span class="line">    return num</span><br><span class="line"></span><br><span class="line">for i in L:</span><br><span class="line">    count_2 += count_2_5(i,2)</span><br><span class="line">    count_5 += count_2_5(i,5)</span><br><span class="line"></span><br><span class="line">print(min(count_2,count_5))</span><br></pre></td></tr></table></figure>
+
 	
 	</div>
 	
@@ -403,10 +413,10 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2020/02/26/编程/python/python介绍/" title="python 入门简介" rel="prev">
-				&laquo;上一篇
-			</a>
 		
+			<a href="/2020/02/05/逆向/android学习之环境搭建/" title="android 安全之环境搭建（一）" rel="next">
+				下一篇&raquo;
+			</a>
 			
 	</span>
 
@@ -425,29 +435,25 @@
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/26/编程/python/python介绍/" title="python 入门简介">
-								python 入门简介			
+							<a class="relate-post-title" href="/2020/02/05/逆向/android学习之环境搭建/" title="android 安全之环境搭建（一）">
+								android 安全之环境搭建（一）			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								二月 26日, 2020				
+								二月 5日, 2020				
 							</p>
 							<p class="relate-post-content">
-								python 简介为了完成毕设 努力学习python
-
-python 是一种解释型语言
-pyhton 是交互式语言
-python是面向对象语言
-python是初学者语言 很简单
-
-0x01 python区分只要有python2 和py...
+								[TOC]
+android 安全（一）简单的学习做笔记
+android 现在基本都是以逆向脱壳为主，为了能够更加了解渗透测试，特地学习了一下逆向的基础知识。
+0x00 环境搭建不论从事那一方面的研究，第一件事都是搭建一个满意的环境，不...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2020/02/26/编程/python/python介绍/" title="python 入门简介">				
+							<a href="/2020/02/05/逆向/android学习之环境搭建/" title="android 安全之环境搭建（一）">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="python 入门简介"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="android 安全之环境搭建（一）"/>
 							</a>
 						</div>
 					</li>											
