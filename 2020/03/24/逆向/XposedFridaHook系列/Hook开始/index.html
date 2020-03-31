@@ -316,7 +316,7 @@
 
 	<a href="/2020/03/24/逆向/XposedFridaHook系列/Hook开始/" itemprop="url">
 		<time datetime="2020-03-24T12:19:59.397Z" itemprop="dateUpdated">
-	  		2020-03-25
+	  		2020-03-30
 	  </time>
 	</a> 
 
@@ -485,9 +485,71 @@ return retval;</code></pre><p>}</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## hook类的所有方法</span><br><span class="line"></span><br><span class="line">首先确定hook那个类， 比如md5，之后通过java反射 获取类下的方法</span><br></pre></td></tr></table></figure>
 
 <p>var md5 = Java.use(“com.xiaojianbang.app.MD5”);<br>var methods= md5.class.getDeclaredMethods();</p>
-<pre><code>
-之后通过循环返回打印
-</code></pre>	
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">之后通过循环返回打印</span><br></pre></td></tr></table></figure>
+
+<p>function hookTest8() {<br>    Java.perform(function () {<br>        var md5 = Java.use(“com.xiaojianbang.app.MD5”);<br>        var methods = md5.class.getDeclaredMethods();<br>        for (var i = 0; i &lt; methods.length; i++) {<br>            var methodName = methods[i].getName();<br>            console.log(methodName);<br>            for (var k = 0; k &lt; md5[methodName].overloads.length; k++) {<br>                md5[methodName].overloads[k].implementation = function () {<br>                    for (var j = 0; j &lt; arguments.length; j++) {<br>                        console.log(arguments[j]);<br>                    }<br>                    return this[methodName].apply(this, arguments) // 不知道返回的对象<br>                }<br>            }</p>
+<pre><code>    }
+})</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 动态加载dex</span><br><span class="line"></span><br><span class="line">遇到问题： 在调用函数后，有些dex 是通过动态加载调用的，反编译并不会反编译到所有的dex</span><br><span class="line"></span><br><span class="line">一般可以通过DexClassLoader动态加载，或者通过so层 或者内存中去加载</span><br><span class="line"></span><br><span class="line">这里通过DexClassLoader去加载，文件放在apk的目录中</span><br><span class="line"></span><br><span class="line">![image-20200325214341078](D:\Blog\ST0new.github.io\source\_posts\逆向\XposedFridaHook系列\Hook开始.assets\image-20200325214341078.png)</span><br><span class="line"></span><br><span class="line">当直接调用就会报错</span><br></pre></td></tr></table></figure>
+
+<p>function hookTest9() {<br>    Java.perform(function () {<br>        var dynamic = Java.use(“com.xiaojianbang.app.Dynamic”);<br>        console.log(dynamic);<br>    })<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![image-20200325214906826](D:\Blog\ST0new.github.io\source\_posts\逆向\XposedFridaHook系列\Hook开始.assets\image-20200325214906826.png)</span><br><span class="line"></span><br><span class="line">这里就要找到对应的classloader  </span><br><span class="line"></span><br><span class="line">&gt; 注意：这个api是要在7版本以上使用，用android5 可能会报错</span><br></pre></td></tr></table></figure>
+
+<p>function hookTest9(){<br>    Java.perform(function(){</p>
+<pre><code>    Java.enumerateClassLoaders({
+        onMatch: function(loader){
+            try {
+                if(loader.loadClass(&quot;com.xiaojianbang.app.Dynamic&quot;)){
+                    Java.classFactory.loader = loader;
+                    var Dynamic = Java.use(&quot;com.xiaojianbang.app.Dynamic&quot;);
+                    console.log(Dynamic);
+                    Dynamic.sayHello.implementation = function(){
+                        return &quot;xiaojianbang&quot;;
+                    }
+                }
+            } catch (error) {
+
+            }
+        }
+        ,
+        onComplete: function(){
+
+        }
+    });
+});</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![image-20200326091943750](D:\Blog\ST0new.github.io\source\_posts\逆向\XposedFridaHook系列\Hook开始.assets\image-20200326091943750.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; Java.classFactory.loader = loader; 这里的loader 可能会报错 不影响正确性</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Java 里特殊类型的遍历与修改</span><br><span class="line"></span><br><span class="line">Hook map 或者修改其中的某些值</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">![image-20200329001310423](D:\Blog\ST0new.github.io\source\_posts\逆向\XposedFridaHook系列\Hook开始.assets\image-20200329001310423.png)</span><br><span class="line"></span><br><span class="line">![image-20200329001325832](D:\Blog\ST0new.github.io\source\_posts\逆向\XposedFridaHook系列\Hook开始.assets\image-20200329001325832.png)</span><br><span class="line"></span><br><span class="line">这块可以使用show（java的代码） 去hook</span><br><span class="line"></span><br><span class="line">可以将show方法 直接copy过去，但是要注意里面的函数要遵守js的语法</span><br><span class="line"></span><br><span class="line">这块要使用迭代器去获取map</span><br></pre></td></tr></table></figure>
+
+<p>不要调用伪代码的方法，而是去自写<br>function hookTest10(){<br>    Java.perform(function () {<br>        var ShufferMap = Java.use(“com.xiaojianbang.app.ShufferMap”)<br>        console.log(ShufferMap);<br>        ShufferMap.show.implementation = function (map) {<br>            console.log(JSON.stringify(map));</p>
+<pre><code>        var key = map.keySet();
+        var it = key.iterator();
+        var result = &quot;&quot;;
+        while (it.hasNext()) {
+            var keystr = it.next();
+            var valuestr = map.get(keystr);
+            result += valuestr;
+        }
+    console.log(result);
+    return result;
+
+    }
+})</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">之后是java 特殊类型的修改</span><br></pre></td></tr></table></figure>
+
+<p>function hookTest10(){<br>    Java.perform(function () {<br>        var ShufferMap = Java.use(“com.xiaojianbang.app.ShufferMap”)<br>        console.log(ShufferMap);<br>        ShufferMap.show.implementation = function (map) {<br>            console.log(JSON.stringify(map));<br>        // 2 修改特殊方法<br>            map.put(“pass”,”zygx8”);<br>            map.put(“xxxx”,”<a href="http://www.zygx8.com&quot;" target="_blank" rel="noopener">www.zygx8.com&quot;</a>);<br>            var retval = this.show(map);<br>            console.log(retval);<br>            return retval;</p>
+<pre><code>    }
+})</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Java 层主动调用函数</span><br><span class="line"></span><br><span class="line">只有当函数被触发才会被执行，那么当我们需要解密一个比较复杂的算法，是可以通过主动调用函数去获取的</span><br><span class="line"></span><br><span class="line">静态主动调用</span><br></pre></td></tr></table></figure>
+
+<p>调用rsa方法<br>function hookTest11() {<br>    Java.perform(function () {<br>        var rsa = Java.use(“com.xiaojianbang.app.RSA”);<br>        var str = Java.use(“java.lang.String”);<br>        var base64 = Java.use(“android.util.Base64”);<br>        var bytes = str.$new(“xioajianbang”).getBytes();<br>        console.log(bytes);<br>        var retval = rsa.encrypt(bytes);<br>        console.log(retval);<br>        var result = base64.encodeToString(retval,0);<br>        console.log(result);<br>    })<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">非静态方法的主动调用 调用getinfo</span><br></pre></td></tr></table></figure>
+
+<p> Java.use(“com.xiaojianbang.Money”).$new(“欧元”,3000000).getInfo();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Java 打印函数堆栈</span><br><span class="line"></span><br><span class="line">之前使用Log.d 来打印信息</span><br><span class="line"></span><br><span class="line">![image-20200330115446399](D:\Blog\ST0new.github.io\source\_posts\逆向\XposedFridaHook系列\Hook开始.assets\image-20200330115446399.png)</span><br><span class="line"></span><br><span class="line">推荐： 使用`Log.getStack.TrachString(new Throwable())` 或``Log.getStack.TrachString(new exception())``</span><br></pre></td></tr></table></figure>
+
+<p>function hookTest12() {<br>    // 写一个函数堆栈<br>    function showStacks(){<br>        console.log(Java.use(“android.util.Log”).getStackTraceString(Java.use(“java.lang.Exception”).$new()));<br>        //console.log(Java.use(“android.util.Log”).getStackTraceString(Java.use(“java.lang.Exception”).$new()));<br>    }<br>    Java.perform(function () {<br>        //Java.cast();<br>        //Java.openClassFile();<br>        var MessageDigest =  Java.use(“java.security.MessageDigest”);<br>        MessageDigest.digest.overload().implementation = function () {<br>            showStacks();<br>            return this.digest();</p>
+<pre><code>    }
+})</code></pre><p>}<br>```</p>
+	
 	</div>
 	
 	<div id="current-post-cover" data-scr="/img/cart_cover.jpg"></div>
@@ -540,7 +602,10 @@ return retval;</code></pre><p>}</p>
 							</p>
 							<p class="relate-post-content">
 								题目：androideasy最近刚学了点逆向技能，找一些简单的ctf 题目来验证一下效果
-下载地址：[androideasy]([https://github.com/ThunderJie/CTF-Practice/tree/mast...
+下载地址：androideasy
+解题思路首先拿到的是个zip文件，打开是个普通的apk目录
+
+也不知道做逆向的和做安全的看到他的感觉是否一样，...
 							</p>
 						</div>
 
@@ -644,10 +709,13 @@ python是初学者语言 很简单
 								二月 5日, 2020				
 							</p>
 							<p class="relate-post-content">
-								[TOC]
-android 安全（一）简单的学习做笔记
-android 现在基本都是以逆向脱壳为主，为了能够更加了解渗透测试，特地学习了一下逆向的基础知识。
-0x00 环境搭建不论从事那一方面的研究，第一件事都是搭建一个满意的环境，不...
+								
+  
+  
+    Hey, password is required here.
+    
+  
+  2180d006303213985e487fd1170d435e54fb73b1db7948858c7fc5e204c5737c...
 							</p>
 						</div>
 

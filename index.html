@@ -282,10 +282,18 @@
 				<div class="post-content">
 					
 						题目：androideasy最近刚学了点逆向技能，找一些简单的ctf 题目来验证一下效果
-下载地址：[androideasy]([https://github.com/ThunderJie/CTF-Practice/tree/master/CTF-Andorid%20Reverse/androideasy](https://github.com/ThunderJie/CTF-Practice/tree/master/CTF-Andorid Reverse/androideasy))
+下载地址：androideasy
 解题思路首先拿到的是个zip文件，打开是个普通的apk目录
 
-也不知道做逆向的和做安全的看到他的感觉是否一...
+也不知道做逆向的和做安全的看到他的感觉是否一样，
+修改后缀为apk 后扔到jadx中，然后在往模拟器中扔一份
+模拟器中可以看到 很简单的功能，输入字符 。点击check 判断是否输入正确
+
+之后查看jadx
+大概确定一下，就是需要输入一个字符串在check判断通过即可
+
+定位到check，输入的字符串必须让if判断为真，也就是进入到check的true
+12345678910111213141516pri...
 					
 				</div>
 				
@@ -804,15 +812,13 @@ python大法好
 
 				<div class="post-content">
 					
-						[TOC]
-android 安全（一）简单的学习做笔记
-android 现在基本都是以逆向脱壳为主，为了能够更加了解渗透测试，特地学习了一下逆向的基础知识。
-0x00 环境搭建不论从事那一方面的研究，第一件事都是搭建一个满意的环境，不然满是bug的环境会让你望而却步。
-硬件要求
-逆向需要的环境对系统要求不高，我自己是个游戏本，完全满足要求，就不需要在硬件上破费了。你只需要一个功能齐全的电脑都可以满足基本的学习要求。
-必备的一些软件安装推荐一个android下载站： https://www.androiddevtools.cn/#
-
-jdk ：这是android开发必备环境之一，由于一些软...
+						
+  
+  
+    Hey, password is required here.
+    
+  
+  2180d006303213985e487fd1170d435e54fb73b1db7948858c7fc5e204c5737ce8d9ad2c2a5ae0e03acdf5ddf027fc70a53b784e0dc027fab7e0870a08580a986ed21d9637624ca6b8e82fa9be90bc4de71f2ace73c117650ebbf0a2eb0aae19362fd1fb0bb702bf2ea69ddb8520fa13a2dc9eaa2299c7b7e33d...
 					
 				</div>
 				
