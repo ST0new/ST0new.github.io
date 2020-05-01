@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-31T09:26:30.877Z</updated>
+  <updated>2020-05-01T12:49:35.950Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>霸哥磁力搜索去签名校验</title>
+    <link href="http://yoursite.com/2020/05/01/%E9%80%86%E5%90%91/%E7%A0%B4%E8%A7%A3/%E9%9C%B8%E5%93%A5%E7%A3%81%E5%8A%9B%E6%90%9C%E7%B4%A2%E5%8E%BB%E7%AD%BE%E5%90%8D%E6%A0%A1%E9%AA%8C/"/>
+    <id>http://yoursite.com/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/</id>
+    <published>2020-05-01T12:49:25.000Z</published>
+    <updated>2020-05-01T12:49:35.950Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="案例1-霸哥磁力搜索"><a href="#案例1-霸哥磁力搜索" class="headerlink" title="案例1 霸哥磁力搜索"></a>案例1 霸哥磁力搜索</h2><p>首先 签名校验不止一个，所以会经历无数次安装， </p><ol><li><p>重签名打包，安装查看是否有签名校验（这里可以通过启动界面返回的信息查看）</p><p><img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501192911937.png" alt="image-20200501192911937"></p></li></ol><p>   安装 如果有检测 进入第二步</p><p>   比如 下面的情况</p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501193008226.png" alt="image-20200501193008226"></p><ol start="2"><li><p>检测是否有加固 </p><p><img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501193159772.png" alt="image-20200501193159772"></p><p>有加固进入第三步</p><p>没有加固进入第四步</p></li><li><p>有加固 ，先脱壳修复</p></li><li><p>查看处理的地方，干掉存在签名校验的地方</p><p>ok 接下来分析他在哪校验的</p><p>工具的话： andorid killer 、 jadx 、ida、ddms</p></li></ol><p>   先看看刚才程序崩溃是什么情况导致的</p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501193504305.png" alt="image-20200501193504305"></p><p>   使用android killer 加载apk，同时使用jadx 加载，配合查看函数</p><p>   根据崩溃原因，判断检测应该是在刚开始打开apk就执行的，所以第一步找到MainActivity.smail</p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501193941917.png" alt="image-20200501193941917"></p><p>   接下来逐个阅读逻辑，配合jadx 查看方法是否有检测校验，（存在getPackageManager、PackageManager、getPackageInfo称为签名三兄弟，如果出现这三个函数就肯定有签名校验 ）</p><p>   发现存在方法</p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501194338764.png" alt="image-20200501194338764"></p><p>   在qian()方法中找到熟悉的内容 刚刚我提到的签名三兄弟</p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501194550120.png" alt="image-20200501194550120"></p><p>   绕过方法： 注释</p><p>   回到刚才调用的位置 </p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501194636111.png" alt="image-20200501194636111"></p><p>   打包签名安装，之后测试（记得 保存）</p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501194832345.png" alt="image-20200501194832345"></p><p>   发现崩溃在了JNI_onload处  调用了libbug.so 那么猜测这里可能存在so层的校验,找一下是否有这个调用so的操作</p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501195203094.png" alt="image-20200501195203094"></p><p>   继续往下看的时候发现有个调用bug()的方法，找不到bug方法的函数</p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501195231400.png" alt="image-20200501195231400"></p><p>   看到这个就知道方法定义在so层，将so文件拖入ida中，先看看jni_onload 发现没有，那么就是静态注册了，</p><p>   找找Java下划线开头的方法，只有一个Java_ xxx _bug 那么肯定就是这个了</p><p>   大概意思就是在搜索前会获取一个sign值，之后返回结果，跟进getSignHashCode 看看</p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501195549371.png" alt="image-20200501195549371"></p><p>   这个是getSignHashCode  方法的内容， 看到了三兄弟那就没跑了，这里还存在一个校验。最后会判断一个result的值，然后如果判断成功 也就是result 不等于226776851 就会exit(0) 退出</p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501195758064.png" alt="image-20200501195758064"></p><p>   绕过方法： 使得判断为假，或者使得exit（0）不执行 将判断改成不等于</p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501201706668.png" alt="image-20200501201706668"></p><p>   之后保存即可 保存方式：edit-&gt;patch program-&gt; apply patches to input file…    </p><p>   ok 修改成功。                             </p><p>   <img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5C%E9%80%86%E5%90%91%5C%E7%A0%B4%E8%A7%A3%5Cphoto%5Cimage-20200501203303590.png" alt="image-20200501203303590"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;案例1-霸哥磁力搜索&quot;&gt;&lt;a href=&quot;#案例1-霸哥磁力搜索&quot; class=&quot;headerlink&quot; title=&quot;案例1 霸哥磁力搜索&quot;&gt;&lt;/a&gt;案例1 霸哥磁力搜索&lt;/h2&gt;&lt;p&gt;首先 签名校验不止一个，所以会经历无数次安装， &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="Reverse" scheme="http://yoursite.com/categories/Reverse/"/>
+    
+    
+      <category term="破解" scheme="http://yoursite.com/tags/%E7%A0%B4%E8%A7%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>去某游戏app广告</title>
