@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-01T13:12:45.956Z</updated>
+  <updated>2020-05-02T04:45:53.428Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>shuqi小说去除签名校验</title>
+    <link href="http://yoursite.com/2020/05/02/%E9%80%86%E5%90%91/%E7%A0%B4%E8%A7%A3/xx%E5%B0%8F%E8%AF%B4%E5%8E%BB%E9%99%A4%E7%AD%BE%E5%90%8D%E6%A0%A1%E9%AA%8C/"/>
+    <id>http://yoursite.com/2020/05/02/逆向/破解/xx小说去除签名校验/</id>
+    <published>2020-05-02T04:40:21.000Z</published>
+    <updated>2020-05-02T04:45:53.428Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="书旗小说去除签名校验"><a href="#书旗小说去除签名校验" class="headerlink" title="书旗小说去除签名校验"></a>书旗小说去除签名校验</h1><h1 id="shuqi小说去除签名校验"><a href="#shuqi小说去除签名校验" class="headerlink" title="shuqi小说去除签名校验"></a>shuqi小说去除签名校验</h1><h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><p>andorid killer 、 jadx 、雷电模拟器</p><h2 id="去除过程"><a href="#去除过程" class="headerlink" title="去除过程"></a>去除过程</h2><ol><li><p>老规矩，重签名打包 顺便打开ddms 随时关注报错信息</p><p>发现打开了activity 之后就自动关闭了，这里呢就考虑到了入口页面和入口点， apk进行到了入口页面处了，之后才关闭，那就不需要动态调试了，定位到oncreate处</p></li><li><p>关键字搜索（尝试新方法搜索）</p><p>先换个思路，这里试试关键字搜索，看能找到有用的信息不：方法是逐个加log输出，看看那个调用后就崩溃了</p><p>打开android killer 搜索Signatures，然后逐个加log ，很多明显不是自己的可以忽略</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/image-20200502095534676.png" alt></p></li><li><p>之后编译 安装，ddms捕获消息</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/image-20200502104723497.png" alt></p></li><li><p>回到andoridkiller中搜索这个字符串</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/image-20200502104737122.png" alt></p></li><li><p>看到了签名三兄弟出没，那么这块肯定有签名了，</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/image-20200502104944334.png" alt></p></li><li><p>这里就很明显了，看到了killprocess，绕过方式： 使得if判断为真，将eq改为ne 成功绕过</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/image-20200502105402616.png" alt></p></li><li><p>成功绕过签名校验</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;书旗小说去除签名校验&quot;&gt;&lt;a href=&quot;#书旗小说去除签名校验&quot; class=&quot;headerlink&quot; title=&quot;书旗小说去除签名校验&quot;&gt;&lt;/a&gt;书旗小说去除签名校验&lt;/h1&gt;&lt;h1 id=&quot;shuqi小说去除签名校验&quot;&gt;&lt;a href=&quot;#shuqi小说去
+      
+    
+    </summary>
+    
+    
+      <category term="Reverse" scheme="http://yoursite.com/categories/Reverse/"/>
+    
+    
+      <category term="破解" scheme="http://yoursite.com/tags/%E7%A0%B4%E8%A7%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>霸哥磁力搜索去签名校验</title>
