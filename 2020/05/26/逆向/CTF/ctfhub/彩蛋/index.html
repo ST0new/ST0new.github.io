@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      CTF-androideasy | ST0new Blog
+      ctfhub-彩蛋 | ST0new Blog
     
   </title>
   <meta name="author" content="ST0new">
@@ -165,7 +165,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《CTF-androideasy》
+			当前文章&nbsp;:&nbsp;《ctfhub-彩蛋》
 		
 	</p>
 
@@ -286,8 +286,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2020/03/25/逆向/CTF/androideasy/" itemprop="url">
-		CTF-androideasy
+	<a href="/2020/05/26/逆向/CTF/ctfhub/彩蛋/" itemprop="url">
+		ctfhub-彩蛋
 	</a>
 
 	</div>
@@ -300,9 +300,9 @@
 
 	发布于
 
-	<a href="/2020/03/25/逆向/CTF/androideasy/" itemprop="url">
-		<time datetime="2020-03-25T08:35:34.000Z" itemprop="datePublished">
-	  		2020-03-25
+	<a href="/2020/05/26/逆向/CTF/ctfhub/彩蛋/" itemprop="url">
+		<time datetime="2020-05-26T00:30:54.000Z" itemprop="datePublished">
+	  		2020-05-26
 	  </time>
 	</a>
 	&nbsp;
@@ -318,9 +318,9 @@
 
 	更新于
 
-	<a href="/2020/03/25/逆向/CTF/androideasy/" itemprop="url">
-		<time datetime="2020-03-25T08:35:34.000Z" itemprop="dateUpdated">
-	  		2020-03-25
+	<a href="/2020/05/26/逆向/CTF/ctfhub/彩蛋/" itemprop="url">
+		<time datetime="2020-05-26T00:30:54.000Z" itemprop="dateUpdated">
+	  		2020-05-26
 	  </time>
 	</a> 
 
@@ -341,7 +341,7 @@
 		
 
 	
-    <span class="leancloud_visitors" id="/2020/03/25/逆向/CTF/androideasy/_visitors" data-url="/2020/03/25/逆向/CTF/androideasy/" data-title="CTF-androideasy">
+    <span class="leancloud_visitors" id="/2020/05/26/逆向/CTF/ctfhub/彩蛋/_visitors" data-url="/2020/05/26/逆向/CTF/ctfhub/彩蛋/" data-title="ctfhub-彩蛋">
        	<i class="fa fa-eye"></i>
        	热度
         <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
@@ -351,7 +351,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2020/03/25/逆向/CTF/androideasy/_likes" data-url="/2020/03/25/逆向/CTF/androideasy/" data-title="CTF-androideasy" rel="unlike">
+    <span class="leancloud_likes" id="/2020/05/26/逆向/CTF/ctfhub/彩蛋/_likes" data-url="/2020/05/26/逆向/CTF/ctfhub/彩蛋/" data-title="ctfhub-彩蛋" rel="unlike">
         <i class="fa fa-heart"></i>
         喜欢
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -360,32 +360,62 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<h1 id="题目：androideasy"><a href="#题目：androideasy" class="headerlink" title="题目：androideasy"></a>题目：androideasy</h1><p>最近刚学了点逆向技能，找一些简单的ctf 题目来验证一下效果</p>
-<p>下载地址：<a href="https://github.com/ThunderJie/CTF-Practice/tree/master/CTF-Andorid%20Reverse/androideasy" target="_blank" rel="noopener">androideasy</a></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>首先拿到的是个zip文件，打开是个普通的apk目录</p>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/2/image-20200325160159860.png" alt></p>
-<p>也不知道做逆向的和做安全的看到他的感觉是否一样，</p>
-<p>修改后缀为<code>apk</code> 后扔到jadx中，然后在往模拟器中扔一份</p>
-<p>模拟器中可以看到 很简单的功能，输入字符 。点击check 判断是否输入正确</p>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/2/image-20200325160654280.png" alt></p>
-<p>之后查看jadx</p>
-<p>大概确定一下，就是需要输入一个字符串在check判断通过即可</p>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/2/image-20200325160744208.png" alt></p>
-<p>定位到check，输入的字符串必须让if判断为真，也就是进入到check的true</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">private byte[] f21s = &#123;113, 123, 118, 112, 108, 94, 99, 72, 38, 68, 72, 87, 89, 72, 36, 118, 100, 78, 72, 87, 121, 83, 101, 39, 62, 94, 62, 38, 107, 115, 106&#125;;</span><br><span class="line"></span><br><span class="line">public boolean check() &#123;</span><br><span class="line">        byte[] chars = this.editText.getText().toString().getBytes();</span><br><span class="line">        if (chars.length != this.f21s.length) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int i = 0;</span><br><span class="line">        while (i &lt; this.f21s.length &amp;&amp; i &lt; chars.length) &#123;</span><br><span class="line">            if (this.f21s[i] != (chars[i] ^ 23)) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+		<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><h2 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h2><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526083224.png" alt></p>
+<p><code>*.ctfhub.com</code> 不确定是那个域名的首页，那么先搜索一下子域名瞧瞧 </p>
+<p>使用工具：Turbolist3r</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[-] Total Unique Subdomains Found: 4</span><br><span class="line">api.ctfhub.com</span><br><span class="line">ctfhub.com&lt;BR&gt;www.ctfhub.com</span><br><span class="line">static.ctfhub.com</span><br><span class="line">writeup.ctfhub.com</span><br></pre></td></tr></table></figure>
 
-<p>接下来写firda 代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function flag() &#123;</span><br><span class="line">    Java.perform(function () &#123;</span><br><span class="line">        var flag1 = Java.use(&quot;com.a.sample.androidtest.MainActivity&quot;);</span><br><span class="line">        flag1.check.implementation = function () &#123;</span><br><span class="line">             var retval = this.check();</span><br><span class="line">             console.log(retval)</span><br><span class="line">             return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function main() &#123;</span><br><span class="line">    flag()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setImmediate(main);</span><br></pre></td></tr></table></figure>
+<p>第一个就命中了，ctrl+u 查看源代码，找到flag</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526083437.png" alt></p>
+<h2 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h2><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526084053.png" alt></p>
+<p>看来不得不关注一波了</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526083746.png" alt></p>
+<p>每一位CTF选手都是在为flag冲击</p>
+<h2 id="题目入口"><a href="#题目入口" class="headerlink" title="题目入口"></a>题目入口</h2><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526084116.png" alt></p>
+<p>那就找找题目的入口看看， 哈哈，找了个web题，</p>
+<p>打开正常 ，不存在flag， 然后经过。。。。。时间后，猜测可能报错会存在flag</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526084927.png" alt></p>
+<p>删除域名其中的字符使其报错，拿到<code>flag</code></p>
+<h2 id="Writeup"><a href="#Writeup" class="headerlink" title="Writeup"></a>Writeup</h2><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526085510.png" alt></p>
+<p>那就去writeup中找找，翻了好几个wp都没找到，还学习了很多知识，你确定是让我找flag，到处点点，最后在搜索处，以<code>flag</code>找到了flag</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526085647.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526085706.png" alt></p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526085859.png" alt></p>
+<p>在工具中翻一翻，没有什么本站链接，然后灵机一动，翻到最后一页，拿到flag</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526090010.png" alt></p>
+<p>奇怪打开是404， 试了好几遍，发现了猫腻，居然会跳转到404 ，手速要快，还有可以F12查找</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526090121.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526090229.png" alt></p>
+<h2 id="赛事"><a href="#赛事" class="headerlink" title="赛事"></a>赛事</h2><p>有没有做到后面得心应手的感觉，那都是幻觉 醒醒</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526090333.png" alt></p>
+<p>和工具类似，直接翻到最后一页，拿到flag</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526090419.png" alt></p>
+<h2 id="真题"><a href="#真题" class="headerlink" title="真题"></a>真题</h2><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526090506.png" alt></p>
+<p>直接翻到最后一页，没有啥大的变化了</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526090537.png" alt></p>
+<h2 id="投稿提交"><a href="#投稿提交" class="headerlink" title="投稿提交"></a>投稿提交</h2><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526090812.png" alt></p>
+<p>来到writeup投稿，拿到前半段 flag[6:12] = “{029e0”</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526090742.png" alt></p>
+<p>然后在题目提交处，拿到感觉是中间一部分flag[12:18] = “2eb3a1”</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526090909.png" alt></p>
+<p>在wp投稿 源代码中找到最后一串flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ZmxhZyU1QjE4JTNBMjQlNUQlMjAlM0QlMjAlMjJlOGM0OWIlMjI=、</span><br><span class="line">base64 -&gt; urldecode 后</span><br><span class="line">flag[18:24] = &quot;e8c49b&quot;</span><br></pre></td></tr></table></figure>
 
-<p>这样就可以保证返回为真了</p>
-<p>回到正题，前台返回为真对flag没有帮助，</p>
-<p>所以还是得得到<code>f21s</code> ,写个脚本 获得下面的字符串</p>
-<p><code>private byte[] f21s = {113, 123, 118, 112, 108, 94, 99, 72, 38, 68, 72, 87, 89, 72, 36, 118, 100, 78, 72, 87, 121, 83, 101, 39, 62, 94, 62, 38, 107, 115, 106};</code></p>
-<p>最后的脚本</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">f21s = [<span class="number">113</span>, <span class="number">123</span>, <span class="number">118</span>, <span class="number">112</span>, <span class="number">108</span>, <span class="number">94</span>, <span class="number">99</span>, <span class="number">72</span>, <span class="number">38</span>, <span class="number">68</span>, <span class="number">72</span>, <span class="number">87</span>, <span class="number">89</span>, <span class="number">72</span>, <span class="number">36</span>, <span class="number">118</span>, <span class="number">100</span>, <span class="number">78</span>, <span class="number">72</span>, <span class="number">87</span>, <span class="number">121</span>, <span class="number">83</span>, <span class="number">101</span>, <span class="number">39</span>, <span class="number">62</span>, <span class="number">94</span>, <span class="number">62</span>, <span class="number">38</span>, <span class="number">107</span>, <span class="number">115</span>, <span class="number">106</span>]</span><br><span class="line">print(len(f21s))</span><br><span class="line">flag = <span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>  i <span class="keyword">in</span> range(<span class="number">0</span>,len(f21s)):  <span class="comment"># 判断每一位，一共判断f21s 长度次</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">127</span>):</span><br><span class="line">        <span class="keyword">if</span> (f21s[i] == (j ^ <span class="number">23</span>)):</span><br><span class="line">            flag += chr(j)</span><br><span class="line"></span><br><span class="line">print(flag)py</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526091326.png" alt></p>
+<p>长记性了，再去题目提交出看看再次拿到一串字符串，这是16进制，转成字符串后得到24-30位的flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">666c61675b32343a33305d203d202231313332623522</span><br><span class="line">16进制转字符串</span><br><span class="line">flag[24:30] = &quot;1132b5&quot;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">31</span><br><span class="line">flag&#123;It_1S_@N_3asY_@nDr0)I)1|d&#125;</span><br></pre></td></tr></table></figure>
-
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526091642.png" alt></p>
+<p>发现 flag长度还是不够，接下来继续翻</p>
+<p>在题目提交中图片中找到一串flag ： flag[36:42] = “a5f3a8”</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526091952.png" alt></p>
+<p>在wp提交中图片中找到flag：flag[30:36] = “15b652”</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526092049.png" alt></p>
+<p>在下载demo中找到最后的flag</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526092234.png" alt></p>
+<p>6位字母混合是 26^6次方啊，爆破到啥时候了，百度了下，密码是ctfhub，那我也不写脚本爆破了，直接拿来获得正解。</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526094003.png" alt></p>
+<p>最后的flag是：ctfhub{029e02eb3a1e8c49b}</p>
 	
 	</div>
 	
@@ -404,12 +434,8 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2020/03/31/逆向/破解/去某app广告/" title="去某游戏app广告" rel="prev">
-				&laquo;上一篇
-			</a>
 		
-		
-			<a href="/2020/03/24/逆向/XposedFridaHook系列/Hook开始/" title="" rel="next">
+			<a href="/2020/05/25/逆向/CTF/攻防世界-easyjni/" title="攻防世界-easyjni" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -472,6 +498,33 @@ https://adworld.xctf.org.cn/media/task/attachments/3f06e60ded...
 							<a href="/2020/05/25/逆向/CTF/攻防世界-easyjava/" title="攻防世界-easyjava">				
 								
 								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="攻防世界-easyjava"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/03/25/逆向/CTF/androideasy/" title="CTF-androideasy">
+								CTF-androideasy			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 25日, 2020				
+							</p>
+							<p class="relate-post-content">
+								题目：androideasy最近刚学了点逆向技能，找一些简单的ctf 题目来验证一下效果
+下载地址：androideasy
+解题思路首先拿到的是个zip文件，打开是个普通的apk目录
+
+也不知道做逆向的和做安全的看到他的感觉是否一样，...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/03/25/逆向/CTF/androideasy/" title="CTF-androideasy">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="CTF-androideasy"/>
 							</a>
 						</div>
 					</li>											
@@ -621,6 +674,34 @@ https://adworld.xctf.org.cn/media/task/attachments/3f06e60ded...
 			
 					<li>
 						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/03/24/逆向/XposedFridaHook系列/Hook开始/" title="">
+											
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 24日, 2020				
+							</p>
+							<p class="relate-post-content">
+								Hook 通杀Hook 普通方法和修改函数参数返回值fradaserver 是手机端的，
+
+android低版本 frida 尽量低版本
+fridaserver版本要与frida库版本一致
+不同平台用不同fridaserver
+不要和...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/03/24/逆向/XposedFridaHook系列/Hook开始/" title="">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt=""/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
 							<a class="relate-post-title" href="/2020/03/10/逆向/androidstudio安装报错/" title="Andorid Studio 安装报错 解决">
 								Andorid Studio 安装报错 解决			
 							</a>
@@ -638,61 +719,6 @@ https://adworld.xctf.org.cn/media/task/attachments/3f06e60ded...
 							<a href="/2020/03/10/逆向/androidstudio安装报错/" title="Andorid Studio 安装报错 解决">				
 								
 								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="Andorid Studio 安装报错 解决"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/05/逆向/android学习之环境搭建/" title="android 安全之环境搭建（一）">
-								android 安全之环境搭建（一）			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 5日, 2020				
-							</p>
-							<p class="relate-post-content">
-								
-  
-  
-    Hey, password is required here.
-    
-  
-  2180d006303213985e487fd1170d435e54fb73b1db7948858c7fc5e204c5737c...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/02/05/逆向/android学习之环境搭建/" title="android 安全之环境搭建（一）">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="android 安全之环境搭建（一）"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/05/26/逆向/CTF/ctfhub/彩蛋/" title="ctfhub-彩蛋">
-								ctfhub-彩蛋			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								五月 26日, 2020				
-							</p>
-							<p class="relate-post-content">
-								彩蛋首页
-*.ctfhub.com 不确定是那个域名的首页，那么先搜索一下子域名瞧瞧 
-使用工具：Turbolist3r
-12345[-] Total Unique Subdomains Found: 4api.ctfhub.comc...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/05/26/逆向/CTF/ctfhub/彩蛋/" title="ctfhub-彩蛋">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="ctfhub-彩蛋"/>
 							</a>
 						</div>
 					</li>											
