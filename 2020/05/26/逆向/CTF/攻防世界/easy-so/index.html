@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      攻防世界-easyjava | ST0new Blog
+      攻防世界-eaasy-so | ST0new Blog
     
   </title>
   <meta name="author" content="ST0new">
@@ -165,7 +165,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《攻防世界-easyjava》
+			当前文章&nbsp;:&nbsp;《攻防世界-eaasy-so》
 		
 	</p>
 
@@ -286,8 +286,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2020/05/25/逆向/CTF/攻防世界-easyjava/" itemprop="url">
-		攻防世界-easyjava
+	<a href="/2020/05/26/逆向/CTF/攻防世界/easy-so/" itemprop="url">
+		攻防世界-eaasy-so
 	</a>
 
 	</div>
@@ -300,9 +300,9 @@
 
 	发布于
 
-	<a href="/2020/05/25/逆向/CTF/攻防世界-easyjava/" itemprop="url">
-		<time datetime="2020-05-25T02:41:20.000Z" itemprop="datePublished">
-	  		2020-05-25
+	<a href="/2020/05/26/逆向/CTF/攻防世界/easy-so/" itemprop="url">
+		<time datetime="2020-05-26T02:06:10.000Z" itemprop="datePublished">
+	  		2020-05-26
 	  </time>
 	</a>
 	&nbsp;
@@ -318,9 +318,9 @@
 
 	更新于
 
-	<a href="/2020/05/25/逆向/CTF/攻防世界-easyjava/" itemprop="url">
-		<time datetime="2020-05-25T02:41:20.000Z" itemprop="dateUpdated">
-	  		2020-05-25
+	<a href="/2020/05/26/逆向/CTF/攻防世界/easy-so/" itemprop="url">
+		<time datetime="2020-05-26T02:06:10.000Z" itemprop="dateUpdated">
+	  		2020-05-27
 	  </time>
 	</a> 
 
@@ -341,7 +341,7 @@
 		
 
 	
-    <span class="leancloud_visitors" id="/2020/05/25/逆向/CTF/攻防世界-easyjava/_visitors" data-url="/2020/05/25/逆向/CTF/攻防世界-easyjava/" data-title="攻防世界-easyjava">
+    <span class="leancloud_visitors" id="/2020/05/26/逆向/CTF/攻防世界/easy-so/_visitors" data-url="/2020/05/26/逆向/CTF/攻防世界/easy-so/" data-title="攻防世界-eaasy-so">
        	<i class="fa fa-eye"></i>
        	热度
         <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
@@ -351,7 +351,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2020/05/25/逆向/CTF/攻防世界-easyjava/_likes" data-url="/2020/05/25/逆向/CTF/攻防世界-easyjava/" data-title="攻防世界-easyjava" rel="unlike">
+    <span class="leancloud_likes" id="/2020/05/26/逆向/CTF/攻防世界/easy-so/_likes" data-url="/2020/05/26/逆向/CTF/攻防世界/easy-so/" data-title="攻防世界-eaasy-so" rel="unlike">
         <i class="fa fa-heart"></i>
         喜欢
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -360,47 +360,25 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<h2 id="攻防世界题解easyjava"><a href="#攻防世界题解easyjava" class="headerlink" title="攻防世界题解easyjava"></a>攻防世界题解easyjava</h2><p>好无聊啊，找个CTF做做，攻防世界有一栏Mobile的 正好适合</p>
-<p>下载文件地址： </p>
-<p><a href="https://adworld.xctf.org.cn/media/task/attachments/3f06e60ded5e44e3b0f4c47020cbcb3c.apk" target="_blank" rel="noopener">https://adworld.xctf.org.cn/media/task/attachments/3f06e60ded5e44e3b0f4c47020cbcb3c.apk</a></p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>使用<code>jadx</code>工具 反编译查看代码，先看看App 的oncreate方法</p>
-<p>有一个<code>if</code>判断，判断正确 返回<code>You are right</code> 否则 返回 <code>Your are wrong! Bye~</code></p>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200523155923.png" alt></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MainActivity.b(((EditText) ((MainActivity) this).findViewById(R.id.edit)).getText().toString()).booleanValue()</span><br></pre></td></tr></table></figure>
+		<h1 id="easy-so"><a href="#easy-so" class="headerlink" title="easy-so"></a>easy-so</h1><p>附件地址：</p>
+<p><a href="https://adworld.xctf.org.cn/media/task/attachments/456c1dab04b24036ba1d6e32a08dc882.apk" target="_blank" rel="noopener">https://adworld.xctf.org.cn/media/task/attachments/456c1dab04b24036ba1d6e32a08dc882.apk</a></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>安装apk文件，梳理逻辑，寻找flag隐藏方式，ddms 随时监听</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526101345.png" alt></p>
+<p>打开jadx 查看<code>验证失败</code> 是怎么出现的</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526101514.png" alt></p>
+<p>定位CheckString 函数，很明显 这是个so层的方法，那目的明确了 去so层找这个方法</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200526102651.png" alt></p>
+<p>分析so层 搜索<code>Java_</code>关键字，找到checkstring ，跟进</p>
+<p>有个判断相等就返回1，那么回推v4 = f72c5a36569418a20907b55be5bf95ad</p>
+<p><code>if ( !strcmp(v4, &quot;f72c5a36569418a20907b55be5bf95ad&quot;) )</code></p>
+<p>v4进行了一次<code>j_TestDec</code> ，那么可以判断</p>
+<p>跟进j_TestDec, 在TestDec 中有两个判断，第一个判断内做了一次前16位和后16位交换，第二个判断是两两之间做了一次交换。</p>
+<p>那逆推也就简单了。 和前面分析的几个题大致类似</p>
+<p>单独把TestDec拿出来 看看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">v1 = (char *)a1;</span><br><span class="line"># 这里做了一个前16位和后16位的交换</span><br><span class="line">if ( strlen(a1) &gt;= 2 )</span><br><span class="line">&#123;</span><br><span class="line">  v2 = 0;</span><br><span class="line">  do</span><br><span class="line">  &#123;</span><br><span class="line">    v3 = (int)&amp;v1[v2];  v3 记录地址</span><br><span class="line">    v4 = v1[v2];			v4 记录值</span><br><span class="line">    v1[v2] = v1[v2 + 16];  然后 str[0] = str[16] 此后 每次都是 str[v2] = str[v2+16]</span><br><span class="line">    ++v2; </span><br><span class="line">    *(_BYTE *)(v3 + 16) = v4;</span><br><span class="line">  &#125;</span><br><span class="line">  while ( v2 &lt; strlen(v1) &gt;&gt; 1 );</span><br><span class="line">&#125;</span><br><span class="line">result = (unsigned __int8)*v1;</span><br><span class="line"># 这里做了一个两两交换</span><br><span class="line">if ( *v1 )</span><br><span class="line">&#123;</span><br><span class="line">  *v1 = v1[1];   </span><br><span class="line">  v1[1] = result;						</span><br><span class="line">  result = strlen(v1);				</span><br><span class="line">  if ( result &gt;= 3 )</span><br><span class="line">  &#123;</span><br><span class="line">    v6 = 0;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">      v7 = (int)&amp;v1[v6];   这里替换成熟悉的变量    </span><br><span class="line">      v8 = v1[v6 + 2];	v8 用tmp表示	tmp = v1[2]			</span><br><span class="line">      *(_BYTE *)(v7 + 2) = v1[v6 + 3]; v1[2] = v1[3]</span><br><span class="line">      *(_BYTE *)(v7 + 3) = v8;		v[3] = tmp</span><br><span class="line">      result = strlen(v1);</span><br><span class="line">      v9 = v6 + 4;</span><br><span class="line">      v6 += 2;</span><br><span class="line">    &#125;</span><br><span class="line">    while ( v9 &lt; result );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>大致意思是 传入了一个值，然后在b方法中调用 ，返回的结果转为bool类型，那么就是说这里的返回值要求为1 才能进入<code>if</code>判断</p>
-<p>看一下b方法 中的逻辑</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public static Boolean b(String str) &#123; // 传入一个String类型</span><br><span class="line">        if (!str.startsWith(&quot;flag&#123;&quot;)) &#123; // 判断是否以flag&#123; 开始  </span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!str.endsWith(&quot;&#125;&quot;)) &#123; // 判断是否以&#125; 结尾</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        String substring = str.substring(5, str.length() - 1); // 去除 flag&#123; 和&#125; 之后的结果保存到substring中</span><br><span class="line">        b bVar = new b(2); // 这里我单独拉出来了 运行了一下，得到了结果</span><br><span class="line">        a aVar = new a(3);</span><br><span class="line">        // 这里就讲bvar 和aVar 写成明文</span><br><span class="line">        String bVar = &quot;ctf.demo.b@1540e19d&quot;;</span><br><span class="line">        String aVar = &quot;ctf.demo.a@1540e19d&quot;;</span><br><span class="line">        // 分析for循环</span><br><span class="line">        StringBuilder sb = new StringBuilder();</span><br><span class="line">        int i = 0;</span><br><span class="line">        for (int i2 = 0; i2 &lt; substring.length(); i2++) &#123;</span><br><span class="line">            sb.append(a(substring.charAt(i2) + &quot;&quot;, bVar, aVar));</span><br><span class="line">            Integer valueOf = Integer.valueOf(bVar.b().intValue() / 25);</span><br><span class="line">            if (valueOf.intValue() &gt; i &amp;&amp; valueOf.intValue() &gt;= 1) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return Boolean.valueOf(sb.toString().equals(&quot;wigwrkaugala&quot;));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">str = list(&quot;f72c5a36569418a20907b55be5bf95ad&quot;)</span><br><span class="line"></span><br><span class="line"># 反推</span><br><span class="line"># 做一次两两交换</span><br><span class="line">for i in range(0, len(str), 2):</span><br><span class="line">    str[i], str[i + 1] = str[i + 1], str[i]</span><br><span class="line">print(&quot;&quot;.join(str))</span><br><span class="line"># 在做一次前16位和后16位的交换</span><br><span class="line">for i in range(len(str) // 2):</span><br><span class="line">    str[i], str[i + 16] = str[i + 16], str[i]</span><br><span class="line">print(&quot;&quot;.join(str))</span><br><span class="line"># 记得加上flag&#123;&#125; 格式</span><br></pre></td></tr></table></figure>
 
-<p>bVar: ctf.demo.b@1540e19d</p>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200523162216.png" alt></p>
-<p>aVar: ctf.demo.a@1540e19d</p>
-<p>通过加注释获得了了解到整个流程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;zdgd&#125;</span><br><span class="line">-----------------------</span><br><span class="line">b-&gt;abcdefghijklmnopqrstuvwxyz</span><br><span class="line">b.a(String str) -&gt;z</span><br><span class="line">Integer.valueOf(b.indexOf(str))-&gt;25</span><br><span class="line">a-&gt;[17, 23, 7, 22, 1, 16, 6, 9, 21, 0, 15, 5, 10, 18, 2, 24, 4, 11, 3, 14, 19, 12, 20, 13, 8, 25]  因为每次判断都是长度减一  所以当判断25次就结束了 第一次给z 循环判断失败。i等于0</span><br><span class="line">b: i -&gt;0</span><br><span class="line">a.a a(Integer num)-&gt;0 将i 传入 aVar.a(i)</span><br><span class="line">a: a(Integer num) -&gt; [21, 4, 24, 25, 20, 5, 15, 9, 17, 6, 13, 3, 18, 12, 10, 19, 0, 22, 2, 11, 23, 1, 8, 7, 14, 16] 寻找0的位置 在第16次找到</span><br><span class="line">a:a -&gt;[21, 4, 24, 25, 20, 5, 15, 9, 17, 6, 13, 3, 18, 12, 10, 19, 0, 22, 2, 11, 23, 1, 8, 7, 14, 16]</span><br><span class="line">num2 -&gt;16 a类中的b 是个固定的。所以最后得到的第16位就是q</span><br><span class="line">b-&gt;abcdefghijklmnopqrstuvwxyz</span><br><span class="line">b.charAt(num2.intValue())-&gt;q</span><br><span class="line">-----------------------</span><br><span class="line">b-&gt;bcdefghijklmnopqrstuvwxyza</span><br><span class="line">b.a(String str) -&gt;d</span><br><span class="line">Integer.valueOf(b.indexOf(str))2</span><br><span class="line">a-&gt;[23, 7, 22, 1, 16, 6, 9, 21, 0, 15, 5, 10, 18, 2, 24, 4, 11, 3, 14, 19, 12, 20, 13, 8, 25, 17]</span><br><span class="line">a.get(i2)-&gt;13</span><br><span class="line">b: i -&gt;13</span><br><span class="line">a.a a(Integer num)-&gt;13</span><br><span class="line">a: a(Integer num) -&gt; [21, 4, 24, 25, 20, 5, 15, 9, 17, 6, 13, 3, 18, 12, 10, 19, 0, 22, 2, 11, 23, 1, 8, 7, 14, 16]</span><br><span class="line">a:a -&gt;[21, 4, 24, 25, 20, 5, 15, 9, 17, 6, 13, 3, 18, 12, 10, 19, 0, 22, 2, 11, 23, 1, 8, 7, 14, 16]</span><br><span class="line">num2 -&gt;10</span><br><span class="line">b-&gt;abcdefghijklmnopqrstuvwxyz</span><br><span class="line">b.charAt(num2.intValue())-&gt;k</span><br><span class="line">-----------------------</span><br><span class="line">b-&gt;cdefghijklmnopqrstuvwxyzab</span><br><span class="line">b.a(String str) -&gt;g</span><br><span class="line">Integer.valueOf(b.indexOf(str))4</span><br><span class="line">a-&gt;[7, 22, 1, 16, 6, 9, 21, 0, 15, 5, 10, 18, 2, 24, 4, 11, 3, 14, 19, 12, 20, 13, 8, 25, 17, 23]</span><br><span class="line">a.get(i2)-&gt;14</span><br><span class="line">b: i -&gt;14</span><br><span class="line">a.a a(Integer num)-&gt;14</span><br><span class="line">a: a(Integer num) -&gt; [21, 4, 24, 25, 20, 5, 15, 9, 17, 6, 13, 3, 18, 12, 10, 19, 0, 22, 2, 11, 23, 1, 8, 7, 14, 16]</span><br><span class="line">a:a -&gt;[21, 4, 24, 25, 20, 5, 15, 9, 17, 6, 13, 3, 18, 12, 10, 19, 0, 22, 2, 11, 23, 1, 8, 7, 14, 16]</span><br><span class="line">num2 -&gt;24</span><br><span class="line">b-&gt;abcdefghijklmnopqrstuvwxyz</span><br><span class="line">b.charAt(num2.intValue())-&gt;y</span><br><span class="line">-----------------------</span><br><span class="line">b-&gt;defghijklmnopqrstuvwxyzabc</span><br><span class="line">b.a(String str) -&gt;d</span><br><span class="line">Integer.valueOf(b.indexOf(str))0</span><br><span class="line">a-&gt;[22, 1, 16, 6, 9, 21, 0, 15, 5, 10, 18, 2, 24, 4, 11, 3, 14, 19, 12, 20, 13, 8, 25, 17, 23, 7]</span><br><span class="line">a.get(i2)-&gt;6</span><br><span class="line">b: i -&gt;6</span><br><span class="line">a.a a(Integer num)-&gt;6</span><br><span class="line">a: a(Integer num) -&gt; [21, 4, 24, 25, 20, 5, 15, 9, 17, 6, 13, 3, 18, 12, 10, 19, 0, 22, 2, 11, 23, 1, 8, 7, 14, 16]</span><br><span class="line">a:a -&gt;[21, 4, 24, 25, 20, 5, 15, 9, 17, 6, 13, 3, 18, 12, 10, 19, 0, 22, 2, 11, 23, 1, 8, 7, 14, 16]</span><br><span class="line">num2 -&gt;9</span><br><span class="line">b-&gt;abcdefghijklmnopqrstuvwxyz</span><br><span class="line">b.charAt(num2.intValue())-&gt;j</span><br><span class="line">qkyj</span><br></pre></td></tr></table></figure>
-
-<p>所以逆推的方式：</p>
-<p>​    第一次 b = “abcdefghijklmnopqrstuvwxyz”；    之后每次都会做一次循环左移操作</p>
-<p>​    第一次b 对应的序列[17, 23, 7, 22, 1, 16, 6, 9, 21, 0, 15, 5, 10, 18, 2, 24, 4, 11, 3, 14, 19, 12, 20, 13, 8, 25]  之后每次进行一次循环左移</p>
-<ol>
-<li><p>获得<code>wigwrkaugala</code>每一位在字母表中的位置</p>
-<p>比如 w 在字符表中的位置是22， </p>
-</li>
-<li><p>然后在a类中的a函数获取每一位位置对应的数num</p>
-<p>然后在[21, 4, 24, 25, 20, 5, 15, 9, 17, 6, 13, 3, 18, 12, 10, 19, 0, 22, 2, 11, 23, 1, 8, 7, 14, 16] 找到22对应的数，  为8</p>
-</li>
-<li><p>之后将获得的数num找到a序列中第num位对应的数字</p>
-<p>8 找到对应的数为 21</p>
-<p>[17, 23, 7, 22, 1, 16, 6, 9, 21, 0, 15, 5, 10, 18, 2, 24, 4, 11, 3, 14, 19, 12, 20, 13, 8, 25]</p>
-</li>
-<li><p>将拿到后的数字在b字符串中寻找对应的数，</p>
-<p>然后在 abcdefghijklmnopqrstuvwxyz 找到21 对应的数字为 v</p>
-</li>
-</ol>
-<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><p>逻辑理清了 接下来写脚本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">b = &quot;abcdefghijklmnopqrstuvwxyz&quot;</span><br><span class="line">result = &quot;wigwrkaugala&quot;</span><br><span class="line">La = [21, 4, 24, 25, 20, 5, 15, 9, 17, 6, 13, 3, 18, 12, 10, 19, 0, 22, 2, 11, 23, 1, 8, 7, 14, 16]</span><br><span class="line">Lb = [17, 23, 7, 22, 1, 16, 6, 9, 21, 0, 15, 5, 10, 18, 2, 24, 4, 11, 3, 14, 19, 12, 20, 13, 8, 25]</span><br><span class="line"></span><br><span class="line">str1 = []</span><br><span class="line">flag = &quot;&quot;</span><br><span class="line">for i in result:</span><br><span class="line">    str1.append(La[b.index(i)])</span><br><span class="line"></span><br><span class="line">print(str1)</span><br><span class="line"></span><br><span class="line">for i in str1:</span><br><span class="line">    str2 = Lb[i]</span><br><span class="line">    flag += b[str2]</span><br><span class="line">    b = b[1:]+ b[:1]</span><br><span class="line">    Lb.insert(len(Lb), Lb[0])</span><br><span class="line">    Lb.remove(Lb[0])</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
-
-<p>[8, 17, 15, 8, 22, 13, 21, 23, 15, 21, 3, 21]<br>venividivkcr</p>
-<p>备注： 脚本 参考 西瓜西米露表姐。</p>
 	
 	</div>
 	
@@ -419,12 +397,8 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2020/05/25/逆向/CTF/攻防世界-easyjni/" title="攻防世界-easyjni" rel="prev">
-				&laquo;上一篇
-			</a>
 		
-		
-			<a href="/2020/05/23/逆向/基础/dalvik指令集/" title="小白学习--dalvik指令集" rel="next">
+			<a href="/2020/05/26/逆向/CTF/ctfhub/彩蛋/" title="ctfhub-彩蛋" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -445,7 +419,7 @@
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/05/25/逆向/CTF/攻防世界-easyjni/" title="攻防世界-easyjni">
+							<a class="relate-post-title" href="/2020/05/25/逆向/CTF/攻防世界/easyjni/" title="攻防世界-easyjni">
 								攻防世界-easyjni			
 							</a>
 							<p class="relate-post-date">
@@ -459,9 +433,34 @@
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2020/05/25/逆向/CTF/攻防世界-easyjni/" title="攻防世界-easyjni">				
+							<a href="/2020/05/25/逆向/CTF/攻防世界/easyjni/" title="攻防世界-easyjni">				
 								
 								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/3.jpg" alt="攻防世界-easyjni"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/05/25/逆向/CTF/攻防世界/easyjava/" title="攻防世界-easyjava">
+								攻防世界-easyjava			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 25日, 2020				
+							</p>
+							<p class="relate-post-content">
+								攻防世界题解easyjava好无聊啊，找个CTF做做，攻防世界有一栏Mobile的 正好适合
+下载文件地址： 
+https://adworld.xctf.org.cn/media/task/attachments/3f06e60ded...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/05/25/逆向/CTF/攻防世界/easyjava/" title="攻防世界-easyjava">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="攻防世界-easyjava"/>
 							</a>
 						</div>
 					</li>											
@@ -684,32 +683,6 @@
 							<a href="/2020/02/05/逆向/android学习之环境搭建/" title="android 安全之环境搭建（一）">				
 								
 								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="android 安全之环境搭建（一）"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/05/26/逆向/CTF/ctfhub/彩蛋/" title="ctfhub-彩蛋">
-								ctfhub-彩蛋			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								五月 26日, 2020				
-							</p>
-							<p class="relate-post-content">
-								彩蛋首页
-*.ctfhub.com 不确定是那个域名的首页，那么先搜索一下子域名瞧瞧 
-使用工具：Turbolist3r
-12345[-] Total Unique Subdomains Found: 4api.ctfhub.comc...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/05/26/逆向/CTF/ctfhub/彩蛋/" title="ctfhub-彩蛋">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="ctfhub-彩蛋"/>
 							</a>
 						</div>
 					</li>											
