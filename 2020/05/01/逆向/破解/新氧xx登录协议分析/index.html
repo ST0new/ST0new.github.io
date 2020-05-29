@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      CTF-androideasy | ST0new Blog
+      新氧医美登录协议分析 | ST0new Blog
     
   </title>
   <meta name="author" content="ST0new">
@@ -165,7 +165,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《CTF-androideasy》
+			当前文章&nbsp;:&nbsp;《新氧医美登录协议分析》
 		
 	</p>
 
@@ -286,8 +286,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2020/03/25/逆向/CTF/androideasy/" itemprop="url">
-		CTF-androideasy
+	<a href="/2020/05/01/逆向/破解/新氧xx登录协议分析/" itemprop="url">
+		新氧医美登录协议分析
 	</a>
 
 	</div>
@@ -300,9 +300,9 @@
 
 	发布于
 
-	<a href="/2020/03/25/逆向/CTF/androideasy/" itemprop="url">
-		<time datetime="2020-03-25T08:35:34.000Z" itemprop="datePublished">
-	  		2020-03-25
+	<a href="/2020/05/01/逆向/破解/新氧xx登录协议分析/" itemprop="url">
+		<time datetime="2020-05-01T12:49:25.000Z" itemprop="datePublished">
+	  		2020-05-01
 	  </time>
 	</a>
 	&nbsp;
@@ -318,9 +318,9 @@
 
 	更新于
 
-	<a href="/2020/03/25/逆向/CTF/androideasy/" itemprop="url">
-		<time datetime="2020-03-25T08:35:34.000Z" itemprop="dateUpdated">
-	  		2020-03-25
+	<a href="/2020/05/01/逆向/破解/新氧xx登录协议分析/" itemprop="url">
+		<time datetime="2020-05-01T12:49:25.000Z" itemprop="dateUpdated">
+	  		2020-05-28
 	  </time>
 	</a> 
 
@@ -331,8 +331,8 @@
 			<i class="fa fa-tags"></i>
 			
 	
-		<a href="/tags/CTF/" class=" ">
-			CTF
+		<a href="/tags/破解/" class=" ">
+			破解
 		</a>
 	
 		
@@ -341,7 +341,7 @@
 		
 
 	
-    <span class="leancloud_visitors" id="/2020/03/25/逆向/CTF/androideasy/_visitors" data-url="/2020/03/25/逆向/CTF/androideasy/" data-title="CTF-androideasy">
+    <span class="leancloud_visitors" id="/2020/05/01/逆向/破解/新氧xx登录协议分析/_visitors" data-url="/2020/05/01/逆向/破解/新氧xx登录协议分析/" data-title="新氧医美登录协议分析">
        	<i class="fa fa-eye"></i>
        	热度
         <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
@@ -351,7 +351,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2020/03/25/逆向/CTF/androideasy/_likes" data-url="/2020/03/25/逆向/CTF/androideasy/" data-title="CTF-androideasy" rel="unlike">
+    <span class="leancloud_likes" id="/2020/05/01/逆向/破解/新氧xx登录协议分析/_likes" data-url="/2020/05/01/逆向/破解/新氧xx登录协议分析/" data-title="新氧医美登录协议分析" rel="unlike">
         <i class="fa fa-heart"></i>
         喜欢
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -360,36 +360,11 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<h1 id="题目：androideasy"><a href="#题目：androideasy" class="headerlink" title="题目：androideasy"></a>题目：androideasy</h1><p>最近刚学了点逆向技能，找一些简单的ctf 题目来验证一下效果</p>
-<p>下载地址：<a href="https://github.com/ThunderJie/CTF-Practice/tree/master/CTF-Andorid%20Reverse/androideasy" target="_blank" rel="noopener">androideasy</a></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>首先拿到的是个zip文件，打开是个普通的apk目录</p>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/2/image-20200325160159860.png" alt></p>
-<p>也不知道做逆向的和做安全的看到他的感觉是否一样，</p>
-<p>修改后缀为<code>apk</code> 后扔到jadx中，然后在往模拟器中扔一份</p>
-<p>模拟器中可以看到 很简单的功能，输入字符 。点击check 判断是否输入正确</p>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/2/image-20200325160654280.png" alt></p>
-<p>之后查看jadx</p>
-<p>大概确定一下，就是需要输入一个字符串在check判断通过即可</p>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/2/image-20200325160744208.png" alt></p>
-<p>定位到check，输入的字符串必须让if判断为真，也就是进入到check的true</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">private byte[] f21s = &#123;113, 123, 118, 112, 108, 94, 99, 72, 38, 68, 72, 87, 89, 72, 36, 118, 100, 78, 72, 87, 121, 83, 101, 39, 62, 94, 62, 38, 107, 115, 106&#125;;</span><br><span class="line"></span><br><span class="line">public boolean check() &#123;</span><br><span class="line">        byte[] chars = this.editText.getText().toString().getBytes();</span><br><span class="line">        if (chars.length != this.f21s.length) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int i = 0;</span><br><span class="line">        while (i &lt; this.f21s.length &amp;&amp; i &lt; chars.length) &#123;</span><br><span class="line">            if (this.f21s[i] != (chars[i] ^ 23)) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>接下来写firda 代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function flag() &#123;</span><br><span class="line">    Java.perform(function () &#123;</span><br><span class="line">        var flag1 = Java.use(&quot;com.a.sample.androidtest.MainActivity&quot;);</span><br><span class="line">        flag1.check.implementation = function () &#123;</span><br><span class="line">             var retval = this.check();</span><br><span class="line">             console.log(retval)</span><br><span class="line">             return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function main() &#123;</span><br><span class="line">    flag()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setImmediate(main);</span><br></pre></td></tr></table></figure>
-
-<p>这样就可以保证返回为真了</p>
-<p>回到正题，前台返回为真对flag没有帮助，</p>
-<p>所以还是得得到<code>f21s</code> ,写个脚本 获得下面的字符串</p>
-<p><code>private byte[] f21s = {113, 123, 118, 112, 108, 94, 99, 72, 38, 68, 72, 87, 89, 72, 36, 118, 100, 78, 72, 87, 121, 83, 101, 39, 62, 94, 62, 38, 107, 115, 106};</code></p>
-<p>最后的脚本</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">f21s = [<span class="number">113</span>, <span class="number">123</span>, <span class="number">118</span>, <span class="number">112</span>, <span class="number">108</span>, <span class="number">94</span>, <span class="number">99</span>, <span class="number">72</span>, <span class="number">38</span>, <span class="number">68</span>, <span class="number">72</span>, <span class="number">87</span>, <span class="number">89</span>, <span class="number">72</span>, <span class="number">36</span>, <span class="number">118</span>, <span class="number">100</span>, <span class="number">78</span>, <span class="number">72</span>, <span class="number">87</span>, <span class="number">121</span>, <span class="number">83</span>, <span class="number">101</span>, <span class="number">39</span>, <span class="number">62</span>, <span class="number">94</span>, <span class="number">62</span>, <span class="number">38</span>, <span class="number">107</span>, <span class="number">115</span>, <span class="number">106</span>]</span><br><span class="line">print(len(f21s))</span><br><span class="line">flag = <span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>  i <span class="keyword">in</span> range(<span class="number">0</span>,len(f21s)):  <span class="comment"># 判断每一位，一共判断f21s 长度次</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">127</span>):</span><br><span class="line">        <span class="keyword">if</span> (f21s[i] == (j ^ <span class="number">23</span>)):</span><br><span class="line">            flag += chr(j)</span><br><span class="line"></span><br><span class="line">print(flag)py</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">31</span><br><span class="line">flag&#123;It_1S_@N_3asY_@nDr0)I)1|d&#125;</span><br></pre></td></tr></table></figure>
-
+		<h1 id="新氧医美"><a href="#新氧医美" class="headerlink" title="新氧医美"></a>新氧医美</h1><h2 id="分析登录sign"><a href="#分析登录sign" class="headerlink" title="分析登录sign"></a>分析登录sign</h2><p>未完待续。。。</p>
 	
 	</div>
 	
-	<div id="current-post-cover" data-scr="/img/post-cover/1.jpg"></div>
+	<div id="current-post-cover" data-scr="/img/post-cover/2.jpg"></div>
 
 	<!-- relate post, comment...-->
 	<div class="investment-container">
@@ -404,12 +379,12 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2020/03/31/逆向/破解/去某app广告/" title="去某游戏app广告" rel="prev">
+			<a href="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" title="霸哥磁力搜索去签名校验" rel="prev">
 				&laquo;上一篇
 			</a>
 		
 		
-			<a href="/2020/03/24/逆向/XposedFridaHook系列/Hook开始/" title="" rel="next">
+			<a href="/2020/03/31/逆向/破解/去某app广告/" title="去某游戏app广告" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -427,6 +402,30 @@
 <div class="relate-post">
 	
 		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/05/28/CTF/攻防世界/app2/" title="攻防世界-app2">
+								攻防世界-app2			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 28日, 2020				
+							</p>
+							<p class="relate-post-content">
+								app2附件附件地址：https://adworld.xctf.org.cn/media/task/attachments/2554cf208cfb4cdf9218a840fa9bf237.apk
+分析先看逻辑，打开app 是一个登录...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/05/28/CTF/攻防世界/app2/" title="攻防世界-app2">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="攻防世界-app2"/>
+							</a>
+						</div>
+					</li>											
+			
 			
 					<li>
 						<div class="relate-post-text">
@@ -646,52 +645,26 @@ https://adworld.xctf.org.cn/media/task/attachments/3f06e60ded...
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/03/10/逆向/androidstudio安装报错/" title="Andorid Studio 安装报错 解决">
-								Andorid Studio 安装报错 解决			
+							<a class="relate-post-title" href="/2020/03/25/CTF/攻防世界/androideasy/" title="Android-androideasy">
+								Android-androideasy			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								三月 10日, 2020				
+								三月 25日, 2020				
 							</p>
 							<p class="relate-post-content">
-								Andorid Studio 安装报错 解决小记安装了一下午的AndroidStudio 一直报错，安装不上sdk 实在头疼，查到资料改个hosts就搞定了，舒服
-将这两个写入c:\users\你电脑的名字\drivers\etc\h...
+								题目：androideasy最近刚学了点逆向技能，找一些简单的ctf 题目来验证一下效果
+下载地址：androideasy
+解题思路首先拿到的是个zip文件，打开是个普通的apk目录
+
+也不知道做逆向的和做安全的看到他的感觉是否一样，...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2020/03/10/逆向/androidstudio安装报错/" title="Andorid Studio 安装报错 解决">				
+							<a href="/2020/03/25/CTF/攻防世界/androideasy/" title="Android-androideasy">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="Andorid Studio 安装报错 解决"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/05/逆向/android学习之环境搭建/" title="android 安全之环境搭建（一）">
-								android 安全之环境搭建（一）			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 5日, 2020				
-							</p>
-							<p class="relate-post-content">
-								
-  
-  
-    Hey, password is required here.
-    
-  
-  2180d006303213985e487fd1170d435e54fb73b1db7948858c7fc5e204c5737c...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/02/05/逆向/android学习之环境搭建/" title="android 安全之环境搭建（一）">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="android 安全之环境搭建（一）"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="Android-androideasy"/>
 							</a>
 						</div>
 					</li>											
