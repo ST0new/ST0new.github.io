@@ -273,6 +273,127 @@
 				<div class="post-title" id="post-title-index">			
 					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 					
+	<a href="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" itemprop="url">
+		霸哥磁力搜索去签名校验
+	</a>
+
+				</div>
+
+				<div class="post-content">
+					
+						案例1 霸哥磁力搜索首先 签名校验不止一个，所以会经历无数次安装， 
+
+重签名打包，安装查看是否有签名校验（这里可以通过启动界面返回的信息查看）
+
+
+
+   安装 如果有检测 进入第二步
+   比如 下面的情况
+   
+
+检测是否有加固 
+
+有加固进入第三步
+没有加固进入第四步
+
+有加固 ，先脱壳修复
+
+查看处理的地方，干掉存在签名校验的地方
+ok 接下来分析他在哪校验的
+工具的话： andorid killer 、 jadx 、ida、ddms
+
+
+   先看看刚才程序崩溃是什么情况导致的
+   
+   使用android killer 加载apk，同时使用jadx 加载，配合查看函数...
+					
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
+
+
+
+
+
+
+	<a href="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" itemprop="url">
+		<time datetime="2020-05-01T12:49:25.000Z" itemprop="datePublished">
+	  		2020-05-01
+	  </time>
+	</a> 
+
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/_visitors" data-url="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" data-title="霸哥磁力搜索去签名校验">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/_likes" data-url="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" data-title="霸哥磁力搜索去签名校验" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" title="阅读全文">阅读全文</a>	
+						</span>
+					
+				</div>
+			</div>
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2020/03/31/逆向/破解/去某app广告/" itemprop="url">
 		去某游戏app广告
 	</a>
@@ -1211,115 +1332,6 @@ WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/m
 					
 						<span class="right">      	
 							<a href="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/" title="阅读全文">阅读全文</a>	
-						</span>
-					
-				</div>
-			</div>
-		</div>
-	
-		<div class="post" id="post">
-			<div class="post-text">
-				<div class="post-title" id="post-title-index">			
-					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-					
-	<a href="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" itemprop="url">
-		实验吧-隐写-欢迎来到地狱
-	</a>
-
-				</div>
-
-				<div class="post-content">
-					
-						多重隐写+加密，需要清醒的认识，才能不坠入地狱
-
-
-实验吧隐写题欢迎来到地狱
-解压
-访问url，获取一个zip文件，解压发现存在3个文件 分别是jpg，doc，zip
-根据文件名去，首先我们去打开第一个文件地狱伊始.jpg 打开提示文件错误。
-
-
-
-使用winhex打开查看，发现是jfif的文件，之后看到文件头标识不对，查询发现jfif的文件头是`FFD8FFFE00, .JPEG;.JPE;.JPG, &quot;JPGGraphic File&quot;` 我们添加文件头，方法：右键-&gt;edit-&gt;Paste zero bytes -&gt; 4 添加四个比特
-
-之后添加...
-					
-				</div>
-				
-				<div class="post-meta">
-					<span>
-						发布于
-						<i>
-							
-
-
-
-
-
-
-	<a href="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" itemprop="url">
-		<time datetime="2019-10-04T02:44:30.000Z" itemprop="datePublished">
-	  		2019-10-04
-	  </time>
-	</a> 
-
-						</i>
-					</span>
-					
-					
-
-	
-    <span class="leancloud_visitors" id="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/_visitors" data-url="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" data-title="实验吧-隐写-欢迎来到地狱">
-       	<i class="fa fa-eye"></i>
-       	热度
-        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
-    </span>
-    
-
-
-
-	
-    <span class="leancloud_likes" id="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/_likes" data-url="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" data-title="实验吧-隐写-欢迎来到地狱" rel="unlike">
-        <i class="fa fa-heart"></i>
-        喜欢
-        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
-    </span>
-
-					
-
-	<!-- leancloud -->
-	<!--
-	时间：2018-11-27
-	描述：
-		文章访问量：visitors
-		文章喜欢量：likes	
-		文章排行榜：topNPost
-		其他得说明：
-			01-Cookie相关的函数 
-				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
-			02-visitors相关的函数 
-				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
-				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
-			03-topNPost相关的函数
-				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
-			04-likes相关的函数，
-				参考了01 & 02进行简单的设计与实现
--->
-
-
-
-	<script>
-		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
-            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
-        AnnieLeancloud(appid, appkey);         
-	</script>
-    
-
-	
-
-					
-						<span class="right">      	
-							<a href="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" title="阅读全文">阅读全文</a>	
 						</span>
 					
 				</div>

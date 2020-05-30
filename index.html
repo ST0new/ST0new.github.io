@@ -273,6 +273,108 @@
 				<div class="post-title" id="post-title-index">			
 					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 					
+	<a href="/2020/05/29/CTF/攻防世界/Ph0nen1x-100/" itemprop="url">
+		攻防世界-Ph0en1x-100
+	</a>
+
+				</div>
+
+				<div class="post-content">
+					
+						Ph0en1x-100附件下载https://adworld.xctf.org.cn/media/task/attachments/f6adc401d0eb472892a4ac4481f76a85.apk
+分析上手第一步还是看app逻辑， 可以看的出来 输入flag 判断正确与否，又是一个算法题。
+
+打开jadx 找到MainActivity,很明显就可以看到Success，
+目标：输入正确的flag 让if 判断成立 
+12先对输入的字符串进行了一次encrypt， 之后在进行一次getSecret ，然后和getFlag() 做了一次判断是否相等getSecret(getFlag()...
+					
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
+
+
+
+
+
+
+	<a href="/2020/05/29/CTF/攻防世界/Ph0nen1x-100/" itemprop="url">
+		<time datetime="2020-05-29T08:11:37.000Z" itemprop="datePublished">
+	  		2020-05-29
+	  </time>
+	</a> 
+
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2020/05/29/CTF/攻防世界/Ph0nen1x-100/_visitors" data-url="/2020/05/29/CTF/攻防世界/Ph0nen1x-100/" data-title="攻防世界-Ph0en1x-100">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2020/05/29/CTF/攻防世界/Ph0nen1x-100/_likes" data-url="/2020/05/29/CTF/攻防世界/Ph0nen1x-100/" data-title="攻防世界-Ph0en1x-100" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2020/05/29/CTF/攻防世界/Ph0nen1x-100/" title="阅读全文">阅读全文</a>	
+						</span>
+					
+				</div>
+			</div>
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2020/05/29/逆向/破解/新氧xx登录协议分析/" itemprop="url">
 		新氧医美登录协议分析
 	</a>
@@ -1208,127 +1310,6 @@ p命名法
 					
 						<span class="right">      	
 							<a href="/2020/05/02/逆向/破解/xx小说去除签名校验/" title="阅读全文">阅读全文</a>	
-						</span>
-					
-				</div>
-			</div>
-		</div>
-	
-		<div class="post" id="post">
-			<div class="post-text">
-				<div class="post-title" id="post-title-index">			
-					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-					
-	<a href="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" itemprop="url">
-		霸哥磁力搜索去签名校验
-	</a>
-
-				</div>
-
-				<div class="post-content">
-					
-						案例1 霸哥磁力搜索首先 签名校验不止一个，所以会经历无数次安装， 
-
-重签名打包，安装查看是否有签名校验（这里可以通过启动界面返回的信息查看）
-
-
-
-   安装 如果有检测 进入第二步
-   比如 下面的情况
-   
-
-检测是否有加固 
-
-有加固进入第三步
-没有加固进入第四步
-
-有加固 ，先脱壳修复
-
-查看处理的地方，干掉存在签名校验的地方
-ok 接下来分析他在哪校验的
-工具的话： andorid killer 、 jadx 、ida、ddms
-
-
-   先看看刚才程序崩溃是什么情况导致的
-   
-   使用android killer 加载apk，同时使用jadx 加载，配合查看函数...
-					
-				</div>
-				
-				<div class="post-meta">
-					<span>
-						发布于
-						<i>
-							
-
-
-
-
-
-
-	<a href="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" itemprop="url">
-		<time datetime="2020-05-01T12:49:25.000Z" itemprop="datePublished">
-	  		2020-05-01
-	  </time>
-	</a> 
-
-						</i>
-					</span>
-					
-					
-
-	
-    <span class="leancloud_visitors" id="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/_visitors" data-url="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" data-title="霸哥磁力搜索去签名校验">
-       	<i class="fa fa-eye"></i>
-       	热度
-        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
-    </span>
-    
-
-
-
-	
-    <span class="leancloud_likes" id="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/_likes" data-url="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" data-title="霸哥磁力搜索去签名校验" rel="unlike">
-        <i class="fa fa-heart"></i>
-        喜欢
-        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
-    </span>
-
-					
-
-	<!-- leancloud -->
-	<!--
-	时间：2018-11-27
-	描述：
-		文章访问量：visitors
-		文章喜欢量：likes	
-		文章排行榜：topNPost
-		其他得说明：
-			01-Cookie相关的函数 
-				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
-			02-visitors相关的函数 
-				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
-				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
-			03-topNPost相关的函数
-				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
-			04-likes相关的函数，
-				参考了01 & 02进行简单的设计与实现
--->
-
-
-
-	<script>
-		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
-            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
-        AnnieLeancloud(appid, appkey);         
-	</script>
-    
-
-	
-
-					
-						<span class="right">      	
-							<a href="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" title="阅读全文">阅读全文</a>	
 						</span>
 					
 				</div>
