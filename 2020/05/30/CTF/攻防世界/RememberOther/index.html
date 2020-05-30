@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      实验吧-隐写-欢迎来到地狱 | ST0new Blog
+      攻防世界-RememberOther | ST0new Blog
     
   </title>
   <meta name="author" content="ST0new">
@@ -165,7 +165,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《实验吧-隐写-欢迎来到地狱》
+			当前文章&nbsp;:&nbsp;《攻防世界-RememberOther》
 		
 	</p>
 
@@ -286,8 +286,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" itemprop="url">
-		实验吧-隐写-欢迎来到地狱
+	<a href="/2020/05/30/CTF/攻防世界/RememberOther/" itemprop="url">
+		攻防世界-RememberOther
 	</a>
 
 	</div>
@@ -300,9 +300,9 @@
 
 	发布于
 
-	<a href="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" itemprop="url">
-		<time datetime="2019-10-04T02:44:30.000Z" itemprop="datePublished">
-	  		2019-10-04
+	<a href="/2020/05/30/CTF/攻防世界/RememberOther/" itemprop="url">
+		<time datetime="2020-05-30T03:26:48.000Z" itemprop="datePublished">
+	  		2020-05-30
 	  </time>
 	</a>
 	&nbsp;
@@ -318,9 +318,9 @@
 
 	更新于
 
-	<a href="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" itemprop="url">
-		<time datetime="2019-10-04T02:44:30.000Z" itemprop="dateUpdated">
-	  		2019-10-05
+	<a href="/2020/05/30/CTF/攻防世界/RememberOther/" itemprop="url">
+		<time datetime="2020-05-30T03:26:48.000Z" itemprop="dateUpdated">
+	  		2020-05-30
 	  </time>
 	</a> 
 
@@ -331,8 +331,8 @@
 			<i class="fa fa-tags"></i>
 			
 	
-		<a href="/tags/misc/" class=" ">
-			misc
+		<a href="/tags/CTF/" class=" ">
+			CTF
 		</a>
 	
 		
@@ -341,7 +341,7 @@
 		
 
 	
-    <span class="leancloud_visitors" id="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/_visitors" data-url="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" data-title="实验吧-隐写-欢迎来到地狱">
+    <span class="leancloud_visitors" id="/2020/05/30/CTF/攻防世界/RememberOther/_visitors" data-url="/2020/05/30/CTF/攻防世界/RememberOther/" data-title="攻防世界-RememberOther">
        	<i class="fa fa-eye"></i>
        	热度
         <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
@@ -351,7 +351,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/_likes" data-url="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" data-title="实验吧-隐写-欢迎来到地狱" rel="unlike">
+    <span class="leancloud_likes" id="/2020/05/30/CTF/攻防世界/RememberOther/_likes" data-url="/2020/05/30/CTF/攻防世界/RememberOther/" data-title="攻防世界-RememberOther" rel="unlike">
         <i class="fa fa-heart"></i>
         喜欢
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -360,78 +360,29 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<p>多重隐写+加密，需要清醒的认识，才能不坠入地狱</p>
-<a id="more"></a>
-
-<h1 id="实验吧"><a href="#实验吧" class="headerlink" title="实验吧"></a>实验吧</h1><h2 id="隐写题"><a href="#隐写题" class="headerlink" title="隐写题"></a>隐写题</h2><h3 id="欢迎来到地狱"><a href="#欢迎来到地狱" class="headerlink" title="欢迎来到地狱"></a>欢迎来到地狱</h3><ol>
-<li><p>解压</p>
-<p>访问url，获取一个zip文件，解压发现存在3个文件 分别是jpg，doc，zip</p>
-<p>根据文件名去，首先我们去打开第一个文件地狱伊始.jpg 打开提示文件错误。</p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175715.png" alt></p>
-<pre><code>使用winhex打开查看，发现是jfif的文件，之后看到文件头标识不对，查询发现jfif的文件头是`FFD8FFFE00, .JPEG;.JPE;.JPG, &quot;JPGGraphic File&quot;` 我们添加文件头，方法：右键-&gt;edit-&gt;Paste zero bytes -&gt; 4 添加四个比特
-
-之后添加为
-
-![图片.png](https://upload-images.jianshu.io/upload_images/18851353-865de8c22816711b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
-打开图片</code></pre><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175722.png" alt></p>
-<pre><code>图片链接失效，这里需要去隔壁wp里面找一个
-
-[https://pan.baidu.com/s/1i49Jhlj](https://pan.baidu.com/s/1i49Jhlj)
-
-注意这里的字母，打开是个音频</code></pre><ol start="2">
-<li><p>音频隐写</p>
-<p>使用audacity.exe 打开文件，然后猜测可能是莫尔斯码</p>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175731.png" alt></p>
-<p>101 0 1011 0100 0 1 001 000 110 111 通过对莫尔斯码对比得到密码</p>
-<p>key letusgo</p>
-</li>
-<li><p>图片隐写</p>
-<p>使用一个web网址上传图片直接出结果，这个参考评论，我使用stegsolve 没有查看到</p>
-<p><a href="http://www.atool9.com/steganography.php" target="_blank" rel="noopener">http://www.atool9.com/steganography.php</a></p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175740.png" alt></p>
-<pre><code>这里试了n久 没弄出来 ，之后查看了下wp 发现解密的信息错误,以下的为正确的 key{you are in finally hell now}
-
-这里和dalao商量了下，可能是图片的问题。
-
-终点
-
-有一个txt和一个图片，先看txt文档，0和1组成的可能是二进制，试试解字符串
-
-[![图片.png](https://upload-images.jianshu.io/upload_images/18851353-80915ee08664e99a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
-ruokouling = 弱口令
-
-然后查看图片 地狱大门.jpg 使用winhex 打开，在最后看到有小姐姐.txt 文件 使用kali的foremost 分离</code></pre><p> <img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175748.png" alt></p>
-<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175756.png" alt><br><img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175802.png" alt></p>
-<pre><code>测试发现弱口令为Password</code></pre><p>   <img src="https://raw.githubusercontent.com/ST0new/picture/master/2019/10/20191005175809.png" alt></p>
-<pre><code>VTJGc2RHVmtYMTlwRG9yWjJoVFArNXcwelNBOWJYaFZlekp5MnVtRlRTcDZQZE42elBLQ01BPT0=
-
-可能是base系列
-
-base64 解密一次 U2FsdGVkX19pDorZ2hTP+5w0zSA9bXhVezJy2umFTSp6PdN6zPKCMA==
-
-rabbit 解密 一次 fxbqrwrvnwmngrjxsrnsrnhx
-
-凯撒 解密一次 woshinimendexiaojiejieyo
-
-附上凯撒解密的脚本</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">​</span><br><span class="line">import os</span><br><span class="line">​</span><br><span class="line">str = &quot;fxbqrwrvnwmngrjxsrnsrnhx&quot;</span><br><span class="line">for i in range(0,26):</span><br><span class="line"> for j in str:</span><br><span class="line"> if ord(j) -i &gt;= 97:</span><br><span class="line"> print(chr(ord(j)-i),end=&quot;&quot;)</span><br><span class="line"> else:</span><br><span class="line"> print(chr(ord(j)-i+26),end=&quot;&quot;)</span><br><span class="line"> print()&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><p>flag</p>
-<p>CTF{woshinimendexiaojiejieyo}</p>
-</li>
-</ol>
+		<h1 id="RememberOther"><a href="#RememberOther" class="headerlink" title="RememberOther"></a>RememberOther</h1><h2 id="附件下载"><a href="#附件下载" class="headerlink" title="附件下载"></a>附件下载</h2><p><a href="https://adworld.xctf.org.cn/media/task/attachments/476d9022bb0449c09c0b1e24f0686b66.zip" target="_blank" rel="noopener">https://adworld.xctf.org.cn/media/task/attachments/476d9022bb0449c09c0b1e24f0686b66.zip</a></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>先安装 然后看看逻辑</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200530112854.png" alt></p>
+<p>额 这个不就是注册机吗，这个做过，方法比较多， 直接看jadx 反编译出的代码，看看flag在哪</p>
+<p>看到有个判断，应该是需要注册成功后返回</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200530114236.png" alt></p>
+<p>那么打开Androidkiller 修改if 判断处的逻辑，然而 我没找到if 判断，那就只能改checkSN方法了</p>
+<p><img src="D:%5CBlog%5CST0new.github.io%5Csource_posts%5CCTF%5C%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%5Cphoto%5C20200530115843.png" alt></p>
+<p>然后安装 点击注册</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200530115913.png" alt></p>
+<p>直接输出flag</p>
+<p>同样 ，在返回值中，返回的是R.string.unsuccessed ，这是一个静态的字符串，strings.xml 中可以找到具体的值</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200530120407.png" alt></p>
+<p>md5:b3241668ecbeb19921fdac5ac1aafa69</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200530120448.png" alt></p>
+<p>解出 md5 值</p>
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/5/20200530120600.png" alt></p>
+<p>然后 这个是个半段，还有半段在word文档中，这是个坑，看了wp后才知道</p>
+<p>所以最后的flag ： YOU_KNOW_ANDROID</p>
 	
 	</div>
 	
-	<div id="current-post-cover" data-scr="/img/cart_cover.jpg"></div>
+	<div id="current-post-cover" data-scr="/img/post-cover/1.jpg"></div>
 
 	<!-- relate post, comment...-->
 	<div class="investment-container">
@@ -446,12 +397,8 @@ rabbit 解密 一次 fxbqrwrvnwmngrjxsrnsrnhx
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/" title="SQL注入(时间盲注)" rel="prev">
-				&laquo;上一篇
-			</a>
 		
-		
-			<a href="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" title="实验吧-逆向工程-debug" rel="next">
+			<a href="/2020/05/29/CTF/攻防世界/Ph0nen1x-100/" title="攻防世界-Ph0en1x-100" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -472,23 +419,23 @@ rabbit 解密 一次 fxbqrwrvnwmngrjxsrnsrnhx
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/27/CTF/wp/K&A UNCTF/" title="UNCTF竞技赛">
-								UNCTF竞技赛			
+							<a class="relate-post-title" href="/2020/05/29/CTF/攻防世界/Ph0nen1x-100/" title="攻防世界-Ph0en1x-100">
+								攻防世界-Ph0en1x-100			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								十月 27日, 2019				
+								五月 29日, 2020				
 							</p>
 							<p class="relate-post-content">
-								UNCTFwp由K&amp;A整理
-WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/GraphQL%20Injection](http...
+								Ph0en1x-100附件下载https://adworld.xctf.org.cn/media/task/attachments/f6adc401d0eb472892a4ac4481f76a85.apk
+分析上手第一步还是看app逻...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/10/27/CTF/wp/K&A UNCTF/" title="UNCTF竞技赛">				
+							<a href="/2020/05/29/CTF/攻防世界/Ph0nen1x-100/" title="攻防世界-Ph0en1x-100">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="UNCTF竞技赛"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="攻防世界-Ph0en1x-100"/>
 							</a>
 						</div>
 					</li>											
@@ -496,30 +443,28 @@ WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/m
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/" title="SQL注入(时间盲注)">
-								SQL注入(时间盲注)			
+							<a class="relate-post-title" href="/2020/05/29/逆向/破解/新氧xx登录协议分析/" title="新氧医美登录协议分析">
+								新氧医美登录协议分析			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
+								五月 29日, 2020				
 							</p>
 							<p class="relate-post-content">
-								了解盲注语法，如何利用盲注获取数据
-
-
-目标
-了解SQL时间盲注
-掌握SQL注入语法
-掌握SQL注入原理
-了解SQL注入常用注释字符
-本题使用的工具  sqlmap，hackbar环境  物理机：windows10  虚拟机：kali...
+								
+  
+  
+    Hey, password is required here.
+    
+  
+  bc4a10bba4850067f01405ed51bfe72009ad28d3417d4cd2f5f40e8799bfd392...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/" title="SQL注入(时间盲注)">				
+							<a href="/2020/05/29/逆向/破解/新氧xx登录协议分析/" title="新氧医美登录协议分析">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="SQL注入(时间盲注)"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="新氧医美登录协议分析"/>
 							</a>
 						</div>
 					</li>											
@@ -527,32 +472,23 @@ WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/m
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" title="实验吧-逆向工程-debug">
-								实验吧-逆向工程-debug			
+							<a class="relate-post-title" href="/2020/05/28/CTF/攻防世界/app2/" title="攻防世界-app2">
+								攻防世界-app2			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
+								五月 28日, 2020				
 							</p>
 							<p class="relate-post-content">
-								了解函数运行，合适添加断点判断，获取一闪而过的flag
-
-
-实验吧逆向工程debug
-下载文件，然后用idaq打开，
-
-
-
-尝试在linux下打开发现么没有返回值，
-
-在idaq里面去查看shift+F12 查看字符串，发现有个pri...
+								app2附件附件地址：https://adworld.xctf.org.cn/media/task/attachments/2554cf208cfb4cdf9218a840fa9bf237.apk
+分析先看逻辑，打开app 是一个登录...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" title="实验吧-逆向工程-debug">				
+							<a href="/2020/05/28/CTF/攻防世界/app2/" title="攻防世界-app2">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="实验吧-逆向工程-debug"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="攻防世界-app2"/>
 							</a>
 						</div>
 					</li>											
@@ -560,35 +496,24 @@ WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/m
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/CTF/实验吧/实验吧-密码学-传统密码+古典密码/" title="传统知识+古典密码">
-								传统知识+古典密码			
+							<a class="relate-post-title" href="/2020/05/26/CTF/攻防世界/easy-so/" title="攻防世界-eaasy-so">
+								攻防世界-eaasy-so			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
+								五月 26日, 2020				
 							</p>
 							<p class="relate-post-content">
-								多种加密结合，一步一步解密，追寻真理
-
-
-实验吧密码学传统知识+古典密码
-题目
-辛卯，癸巳，丙戌，辛未，庚辰，癸酉，己卯，癸巳
-信的背面还写有“+甲子”，请解出这段密文
-key：CTF{}
-
-查一下得到了一份六十甲子顺序表
-
-
-
-获取...
+								easy-so附件地址：
+https://adworld.xctf.org.cn/media/task/attachments/456c1dab04b24036ba1d6e32a08dc882.apk
+分析安装apk文件，梳理逻辑，寻...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/10/04/CTF/实验吧/实验吧-密码学-传统密码+古典密码/" title="传统知识+古典密码">				
+							<a href="/2020/05/26/CTF/攻防世界/easy-so/" title="攻防世界-eaasy-so">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="传统知识+古典密码"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="攻防世界-eaasy-so"/>
 							</a>
 						</div>
 					</li>											
@@ -596,27 +521,23 @@ key：CTF{}
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/CTF/实验吧/实验吧-密码学-变异凯撒/" title="变异凯撒">
-								变异凯撒			
+							<a class="relate-post-title" href="/2020/05/25/CTF/攻防世界/easyjni/" title="攻防世界-easyjni">
+								攻防世界-easyjni			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
+								五月 25日, 2020				
 							</p>
 							<p class="relate-post-content">
-								仔细观察凯撒加密，找寻其中的规律
-
-
-实验吧密码学变异凯撒
-凯撒密码
-在密码学中，恺撒密码（英语：Caesar cipher），或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术。它是一种替换加密的技术，明文中的所有...
+								easyjni下载附件地址：https://adworld.xctf.org.cn/media/task/attachments/eb760e6a10ea4dcab700a6b7db948488.apk
+分析安装apk，先看看逻辑，打...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/10/04/CTF/实验吧/实验吧-密码学-变异凯撒/" title="变异凯撒">				
+							<a href="/2020/05/25/CTF/攻防世界/easyjni/" title="攻防世界-easyjni">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="变异凯撒"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/3.jpg" alt="攻防世界-easyjni"/>
 							</a>
 						</div>
 					</li>											
@@ -624,28 +545,24 @@ key：CTF{}
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/CTF/实验吧/实验吧-安全杂项-MD5守株待兔/" title="MD5之守株待兔">
-								MD5之守株待兔			
+							<a class="relate-post-title" href="/2020/05/25/CTF/攻防世界/easyjava/" title="攻防世界-easyjava">
+								攻防世界-easyjava			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
+								五月 25日, 2020				
 							</p>
 							<p class="relate-post-content">
-								实验吧-安全杂项-MD5之守株待兔 ，通过md5加密时间戳获取flag
-
-
-实验吧安全杂项MD5之守株待兔，你需要找到和系统锁匹配的钥匙做题感受，这个题难道就只能一直刷新等吗，太不亲民了
-
-访问url
-[http://ctf5.shi...
+								攻防世界题解easyjava好无聊啊，找个CTF做做，攻防世界有一栏Mobile的 正好适合
+下载文件地址： 
+https://adworld.xctf.org.cn/media/task/attachments/3f06e60ded...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/10/04/CTF/实验吧/实验吧-安全杂项-MD5守株待兔/" title="MD5之守株待兔">				
+							<a href="/2020/05/25/CTF/攻防世界/easyjava/" title="攻防世界-easyjava">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="MD5之守株待兔"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="攻防世界-easyjava"/>
 							</a>
 						</div>
 					</li>											
@@ -653,22 +570,24 @@ key：CTF{}
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/CTF/墨者学院/墨者学院-web安全-ActiveMQ任意文件写入漏洞/" title="ActiveMQ任意文件写入漏洞分析溯源">
-								ActiveMQ任意文件写入漏洞分析溯源			
+							<a class="relate-post-title" href="/2020/05/23/逆向/基础/dalvik指令集/" title="小白学习--dalvik指令集">
+								小白学习--dalvik指令集			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
+								五月 23日, 2020				
 							</p>
 							<p class="relate-post-content">
-								墨者学院WEB安全ActiveMQ任意文件写入漏洞分析溯源ActiveMQ 简介ActiveMQ 是 Apache 软件基金会下的一个开源消息驱动中间件软件。Jetty 是一个开源的 servlet 容器，它为基于 Java  的 w...
+								为什么要写这个， 因为看的太枯燥了，自己手打一遍 加深记忆。
+1 dalvik 字节码在说指令集前 先简单的回忆一下dalvik字节码的相关知识。
+1.1 Dalvik 寄存器Dalvik寄存器分为32位和64位，小于等于32位的使用...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/10/04/CTF/墨者学院/墨者学院-web安全-ActiveMQ任意文件写入漏洞/" title="ActiveMQ任意文件写入漏洞分析溯源">				
+							<a href="/2020/05/23/逆向/基础/dalvik指令集/" title="小白学习--dalvik指令集">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="ActiveMQ任意文件写入漏洞分析溯源"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="小白学习--dalvik指令集"/>
 							</a>
 						</div>
 					</li>											
@@ -676,23 +595,28 @@ key：CTF{}
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/CTF/Buuoj/HCTF2018-warmup-writeup/" title="HCTF2018-warmup-writeup">
-								HCTF2018-warmup-writeup			
+							<a class="relate-post-title" href="/2020/05/18/逆向/协议/人人协议/" title="人人登录协议分析">
+								人人登录协议分析			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
+								五月 18日, 2020				
 							</p>
 							<p class="relate-post-content">
-								BUUCTFwebwarmup这里我直接上代码讲 菜鸡不会php，全是现查 哪里不对，欢迎大佬指点
-1234567891011121314151617181920212223242526272829303132333435363738...
+								
+  
+  
+    Hey, password is required here.
+    
+  
+  679a78821027b2ab345ed86ed3e7d8226ebf53cbe022f8513d75105c5d4a4ec0...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/10/04/CTF/Buuoj/HCTF2018-warmup-writeup/" title="HCTF2018-warmup-writeup">				
+							<a href="/2020/05/18/逆向/协议/人人协议/" title="人人登录协议分析">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="HCTF2018-warmup-writeup"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="人人登录协议分析"/>
 							</a>
 						</div>
 					</li>											
@@ -700,31 +624,25 @@ key：CTF{}
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/10/04/CTF/实验吧/实验吧-web-后台登录/" title="后台登录">
-								后台登录			
+							<a class="relate-post-title" href="/2020/05/02/逆向/破解/xx小说去除签名校验/" title="shuqi小说去除签名校验">
+								shuqi小说去除签名校验			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								十月 4日, 2019				
+								五月 2日, 2020				
 							</p>
 							<p class="relate-post-content">
-								实验吧web后台登录
-burp抓包尝试爆破
-一般呢，ctf题是不涉及爆破的，因为这样会导致服务器处理压力太大
-
-
-可以看到这里当我们输入正确的密码后，会返回flag。
-那么我们的重点就是获取密码了
-
-寻找密码
-尝试了几次弱密码，注入都...
+								书旗小说去除签名校验shuqi小说去除签名校验使用工具andorid killer 、 jadx 、雷电模拟器
+去除过程
+老规矩，重签名打包 顺便打开ddms 随时关注报错信息
+发现打开了activity 之后就自动关闭了，这里呢就考...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/10/04/CTF/实验吧/实验吧-web-后台登录/" title="后台登录">				
+							<a href="/2020/05/02/逆向/破解/xx小说去除签名校验/" title="shuqi小说去除签名校验">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="后台登录"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="shuqi小说去除签名校验"/>
 							</a>
 						</div>
 					</li>											
@@ -732,23 +650,32 @@ burp抓包尝试爆破
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/05/30/CTF/攻防世界/RememberOther/" title="攻防世界-RememberOther">
-								攻防世界-RememberOther			
+							<a class="relate-post-title" href="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" title="霸哥磁力搜索去签名校验">
+								霸哥磁力搜索去签名校验			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								五月 30日, 2020				
+								五月 1日, 2020				
 							</p>
 							<p class="relate-post-content">
-								RememberOther附件下载https://adworld.xctf.org.cn/media/task/attachments/476d9022bb0449c09c0b1e24f0686b66.zip
-分析先安装 然后看看逻辑...
+								案例1 霸哥磁力搜索首先 签名校验不止一个，所以会经历无数次安装， 
+
+重签名打包，安装查看是否有签名校验（这里可以通过启动界面返回的信息查看）
+
+
+
+   安装 如果有检测 进入第二步
+   比如 下面的情况
+   
+
+检测是否有加...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2020/05/30/CTF/攻防世界/RememberOther/" title="攻防世界-RememberOther">				
+							<a href="/2020/05/01/逆向/破解/霸哥磁力搜索去签名校验/" title="霸哥磁力搜索去签名校验">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/1.jpg" alt="攻防世界-RememberOther"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="霸哥磁力搜索去签名校验"/>
 							</a>
 						</div>
 					</li>											
