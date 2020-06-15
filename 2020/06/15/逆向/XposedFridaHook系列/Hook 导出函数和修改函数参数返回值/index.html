@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      android 安全之环境搭建（一） | ST0new Blog
+      Hook 导出函数和修改函数参数返回值 | ST0new Blog
     
   </title>
   <meta name="author" content="ST0new">
@@ -165,7 +165,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《android 安全之环境搭建（一）》
+			当前文章&nbsp;:&nbsp;《Hook 导出函数和修改函数参数返回值》
 		
 	</p>
 
@@ -267,6 +267,18 @@
 		插件作者：KELEN
 		插件来源: https://github.com/KELEN/katelog
 -->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+		<script src="/plugin/toc/katelog.min.js"></script>
+
+		
 	 
 
 <div class="layout-post">
@@ -274,8 +286,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2020/02/05/逆向/android学习之环境搭建/" itemprop="url">
-		android 安全之环境搭建（一）
+	<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" itemprop="url">
+		Hook 导出函数和修改函数参数返回值
 	</a>
 
 	</div>
@@ -288,9 +300,9 @@
 
 	发布于
 
-	<a href="/2020/02/05/逆向/android学习之环境搭建/" itemprop="url">
-		<time datetime="2020-02-05T12:49:39.000Z" itemprop="datePublished">
-	  		2020-02-05
+	<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" itemprop="url">
+		<time datetime="2020-06-15T01:46:58.000Z" itemprop="datePublished">
+	  		2020-06-15
 	  </time>
 	</a>
 	&nbsp;
@@ -306,9 +318,9 @@
 
 	更新于
 
-	<a href="/2020/02/05/逆向/android学习之环境搭建/" itemprop="url">
-		<time datetime="2020-02-05T12:49:39.000Z" itemprop="dateUpdated">
-	  		2020-03-31
+	<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" itemprop="url">
+		<time datetime="2020-06-15T01:46:58.000Z" itemprop="dateUpdated">
+	  		2020-06-15
 	  </time>
 	</a> 
 
@@ -319,8 +331,8 @@
 			<i class="fa fa-tags"></i>
 			
 	
-		<a href="/tags/逆向/" class=" ">
-			逆向
+		<a href="/tags/hook/" class=" ">
+			hook
 		</a>
 	
 		
@@ -329,7 +341,7 @@
 		
 
 	
-    <span class="leancloud_visitors" id="/2020/02/05/逆向/android学习之环境搭建/_visitors" data-url="/2020/02/05/逆向/android学习之环境搭建/" data-title="android 安全之环境搭建（一）">
+    <span class="leancloud_visitors" id="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/_visitors" data-url="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" data-title="Hook 导出函数和修改函数参数返回值">
        	<i class="fa fa-eye"></i>
        	热度
         <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
@@ -339,7 +351,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2020/02/05/逆向/android学习之环境搭建/_likes" data-url="/2020/02/05/逆向/android学习之环境搭建/" data-title="android 安全之环境搭建（一）" rel="unlike">
+    <span class="leancloud_likes" id="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/_likes" data-url="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" data-title="Hook 导出函数和修改函数参数返回值" rel="unlike">
         <i class="fa fa-heart"></i>
         喜欢
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -348,18 +360,17 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <div class="hbe-input-container">
-  <input type="password" id="hbePass" placeholder="" />
-    <label for="hbePass">Hey, password is required here.</label>
-    <div class="bottom-line"></div>
-  </div>
-  <script id="hbeData" type="hbeData" data-hmacdigest="5c880b6e3b36c33eaf8222caa7467ca243ae542265b52bad0164bab916791f9a">2180d006303213985e487fd1170d435e54fb73b1db7948858c7fc5e204c5737ce8d9ad2c2a5ae0e03acdf5ddf027fc70a53b784e0dc027fab7e0870a08580a986ed21d9637624ca6b8e82fa9be90bc4de71f2ace73c117650ebbf0a2eb0aae19362fd1fb0bb702bf2ea69ddb8520fa13a2dc9eaa2299c7b7e33d6e308255a1e873ec2d2443477b05f20c40880416abcc5947913a44d56f2fdd2cbd68876e4b89ff883039b681df793c7a3f17521ddb259d7bafd83c7271a014a43bdd844016183d12013bc1e17fbc14e016fcf9345eaaf317111f53434cd306654e7fe21396fafcad93f051837cd7aa52ccc146aea72453c58178f98e967d8cdff6a773e0d19c5694ced7d63c95277d54ed619d25b60c589a57605aa5116f17ea789573a9a4c3fb46a9019bf23645db043fea5360a0f1fd88adb9ed315ed97c9fbe36b100ac72fa56c67f18ba28575c1dcdaa7d79821a4ff5bb77884747039883660db59963f50afc8747bc311027514d0b1b7e5fe1263608a30976708d0d305944d91fb7780ccf804a25c9324816c986210b60c06fddbd24fa7c491198c6b51c908f337727fb9cf3a7618cc10d4d5c8138aceb0e38b559b87acabfbc5419e018312c96281806f61f55adebc6cd70a434b786d90832d298583ac539febbcaefaad48e9e7bd85611cd2282a83cd69d601d796afd32649426097d6515ef133e2eabd9695e0c74e461d2124995d124fd9c8a7825b95f2ed96c74bb7edf9d1cf867c6db891c439c274295b060ce45ce5ec325398f37475959c309e8e20cc64c96230e7b4d8a8e16f3d5187abfcd5e3d7946b8e58f948c1b6e06267fccf1693f4b9fe0a7d6954519d41a5a1c327dc34963d0b1f343d3ca45881c943aeed6191fa7bcd7d717d614a1f601c81ae109ca6d4e6bd1915dab04e4e00e3372dfe9ce2cf3e932628fbcc5c6e08b331841ed48a4a00988db9e4e84daca00b948ebf964c17979d389c1654307ea15dc7851efd332501f38599f9a684accf7d9e4404fae3fe1072857a568c0913e389b2e60e37c0b36534271d3774007e1c6a47a32af05dfa3fa22decb043c354db24b0fb9c86b4f87e2134d59ee926e6b77bce7f0e264eee280ad9164c7159f781ad4d169b218cabc0ac9e0d94f77e923a21de4a37214cfbfcd4be15dc0e94dd8ff3eeaa3cd41cbaca6f05e3cb0bf92493dc67aec20c87e2a09bc0edaabe7ab998589a76e0593171d46e52413eed76e6e754b76fb5e1267eff319816782b7d4f93ad8109763522bd8751c82248e8fa559cb4b8110539e2cf718f32982a301ee046c331f3373b4f5661d8a165c2944217a9d2535a1ff6b858cf18fbf1777b818326361bba8ddd17a0f2ad6e2d296156ba6eba39261fa6f0338401dd2dfccc3b8d5afd65153087cb0a6d5a6d40796ea2430fdd44f87a0a287d082094f1fb6591ac433ad8e1a247f3cc289c8ff403cc5fefcb667b95f8329c82e12d46eadc53ed7a2831735b8efcc7a192199294c9565c221deb645348abd411bf7735fc57c16ffdc7b3bf827b87935703d2f3776c7765deabf53ef783f266116cf63ed7ba1b05c45b6721a90e130632828bc157cae8250ce448c21598abc5a0cbe7cf5f8b5c0776751b4d3d84e52b1aea8076fb14dcf64c5a16e13f34fdf5f9b628a37f27aec017d1b6d267bfc39f3c9d71480e2b296ff982244a46d19ba75d7aeadd3fb411fbafd86c8a57a024503a12b0d87683ef650214c083b34e988f6fe551d03fd08ff1dc280313f819efc8168d4123c01711350926fc1e1442c85de07ca15a36c29109eb4d2b020993ddde25dfce7090d717e468df372073d7e9bc8c901b7463048fdc30ca7bcd4b6f02b0463ff6e7442ce4bb286ae3f1a202368dec8f8f81d7c9cec8cbeaf6d767a4c7d1ae8ac5bf0432b1f6647092a3f596232dbfc70aff158389d2a1139d765e87862fd10bbf4c92b58d5815edc3154aa559cacba98a79c3b938af1b173dea905d5b4dcb3d1b42b2ca63206894cdbbc0ae79b68e1d7fb54685c916988c957be38f3fc5875639cf72bb7e99fe96919b0833b43b3c9d244ad6c05821bf1c89d223a6207951afdc574cc7e4583965467310be2f7a7c3826dadbc137e7957775d205a4a90779ad0c172ab4feca6a4c8d21c022122fc950e4ec5115d89d4175c20688a375f635232cd531bb7db5efac0e43636c7abfac680f3fc86ee486348973bf39cf9963dc360b1d2c16d6380aaa92c2d5ffc69f42da8bf9cf00d5e3234c230feb235f86401e11969d092ea8b54059a22a8d9292dd452eaacef45187ff1f6c1f7f15fb8e28a387ab2432fc8f4e2b0acaea1edbf19e1feb41f878e96e22bc74a9a7d69765b1887e828e1eb4e35c896bc2f56fa4062bb6115fdf39017907b0c96a1292285bf3678be09b09a564b04ff4d79ba6fe437b8238a597a42232e8d32213772d90572ec293f4c1df400fbc6eebe02fc7e8ce7f434d877e0afad69512ef5bc9263e74629d3427aec970ee288e119fc0fd9de72d122fcae1746e89181b1908bff2aafa796476690deeccdcf071c539328da7e75ae3e7228bb0f8be07f37b10a6d4f84715530abd87a4232d190244dab1b09d6b387309a254c0b1bea030fcda71cb950823a9b1150bc755f7ac00c2cb1682381af0ed416036950f5faf1f642da78e9836b6aa1fd90942fffe4e35ddc0363f7d6466bc7634b7669d44e863190caa06c6c9b5031f2db0ba60ca6a90a28a6f615766c5f7bffd24b25646959077cd4d747f7b7846fdec6d8e9233d98a395b75c49464dad830fd07f13196c18535926eb7d74e5286eb6020a6fa66a8b24d4e7f3ee826f0c73d52d2b460e4e357ff646ce8ada32f7a83ed2b472b0df0f2923f70034308b960e176863ec23d7ee12487ee5a59fa92e1c411a480499590562953fc08ffe9fb2edb431350bd8c8ad3c8d8556e684ada52bd35a86baaf27e838919980b76d9234615b0104cd82cd502ceab8735fc56da159ad3b6e0c3d343c7227b83f572540e073d5af1f7e6ffe2c132ed1afd46c991fbfc8ae6e74f99f49b3d6325b8970f7ac0dc325c1886808045070375a29177b8398945bd1736b93136dc9f6f776bf5bf5d9a8913c394a4c0544bd649815743c7895aa54534f9f6bcacec0d0c8414fc12f843169fc19b189ebb8048784e6c6811be77a994484b1d57eb3893bddac210399b0ae0032d294f83bcbff0e75f529e167a7b226c12fd68b8e60ddcbcee8ae2adb49732d7e5a12daa9c7d09169c990f4e97e03169b5489daea142c0184713bbfbb445b88eea26764ec6f56fd1fc7d95275c88f635954c48e0898ba10529942dfe0b9927b2c236cb50db8a021df65343d22a58279aaa9b4ac9f0819c310e34322ff2ba4b24326a107c89dfc0bb4f3e3d00a7366147872255a79a8b0a6f5012185d6339c866802a705e7ad458edf6cd90a310b6ad2c22d6323f2866ae893649bd6f548dba3e0af6367e25ddd10ebd29affebb57f5304ff3b9730c9a1edac41c874acda52b02d61744984582b373a476e09534b42495336c2dedaae310b49c890fe76cb6298b9108aeb3a776a5c2b89fdec56d0f58993c54d4f80a483f0663f1f81c493a103c27bdfde75c602db2e582988a97a7ed17a9a7b2a9b796f62719b45a5aa613d9d9fc3177482cdc4e03326d83844d887aa46d66ca19c09ff62e7f26f77bcf0b37c21975a9ca359aef6505efb20193de377a7465d37a0df8917c0a1c112c8d7073b5b5d6ce81971198f3ec62ea843232766c9865e488a910236ccbd2324416110da72f496162569c38e9340b2ef5fd990f81ddb3b9cb7783148d66d197f587530e9dbd79297b6e088ba1c018f516e28e3e34983d0ebf5bd598a19994a5afce21935baf0b39f49b28797554691ddcc0ec185dcb47f5878bfb2d293440cc243e133a746fd174ef9b64c3903977a9c13367f3604405b7cf3ea5fcf894ac354b01db4bce9f1b41b7d072a2f7e06b2fe29f38d737dde55bf1d83c6c299acf85901ba7a9f5ddf016a5e591e5200e633f1bb404a8181cc8574551a40763a661f7f0a4726facd0b49b73a18bbc1eac124ee953cf61e284ef042ad5de480ce7077e432436aa310a46c79dbf5b702149d95fd165e446cf43363c9b1</script>
-</div>
-<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">	
+		<h1 id="Hook-导出函数"><a href="#Hook-导出函数" class="headerlink" title="Hook 导出函数"></a>Hook 导出函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// hook 导出函数</span><br><span class="line">function hookTest1() &#123;</span><br><span class="line">     var addAddr = Module.findExportByName(&quot;libxiaojianbang.so&quot;, &quot;Java_com_xiaojianbang_app_NativeHelper_add&quot;);</span><br><span class="line">     console.log(addAddr);</span><br><span class="line"></span><br><span class="line">     if (addAddr != NULL)&#123;</span><br><span class="line">         Interceptor.attach(addAddr,&#123;</span><br><span class="line">             onEnter:function (args) &#123;</span><br><span class="line">                console.log(args[0]);</span><br><span class="line">                console.log(args[1]);</span><br><span class="line">                args[2] = ptr(1000);</span><br><span class="line">                console.log(args[2]);</span><br><span class="line">                console.log(args[3]);</span><br><span class="line">                console.log(args[4]);</span><br><span class="line"></span><br><span class="line">             &#125;,</span><br><span class="line">             onLeave:function (retval) &#123;</span><br><span class="line">                console.log(retval);</span><br><span class="line">                console.log(retval.toInt32());</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;)</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line">function main()&#123;</span><br><span class="line">    Java.perform(function () &#123;</span><br><span class="line">     hookTest1();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setImmediate(main)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/6/20200615100331.png" alt></p>
+<h2 id="hook-修改函数参数返回值"><a href="#hook-修改函数参数返回值" class="headerlink" title="hook 修改函数参数返回值"></a>hook 修改函数参数返回值</h2><p>修改<code>onEnter</code> 参数的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function hookTest1() &#123;</span><br><span class="line">     var addAddr = Module.findExportByName(&quot;libxiaojianbang.so&quot;, &quot;Java_com_xiaojianbang_app_NativeHelper_add&quot;);</span><br><span class="line">     console.log(addAddr);</span><br><span class="line"></span><br><span class="line">     if (addAddr != NULL)&#123;</span><br><span class="line">         Interceptor.attach(addAddr,&#123;</span><br><span class="line">             onEnter:function (args) &#123;</span><br><span class="line">                console.log(args[0]);</span><br><span class="line">                console.log(args[1]);</span><br><span class="line">                args[2] = ptr(1000);  // 这里这个可以修改参数的值，ptr是 new Nativepointer 的简写</span><br><span class="line">                console.log(args[2]);</span><br><span class="line">                console.log(args[3]);</span><br><span class="line">                console.log(args[4]);</span><br><span class="line"></span><br><span class="line">             &#125;,</span><br><span class="line">             onLeave:function (retval) &#123;</span><br><span class="line">                console.log(retval);</span><br><span class="line">                console.log(retval.toInt32());</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;)</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改<code>onLeave</code>的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function hookTest1() &#123;</span><br><span class="line">    var addAddr = Module.findExportByName(&quot;libxiaojianbang.so&quot;, &quot;Java_com_xiaojianbang_app_NativeHelper_add&quot;);</span><br><span class="line">    console.log(addAddr);</span><br><span class="line"></span><br><span class="line">    if (addAddr != NULL) &#123;</span><br><span class="line">        Interceptor.attach(addAddr, &#123;</span><br><span class="line">            onEnter: function (args) &#123;</span><br><span class="line">                console.log(args[0]);</span><br><span class="line">                console.log(args[1]);</span><br><span class="line">                args[2] = ptr(1000);</span><br><span class="line">                console.log(args[2]);</span><br><span class="line">                console.log(args[3]);</span><br><span class="line">                console.log(args[4]);</span><br><span class="line"></span><br><span class="line">            &#125;,</span><br><span class="line">            onLeave: function (retval) &#123;</span><br><span class="line">                retval.replace(123999) // 通过replace 去修改返回值参数</span><br><span class="line">                console.log(retval);</span><br><span class="line">                console.log(retval.toInt32());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>	
 	</div>
 	
-	<div id="current-post-cover" data-scr="/img/post-cover/1.jpg"></div>
+	<div id="current-post-cover" data-scr="/img/post-cover/2.jpg"></div>
 
 	<!-- relate post, comment...-->
 	<div class="investment-container">
@@ -374,12 +385,8 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2020/02/26/编程/python/python介绍/" title="python 入门简介" rel="prev">
-				&laquo;上一篇
-			</a>
 		
-		
-			<a href="/2019/10/27/CTF/wp/K&A UNCTF/" title="UNCTF竞技赛" rel="next">
+			<a href="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/" title="Hook Java层通杀" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -397,29 +404,6 @@
 <div class="relate-post">
 	
 		<ul>
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" title="Hook 导出函数和修改函数参数返回值">
-								Hook 导出函数和修改函数参数返回值			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								六月 15日, 2020				
-							</p>
-							<p class="relate-post-content">
-								Hook 导出函数123456789101112131415161718192021222324252627282930// hook 导出函数function hookTest1() &#123;     var addAddr =...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" title="Hook 导出函数和修改函数参数返回值">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook 导出函数和修改函数参数返回值"/>
-							</a>
-						</div>
-					</li>											
-			
 			
 					<li>
 						<div class="relate-post-text">
@@ -649,6 +633,30 @@ https://adworld.xctf.org.cn/media/task/attachments/456c1dab04b24036ba1d6e32a08dc
 							<a href="/2020/05/26/CTF/攻防世界/easy-so/" title="攻防世界-eaasy-so">				
 								
 								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="攻防世界-eaasy-so"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/05/25/CTF/攻防世界/easyjni/" title="攻防世界-easyjni">
+								攻防世界-easyjni			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 25日, 2020				
+							</p>
+							<p class="relate-post-content">
+								easyjni下载附件地址：https://adworld.xctf.org.cn/media/task/attachments/eb760e6a10ea4dcab700a6b7db948488.apk
+分析安装apk，先看看逻辑，打...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/05/25/CTF/攻防世界/easyjni/" title="攻防世界-easyjni">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/3.jpg" alt="攻防世界-easyjni"/>
 							</a>
 						</div>
 					</li>											
