@@ -273,6 +273,107 @@
 				<div class="post-title" id="post-title-index">			
 					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 					
+	<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" itemprop="url">
+		Hook 计算非导出函数地址
+	</a>
+
+				</div>
+
+				<div class="post-content">
+					
+						Hook 计算非导出函数地址123计算公式：	基址 + 函数偏移地址 + 1 thumb指令集 2 或4	基址 + 函数偏移地址  arm 指令集 4
+
+123456function hookTest2() &#123;    var soAddr = Module.findBaseAddress(&quot;libxiaojianbang.so&quot;);    console.log(soAddr);    var funcAddr = soAddr.add(0x1848 + 1); // 基址加上偏移地址    console.log(funcAddr)&#125;
+
+通过pr...
+					
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
+
+
+
+
+
+
+	<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" itemprop="url">
+		<time datetime="2020-06-15T01:46:58.000Z" itemprop="datePublished">
+	  		2020-06-15
+	  </time>
+	</a> 
+
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/_visitors" data-url="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" data-title="Hook 计算非导出函数地址">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/_likes" data-url="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" data-title="Hook 计算非导出函数地址" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" title="阅读全文">阅读全文</a>	
+						</span>
+					
+				</div>
+			</div>
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2020/06/11/逆向/XposedFridaHook系列/hook导入导出表/" itemprop="url">
 		Hook so 导入导出表
 	</a>
@@ -364,6 +465,116 @@
 					
 						<span class="right">      	
 							<a href="/2020/06/11/逆向/XposedFridaHook系列/hook导入导出表/" title="阅读全文">阅读全文</a>	
+						</span>
+					
+				</div>
+			</div>
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
+	<a href="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/" itemprop="url">
+		Hook Java层通杀
+	</a>
+
+				</div>
+
+				<div class="post-content">
+					
+						Hook 通杀Hook 普通方法和修改函数参数返回值fradaserver 是手机端的，
+
+android低版本 frida 尽量低版本
+fridaserver版本要与frida库版本一致
+不同平台用不同fridaserver
+不要和xposed装一起，新疆模拟器，刷机
+
+设备要求:
+​    root
+调试下载frida-server push到手机中 (注意查看手机是86的还是64的)
+adb push .\frida-server-12.8.14-android-x86 /data/local/tmp/fsx86
+
+之后cd到tmp目录下
+先给fsx86 赋权  chmod 777...
+					
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
+
+
+
+
+
+
+	<a href="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/" itemprop="url">
+		<time datetime="2020-06-11T08:09:27.000Z" itemprop="datePublished">
+	  		2020-06-11
+	  </time>
+	</a> 
+
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/_visitors" data-url="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/" data-title="Hook Java层通杀">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/_likes" data-url="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/" data-title="Hook Java层通杀" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/" title="阅读全文">阅读全文</a>	
 						</span>
 					
 				</div>
@@ -1097,219 +1308,6 @@ https://adworld.xctf.org.cn/media/task/attachments/456c1dab04b24036ba1d6e32a08dc
 					
 						<span class="right">      	
 							<a href="/2020/05/26/CTF/攻防世界/easy-so/" title="阅读全文">阅读全文</a>	
-						</span>
-					
-				</div>
-			</div>
-		</div>
-	
-		<div class="post" id="post">
-			<div class="post-text">
-				<div class="post-title" id="post-title-index">			
-					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-					
-	<a href="/2020/05/26/CTF/ctfhub/彩蛋/" itemprop="url">
-		ctfhub-彩蛋
-	</a>
-
-				</div>
-
-				<div class="post-content">
-					
-						彩蛋首页
-*.ctfhub.com 不确定是那个域名的首页，那么先搜索一下子域名瞧瞧 
-使用工具：Turbolist3r
-12345[-] Total Unique Subdomains Found: 4api.ctfhub.comctfhub.com&lt;BR&gt;www.ctfhub.comstatic.ctfhub.comwriteup.ctfhub.com
-
-第一个就命中了，ctrl+u 查看源代码，找到flag
-
-公众号
-看来不得不关注一波了
-
-每一位CTF选手都是在为flag冲击
-题目入口
-那就找找题目的入口看看， 哈哈，找了个web题，
-打开正常 ，不存在flag， 然...
-					
-				</div>
-				
-				<div class="post-meta">
-					<span>
-						发布于
-						<i>
-							
-
-
-
-
-
-
-	<a href="/2020/05/26/CTF/ctfhub/彩蛋/" itemprop="url">
-		<time datetime="2020-05-26T00:30:54.000Z" itemprop="datePublished">
-	  		2020-05-26
-	  </time>
-	</a> 
-
-						</i>
-					</span>
-					
-					
-
-	
-    <span class="leancloud_visitors" id="/2020/05/26/CTF/ctfhub/彩蛋/_visitors" data-url="/2020/05/26/CTF/ctfhub/彩蛋/" data-title="ctfhub-彩蛋">
-       	<i class="fa fa-eye"></i>
-       	热度
-        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
-    </span>
-    
-
-
-
-	
-    <span class="leancloud_likes" id="/2020/05/26/CTF/ctfhub/彩蛋/_likes" data-url="/2020/05/26/CTF/ctfhub/彩蛋/" data-title="ctfhub-彩蛋" rel="unlike">
-        <i class="fa fa-heart"></i>
-        喜欢
-        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
-    </span>
-
-					
-
-	<!-- leancloud -->
-	<!--
-	时间：2018-11-27
-	描述：
-		文章访问量：visitors
-		文章喜欢量：likes	
-		文章排行榜：topNPost
-		其他得说明：
-			01-Cookie相关的函数 
-				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
-			02-visitors相关的函数 
-				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
-				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
-			03-topNPost相关的函数
-				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
-			04-likes相关的函数，
-				参考了01 & 02进行简单的设计与实现
--->
-
-
-
-	<script>
-		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
-            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
-        AnnieLeancloud(appid, appkey);         
-	</script>
-    
-
-	
-
-					
-						<span class="right">      	
-							<a href="/2020/05/26/CTF/ctfhub/彩蛋/" title="阅读全文">阅读全文</a>	
-						</span>
-					
-				</div>
-			</div>
-		</div>
-	
-		<div class="post" id="post">
-			<div class="post-text">
-				<div class="post-title" id="post-title-index">			
-					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-					
-	<a href="/2020/05/25/CTF/攻防世界/easyjni/" itemprop="url">
-		攻防世界-easyjni
-	</a>
-
-				</div>
-
-				<div class="post-content">
-					
-						easyjni下载附件地址：https://adworld.xctf.org.cn/media/task/attachments/eb760e6a10ea4dcab700a6b7db948488.apk
-分析安装apk，先看看逻辑，打开后发现输入字符串，然后系统判断正确与否，那么就要自己去啃算法了
-打开jadx ，定位到oncrete处，if判断决定了是正确还是失败，跟进其中的方法查看
-
-在a方法中，当ncheck(new a().a(str.getBytes())) 才能返回正确，那么继续跟进，看何时返回True
-
-先分析一个new a().a(str.getBytes()) 获得了什...
-					
-				</div>
-				
-				<div class="post-meta">
-					<span>
-						发布于
-						<i>
-							
-
-
-
-
-
-
-	<a href="/2020/05/25/CTF/攻防世界/easyjni/" itemprop="url">
-		<time datetime="2020-05-25T09:55:46.000Z" itemprop="datePublished">
-	  		2020-05-25
-	  </time>
-	</a> 
-
-						</i>
-					</span>
-					
-					
-
-	
-    <span class="leancloud_visitors" id="/2020/05/25/CTF/攻防世界/easyjni/_visitors" data-url="/2020/05/25/CTF/攻防世界/easyjni/" data-title="攻防世界-easyjni">
-       	<i class="fa fa-eye"></i>
-       	热度
-        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
-    </span>
-    
-
-
-
-	
-    <span class="leancloud_likes" id="/2020/05/25/CTF/攻防世界/easyjni/_likes" data-url="/2020/05/25/CTF/攻防世界/easyjni/" data-title="攻防世界-easyjni" rel="unlike">
-        <i class="fa fa-heart"></i>
-        喜欢
-        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
-    </span>
-
-					
-
-	<!-- leancloud -->
-	<!--
-	时间：2018-11-27
-	描述：
-		文章访问量：visitors
-		文章喜欢量：likes	
-		文章排行榜：topNPost
-		其他得说明：
-			01-Cookie相关的函数 
-				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
-			02-visitors相关的函数 
-				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
-				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
-			03-topNPost相关的函数
-				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
-			04-likes相关的函数，
-				参考了01 & 02进行简单的设计与实现
--->
-
-
-
-	<script>
-		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
-            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
-        AnnieLeancloud(appid, appkey);         
-	</script>
-    
-
-	
-
-					
-						<span class="right">      	
-							<a href="/2020/05/25/CTF/攻防世界/easyjni/" title="阅读全文">阅读全文</a>	
 						</span>
 					
 				</div>
