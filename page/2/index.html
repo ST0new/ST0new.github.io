@@ -273,19 +273,15 @@
 				<div class="post-title" id="post-title-index">			
 					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 					
-	<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" itemprop="url">
-		Hook 计算非导出函数地址
+	<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" itemprop="url">
+		Hook 导出函数和修改函数参数返回值
 	</a>
 
 				</div>
 
 				<div class="post-content">
 					
-						Hook 计算非导出函数地址123计算公式：	基址 + 函数偏移地址 + 1 thumb指令集 2 或4	基址 + 函数偏移地址  arm 指令集 4
-
-123456function hookTest2() &#123;    var soAddr = Module.findBaseAddress(&quot;libxiaojianbang.so&quot;);    console.log(soAddr);    var funcAddr = soAddr.add(0x1848 + 1); // 基址加上偏移地址    console.log(funcAddr)&#125;
-
-通过pr...
+						Hook 导出函数123456789101112131415161718192021222324252627282930// hook 导出函数function hookTest1() &#123;     var addAddr = Module.findExportByName(&quot;libxiaojianbang.so&quot;, &quot;Java_com_xiaojianbang_app_NativeHelper_add&quot;);     console.log(addAddr);     if (addAddr != NULL)&#123;         I...
 					
 				</div>
 				
@@ -300,7 +296,7 @@
 
 
 
-	<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" itemprop="url">
+	<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" itemprop="url">
 		<time datetime="2020-06-15T01:46:58.000Z" itemprop="datePublished">
 	  		2020-06-15
 	  </time>
@@ -312,7 +308,7 @@
 					
 
 	
-    <span class="leancloud_visitors" id="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/_visitors" data-url="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" data-title="Hook 计算非导出函数地址">
+    <span class="leancloud_visitors" id="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/_visitors" data-url="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" data-title="Hook 导出函数和修改函数参数返回值">
        	<i class="fa fa-eye"></i>
        	热度
         <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
@@ -322,7 +318,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/_likes" data-url="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" data-title="Hook 计算非导出函数地址" rel="unlike">
+    <span class="leancloud_likes" id="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/_likes" data-url="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" data-title="Hook 导出函数和修改函数参数返回值" rel="unlike">
         <i class="fa fa-heart"></i>
         喜欢
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -362,7 +358,7 @@
 
 					
 						<span class="right">      	
-							<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" title="阅读全文">阅读全文</a>	
+							<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" title="阅读全文">阅读全文</a>	
 						</span>
 					
 				</div>
