@@ -1094,6 +1094,106 @@ API调用参数使用通过API访问的资源的ID /api/shop1/financial_info。
 				<div class="post-title" id="post-title-index">			
 					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 					
+	<a href="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/" itemprop="url">
+		Hook 获取指针参数的返回值
+	</a>
+
+				</div>
+
+				<div class="post-content">
+					
+						Hook 获取指针参数的返回值在c语言中，一般都会以指针传递返回的值 ，没有return 或者return为true
+hook sub_750 打印参数和输出
+
+12345678910111213141516171819function hookTest5()&#123;    var soAddr = Module.findBaseAddress(&quot;libxiaojianbang.so&quot;);    //console.log(&quot;soAddr --&gt;&quot;+ soAddr);    var sub_750 = soAddr.add(0x750);...
+					
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
+
+
+
+
+
+
+	<a href="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/" itemprop="url">
+		<time datetime="2020-06-15T01:46:58.000Z" itemprop="datePublished">
+	  		2020-06-15
+	  </time>
+	</a> 
+
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/_visitors" data-url="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/" data-title="Hook 获取指针参数的返回值">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/_likes" data-url="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/" data-title="Hook 获取指针参数的返回值" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/" title="阅读全文">阅读全文</a>	
+						</span>
+					
+				</div>
+			</div>
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" itemprop="url">
 		Hook 计算非导出函数地址
 	</a>
@@ -1184,104 +1284,6 @@ API调用参数使用通过API访问的资源的ID /api/shop1/financial_info。
 					
 						<span class="right">      	
 							<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" title="阅读全文">阅读全文</a>	
-						</span>
-					
-				</div>
-			</div>
-		</div>
-	
-		<div class="post" id="post">
-			<div class="post-text">
-				<div class="post-title" id="post-title-index">			
-					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-					
-	<a href="/2020/06/15/逆向/XposedFridaHook系列/hook dlopen/" itemprop="url">
-		Hook dlopen
-	</a>
-
-				</div>
-
-				<div class="post-content">
-					
-						hook dlopen在刚开始hook 我们必须使得app加载so 才能hook， 我们可以hookdlopen 获取到so在那加载，在高版本中有一些so会走android_dlopen_ext
-123456789101112131415161718192021222324252627282930313233343536function hookTest6()&#123;    var dlopen = Module.findExportByName(null, &quot;dlopen&quot;);    console.log(dlopen);    if(dlopen != nu...
-					
-				</div>
-				
-				<div class="post-meta">
-					<span>
-						发布于
-						<i>
-							
-
-
-
-
-
-
-	<a href="/2020/06/15/逆向/XposedFridaHook系列/hook dlopen/" itemprop="url">
-		<time datetime="2020-06-15T01:46:58.000Z" itemprop="datePublished">
-	  		2020-06-15
-	  </time>
-	</a> 
-
-						</i>
-					</span>
-					
-					
-
-	
-    <span class="leancloud_visitors" id="/2020/06/15/逆向/XposedFridaHook系列/hook dlopen/_visitors" data-url="/2020/06/15/逆向/XposedFridaHook系列/hook dlopen/" data-title="Hook dlopen">
-       	<i class="fa fa-eye"></i>
-       	热度
-        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
-    </span>
-    
-
-
-
-	
-    <span class="leancloud_likes" id="/2020/06/15/逆向/XposedFridaHook系列/hook dlopen/_likes" data-url="/2020/06/15/逆向/XposedFridaHook系列/hook dlopen/" data-title="Hook dlopen" rel="unlike">
-        <i class="fa fa-heart"></i>
-        喜欢
-        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
-    </span>
-
-					
-
-	<!-- leancloud -->
-	<!--
-	时间：2018-11-27
-	描述：
-		文章访问量：visitors
-		文章喜欢量：likes	
-		文章排行榜：topNPost
-		其他得说明：
-			01-Cookie相关的函数 
-				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
-			02-visitors相关的函数 
-				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
-				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
-			03-topNPost相关的函数
-				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
-			04-likes相关的函数，
-				参考了01 & 02进行简单的设计与实现
--->
-
-
-
-	<script>
-		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
-            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
-        AnnieLeancloud(appid, appkey);         
-	</script>
-    
-
-	
-
-					
-						<span class="right">      	
-							<a href="/2020/06/15/逆向/XposedFridaHook系列/hook dlopen/" title="阅读全文">阅读全文</a>	
 						</span>
 					
 				</div>
