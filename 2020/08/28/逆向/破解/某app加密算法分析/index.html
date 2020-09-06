@@ -1,7 +1,7 @@
 <!--
 	作者：Sariay
-	时间：2018-09-25
-	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
 -->
 <!DOCTYPE html>
 <html class="html-loading">
@@ -23,15 +23,28 @@
   <link rel="shortcut icon" href="/img/favicon.ico">
 
   <!-- css -->
-  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/Annie.css">
+  <link rel="stylesheet" href="/css/Annie.css">
   
   <!-- jquery -->
-	<script src="/js/jquery.min.js"></script>
+	<script src="/plugin/jquery/jquery.min.js"></script>
 
-  <!-- leancloud -->
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script src="/js/leancloud.js"></script>
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/header-bg.jpg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
 </head>
 	<body>
 		<!-- Preloader -->
@@ -39,10 +52,9 @@
 	<div id="preloader">
 		<div class="pre-container">
 			
-				<div class="transition">
-					<div class="three-bounce1"></div>
-					<div class="three-bounce2"></div>
-					<div class="three-bounce3"></div>
+				<div class="spinner">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
 				</div>
 						
 		</div>
@@ -50,105 +62,24 @@
 
 
 <!-- header -->
-<header class="fixbackground" data-img-mode="random" data-normal-src="/img/1.jpg" data-random-max="111" data-random-src="/img/Random-img/">
+<header class="fixbackground bg-pan-br">
 	<div class="mask">
-		<!-- Logo and navigation -->
-		<div class="h-header">
-			<div id="logo">
-				<a href="/">
-						
-						<img src="/img/logo.png" alt="Logo">
-					
-				</a>
-			</div>
-			
-			<div id="navigation-show">
-				<ul>
-	
-		<li class="menu-home">
-			<a href="/" class="menu-item-home">主页</a>
-		</li>
-	
-		<li class="menu-archive">
-			<a href="/archives" class="menu-item-archive">归档</a>
-		</li>
-	
-		<li class="menu-categories">
-			<a href="/categories" class="menu-item-categories">分类</a>
-		</li>
-	
-		<li class="menu-tags">
-			<a href="/tags" class="menu-item-tags">标签</a>
-		</li>
-	
-		<li class="menu-about">
-			<a href="/about" class="menu-item-about">关于</a>
-		</li>
-	
-		<li class="menu-links">
-			<a href="/links" class="menu-item-links">links</a>
-		</li>
-	
-
-	
-		<li class="menu-search">
-			<a href="javascript:;" class="popup-trigger">搜索</a>
-		</li>
-	
-</ul>
-			</div>				
-		</div>
-
 		<!-- motto -->
 		<div class="h-body">	
 			
-				<p class="motto"></p>
+				<div class="motto text-shadow-pop-left">
+					<p class="content" id="motto-content">获取中...</p>
+					<p>-<p>
+					<p class="author" id="motto-author">Just a minute...</p>
+				</div>
 			
 		</div>
 		
 		<!-- others: such as time... -->			
 		<div class="h-footer">
-			<a href="javascript:;" id="read-more"><i class="fa fa-angle-double-down" aria-hidden="true"></i>
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
 			</a>
-
-			
-				<!-- 
-	This is only a demo, please go to "https://time.is" to set your city time! 
--->
-<style type="text/css">
-	.header-date {
-		font-size: 1.6rem;
-		color: #fff;
-		position: absolute;
-		bottom: 5px;
-		right: 1rem;
-		writing-mode: tb-rl;
-	}	
-	
-	.header-date a {
-		border-bottom: none;
-	}
-
-	@media only screen and (max-width: 768 ) {
-		.header-date {
-			font-size: 1rem;
-		}			
-	}
-</style>
-<div class="header-date">
-	<a href="https://time.is/Beijing" id="time_is_link" rel="nofollow" ></a>
-	<span id="Beijing_z43d"></span>
-</div>
-<script src="//widget.time.is/zh.js"></script>
-<script>
-	time_is_widget.init({
-		Beijing_z43d:{
-			template:"DATE", 
-			date_format:"year年 monthname dnum日"
-		}
-	});
-</script>
-			
 		</div>
 	</div>
 </header>
@@ -158,16 +89,19 @@
 	<div id="progress-bar"></div>
 
 	<!-- Progress percent -->
-	<div id="progress-percentage"><h1>0.0%</h1></div>
+	<div id="progress-percentage"><span>0.0%</span></div>
 
 	<div class="toc-switch"><span class="switch-button">目录</span></div>
 
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《某app加密算法分析》
+			「某app加密算法分析」
 		
 	</p>
+
+	
+	
 
 	<!-- Nav trigger for navigation-H-->
 	<a class="nav-trigger"><span></span></a>
@@ -176,80 +110,98 @@
 <!-- Navigation in div(id="navigation-H") -->
 <nav class="nav-container" id="cd-nav">
 	<div class="nav-header">
-		<h3>Navigation</h3>
+		<span class="logo"> 
+			<img src="/img/logo.png">
+		</span>
 		<a href="javascript:;" class="nav-close"></a>
 	</div>
+	
 	<div class="nav-body">
-		<ul>
+		<ul id="global-nav">
 	
 		<li class="menu-home">
-			<a href="/" class="menu-item-home">主页</a>
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
 		</li>
+		
 	
 		<li class="menu-archive">
-			<a href="/archives" class="menu-item-archive">归档</a>
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
 		</li>
+		
 	
 		<li class="menu-categories">
-			<a href="/categories" class="menu-item-categories">分类</a>
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
 		</li>
+		
 	
 		<li class="menu-tags">
-			<a href="/tags" class="menu-item-tags">标签</a>
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
 		</li>
+		
 	
 		<li class="menu-about">
-			<a href="/about" class="menu-item-about">关于</a>
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
 		</li>
+		
 	
-		<li class="menu-links">
-			<a href="/links" class="menu-item-links">links</a>
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
 		</li>
+		
 	
 
 	
-		<li class="menu-search">
-			<a href="javascript:;" class="popup-trigger">搜索</a>
-		</li>
-	
 </ul>
 	</div>
+	
 	<div class="nav-footer">
-		<ul>
+		<ul id="global-social">
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-github"></i>
+				<span class="icon-one"><span class="path1"></span><span class="path2"></span></span>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-weibo"></i>
+				<span class="icon-zhihu"></span>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-pinterest"></i>
+				<span class="icon-github"></span>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-instagram"></i>
+				<span class="icon-sina-weibo "></span>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-twitter"></i>
+				<span class="icon-pinterest2"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-instagram"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-twitter"></span>
 			</a>
 		</li>
 	
 		<li>
 			<a href="/atom.xml" target="_blank">
-				<i class="fa fa-rss"></i>
+				<span class="icon-rss"></span>
 			</a>
 		</li>
 			
@@ -271,35 +223,19 @@
 
 <div class="layout-post">
 	<div id="layout-post">
-	<div class="article-title">
-		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-		
+		<div class="article-title">
+			
 	<a href="/2020/08/28/逆向/破解/某app加密算法分析/" itemprop="url">
 		某app加密算法分析
 	</a>
 
-	</div>
+		</div>
 
-	<div class="article-meta">
-		<span>
-			<i class="fa fa-calendar"></i>
-			
-
-
-	发布于
-
-	<a href="/2020/08/28/逆向/破解/某app加密算法分析/" itemprop="url">
-		<time datetime="2020-08-28T08:03:29.000Z" itemprop="datePublished">
-	  		2020-08-28
-	  </time>
-	</a>
-	&nbsp;
-
-
-
-
-
-			
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
 
 
 
@@ -314,41 +250,26 @@
 
 
 
-		</span>
-		<span>
-			<i class="fa fa-tags"></i>
-			
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
 	
 		<a href="/tags/破解/" class=" ">
 			破解
 		</a>
 	
 		
-		</span>
-		
-		
-
-	
-    <span class="leancloud_visitors" id="/2020/08/28/逆向/破解/某app加密算法分析/_visitors" data-url="/2020/08/28/逆向/破解/某app加密算法分析/" data-title="某app加密算法分析">
-       	<i class="fa fa-eye"></i>
-       	热度
-        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
-    </span>
-    
+			</span>
+			
+			
 
 
 
-	
-    <span class="leancloud_likes" id="/2020/08/28/逆向/破解/某app加密算法分析/_likes" data-url="/2020/08/28/逆向/破解/某app加密算法分析/" data-title="某app加密算法分析" rel="unlike">
-        <i class="fa fa-heart"></i>
-        喜欢
-        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
-    </span>
+		</div>
 
-	</div>
-
-	<div class="article-content" id="article-content">
-		<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+		<div class="article-content" id="article-content">
+			<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
   <div class="hbe-input-container">
   <input type="password" id="hbePass" placeholder="" />
     <label for="hbePass">Hey, password is required here.</label>
@@ -357,22 +278,22 @@
   <script id="hbeData" type="hbeData" data-hmacdigest="db95302669b75e45c8a71102c2d043818074d0dc07c0f413b67421b96fa8fd2e">a7fbab8565cf6bbb84f5578e356b215e1a835de7a145bd926381e35cc45256f48638ad4efc802a2908feb1ca92a7cd07c51a30d35f83e8bbb8c9dab286498d2310997a0d189404b14814dc03f1a492cf43b07118972283b594bf2346b8449d94f6b6f9ba634439efdf38375f27c80c287c3df5898d3fd58a849d82af3d6d7861e1e7fb4f87a22bb81475a1769acba77e5330c44177a46b415d84a321e5a08fb8455bb89315554283bd887150d48dee313692cde6ee377ed5b5dfb062f1849db4f5c06b15cc2907f2c9c123a34a970e52f1e9ebb81f65ae67366e3a6c5a5249ac6a71c5bafbded552cce36cffb22f28caf5dad3bbd0448262d87cf24a8b3851798870cd13bed089655f011f5019aac6911ba3b996a79e1a0243f1da32321ece4ebe7aa3700bf93e179be5b8eb1f44c40389090c5cea3dff462d4b3d4f9ec94f7da9f4187911864a2b92e90f1b1780ab8d68a66dea1abab53bc0cef810e1f96c8826ce5d18b7340cc8d5066deb927e8b319551faedb767150b0a811c5201e043d08c31cc48322d95880915d460298913173bce5144ab87e65e691fb07447ffd1b0fcb233ab0e2cbb5a5dbe122a989cacbb8f40a90714a879891c5c6e1a6291a8003fc0d946df1e331df23de679aaefcefc95af46bcb74e9eab60bfa7ad0b0b467939019dc692292968db622e0fc558c9605e4c6d0b3772b45574b2f08840e4be6e00118dabf5b4adbf0ce4b72d0940324c60095ab7610c5d7e9006d4561ae046c8b52479ba9f25982babfb25199d3aa717aa7251d1eddeb1e70a7ae47676d13b0e3c32765d185fb9edd440cb69ecd8a78bac7e5bb052bc8afa091b117a3947dc88dc3a4a706b6d79fa8369692451f7024dc466c80826e18f78fc83fe7cc8e0dcd95b9131ea964d598fac48972d1aba6f8b0b23dc5d7a4c6795cc828e1d632c7be564129d76df9f1ab59f2d30ea4f40ff88b7a715b4d4b14db99261404e40345a6782dd840ededbb1c1d777111791f89a170764030a0ed892bd5a8e3ec22defdec46f5318a76d3ed31ebddce6b360149bebd875f18e03d7a698f4a44e4183c78e0712ef0b5b7baf5449560737d5397ece08aeb1a1c24a0188a66a4643ed57e39f45c8b9083a41b0da359fbc5bf5c97d8883658df4b761785630e49af1176601c621f2cc16a72f87a3d77dae7c5d75cfc11b067108661ae56edae9e25c055384cbaf3506553e35518556b976dee08fb8924dc079609b5cbc6ee9070b3775536b2480158afb7e7cb00fc74996a1fd81fe2525794236f055e6fae72f271757695a009bccec43f370bec72c3ded9c4af55ee84cbfaa2042759264efc282c2edd9b019b9c4a7c7c985b58ca8d500889b8a8b9938eee1fdfb0b3fb4e627f6dc7747d01d4290ff52aacb2fce31f27bb314848cb644b2cfaf0379bd74cc19ae6ba4c77e968e42e567fa14b3886a75e8df1016397905b05049b0f718b8818ea7b4245092569f037f1b3c049db034989e7be5e742accc66dde9b4eae7ae7a57b9cf4e17c384ce91527450846ceae5d96cb851aae9d0e7a2b98bff078b3b8e9e9f1fcbb4ad52e03225e9363b83c41a34c07bc631fc13c27a647e8a6e0492f84447ba5d3f085ee0b200019b1154ff0b3e7c7b69bd6396e3e2b0d19b9be577d23500f3a3f9de46c78ff594893106b924ee73055ef74b823897787ccce217070197da9d0abeab3f145868c51fba7eb698a95f451c6aaf8afcd79b4519e9246fee8edd95f17e9d40e08e4ff4efe88dbfb3ef5ea52fe25bf41333abb24f509ed1f8a948b69bf1362bee13dc5550db888f5c97e28a304ddcad8cba65269a16326feee70da62bb7997180b3a3e19f6b244ea671ba0f1ec649606ddf8c319e16357c76a353c449237a708da625e035a00d6f4063e4ec44dacb743f4c1f2e6f5919886031d0648ff0c7989b61383b0a08be7dbc762414bc30cb261da16a42561f0d087a33d0a19f7af8f7c42fba794f84a33389503506f1a81bb702fdea836c81cc11b97552981494a12dcbffdb04f32886375ed6f2c90af5352c7791f6552f136764affac0cdf1ce23240d6c6b7cd4d5fd69a2b525c509ad32813274344dfa330e8cebaf28bbe4572dfba5c730314e8101b11a2f1b3e57522719eb68f67fc74c9cb25d4d909844c91f33b13b87d142dbd1857a75ba63877ab143b06bc6af03d7eb788b502af5684cd161a7c3c294e4228e26382963536099fa49aff6f189a75ba4b42abbb64b88c4c445a692228a2b79132ed34250243cb02955715d70c3b53af19640fb60576532fd4f88a1ef53a700b877c4202eaf25a1fae9e884c94e18689c5ec7f7e526e2599b692bbeb14dff0e9b89b578168121d8db09aee95cf1c495aa5e7048efafbe4ba2ebf90d263fe4bee9aca5535398cb1e7cb4755be69476a6e66378c7cb52e290e1780abaa3b21985a08f566adf7b90034d38a037e4e56d974355365cfd75604196e145cfe978be68078d47bb091c228780a4100db35618986e2c760164fe4ffb65218f178119a01ecd85b7b4e423377d5d84c2e1e0ebc5cc600ecd581ae728051a1615485fd005e846e927a5c970fd516fc56edab147c6187faa20ac919fc0caeea99a52e0bc9aab1ad41c7eae4b676803941a889ae8975ead2b7a5e71c3e887bede022c85bd583234f6883e246bb27999aad74652d7c524ab8c1c898c461a6cab116f54f0366d5ea867c47a9ba21c3d7f0002ae5e4d06c18261b9ca4e74daae4dbe42e179622606e3ae0b6269491a6a3bd90abc293e6bf89d0a5778b7559d36ff0f4a21051968bc53b1a366f1713b1b4ee023df6e52f35b251e93972b272910bfedde62aa09b0cd785217959c29c4d0e1c141bd08d903e57b34f48e98e6342cb10ad93d36de543769433c7463ce36573ed29e8da585a033725291fe4c8cff7c5e71b84a0a79d694c37b48db781dfc86daf245e7a7b75ab8a0fd6372a89c1bbc10ddbeb986bd658af2a3315046158aa8483c50e35c7843f683c3f827310be86c2e866305990851ecce53a5351c689590e21447554285f8ed1af64d9986b8c7df3d84f4546894e108d073887184d5eea83299625e77532b9a91977a75e20708e2f66184ad131308a8a9a00f16f062d2f04c78ed9c6432ca3aba0473f57644fb781def7893614a363390a725d421e7ef32ca315f19f76e95b2da525983a09edc1fec4c01b9f42d9c5613ac1200eca155c4e087f9ba7d1436b39ddcaa46fbf2dceb6ca5efbca3a377ec187b025ecbc689d55d43153460266d1798a419728ca723b54299679752448c0341da36891ddc799798b8d2e9b55ee81197e2f385799c1d7c7d6c5aee6f6bbe28aabfe413c30d62b0c0f38d0f706a18f43c2a4945b3747437fbe0db8f13cc7478375603630aa33e321a9bcd79082290e3ddde9a88c214f0402b1d287ad0d359794113893f88bd2b9a3ba280dbb96e5717662402160f41c1e6b4affc9338654dce055350909430c65d07cd51ae59ff453b0b457083180f7772be76e4f04783a66d1c566acac1fc2518a066e3dcf1e2b7af4fb5135f0ef19c711c4c5825efc7128e1870c91ebac5902d325cce6fce5e5fbc5ddbfe25b714445dfe8e0e86c8a80ccf687448251f7f904510b181170bb6334a9bf0b7186fbf5589958737a7ec18c7aa15e240e87c36bf6b3d6da01d8dd4cbb9b71835051b7b951b2ce2bfe53a92cf6b1f67e01d079de0382896a39f286ac28809e3ec18f5829afa2776031e10662422b89fd5663ce9f972ff40699a5402990c9b174bc8d4716ee6a018eb3cc7c20e4afb44a5daa843c57330f13a0da38919e6ddf39e52f4d7c6bdd43b13d49794819e017c4f1e7da48c5116b02468c555f0ecad81850e19bd2d0fe42b4b7080612cea7ecaeddc10798f96b716065d6454e8dbe6214154d7136bd1f3a50872b102fcf1af050a8cad6bfcfca6bbc3b766009b289586be4627d7bab68a2b6b35dfaa4af668fcc1dd2aa1b7f41ce390120030d3ed31c7d294b720b57ce1a773510354addd7ad7da0f605b171f542bda79fc4efd38546dd9d4381534eb4e993420f067cd8096d14b61ad32d98087ddef9bb38fd6408fcb8af2e7c6aa68c868d23178fd8bf849be0b245691ccb299b23b87399804e425282aca39ec725a0b5ba1da6a8e0ef7014b89209b2a17800862f0b493457c13c3bc26b7a45d6be765a2da4bbef9e869c6de169af99e0baa2e799c7e79dafcfb2f26ba2307962e4d7f98db0f04265a07b5d5ae8a19f8f0956bfeb0296b9192878eac360ab0f069e0c6407ab828508eb5eade1377cb695f4d1f986b061582e4640b5dba317fb263ca4b661febe7d8ea0c4577abde2e799bebc2ac1a8485d628f8fc437b8d269fc704ca4cfd050e5c013375423597477378f20c23383c9813dde5909618d40bb3dad1feb19961447bfe60094fcf012815e77fa68b0cfc96229039f09ff5b1a2818c8757bd6d5537e04a19988d9dd5f280fec6f65519976b35f97b4c05d51ce5f5eebad3640b001df062b0620fc9ece66d173e8559fb072b10db41317aa00bf63a73617b9c33a70c165fa577ef74e8743210875f5d730081e14887cfa0df786bf0ced96d9c42b14b144cd26914f094e364356371db15f65c750cbf4943c14d429f2e3c18aab6faaa71ab97fa2769c38257d3468ef23c45d9b2bf5fdd7489d854548d7fb4a71691114db6453f8032dccf627937943560ea58aa229580a0dadf4db5e4763dc3bf9982bc40fe1d999105407cfe7e512afd4d06a98b4bc31f4caa47f841473f0619f288a7e2f8e2d47d17fe636b6e0d9d1527ad86be6f4fcfa61d192b0b4d4128210e473e4c1ec893845585fe295aebfcb6b78eef5c87d7888430a94704e1477f574d5c2db6fa6841f1cc1cd3951c89a2ffadfbcfac37b2870c669a23de7101fbcf</script>
 </div>
 <script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">	
-	</div>
-	
-	<div id="current-post-cover" data-scr="/img/post-cover/2.jpg"></div>
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/post-cover/2.jpg"></div>
 
-	<!-- relate post, comment...-->
-	<div class="investment-container">
-		<div class="investment-header">
-			<div class="investment-title-1">
-				<div class="on">相关文章</div>
-				<div>评论</div>
-				<div>分享</div>
-			</div>
-			<div class="investment-title-2">	            
-				
+		<!-- relate post, comment...-->
+		<div class="investment-container">
+			<div class="investment-header">
+				<div class="investment-title-1">
+					<div class="on">相关文章</div>
+					<div>评论</div>
+					<div>分享</div>
+				</div>
+				<div class="investment-title-2">	            
+					
 	<span>
-		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
+		<a id="totop-post-page">返回顶部</a>
 		
 			<a href="/2020/08/28/编程/python/python爬虫scarpy/" title="scrapy 框架学习" rel="prev">
 				&laquo;上一篇
@@ -387,12 +308,12 @@
 
 
       		
-			</div>	
-		</div>
-		
-		<div class="investment-content">
-			<div class="investment-content-list">
-				
+				</div>	
+			</div>
+			
+			<div class="investment-content">
+				<div class="investment-content-list">
+					
 
 <div class="relate-post">
 	
@@ -418,11 +339,32 @@
 						<div class="relate-post-cover">
 							<a href="/2020/08/28/编程/python/python爬虫scarpy/" title="scrapy 框架学习">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="scrapy 框架学习"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post-cover/2.jpg" alt="scrapy 框架学习"/>
 							</a>
 						</div>
-					</li>											
+					</li>												
 			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/06/18/逆向/XposedFridaHook系列/jni函数hook计算地址方式/" title="jni函数hook">
+								jni函数hook			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 18日, 2020				
+							</p>
+							<p class="relate-post-content">
+								jni函数hook（计算 地址方式）12345678910111213141516171819202122232425262728293031323334353637function hookTest9() &#123;    Jav...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/06/18/逆向/XposedFridaHook系列/jni函数hook计算地址方式/" title="jni函数hook">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post-cover/2.jpg" alt="jni函数hook"/>
+							</a>
+						</div>
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -442,34 +384,10 @@
 						<div class="relate-post-cover">
 							<a href="/2020/06/18/逆向/XposedFridaHook系列/jni 主动调用/" title="Hook jni 主动调用">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook jni 主动调用"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post-cover/2.jpg" alt="Hook jni 主动调用"/>
 							</a>
 						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/06/18/逆向/XposedFridaHook系列/jni函数hook计算地址方式/" title="jni函数hook">
-								jni函数hook			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								六月 18日, 2020				
-							</p>
-							<p class="relate-post-content">
-								jni函数hook（计算 地址方式）12345678910111213141516171819202122232425262728293031323334353637function hookTest9() &#123;    Jav...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/06/18/逆向/XposedFridaHook系列/jni函数hook计算地址方式/" title="jni函数hook">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="jni函数hook"/>
-							</a>
-						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -489,34 +407,10 @@
 						<div class="relate-post-cover">
 							<a href="/2020/06/18/逆向/XposedFridaHook系列/hook 读写内存数据/" title="Hook 计算非导出函数地址">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook 计算非导出函数地址"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post-cover/2.jpg" alt="Hook 计算非导出函数地址"/>
 							</a>
 						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" title="Hook 导出函数和修改函数参数返回值">
-								Hook 导出函数和修改函数参数返回值			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								六月 15日, 2020				
-							</p>
-							<p class="relate-post-content">
-								Hook 导出函数123456789101112131415161718192021222324252627282930// hook 导出函数function hookTest1() &#123;     var addAddr =...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" title="Hook 导出函数和修改函数参数返回值">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook 导出函数和修改函数参数返回值"/>
-							</a>
-						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -538,11 +432,10 @@ hook sub_750 打印参数和输出
 						<div class="relate-post-cover">
 							<a href="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/" title="Hook 获取指针参数的返回值">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook 获取指针参数的返回值"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post-cover/2.jpg" alt="Hook 获取指针参数的返回值"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -562,35 +455,32 @@ hook sub_750 打印参数和输出
 						<div class="relate-post-cover">
 							<a href="/2020/06/15/逆向/XposedFridaHook系列/hook dlopen/" title="Hook dlopen">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook dlopen"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post-cover/2.jpg" alt="Hook dlopen"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/06/11/逆向/XposedFridaHook系列/hook导入导出表/" title="Hook so 导入导出表">
-								Hook so 导入导出表			
+							<a class="relate-post-title" href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" title="Hook 导出函数和修改函数参数返回值">
+								Hook 导出函数和修改函数参数返回值			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								六月 11日, 2020				
+								六月 15日, 2020				
 							</p>
 							<p class="relate-post-content">
-								hook so 导入导出表启动frida打开两个cmd 窗口
-12345第一个cmd窗口adb shellsucd /data/local/tmp./fx  // 这个是frida-server-12.8.14-android-x86...
+								Hook 导出函数123456789101112131415161718192021222324252627282930// hook 导出函数function hookTest1() &#123;     var addAddr =...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2020/06/11/逆向/XposedFridaHook系列/hook导入导出表/" title="Hook so 导入导出表">				
+							<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" title="Hook 导出函数和修改函数参数返回值">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook so 导入导出表"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post-cover/2.jpg" alt="Hook 导出函数和修改函数参数返回值"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -614,11 +504,33 @@ fridaserver版本要与frida库版本一致
 						<div class="relate-post-cover">
 							<a href="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/" title="Hook Java层通杀">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook Java层通杀"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post-cover/2.jpg" alt="Hook Java层通杀"/>
 							</a>
 						</div>
-					</li>											
+					</li>												
 			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/06/11/逆向/XposedFridaHook系列/hook导入导出表/" title="Hook so 导入导出表">
+								Hook so 导入导出表			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 11日, 2020				
+							</p>
+							<p class="relate-post-content">
+								hook so 导入导出表启动frida打开两个cmd 窗口
+12345第一个cmd窗口adb shellsucd /data/local/tmp./fx  // 这个是frida-server-12.8.14-android-x86...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/06/11/逆向/XposedFridaHook系列/hook导入导出表/" title="Hook so 导入导出表">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post-cover/2.jpg" alt="Hook so 导入导出表"/>
+							</a>
+						</div>
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -643,34 +555,28 @@ fridaserver版本要与frida库版本一致
 						<div class="relate-post-cover">
 							<a href="/2020/06/08/逆向/破解/某右登录协议分析/" title="最右登录协议分析">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="最右登录协议分析"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post-cover/2.jpg" alt="最右登录协议分析"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 		</ul>
 	
 </div>	
-			</div>
-			<div class="investment-content-list">
-				<div class="layout-comment">
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-comment">
 
 	
-
-		
-
-			<!-- I don't know !!!-->
-			<div>Please check the comment setting in config.yml of hexo-theme-Annie!</div>
-			
-		
-		
+		<div class="config-info">
+			Please check the parameter of <b>comment</b> in config.yml of hexo-theme-Annie!
+		</div>	
 	
 
 </div>
-			</div>
-			<div class="investment-content-list">
-				<div class="layout-share">
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-share">
 	
 	
 
@@ -689,12 +595,243 @@ fridaserver版本要与frida库版本一致
 </div>
 
 
-			</div>
-		</div>	
-	</div>
+				</div>
+			</div>	
+		</div>
 	</div>
 </div>
 
+<!-- show math formula -->
+
+
+
+	 
+	<script src="/plugin/clipboard/clipboard.js"></script>
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2017 - 2020, content by Sariay. All Rights Reserved.
+			
+			
+				<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+
+
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- Local or hitokoto! -->
+
+	<script src="/plugin/motto/motto.js"></script>
+	
+	<script type="text/javascript">
+		(function motto(){
+			let mottoText = getMingYanContent().split('</br> - </br>'),
+			
+			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
+			
+			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
+			
+			mottoTextContent = mottoTextContent.trim().substring(0, 100);
+		
+			$("#motto-content").html( mottoTextContent);
+			$("#motto-author").html( mottoTextFrom  );
+		})();	
+	</script>	
+
+
+
+<!-- love effect -->
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
 
 
 	<!-- leancloud -->
@@ -717,332 +854,16 @@ fridaserver版本要与frida库版本一致
 -->
 
 
-
-	<script>
-		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
-            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
-        AnnieLeancloud(appid, appkey);         
-	</script>
-    
-
 	
 
+  
 
-<!-- show math formula -->
 
-
-
-	 
-	<script src="/plugin/clipboard/clipboard.js"></script>
-	<script>
-		// Copy code !
-	    function codePreprocessing() {
-	        $("#article-content .highlight").each(function() {
-
-	            $(this).wrap('<div id="post-code"></div>');
-
-	        })
-
-	        $("#article-content #post-code").each(function() {
-
-	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
-
-	        })
-
-	        $("#article-content .copy-nav").each(function() {
-	            var temp = $(this).next().attr('class'),
-	                language = ((temp.length > 9) && (temp != null)) ? temp.substr(10) : "none"; //why 9? Need to check language?
-
-	            $(this).find('.code-language').text(language);
-
-	            $(this).append('<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i></span>');
-
-	        });
-	    }
-
-		function codeCopy() {
-		    $('#article-content #post-code').each(function(i) {
-		        var codeCopyId = 'codeCopy-' + i;
-
-		        var codeNode = $(this).find('.code'),
-		            copyButton = $(this).find('.copy-btn');
-
-		        codeNode.attr('id', codeCopyId);
-		        copyButton.attr('data-clipboard-target-id', codeCopyId);
-		    })
-
-		    
-			var clipboard = new ClipboardJS('.copy-btn', {
-					target: function(trigger) {
-						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
-					}
-		      	});
-
-			//pure js
-			function showTooltip(elem, msg) {		   
-				elem.setAttribute('aria-label', msg);
-				elem.setAttribute('class', 'copy-btn copy-status');
-				setTimeout(function() {
-					elem.setAttribute('class', 'copy-btn');
-				}, 2000);
-			}
-
-			clipboard.on('success', function(e) {
-			    e.clearSelection();
-			    console.info('Action:', e.action);		   
-			    console.info('Trigger:', e.trigger);
-			    showTooltip(e.trigger, 'Copied!');
-			    
-			});
-			clipboard.on('error', function(e) {
-			    console.error('Action:', e.action);
-			    console.error('Trigger:', e.trigger);
-			});
-		
-
-		}
-
-		if ($('.layout-post').length) {
-		    codePreprocessing();
-		    codeCopy();
-		} 
-	</script>
-
-
-
-
-
-<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
-<script src="/plugin/fancybox/jquery.fancybox.js"></script>
-
-<script type="text/javascript">
-	var titleID = $('.article-title a'),
-		imageID = $('.article-content img'),
-		videoID = $('.article-content video');
-
-	var postTitle = titleID.text() ? titleID.text() : "No post title!";
-
-	imageID.each(function() {
-		var imgPath = $(this).attr('src'),
-			imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
-
-		//给每个匹配的<img>元素打包, 即添加父元素<a>
-		$(this).wrap('<a data-fancybox="gallery" data-caption=" 《 ' + postTitle + ' 》 ' + imgTitle + ' "  href=" ' + imgPath + ' "> </a>');
-	});
-
-	videoID.each(function() {
-		var videoPath = $(this).attr('src');
-
-		//给每个匹配的<img>元素打包, 即添加父元素<a>
-		$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
-	});
-	//TODO：支持html5 video
-
-	if($('#layout-post').length) {
-		$('[data-fancybox="gallery"]').fancybox({
-			loop: true,
-			buttons: [
-				"zoom",
-				"share",
-				"slideShow",
-				"fullScreen",
-				//"download",
-				"thumbs",
-				"close"
-			],
-			protect: false
-		});
-	}
-</script>
-		</main>
-
-		<!--footer-->
-		<footer>
-	<div class="social">
-		<ul>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-github"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-weibo"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-pinterest"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-instagram"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-twitter"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="/atom.xml" target="_blank">
-				<i class="fa fa-rss"></i>
-			</a>
-		</li>
-			
-</ul>
-
-	</div>
-		
-	<div class="copyright">
-		<p>
-			 
-				&copy;2019 - 2020, content by ST0new. All Rights Reserved.
-			
-			
-			
-
-	<!-- busuanzi -->
-	<!-- busuanzi -->
-
-		
-	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
-
-		<span id="busuanzi_container_page_pv">
-	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-
-	
-
-
-
-
-		</p>
-		<p>
-			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
-			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
-			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
-		</p>
-	</div>		
-</footer>
-		
-	<!-- set '1' to show motto in all pages! -->
-
-	<script src="/plugin/motto/motto.js"></script>
-	
-	<script type="text/javascript">
-		$(".motto").html( getMingYanContent() );
-	</script>	
-
-
-
-
-	<!--
-	时间：2018-10-3
-	描述：
-		插件名称：hexo-generator-search-zip
-		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
-		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
--->
-<div class="popup search-popup local-search-popup" >
-	<div class="local-search-container">
-		<span class="popup-btn-close">
-      		ESC
-   		</span>
-		<div class="local-search-header">
-			<div class="input-prompt">				
-			</div>
-			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
-		</div>
-		<div class="local-search-body">
-			<div id="local-search-output"></div>
-		</div>
-		<div class="local-search-footer">
-			<div class="topN-post">				
-				
-
-   
-	<div id="topN">
-		<div class="topN-title" data-title= "热门文章"></div> 
-	</div>
-	
-    <script>
-        var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
-            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT',
-            limitCount = 10;
-        if( $('#topN').length ){
-            AV.initialize(appid, appkey);
-            var Counter = AV.Object.extend("Counter");  
-            topNPost(Counter, limitCount);
-        }
-    </script>
-   
-								
-			</div>
-		</div>
-	</div>
-</div>
-
-<script src="/plugin/search/ziploader.js"></script>
-<script src="/plugin/search/search.js"></script>
-
-<script type="text/javascript">
-	var search_path = 'search.json',
-		zip_Path = '/search.zip',
-		version_Path = '/searchVersion.txt',
-		input_Trigger = 'auto',
-		top_N = '2';
-
-	themeLocalSearch({
-		search_path, 
-		zip_Path, 
-		version_Path, 
-		input_Trigger, 
-		top_N
-	});
-</script>
-
-
-<!-- love effect -->
-
-	<script src="/plugin/love/love.js"></script>
-
-
-<!-- back to top -->
-
-	
-	<div id="totop">
-  		<a href="javascript:;"  name="TOTOP" class="fa fa-arrow-up" ></a>
-	</div>
-
-
-
-
-<!-- site analysis -->
-
-
-	<!-- site-analysis -->
-	
-	
-	
-	
-	
- 
-
-<script src="/plugin/vibrant/vibrant.js"></script>
 <script src="/plugin/chinese/chinese.js"></script>
-<script src="/plugin/imgLazyLoader/yall.min.js"></script>
-<script src="/plugin/imgResize/jquery.resizeimagetoparent.min.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
 <script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
-<script src="/js/resizediv.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
 <script src="/js/main.js"></script>
 	</body>	
 </html>
