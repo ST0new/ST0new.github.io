@@ -245,32 +245,6 @@
   </entry>
   
   <entry>
-    <title>Hook 计算非导出函数地址</title>
-    <link href="http://yoursite.com/2020/06/15/%E9%80%86%E5%90%91/XposedFridaHook%E7%B3%BB%E5%88%97/Hook%20%E9%9D%9E%E5%AF%BC%E5%87%BA%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80/"/>
-    <id>http://yoursite.com/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/</id>
-    <published>2020-06-15T01:46:58.000Z</published>
-    <updated>2020-06-15T03:38:22.830Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Hook-计算非导出函数地址"><a href="#Hook-计算非导出函数地址" class="headerlink" title="Hook 计算非导出函数地址"></a>Hook 计算非导出函数地址</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">计算公式：</span><br><span class="line">基址 + 函数偏移地址 + 1 thumb指令集 2 或4</span><br><span class="line">基址 + 函数偏移地址  arm 指令集 4</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function hookTest2() &#123;</span><br><span class="line">    var soAddr = Module.findBaseAddress(&quot;libxiaojianbang.so&quot;);</span><br><span class="line">    console.log(soAddr);</span><br><span class="line">    var funcAddr = soAddr.add(0x1848 + 1); // 基址加上偏移地址</span><br><span class="line">    console.log(funcAddr)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="通过proc-文件系统获取地址"><a href="#通过proc-文件系统获取地址" class="headerlink" title="通过proc 文件系统获取地址"></a>通过proc 文件系统获取地址</h2><p>在 <code>proc/当前进程id/</code> 下存在很多文件</p><p>在<code>proc/当前id/net/tcp</code> 记录开放端口  69A2 对应 27042</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/6/20200615113508.png" alt></p><p>在<code>proc/当前id/maps</code> 记录加载的依赖库，可以找到so文件的基址</p><p> <img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/6/20200615113638.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Hook-计算非导出函数地址&quot;&gt;&lt;a href=&quot;#Hook-计算非导出函数地址&quot; class=&quot;headerlink&quot; title=&quot;Hook 计算非导出函数地址&quot;&gt;&lt;/a&gt;Hook 计算非导出函数地址&lt;/h1&gt;&lt;figure class=&quot;highlight 
-      
-    
-    </summary>
-    
-    
-      <category term="Reverse" scheme="http://yoursite.com/categories/Reverse/"/>
-    
-    
-      <category term="hook" scheme="http://yoursite.com/tags/hook/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Hook 获取指针参数的返回值</title>
     <link href="http://yoursite.com/2020/06/15/%E9%80%86%E5%90%91/XposedFridaHook%E7%B3%BB%E5%88%97/%E8%8E%B7%E5%8F%96%E6%8C%87%E9%92%88%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC/"/>
     <id>http://yoursite.com/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/</id>
@@ -284,6 +258,32 @@
       
       
         &lt;h1 id=&quot;Hook-获取指针参数的返回值&quot;&gt;&lt;a href=&quot;#Hook-获取指针参数的返回值&quot; class=&quot;headerlink&quot; title=&quot;Hook 获取指针参数的返回值&quot;&gt;&lt;/a&gt;Hook 获取指针参数的返回值&lt;/h1&gt;&lt;p&gt;在c语言中，一般都会以指针传递返回的
+      
+    
+    </summary>
+    
+    
+      <category term="Reverse" scheme="http://yoursite.com/categories/Reverse/"/>
+    
+    
+      <category term="hook" scheme="http://yoursite.com/tags/hook/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hook 计算非导出函数地址</title>
+    <link href="http://yoursite.com/2020/06/15/%E9%80%86%E5%90%91/XposedFridaHook%E7%B3%BB%E5%88%97/Hook%20%E9%9D%9E%E5%AF%BC%E5%87%BA%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80/"/>
+    <id>http://yoursite.com/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/</id>
+    <published>2020-06-15T01:46:58.000Z</published>
+    <updated>2020-06-15T03:38:22.830Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Hook-计算非导出函数地址"><a href="#Hook-计算非导出函数地址" class="headerlink" title="Hook 计算非导出函数地址"></a>Hook 计算非导出函数地址</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">计算公式：</span><br><span class="line">基址 + 函数偏移地址 + 1 thumb指令集 2 或4</span><br><span class="line">基址 + 函数偏移地址  arm 指令集 4</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function hookTest2() &#123;</span><br><span class="line">    var soAddr = Module.findBaseAddress(&quot;libxiaojianbang.so&quot;);</span><br><span class="line">    console.log(soAddr);</span><br><span class="line">    var funcAddr = soAddr.add(0x1848 + 1); // 基址加上偏移地址</span><br><span class="line">    console.log(funcAddr)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="通过proc-文件系统获取地址"><a href="#通过proc-文件系统获取地址" class="headerlink" title="通过proc 文件系统获取地址"></a>通过proc 文件系统获取地址</h2><p>在 <code>proc/当前进程id/</code> 下存在很多文件</p><p>在<code>proc/当前id/net/tcp</code> 记录开放端口  69A2 对应 27042</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/6/20200615113508.png" alt></p><p>在<code>proc/当前id/maps</code> 记录加载的依赖库，可以找到so文件的基址</p><p> <img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/6/20200615113638.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Hook-计算非导出函数地址&quot;&gt;&lt;a href=&quot;#Hook-计算非导出函数地址&quot; class=&quot;headerlink&quot; title=&quot;Hook 计算非导出函数地址&quot;&gt;&lt;/a&gt;Hook 计算非导出函数地址&lt;/h1&gt;&lt;figure class=&quot;highlight 
       
     
     </summary>
@@ -323,32 +323,6 @@
   </entry>
   
   <entry>
-    <title>Hook so 导入导出表</title>
-    <link href="http://yoursite.com/2020/06/11/%E9%80%86%E5%90%91/XposedFridaHook%E7%B3%BB%E5%88%97/hook%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E8%A1%A8/"/>
-    <id>http://yoursite.com/2020/06/11/逆向/XposedFridaHook系列/hook导入导出表/</id>
-    <published>2020-06-11T08:09:27.000Z</published>
-    <updated>2020-06-15T01:46:46.437Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="hook-so-导入导出表"><a href="#hook-so-导入导出表" class="headerlink" title="hook so 导入导出表"></a>hook so 导入导出表</h1><h2 id="启动frida"><a href="#启动frida" class="headerlink" title="启动frida"></a>启动frida</h2><p>打开两个cmd 窗口</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一个cmd窗口</span><br><span class="line">adb shell</span><br><span class="line">su</span><br><span class="line">cd /data/local/tmp</span><br><span class="line">./fx  // 这个是frida-server-12.8.14-android-x86的缩写</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第二个cmd窗口</span><br><span class="line">adb froward tcp:27042 tcp:27042</span><br><span class="line">frida -U com.xiaojianbang.app -l hookso.js</span><br></pre></td></tr></table></figure><h2 id="编写frida-脚本"><a href="#编写frida-脚本" class="headerlink" title="编写frida 脚本"></a>编写frida 脚本</h2><h3 id="获取导入函数信息"><a href="#获取导入函数信息" class="headerlink" title="获取导入函数信息"></a>获取导入函数信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">先打印一下导入函数名</span><br><span class="line">function hookso()&#123;</span><br><span class="line">    var imports = Module.enumerateImports(&quot;libxiaojianbang.so&quot;)</span><br><span class="line">    for(var i = 0; i &lt; imports.length; i++)&#123;</span><br><span class="line">        console.log(JSON.stringify(imports[i]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function main()&#123;</span><br><span class="line">    Java.perform(function () &#123;</span><br><span class="line">    hookso();</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setImmediate(main)</span><br></pre></td></tr></table></figure><p>可以看到导入的函数、模块、地址</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/6/20200611162048.png" alt></p><h3 id="获取某导入函数的信息"><a href="#获取某导入函数的信息" class="headerlink" title="获取某导入函数的信息"></a>获取某导入函数的信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function hookso()&#123;</span><br><span class="line">    var imports = Module.enumerateImports(&quot;libxiaojianbang.so&quot;)</span><br><span class="line">    for(var i = 0; i &lt; imports.length; i++)&#123;</span><br><span class="line">        //console.log(JSON.stringify(imports[i]));</span><br><span class="line">        if (imports[i].name == &quot;strncat&quot;)</span><br><span class="line">            console.log(JSON.stringify(imports[i]));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function main()&#123;</span><br><span class="line">    Java.perform(function () &#123;</span><br><span class="line">    hookso();</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">setImmediate(main)</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/6/20200611162805.png" alt></p><h3 id="获取导出函数信息"><a href="#获取导出函数信息" class="headerlink" title="获取导出函数信息"></a>获取导出函数信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function hookso()&#123;</span><br><span class="line">    var exports = Module.enumerateExports(&quot;libxiaojianbang.so&quot;)</span><br><span class="line">    for(var i = 0; i &lt; exports.length; i++)&#123;</span><br><span class="line">    console.log(JSON.stringify(exports[i]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function main()&#123;</span><br><span class="line">    Java.perform(function () &#123;</span><br><span class="line">    hookso();</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">setImmediate(main)</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/6/20200611163353.png" alt></p><h3 id="获取导出函数地址"><a href="#获取导出函数地址" class="headerlink" title="获取导出函数地址"></a>获取导出函数地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">function hookso()&#123;</span><br><span class="line">    // 获取导出函数地址</span><br><span class="line">    var addr = Module.findExportByName(&quot;libxiaojianbang.so&quot;,&quot;Java_com_xiaojianbang_app_NativeHelper_add&quot;)</span><br><span class="line">    console.log(addr)</span><br><span class="line">&#125;</span><br><span class="line">function main()&#123;</span><br><span class="line">    Java.perform(function () &#123;</span><br><span class="line">    hookso();</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">setImmediate(main)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;hook-so-导入导出表&quot;&gt;&lt;a href=&quot;#hook-so-导入导出表&quot; class=&quot;headerlink&quot; title=&quot;hook so 导入导出表&quot;&gt;&lt;/a&gt;hook so 导入导出表&lt;/h1&gt;&lt;h2 id=&quot;启动frida&quot;&gt;&lt;a href=&quot;#启动
-      
-    
-    </summary>
-    
-    
-      <category term="Reverse" scheme="http://yoursite.com/categories/Reverse/"/>
-    
-    
-      <category term="hook" scheme="http://yoursite.com/tags/hook/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Hook Java层通杀</title>
     <link href="http://yoursite.com/2020/06/11/%E9%80%86%E5%90%91/XposedFridaHook%E7%B3%BB%E5%88%97/Hook%E5%BC%80%E5%A7%8B/"/>
     <id>http://yoursite.com/2020/06/11/逆向/XposedFridaHook系列/Hook开始/</id>
@@ -362,6 +336,32 @@
       
       
         &lt;h1 id=&quot;Hook-通杀&quot;&gt;&lt;a href=&quot;#Hook-通杀&quot; class=&quot;headerlink&quot; title=&quot;Hook 通杀&quot;&gt;&lt;/a&gt;Hook 通杀&lt;/h1&gt;&lt;h2 id=&quot;Hook-普通方法和修改函数参数返回值&quot;&gt;&lt;a href=&quot;#Hook-普通方法和修改函数
+      
+    
+    </summary>
+    
+    
+      <category term="Reverse" scheme="http://yoursite.com/categories/Reverse/"/>
+    
+    
+      <category term="hook" scheme="http://yoursite.com/tags/hook/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hook so 导入导出表</title>
+    <link href="http://yoursite.com/2020/06/11/%E9%80%86%E5%90%91/XposedFridaHook%E7%B3%BB%E5%88%97/hook%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E8%A1%A8/"/>
+    <id>http://yoursite.com/2020/06/11/逆向/XposedFridaHook系列/hook导入导出表/</id>
+    <published>2020-06-11T08:09:27.000Z</published>
+    <updated>2020-06-15T01:46:46.437Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="hook-so-导入导出表"><a href="#hook-so-导入导出表" class="headerlink" title="hook so 导入导出表"></a>hook so 导入导出表</h1><h2 id="启动frida"><a href="#启动frida" class="headerlink" title="启动frida"></a>启动frida</h2><p>打开两个cmd 窗口</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一个cmd窗口</span><br><span class="line">adb shell</span><br><span class="line">su</span><br><span class="line">cd /data/local/tmp</span><br><span class="line">./fx  // 这个是frida-server-12.8.14-android-x86的缩写</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第二个cmd窗口</span><br><span class="line">adb froward tcp:27042 tcp:27042</span><br><span class="line">frida -U com.xiaojianbang.app -l hookso.js</span><br></pre></td></tr></table></figure><h2 id="编写frida-脚本"><a href="#编写frida-脚本" class="headerlink" title="编写frida 脚本"></a>编写frida 脚本</h2><h3 id="获取导入函数信息"><a href="#获取导入函数信息" class="headerlink" title="获取导入函数信息"></a>获取导入函数信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">先打印一下导入函数名</span><br><span class="line">function hookso()&#123;</span><br><span class="line">    var imports = Module.enumerateImports(&quot;libxiaojianbang.so&quot;)</span><br><span class="line">    for(var i = 0; i &lt; imports.length; i++)&#123;</span><br><span class="line">        console.log(JSON.stringify(imports[i]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function main()&#123;</span><br><span class="line">    Java.perform(function () &#123;</span><br><span class="line">    hookso();</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setImmediate(main)</span><br></pre></td></tr></table></figure><p>可以看到导入的函数、模块、地址</p><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/6/20200611162048.png" alt></p><h3 id="获取某导入函数的信息"><a href="#获取某导入函数的信息" class="headerlink" title="获取某导入函数的信息"></a>获取某导入函数的信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function hookso()&#123;</span><br><span class="line">    var imports = Module.enumerateImports(&quot;libxiaojianbang.so&quot;)</span><br><span class="line">    for(var i = 0; i &lt; imports.length; i++)&#123;</span><br><span class="line">        //console.log(JSON.stringify(imports[i]));</span><br><span class="line">        if (imports[i].name == &quot;strncat&quot;)</span><br><span class="line">            console.log(JSON.stringify(imports[i]));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function main()&#123;</span><br><span class="line">    Java.perform(function () &#123;</span><br><span class="line">    hookso();</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">setImmediate(main)</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/6/20200611162805.png" alt></p><h3 id="获取导出函数信息"><a href="#获取导出函数信息" class="headerlink" title="获取导出函数信息"></a>获取导出函数信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function hookso()&#123;</span><br><span class="line">    var exports = Module.enumerateExports(&quot;libxiaojianbang.so&quot;)</span><br><span class="line">    for(var i = 0; i &lt; exports.length; i++)&#123;</span><br><span class="line">    console.log(JSON.stringify(exports[i]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function main()&#123;</span><br><span class="line">    Java.perform(function () &#123;</span><br><span class="line">    hookso();</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">setImmediate(main)</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/ST0new/picture/master/2020/6/20200611163353.png" alt></p><h3 id="获取导出函数地址"><a href="#获取导出函数地址" class="headerlink" title="获取导出函数地址"></a>获取导出函数地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">function hookso()&#123;</span><br><span class="line">    // 获取导出函数地址</span><br><span class="line">    var addr = Module.findExportByName(&quot;libxiaojianbang.so&quot;,&quot;Java_com_xiaojianbang_app_NativeHelper_add&quot;)</span><br><span class="line">    console.log(addr)</span><br><span class="line">&#125;</span><br><span class="line">function main()&#123;</span><br><span class="line">    Java.perform(function () &#123;</span><br><span class="line">    hookso();</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">setImmediate(main)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;hook-so-导入导出表&quot;&gt;&lt;a href=&quot;#hook-so-导入导出表&quot; class=&quot;headerlink&quot; title=&quot;hook so 导入导出表&quot;&gt;&lt;/a&gt;hook so 导入导出表&lt;/h1&gt;&lt;h2 id=&quot;启动frida&quot;&gt;&lt;a href=&quot;#启动
       
     
     </summary>

@@ -52,9 +52,10 @@
 	<div id="preloader">
 		<div class="pre-container">
 			
-				<div class="spinner">
-					<div class="double-bounce1"></div>
-					<div class="double-bounce2"></div>
+				<div class="transition">
+					<div class="three-bounce1"></div>
+					<div class="three-bounce2"></div>
+					<div class="three-bounce3"></div>
 				</div>
 						
 		</div>
@@ -535,7 +536,7 @@
 			</div>
 		
 			<div class="post" id="post">
-				<a class="post-cover" href="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" title=" Hook 计算非导出函数地址 " target="_blank">
+				<a class="post-cover" href="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/" title=" Hook 获取指针参数的返回值 " target="_blank">
 					
 					<img class="lazy" src="/img/lazy.gif" data-src="/img/post-cover/2.jpg"/>
 				</a>
@@ -545,19 +546,18 @@
 						六月 15日, 2020
 					</p>	
 					<h3 class="post-title" id="post-title-index">
-						<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" title="Hook 计算非导出函数地址">							
+						<a href="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/" title="Hook 获取指针参数的返回值">							
 							
-	<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 非导出函数地址/" itemprop="url">
-		Hook 计算非导出函数地址
+	<a href="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/" itemprop="url">
+		Hook 获取指针参数的返回值
 	</a>
 
 						</a>
 					</h3>
 					<p class="post-content">
 						
-							Hook 计算非导出函数地址123计算公式：	基址 + 函数偏移地址 + 1 thumb指令集 2 或4	基址 + 函数偏移地址  arm 指令集 4
-
-...
+							Hook 获取指针参数的返回值在c语言中，一般都会以指针传递返回的值 ，没有return 或者return为true
+hook sub_750 打印参数和...
 						
 					</p>
 					<p class="post-meta">
