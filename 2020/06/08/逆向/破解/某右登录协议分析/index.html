@@ -1,7 +1,7 @@
 <!--
 	作者：Sariay
-	时间：2018-08-26
-	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
 -->
 <!DOCTYPE html>
 <html class="html-loading">
@@ -23,28 +23,15 @@
   <link rel="shortcut icon" href="/img/favicon.ico">
 
   <!-- css -->
-  <link rel="stylesheet" href="/css/Annie.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/Annie.css">
   
   <!-- jquery -->
-	<script src="/plugin/jquery/jquery.min.js"></script>
+	<script src="/js/jquery.min.js"></script>
 
-<script>
-    const CONFIG_BGIMAGE = {
-      mode: 'random',
-      normalSrc: '/img/header-bg.jpg',
-      randomYouMax: 110,
-      randomYouSrc: 'https://www.st0ne.club/Random-img/',
-	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
-	  preloaderEnable: true
-    }
-	
-    const CONFIG_LEACLOUD_COUNT = {
-      enable: false,
-	  appId: 'AU8...',
-	  appKey: '4cU...',
-	  serverURLs: 'http' || ' '
-    }
-  </script>
+  <!-- leancloud -->
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script src="/js/leancloud.js"></script>
 </head>
 	<body>
 		<!-- Preloader -->
@@ -63,24 +50,105 @@
 
 
 <!-- header -->
-<header class="fixbackground bg-pan-br">
+<header class="fixbackground" data-img-mode="random" data-normal-src="/img/1.jpg" data-random-max="111" data-random-src="https://www.st0ne.club/Random-img/">
 	<div class="mask">
+		<!-- Logo and navigation -->
+		<div class="h-header">
+			<div id="logo">
+				<a href="/">
+						
+						<img src="/img/logo.png" alt="Logo">
+					
+				</a>
+			</div>
+			
+			<div id="navigation-show">
+				<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+		<li class="menu-links">
+			<a href="/links" class="menu-item-links">links</a>
+		</li>
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+			</div>				
+		</div>
+
 		<!-- motto -->
 		<div class="h-body">	
 			
-				<div class="motto text-shadow-pop-left">
-					<p class="content" id="motto-content">获取中...</p>
-					<p>-<p>
-					<p class="author" id="motto-author">Just a minute...</p>
-				</div>
+				<p class="motto"></p>
 			
 		</div>
 		
 		<!-- others: such as time... -->			
 		<div class="h-footer">
-			<a href="javascript:;" id="read-more" class="scroll-down">
-				<span class="icon-anchor1 animation-scroll-down"></span>
+			<a href="javascript:;" id="read-more"><i class="fa fa-angle-double-down" aria-hidden="true"></i>
 			</a>
+
+			
+				<!-- 
+	This is only a demo, please go to "https://time.is" to set your city time! 
+-->
+<style type="text/css">
+	.header-date {
+		font-size: 1.6rem;
+		color: #fff;
+		position: absolute;
+		bottom: 5px;
+		right: 1rem;
+		writing-mode: tb-rl;
+	}	
+	
+	.header-date a {
+		border-bottom: none;
+	}
+
+	@media only screen and (max-width: 768 ) {
+		.header-date {
+			font-size: 1rem;
+		}			
+	}
+</style>
+<div class="header-date">
+	<a href="https://time.is/Beijing" id="time_is_link" rel="nofollow" ></a>
+	<span id="Beijing_z43d"></span>
+</div>
+<script src="//widget.time.is/zh.js"></script>
+<script>
+	time_is_widget.init({
+		Beijing_z43d:{
+			template:"DATE", 
+			date_format:"year年 monthname dnum日"
+		}
+	});
+</script>
+			
 		</div>
 	</div>
 </header>
@@ -90,19 +158,16 @@
 	<div id="progress-bar"></div>
 
 	<!-- Progress percent -->
-	<div id="progress-percentage"><span>0.0%</span></div>
+	<div id="progress-percentage"><h1>0.0%</h1></div>
 
 	<div class="toc-switch"><span class="switch-button">目录</span></div>
 
 	<!-- Page title -->
 	<p>
 		
-			「最右登录协议分析」
+			当前文章&nbsp;:&nbsp;《最右登录协议分析》
 		
 	</p>
-
-	
-	
 
 	<!-- Nav trigger for navigation-H-->
 	<a class="nav-trigger"><span></span></a>
@@ -111,39 +176,35 @@
 <!-- Navigation in div(id="navigation-H") -->
 <nav class="nav-container" id="cd-nav">
 	<div class="nav-header">
-		<span class="logo"> 
-			<img src="/img/logo.png">
-		</span>
+		<h3>Navigation</h3>
 		<a href="javascript:;" class="nav-close"></a>
 	</div>
-	
 	<div class="nav-body">
-		<ul id="global-nav">
+		<ul>
 	
 		<li class="menu-home">
-			<a href="/" class="menu-item-home" target="_blank">主页</a>
+			<a href="/" class="menu-item-home">主页</a>
 		</li>
-		
 	
 		<li class="menu-archive">
-			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+			<a href="/archives" class="menu-item-archive">归档</a>
 		</li>
-		
 	
 		<li class="menu-categories">
-			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+			<a href="/categories" class="menu-item-categories">分类</a>
 		</li>
-		
 	
 		<li class="menu-tags">
-			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+			<a href="/tags" class="menu-item-tags">标签</a>
 		</li>
-		
 	
 		<li class="menu-about">
-			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+			<a href="/about" class="menu-item-about">关于</a>
 		</li>
-		
+	
+		<li class="menu-links">
+			<a href="/links" class="menu-item-links">links</a>
+		</li>
 	
 
 	
@@ -153,55 +214,42 @@
 	
 </ul>
 	</div>
-	
 	<div class="nav-footer">
-		<ul id="global-social">
+		<ul>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<span class="icon-one"><span class="path1"></span><span class="path2"></span></span>
+				<i class="fa fa-github"></i>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<span class="icon-zhihu"></span>
+				<i class="fa fa-weibo"></i>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<span class="icon-github"></span>
+				<i class="fa fa-pinterest"></i>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<span class="icon-sina-weibo "></span>
+				<i class="fa fa-instagram"></i>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<span class="icon-pinterest2"></span>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<span class="icon-instagram"></span>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<span class="icon-twitter"></span>
+				<i class="fa fa-twitter"></i>
 			</a>
 		</li>
 	
 		<li>
 			<a href="/atom.xml" target="_blank">
-				<span class="icon-rss"></span>
+				<i class="fa fa-rss"></i>
 			</a>
 		</li>
 			
@@ -223,19 +271,35 @@
 
 <div class="layout-post">
 	<div id="layout-post">
-		<div class="article-title">
-			
+	<div class="article-title">
+		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+		
 	<a href="/2020/06/08/逆向/破解/某右登录协议分析/" itemprop="url">
 		最右登录协议分析
 	</a>
 
-		</div>
+	</div>
 
-		<div class="article-meta">
-			<span>
-				<i class="icon-calendar1"></i>
-				
-				
+	<div class="article-meta">
+		<span>
+			<i class="fa fa-calendar"></i>
+			
+
+
+	发布于
+
+	<a href="/2020/06/08/逆向/破解/某右登录协议分析/" itemprop="url">
+		<time datetime="2020-06-08T02:10:33.000Z" itemprop="datePublished">
+	  		2020-06-08
+	  </time>
+	</a>
+	&nbsp;
+
+
+
+
+
+			
 
 
 
@@ -250,26 +314,41 @@
 
 
 
-			</span>
-			<span>
-				
-	<i class="icon-price-tags"></i>
+		</span>
+		<span>
+			<i class="fa fa-tags"></i>
+			
 	
 		<a href="/tags/破解/" class=" ">
 			破解
 		</a>
 	
 		
-			</span>
-			
-			
+		</span>
+		
+		
+
+	
+    <span class="leancloud_visitors" id="/2020/06/08/逆向/破解/某右登录协议分析/_visitors" data-url="/2020/06/08/逆向/破解/某右登录协议分析/" data-title="最右登录协议分析">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
 
 
 
-		</div>
+	
+    <span class="leancloud_likes" id="/2020/06/08/逆向/破解/某右登录协议分析/_likes" data-url="/2020/06/08/逆向/破解/某右登录协议分析/" data-title="最右登录协议分析" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
 
-		<div class="article-content" id="article-content">
-			<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+	</div>
+
+	<div class="article-content" id="article-content">
+		<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
   <div class="hbe-input-container">
   <input type="password" id="hbePass" placeholder="" />
     <label for="hbePass">Hey, password is required here.</label>
@@ -278,24 +357,24 @@
   <script id="hbeData" type="hbeData" data-hmacdigest="0130395c592797412d70237fa15dfcc5df17bc82a42e6d4efc6c3a8bc36e7ce3">184ec4c94e65a4b619ea732bd39a29aaf452514072ddb6dff084e29ad47fa9af80385d244fd7fd87aa16e025c8c19fa13c31b0b39fc4ac831a76b498d2a8b56d6c14a5aef5c1a878b62b4013a85f438dc96e53f8a9e240b4df3c38a9fded280a1291adf50cebae2d0befddbf78a27da492a99c7a71925ac2a651f40312cd28bf23a1ea6da1d9839c89b8ae3f20a1cdd0c12e0292a18a7c8e7caa01d4ab01e194cbf7f6e426e5985e5ef7d60278add43b2de3f4a7644f52b53379607d2e58e4ce9451644ceb57742ef5b2150f68683598569a9639f94e47d994f013d09edb7f607aa832ee84fe6b7a997c4471ce115ba369035ae906c9d513931ce6a0015f6fe31a823070ad446a77daba1bb5a00345c51913c00e03719b1e1f7303b3ec81b7dac06b05dc5c119023602d28794be20985eb8f692fa0423194f0091eedf4d0231b1d954055ecbed722cc3f9542410d1794b887c69b5151a0120aeb6acea485b7c15df6d42ec89135b35d2071d190f15c710a06a2b41075dfffd6cdee6888125cfa448523884dc04612fbbe078536407f1c5a9a195a83aebb8410d7dcbf46204e524ed579c13a5e6a9bf209154097e99b0567af965f725b83674de54eb3b0f81163ab0575a37e756c7c9c664db0412c7f67982a761f252013d1fe388b58672393ffee23a38954c0440a3acbdb7c1b331f0dd546fcb7c522520b7f7bf9002ae2fc33abc40e2cac44d22ad12b25b2c17b03ccf107f24a57ade54c79280dc94bcd5342876592a6533b6dd3aaad7740f34e39bc6dd61a13d4f3a74e1c55ba6beb84e0614a06263e7b778e9d4d143a58212ae8103fd790020e3d69c26df43627c970c2e5a76da9e26b3b69ce28b2a6d1c304c8a2d059cae0546d99e004bc447388544c6128abcccb49842d30064c60f1d2eb2984436463aaabbcb2a30d8ed7a57466bfd98ec10079cab564cee13808495ce3405a4c41090eec7b4bc625b1ff11940817058a18f46bbcc459b8f028b7060e264b72f669d8558ced1c268e9ec449962b55681bfe533a5757ad10409ba2f245897268bb7b365d7cb77560b88ffab32b458928221a1725a1e2ec6277bdf6dc5e4b265f580ca2fb2c9363ef7b4adc93eac7124fa410b1d2800bfe5c4e431008c22587d817ef546a65b7114a0f64e9fdef42f1b1bc8d80a39d7c402728027796bd41274688e34f992e3e1ef8049ff3e70f9de5e1acb8bbcb0a17c3169a716becd1f8ae64eb86732b729d81c959c714debc68544d0b808993186b39cf3f14df0b7a0647d0bf0405524f850d988a9e5c23341d226c4ef0b94ebafbe649c369156ff7696c0d966dfc179e489b27269ff8e713081acfd1d02ceaf8985472d7bf2536e23fd5882492a2745d8b275e2ec9517c2c0ea00084670d7c64184ca11061e025aec64e3d8ce5f33c119dd75dc9787af13d04c0decc024a245e4f2e9efeac45c9c0da68cff7a7fe8e5be3f03ba0f04ac79551a8972227d4b1da6fdf62a9aba3941cb736670bff78569bd5ba63e89a04124b30d255f250056ab963e46c674dd9997c692d392415eb64d657ea4d751e88ba27787bc2d5b3379060b6dbd229f137788621328630c08ef01292bdb573a4b9ca40431c7997a3271bba45608de131c3be5d9fdf2f97c359eedb5c2d69ac298686b415a08b25cb9d4cfde672688093e3b44da17a20832690ab4619f4521550ca842f6be8a13c81714ba85b0ab5ceb4cf7f7e097c6122ca84eb9f27b3161b266a6d0307f15f68f22f1e9086e699f69734084cc7be767e41c89152f9cbed1663418dde43abbb139f89c43309eb1c519d610f96dad4fe552e102586addcb7b36b883bcd22fefad79285b29e7fcc68da7f5ec4d7b7d8245ed75997e61735991b43e4d415885b7756687d925b3e4eeb9435ede287c8574020199ab08bc6a6217f1869b9637a1000b4f31f6ca29217624bad26236f228cb2e8302d3473ac5b42324870da10638815ac12dc6c3d81ed24abfde36be9bc103c099b2357009a927d1183019c85d89a503fd064d1d06fa5527157512cc40f6124b565cfca231a2d5d22104a6cbb180dd0b2a1288733bad23e7b6795a235c18e87f5c0644dd4b771e1041e99fc232d39103fe2884004cd6528614d02a64a1c5de4ce22d5be26fcfce76fe5d82914bc92dfc83dfac4ea811f54af76b96dfc559ea54238618b7e823890ee879f10c4fab0c0ae771f7229deea8208652d694f4a1edd786ef83424f3582840f4e5d83cfe021908106e660a9ff24b4211db85c979d3ff19e30fd62e7b0f5ea996677aa8ea791b8bd5779634d720508435afa62c46616c3f12ec8429535d8bb34f0cb65e432372903f44db029af72d76431eba2c66ca4351f1c4e41e9d1717323c5cc448816a771e88c739761fc2ea7032b5f84edd2f34156354443792a648d78ca1091ed4243928ffb01b431f9e3f2900abcf1cb40e9ced2f2a965774e43c2375833dea1ad29c8ce16d52510ce06ab5808fa6a1ae8de413a913873957f1a965d3aa5c16c79af48c36761b3bf3dfeae5896e88ff4d05b1e76cd01f8a92ff301c64f5045a7fb634f012c6ac5d73d80a4025832ebcedaf633896513de60b5ba2e7c7604ab382831d917420b7e1829b559e026d7601166f7a498b459ed2afff642bdfacc9eb5f69d6f11e920ce6b28d8999553ca1ec7fb5a82ecb632da20f9450205e99c7939614915583126fdfb29801b252b397926c272be9ef6dcbb7544fbdb24596bf43dbdaa42b0adc5161feee85d0460af777fcf2db9f315285f3766fa4df7dc0e6f1ccb8046e900c78111a1cf4afbdf9224dd2617ece1cf3a34c6e52c0b11c14a7593d02aa9d1fdb0e15924aac5d7c5de8aea7c3624d242621b67cb68a1862238bdb26a3c2a83edf93cd6708c6ba4e2aa029f29c1b29eaba1d12a1e786afefaf6ce913ed490c1b0863e9a852edb682258aa955d8a98e13433a456e1a4c9f9089e09173cec0539fa4b0bdb9baa048968fed89cff07dc4293d8c684e8f926fb450e969ba8159c976b86aa3c4a9bbf101c1c8f8711171cab54c8561c58c9e649dccd893f0e99be86db74bbb6e2dc2704355111102558ef6b7e3d5b31b915cd919678df4af2c68286182b50627044ef89012ceb9399435b4d64d736f5f4e5ba7102f640951e197c8c7676c6cc14e6087c966fe4148093f62fbbcf21f0b823fcf67f2536f9a0d61796aaa543ecef735deeea587482daac4bbc2c0f51d3673dc98bdde6d991878e0b1ae626c1b1fb498693a8a2ec4e8d3fc5a5b8452a73a720ddbf19e096831cdeafc746d417c6ae363f74bc8173ce2b210219801e34444bcf1bb6264cd6330d3f778872a9d65aaab9e398c79628d8e05a85b1cc9505481793332f62b480eeea731cbe88d5409966870a5a50016fafcd77637e4cd92c997009d72a690a1b6b4dc6941108c11147e2cb3e421fb45a4da567f08a5a1d4ca0150ac6eb8e8d845fdd5c8b627717cdfad079feb58821e3feac62aa11bfbb72860ef320d898c6874d9f8097c0133f7158575c56e607cbf5df25dc05e285fc6299cf6e1236e4bd3d9bc841f39aa2bca7f5b2862ae6e904575a4fe05c92d44c11927dc9daf52add2f07924be523aed2c4e944322b2f7383d524a9e8d14c48a0acfcafef827eea7d8bfd6483c85ee6a871d618833c42b011b527aa44f10e4d6bed9e66f438e5b5f9f3eef240409b8c433688c9e6ed8d6d893814650c4581fb2465d316d05144c043c9b82ee8e09ad5edddfa5d9cb40ec154bf435278fc4b7919bf184903212bcafcfb07465e41725fbf7d0ced25237238f8363adb356075067f58443e1295617ab9ffe90bb314e7d82ad0d24f325d9d527f5c0bdb225d2f228049c913b60a7d9cc58a3a423446f66d4213756339c19092b053fb83eace7e7bc8e109e64df8debec1da33fe4ac4fabb10342aa05bcecdf18be031c461e93cc613a13800d9b1ca3d95310a68e9479204f98f2a0464fe6c98f133d8da4399a416b96cde3dfbebc073780f987f2cedd23f47d9450d2bcb2a88430496fa6fe431427acb782f931c000b34b952676bf27d51ae1a474b0f73873d956046f7b7fc74a996650e7e36d20623e713171a3a3d4d45b2a01f7a8f84593617987966ac31241f16e73910f6a7333cfca0e659eae0a5ca16a1c2b176d900743ec6fc37ee3aa7bde8701aa4df54aa19ef79285a9a7089a5bccf7133161101e0e686716bf4da5b37c76ccdaccb8c107b393347651d6a5a3d005109a6c2440cf375705b133569f5a58304145e3b91ed71532f23be8a3622f77e42f4102ce323a69ed901d76a4d873aa4ca903d8c87a7cb4947b8b86e9efd537be347103a3f19778ea668c76ea1778931b364ca2216ca8033488ba74d265511a31e8cc9c56ede92ac99c556d7608596eb4aee40f5de3986f9070710163943fb50977b5f4d4ae7689f90eb19e303e595f99b2d77cd0db7497cb58a61a4d55462f0e5289c8f4277197e06ba3d5d9616e5a59248ab49dd9f05218a77be473ba5716ae5ee8c56fd7b9ebfcc0f68f78b29f6419dc5da9e7851cf5a834943214bdf8ac3026fc645732a7ef67b2fa38e2b187f5979de36a441ca21506919d37e7d49526da07e7e564d41f7c89951e3debc2be77a37840b82c9381abb68c1e2352d82bdc4b1538708e75bb389af9dd8b06b467a5533d89b20649d30eae070fdb7a3aed2d761e47f099446568a491965f4b6b0beb0bf57ec0c6da4d7b311aa09b0930eabf5ba165e26d24600069ea8d7cff0c052903241f166d8dd28af476c1e24f88f04d761401f442ee59b1abf882620a955a1147cb1972e4ac13664dfb937f01f87499cfd9e07a9994fda137e9d7da898c106d7c075662fdbba2fec2cff716abe61bb1588ac53a20189934de36c30d7c8d958a2222d374416acc8614deecd126aee803d282572fa443d8a8607f945ff4ad39493baad18b46158292b16e6f856d77ad3b3dfefe8d1b3d1f349c8e5037395cbb349dc89906d207c3efd362a5fd1c18065e8e59d9686e25175bb60033f10c7c1ba0f8e634bf53de948d567d792b3956b17e4a30805f71dcc66ca99cd5c1de0659510dc44643a182f144c268a5364c8411074de1448ac18fba0133acff8db407f37130b047174aac46e1f813e9e9d1b449ba75af2a5ff88e581fd2df73c006e579746dfa8b2f2301518e4d3bf196f11c86f746df96c445ebc446575817e6292ec1df9c4d5ff3fdb2f4ab65eeb988ba22122ba0bf837b31b52a6342cb4279bebcfa05de4d947f10f231bea43b42759d4425203c4b98ea8797daedfd2f726ddc49b7ab5d1be13152cfa456f7ce4169ae383359f81295a88970309a3421583b9cd4fd3eb7109287b560926ae7f6b5c68d907a3c78d33357e8300e80f722223b08b7f534ac357f9120d59c68984d95888ef938e5ef189ca6f887caf0a0d92697425bec8d5f8f40ea4702fd12b711428a42453c57546efecb7dd8a6fd00a1717b5834ac46c27001e1e2845d2cce00ff384afa73bc6dfb6069d846329a01b617fde8f487102049ed6bdcf860be2cc1442f0d9fe824cbb9182bfb9d2ec3cae0de38b38ac7320d778a576d3ccdfd639f0e33d446a9624ba967a62788c40b9b6ffac4d87f78f787bd4a2f71ef9fa77c04ef61075c0d273bf4a0e4e66bc4407ca06ca250e9c7991c9fb8c63573235b0fe3497b293e34b849d344faa28173dde3c60caf68e0af928a9c8cda31a34af65eedd5efa9d3aa4c13122a776ba84f13c5c2c6161511ce714cbeee70bcdc6e778dc4ec64fec728935e7bec72187528f9c90a7b960950d37a23eaf485da113b39f8d6ae55cff666f84d81e7818a89e935fa63d66f7dc134aa91a023c6024fdec58bdb6878fd81ebabb9874cd698c8df4c6db9f1b92ee233832ad7fd1dd813a48ba2ec3da7d77c0266154cfc565d1ad54b06d87642127d330600df92d2c2381fabbb50c30878bc7fb939eef234fc70a111a9ade9644d2401f41ed046c22a340c5de3e1ab557f4e333e64679aacfa246c9051bc954cba22a836be9984329bf0795fce2887bec6e9f92e1a9fa8cf80f4d76a4293cd57f07c9bebf8ffd73945aad2571939dafd392faa4ced6bd2ecba19ab84bb58f3e19b310fd5a7fea834d2227c3b770c78ae94eef3ec6c2d1d4563b940e0ef1a9cbc7aa19f6bcc77b2c7a1ec32ca59c8a4e6a90d231028cf6c3804981162b444154befcc5416f8064af39ac66d8196188633831c6b9a91b62b57a5469c79c2d75799fa54da2d7852829dab9d848f8ddc42178943ee802cc24a708d990de7638d3491d8e7ff870a7e44375b63d358b592fd1a5b68e0796745a34142a07c7c332c9ee74ce16186e11c35ae5f3a01026bd059683af1f49784bb452c7b4457d7881939cbbd6b529c2a9f00911b13695e955c7594d230e9202e6185abb63dd3112c06ce198a4c101687f7e40b5a8a99f37a85bc0d75af6c202dbc500e08809cf5b70785ee24ec1304e9590254f2473c31ab29b9dcf1562a096c1cbe69795632f6f057291abcb9503b35eae705820f81f64defbb14df408f9412b1ea3c18fda3c3763a66927610746a701417583ccc98a1ea1e0709c78176f9e3a8c65c928312a00618d0ead0d191bdd2cb3f55da82c843ab8fed8fdc078cee9044bee7a0ccd7b31e9abc02fe11948a879f7bee2ecad249814dce34901fed7fc1af8bcb0ff723fd7fd8fe01f0208fd1f37fdad2dd6582eaca4c1b66103e672950f344dba0cabc1611e1ae253d0dd043287179a39e01ca0e7c3fd3d630a172ede6bfc1a1112a55688a618174fb64dcc04eda6e05ce4e1a4fb78cbcb1f4dadd79ee6149980efa9a61f10aee55ea387ddcd5e9e2bf95fa9316d29c0a45d111ec6919e48d41ef366eb210b052be3557b24e9761a3edf3c131df85f07a4bc38c2b6d3055893a126b07320deafed0dda8ecd7388f217949398d276d24710fca4b5c353cb2fdfd86a7fb02ad6e1150de2480346fb9e975eadc4ad6882a228d89877f6e90b59448303a89827ba08bbd5bdfbdf223d73f099fefedf21dd44df3925cd6182fcfb15764eb705b1df6af3de81506460afc88440081c3339a78ec24ea1c862d2a6dee20d717cccb9259b7903e4bc9ed9c20254416fe3d668454734260649ec806e5f3bce09d5fe1920b93fdb6b73b357e5a367e6f60004be520480209a9c26f179eecc11cd6e6aa4b96838fa9026cc12d5194e55e82d8045becadfdacc36fae77948e33d584dc6dc84575700f0aee00474a989ea6ee536bdb3b77be5db7e209ded983883d073c00116865a9bff4e52555db1eab8c8cb70cc8a1fe03bda757e24609e043e0e5a6766da4eed6f445e78cd91af189982ecfd57fcc4a1aa37d69358628cb8cc5a6866353105a94dccc90bb377389c78f69c5f063fd5190a2a172e29c26fed722d1790fbdecd7c60a9a7748e002a05d3e7a547d27edeb706f94dc76f81400848f3e3480a9cf558c13dcd05d9d8e9f4c76af2ec9cd76fce289c72e29b48b13b871d1e2ec1d489d9e460418acd106d1fce4d6f564eeaebc4054b21638a967f1498cab51d8bc98fa9fb5dbad90c70d2efc419a148f1e1b8b39c96d216c38b31ed494276fdab4eafb1b4c9655e556776a77ec74a32f07559fed1ab11a50ec399144279e8284108d914b2f8bd459ed3dea286fefcddb57020fa37095cb7dd2dfc76f4b16b31e3e3463a504ed94af04983420ecc3fa56ad5af4f021c57ab61ee72c5305189ec5b59297db11b9ef596adea4c2d52d492a2bf68d879e1950fc9ddee4c0ed73d4037d237d181d7bce1310882b5863ba7004752d5ec33d783ae45a44d211b63b2ed0582d8cdf39277a52723e7032d08975a1ab4f13686cccb2cffde773e0b958469684e2323436319e522eb0cac990040cf23e2dd91e424ab094c451bad150493f0519160cd9ed90aaa422098deca48f4d3f08345c87f15e298cdc1355dac1e0bf3c3f716c25c98f7e39a0970b4143704dd980f9183945b0a613fb0c8ca4a2287055c98611ef58f0fcaeb40a7ef157a93465a1c68ffd0086f813e9e9f6453232ac2999c4015d5a69ddaf386bbdc78c6e9f32960b9c244338d2764432ab6f413279774904529c639c776959684a6899e8ad3c218fd0406ece19c77077f7f0eaf39633a74c1b85031509809fbc7dc40783f4e08e5119930742d89778067c9c479ef3e57ae16260069ac9468e0e3f4e192be055216007869951faa3e32d1b94257508cb409316836aa29fe53e2e45a3e9f9ec6eaa1603cb0f663ca8bf69e09c16af6a26fc823486a0b038965ebc7dfbd5fb8c7f22621d564d40d9ac60b8c6f7ca744206f4cb29ea861cf55831338ae6254be121f68ec70dde4868db2aa0035ecce654b6484f4caa095a462c6f5e0f4424c537b3a379e39056ff2608aeb81e3726d8de8cc0fe060eb8eb53825b8d59251e51dc875f29697e5430d1973e8fa6ab9ad7b4cdc8ac7e4664d1d47cdc8a5b5b22b6ed877b5b9e3d4e7e6f534b0000d9979b5e170bc27a53cd2a0950396bdb8fdd77217e407c6030ff26113b67d4f31f74ff0fb122552a82e8e630094eb686d7d3a18e1cda9b5d78c1333e0ccb2e10c41631aa8c865a5529c57a81ff9268e6a6f83f39b3937752593202e0bb439e4f2bdcc9f75888bdae785c996332f52b0683a95934f9cfa5a4f5d50fb62ef2aeeb41af059750b062a4bf2e9a7f356b3e7a5b966f94a940c47a443043e91ab5256ab75670c45e7da224ede9e2edbe75dfcbd35f369d38b4227d7ca0624ce87a295614d5f23994b79b20933278cd0b681bcf015949bc766d2721416e99b29559b2fe5675a61ca260220eca3d07e38ede3ebb2f5abce8f8dca7f8eefce11921ed50891e29cecdf3d2dd8500ba634ecd32111cab520f935433c08ac5d4929357a8dfdef9216bcc1969f7bc53982442ebf3f1068b122c746ba8e58442ce7e135f5d5ef4f97f884305f5f77757f81a8a69dd873ebd421cc0cf70d4b392e903492e92a268a31a642860501ccc5dabfead0873c4f439fa75475440d64ac083fc48b6fcb9f7f6e9adac652dcc822fa087ce5f17be785ab22c7e4532e6ee5d08a2e7eb24bdd2f6a0f79defbfdb4aa507510e05609d7efa9c59cf0b681d3f1dfb6044259551612b3b3ab04978ee3d9ae8fd083ec80e1abe547d4f91ed2e51cb6cf64214476397fb1c0478553b6d55533b55d876129b04c30b75b86e06178fa2a821cfa387bd5c871b929ce666f6c56a0a0a236dc2c5835439f243bbd318877b504e0c634956c6a80986ec205dd91cd584bfcd81af965799c564a2f11a867a76fc64f496a89540f6403a48e9b58263dd99105c68c02ca2f40404c3797c6a19e695d83044a918bd238e485e4613849ee91834e79cbec0f0b44395b7dd892b81a2e1d19361b1609487a84304428b03d8f69963e56721c41e20482c6dacd88c34ac373ddfce3d73d0de8c1fd2172f6ce1c353a5a09fc8df26b70d6ded0ec3af80196019cfc493689dea00144db33febcb1179e3a105f01fbc1b185820650d66851591878abefa56ddbb45e851de532a85d0eaa7eb34a7f62c395f6a5ec1526a12ad728a9da769345041b4ffd433326110edba2a7ad5102376c25c95ee01c3fe3aa1b9a0742a10ddb9307dc86dab94e5053f444feb7ac0068d2752964f2be686652196c79884e7adbb18e32a15db5c17f0333d2dd56eebd746e45e00a641c8b003f877ed8f76b13c36bfec069b27da69733da2111218f8de99a4206de2c45050e740dcf9a6649c078e82aca5d6283b026307fd59558ee6648960ecf24121e11609e9857b1ea54355e429107942285b9255cf8612c10b303ee893544bc7998754be709578a2fa09cc89f60bfca53e71224ede06aa1a270954f9a8e96fe1da0692cb6542252a3f3b5daaced3c1abac28ed8bebe5bf26832a3eb6dfdec97af50bedb1caae7e2249027881e3ffb7c99af9821333e50076f85338c3ba9157f520ef41274de3c5209a696bd9f0ce015eac4818da1c6e9b70a8b8720ed36e11686643c9304c596b4815bc7abd5919b66ff1519d0f0d68318c71846a7681bbb673578356c404fb8a282e30d67e6f4dbd4cb9129783c775872b5ffb021468b84733cd4b7e2573e93f27e3af24428765c23256a88a95865bd924d9e9aa10f751e49d989676789a08db3cf31442887c3fdd5b03490fa1c8255b44f822f2e95487ebfeb221d68ee4061ecfe47f51685f24cbb237158a0c077c4e442768e3e90cfba24bbafe1ad852dbb06d079981b5a204986db9c9981816a9b5af6c5444241ade96e3fee94bfd7a46806e6729a8c086b6ecbbf135af26c439634e69814379d18f1e52539285c2bba0d6d7882808572e0b932a68a1080223b3296c107454557f1a66dd7d95d918d5aad780af95ebfa45a6d232de1d62eaff1337d28cbe15b50cae6248de2112228f43</script>
 </div>
 <script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">	
-		</div>
-		
-		<div id="current-post-cover" data-scr="/img/post-cover/2.jpg"></div>
+	</div>
+	
+	<div id="current-post-cover" data-scr="/img/post-cover/2.jpg"></div>
 
-		<!-- relate post, comment...-->
-		<div class="investment-container">
-			<div class="investment-header">
-				<div class="investment-title-1">
-					<div class="on">相关文章</div>
-					<div>评论</div>
-					<div>分享</div>
-				</div>
-				<div class="investment-title-2">	            
-					
+	<!-- relate post, comment...-->
+	<div class="investment-container">
+		<div class="investment-header">
+			<div class="investment-title-1">
+				<div class="on">相关文章</div>
+				<div>评论</div>
+				<div>分享</div>
+			</div>
+			<div class="investment-title-2">	            
+				
 	<span>
-		<a id="totop-post-page">返回顶部</a>
+		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/" title="Hook Java层通杀" rel="prev">
+			<a href="/2020/06/11/逆向/XposedFridaHook系列/hook导入导出表/" title="Hook so 导入导出表" rel="prev">
 				&laquo;上一篇
 			</a>
 		
@@ -308,34 +387,290 @@
 
 
       		
-				</div>	
-			</div>
-			
-			<div class="investment-content">
-				<div class="investment-content-list">
-					
+			</div>	
+		</div>
+		
+		<div class="investment-content">
+			<div class="investment-content-list">
+				
 
 <div class="relate-post">
 	
-		<div class="config-info">
-			Please check the parameter of <b>post_relate</b> in config.yml of hexo-theme-Annie! You should make sure that <b>postsEnable is true</b> and the number of site posts greater than 1.
-		</div>	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/08/28/逆向/破解/某app加密算法分析/" title="某app加密算法分析">
+								某app加密算法分析			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								八月 28日, 2020				
+							</p>
+							<p class="relate-post-content">
+								
+  
+  
+    Hey, password is required here.
+    
+  
+  a7fbab8565cf6bbb84f5578e356b215e1a835de7a145bd926381e35cc45256f4...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/08/28/逆向/破解/某app加密算法分析/" title="某app加密算法分析">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="某app加密算法分析"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/08/28/编程/python/python爬虫scarpy/" title="scrapy 框架学习">
+								scrapy 框架学习			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								八月 28日, 2020				
+							</p>
+							<p class="relate-post-content">
+								入坑scrapy在自己学习了一段时间爬虫之后（其实也就是了解了下爬虫），我就迫不及待的想学习心得东西了。 今天就入手scrapy框架
+官方文档
+安装安装上基本没啥大问题，缺啥补啥就行
+这里我选择使用Python虚拟环境virtuale...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/08/28/编程/python/python爬虫scarpy/" title="scrapy 框架学习">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="scrapy 框架学习"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/06/18/逆向/XposedFridaHook系列/jni函数hook计算地址方式/" title="jni函数hook">
+								jni函数hook			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 18日, 2020				
+							</p>
+							<p class="relate-post-content">
+								jni函数hook（计算 地址方式）12345678910111213141516171819202122232425262728293031323334353637function hookTest9() &#123;    Jav...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/06/18/逆向/XposedFridaHook系列/jni函数hook计算地址方式/" title="jni函数hook">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="jni函数hook"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/06/18/逆向/XposedFridaHook系列/jni 主动调用/" title="Hook jni 主动调用">
+								Hook jni 主动调用			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 18日, 2020				
+							</p>
+							<p class="relate-post-content">
+								Hook jni 主动调用要对hellofromc 进行主动调用，修改返回值，但是这里不能直接通过replace去修改返回值，而是要通过newstringutf 去修改返回值。
+1234567891011121314151617181...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/06/18/逆向/XposedFridaHook系列/jni 主动调用/" title="Hook jni 主动调用">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook jni 主动调用"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/06/18/逆向/XposedFridaHook系列/hook 读写内存数据/" title="Hook 计算非导出函数地址">
+								Hook 计算非导出函数地址			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 18日, 2020				
+							</p>
+							<p class="relate-post-content">
+								hook 读写内存数据对string字符串，可能是加密的，可以通过直接hook 加载的内存数据来读取解密状态的字符串
+123456789读取内存字符串数据function hookTest7() &#123;    var soAdd...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/06/18/逆向/XposedFridaHook系列/hook 读写内存数据/" title="Hook 计算非导出函数地址">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook 计算非导出函数地址"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/" title="Hook 获取指针参数的返回值">
+								Hook 获取指针参数的返回值			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 15日, 2020				
+							</p>
+							<p class="relate-post-content">
+								Hook 获取指针参数的返回值在c语言中，一般都会以指针传递返回的值 ，没有return 或者return为true
+hook sub_750 打印参数和输出
+
+12345678910111213141516171819functio...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/06/15/逆向/XposedFridaHook系列/获取指针参数的返回值/" title="Hook 获取指针参数的返回值">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook 获取指针参数的返回值"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/06/15/逆向/XposedFridaHook系列/hook dlopen/" title="Hook dlopen">
+								Hook dlopen			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 15日, 2020				
+							</p>
+							<p class="relate-post-content">
+								hook dlopen在刚开始hook 我们必须使得app加载so 才能hook， 我们可以hookdlopen 获取到so在那加载，在高版本中有一些so会走android_dlopen_ext
+1234567891011121314...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/06/15/逆向/XposedFridaHook系列/hook dlopen/" title="Hook dlopen">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook dlopen"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" title="Hook 导出函数和修改函数参数返回值">
+								Hook 导出函数和修改函数参数返回值			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 15日, 2020				
+							</p>
+							<p class="relate-post-content">
+								Hook 导出函数123456789101112131415161718192021222324252627282930// hook 导出函数function hookTest1() &#123;     var addAddr =...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/06/15/逆向/XposedFridaHook系列/Hook 导出函数和修改函数参数返回值/" title="Hook 导出函数和修改函数参数返回值">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook 导出函数和修改函数参数返回值"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/06/11/逆向/XposedFridaHook系列/hook导入导出表/" title="Hook so 导入导出表">
+								Hook so 导入导出表			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 11日, 2020				
+							</p>
+							<p class="relate-post-content">
+								hook so 导入导出表启动frida打开两个cmd 窗口
+12345第一个cmd窗口adb shellsucd /data/local/tmp./fx  // 这个是frida-server-12.8.14-android-x86...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/06/11/逆向/XposedFridaHook系列/hook导入导出表/" title="Hook so 导入导出表">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook so 导入导出表"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/" title="Hook Java层通杀">
+								Hook Java层通杀			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 11日, 2020				
+							</p>
+							<p class="relate-post-content">
+								Hook 通杀Hook 普通方法和修改函数参数返回值fradaserver 是手机端的，
+
+android低版本 frida 尽量低版本
+fridaserver版本要与frida库版本一致
+不同平台用不同fridaserver
+不要和...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/06/11/逆向/XposedFridaHook系列/Hook开始/" title="Hook Java层通杀">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/post-cover/2.jpg" alt="Hook Java层通杀"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+		</ul>
 	
 </div>	
-				</div>
-				<div class="investment-content-list">
-					<div class="layout-comment">
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-comment">
 
 	
-		<div class="config-info">
-			Please check the parameter of <b>comment</b> in config.yml of hexo-theme-Annie!
-		</div>	
+
+		
+
+			<!-- I don't know !!!-->
+			<div>Please check the comment setting in config.yml of hexo-theme-Annie!</div>
+			
+		
+		
 	
 
 </div>
-				</div>
-				<div class="investment-content-list">
-					<div class="layout-share">
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-share">
 	
 	
 
@@ -354,253 +689,12 @@
 </div>
 
 
-				</div>
-			</div>	
-		</div>
+			</div>
+		</div>	
+	</div>
 	</div>
 </div>
 
-<!-- show math formula -->
-
-
-
-	 
-	<script src="/plugin/clipboard/clipboard.js"></script>
-	<script>
-		// Copy code !
-	    function preprocessing() {
-	        $("#article-content .highlight").each(function() {
-	            $(this).wrap('<div id="post-code"></div>');
-	        })
-
-	        $("#article-content #post-code").each(function() {
-	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
-	        })
-
-	        $("#article-content .copy-nav").each(function() {
-	            let languageClass = $(this).next().attr('class'),
-	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
-
-	            $(this).find('.code-language').text(language);
-	            $(this).append('<span class="copy-btn icon-paste"></span>');
-	        });
-	    }
-
-		function copy() {
-		    $('#article-content #post-code').each(function(i) {
-		        let codeCopyId = 'codeCopy-' + i;
-
-		        let codeNode = $(this).find('.code'),
-		            copyButton = $(this).find('.copy-btn');
-
-		        codeNode.attr('id', codeCopyId);
-		        copyButton.attr('data-clipboard-target-id', codeCopyId);
-		    })
-   
-			let clipboard = new ClipboardJS('.copy-btn', {
-					target: function(trigger) {
-						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
-					}
-		      	});
-
-			//pure js
-			function showTooltip(elem, msg) {		   
-				elem.setAttribute('aria-label', msg);
-				elem.setAttribute('class', 'copy-btn icon-clipboard1');
-				setTimeout(function() {
-					elem.setAttribute('class', 'copy-btn icon-paste');
-				}, 2000);
-			}
-
-			clipboard.on('success', function(e) {
-			    e.clearSelection();
-			    console.info('Action:', e.action);		   
-			    console.info('Trigger:', e.trigger);
-			    showTooltip(e.trigger, 'Copied!');   
-			});
-			
-			clipboard.on('error', function(e) {
-			    console.error('Action:', e.action);
-			    console.error('Trigger:', e.trigger);
-			});
-		}
-		
-		(function copyCode(){
-			if ($('.layout-post').length) {
-			    preprocessing();
-			    copy();
-			} 
-		})();
-	</script>
-
-
-
-
-
-<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
-<script src="/plugin/fancybox/jquery.fancybox.js"></script>
-
-<script type="text/javascript">
-	(function gallerySet(){
-		let titleID = $('.article-title a'),
-			imageID = $('.article-content img'),
-			videoID = $('.article-content video');
-		
-		let postTitle = titleID.text() ? titleID.text() : "No post title!";
-		
-		imageID.each(function() {
-			let imgPath = $(this).attr('src'),
-				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
-		
-			//给每个匹配的<img>元素打包, 即添加父元素<a>
-			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
-		});
-		
-		videoID.each(function() {
-			let videoPath = $(this).attr('src');
-		
-			//给每个匹配的<img>元素打包, 即添加父元素<a>
-			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
-		});
-		
-		//TODO：支持html5 video
-
-		if($('#layout-post').length) {
-			$('[data-fancybox="gallery"]').fancybox({
-				loop: true,
-				buttons: [
-					"zoom",
-					"share",
-					"slideShow",
-					"fullScreen",
-					//"download",
-					"thumbs",
-					"close"
-				],
-				protect: true
-			});
-		}
-	})();
-</script>
-		</main>
-
-		<!--footer-->
-		<footer>
-	<div id="navigation-show">
-		<ul id="global-nav">
-	
-		<li class="menu-home">
-			<a href="/" class="menu-item-home" target="_blank">主页</a>
-		</li>
-		
-	
-		<li class="menu-archive">
-			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
-		</li>
-		
-	
-		<li class="menu-categories">
-			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
-		</li>
-		
-	
-		<li class="menu-tags">
-			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
-		</li>
-		
-	
-		<li class="menu-about">
-			<a href="/about" class="menu-item-about" target="_blank">关于</a>
-		</li>
-		
-	
-
-	
-		<li class="menu-search">
-			<a href="javascript:;" class="popup-trigger">搜索</a>
-		</li>
-	
-</ul>
-	</div>
-
-	<div class="copyright">
-		<p>
-			 
-				&copy;2017 - 2020, content by Sariay. All Rights Reserved.
-			
-			
-				<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
-			
-		</p>
-		<p>
-			
-
-	<!-- busuanzi -->
-	<!-- busuanzi -->
-
-		
-	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
-
-		<span id="busuanzi_container_page_pv">
-	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-
-	
-
-
-
-
-			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
-			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
-		</p>
-	</div>		
-</footer>
-		
-	<!-- Local or hitokoto! -->
-
-	<script src="/plugin/motto/motto.js"></script>
-	
-	<script type="text/javascript">
-		(function motto(){
-			let mottoText = getMingYanContent().split('</br> - </br>'),
-			
-			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
-			
-			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
-			
-			mottoTextContent = mottoTextContent.trim().substring(0, 100);
-		
-			$("#motto-content").html( mottoTextContent);
-			$("#motto-author").html( mottoTextFrom  );
-		})();	
-	</script>	
-
-
-
-<!-- love effect -->
-
-
-<!-- back to top -->
-
-	<div id="totop">
-	<span class="icon-circle-up"></span>
-</div>
-
-
-
-<!-- site analysis -->
-
-
-	<!-- site-analysis -->
-	
-	
-	
-	
-	
- 
-
-<!-- leancloud -->
 
 
 	<!-- leancloud -->
@@ -623,9 +717,233 @@
 -->
 
 
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
 	
 
-  
+
+<!-- show math formula -->
+
+
+
+	 
+	<script src="/plugin/clipboard/clipboard.js"></script>
+	<script>
+		// Copy code !
+	    function codePreprocessing() {
+	        $("#article-content .highlight").each(function() {
+
+	            $(this).wrap('<div id="post-code"></div>');
+
+	        })
+
+	        $("#article-content #post-code").each(function() {
+
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            var temp = $(this).next().attr('class'),
+	                language = ((temp.length > 9) && (temp != null)) ? temp.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+
+	            $(this).append('<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i></span>');
+
+	        });
+	    }
+
+		function codeCopy() {
+		    $('#article-content #post-code').each(function(i) {
+		        var codeCopyId = 'codeCopy-' + i;
+
+		        var codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+
+		    
+			var clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn copy-status');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');
+			    
+			});
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		
+
+		}
+
+		if ($('.layout-post').length) {
+		    codePreprocessing();
+		    codeCopy();
+		} 
+	</script>
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+<script type="text/javascript">
+	var titleID = $('.article-title a'),
+		imageID = $('.article-content img'),
+		videoID = $('.article-content video');
+
+	var postTitle = titleID.text() ? titleID.text() : "No post title!";
+
+	imageID.each(function() {
+		var imgPath = $(this).attr('src'),
+			imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox="gallery" data-caption=" 《 ' + postTitle + ' 》 ' + imgTitle + ' "  href=" ' + imgPath + ' "> </a>');
+	});
+
+	videoID.each(function() {
+		var videoPath = $(this).attr('src');
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+	});
+	//TODO：支持html5 video
+
+	if($('#layout-post').length) {
+		$('[data-fancybox="gallery"]').fancybox({
+			loop: true,
+			buttons: [
+				"zoom",
+				"share",
+				"slideShow",
+				"fullScreen",
+				//"download",
+				"thumbs",
+				"close"
+			],
+			protect: false
+		});
+	}
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div class="social">
+		<ul>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-weibo"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-pinterest"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+		
+	<div class="copyright">
+		<p>
+			 
+				&copy;2019 - 2020, content by ST0new. All Rights Reserved.
+			
+			
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+		</p>
+		<p>
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- set '1' to show motto in all pages! -->
+
+	<script src="/plugin/motto/motto.js"></script>
+	
+	<script type="text/javascript">
+		$(".motto").html( getMingYanContent() );
+	</script>	
+
+
+
 
 	<!--
 	时间：2018-10-3
@@ -634,7 +952,7 @@
 		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
 		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
 -->
-<div class="popup search-popup local-search-popup scrollbar" >
+<div class="popup search-popup local-search-popup" >
 	<div class="local-search-container">
 		<span class="popup-btn-close">
       		ESC
@@ -650,6 +968,23 @@
 		<div class="local-search-footer">
 			<div class="topN-post">				
 				
+
+   
+	<div id="topN">
+		<div class="topN-title" data-title= "热门文章"></div> 
+	</div>
+	
+    <script>
+        var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT',
+            limitCount = 10;
+        if( $('#topN').length ){
+            AV.initialize(appid, appkey);
+            var Counter = AV.Object.extend("Counter");  
+            topNPost(Counter, limitCount);
+        }
+    </script>
+   
 								
 			</div>
 		</div>
@@ -657,7 +992,7 @@
 </div>
 
 <script src="/plugin/search/ziploader.js"></script>
-<script src="/js/search.js"></script>
+<script src="/plugin/search/search.js"></script>
 
 <script type="text/javascript">
 	var search_path = 'search.json',
@@ -676,11 +1011,38 @@
 </script>
 
 
+<!-- love effect -->
+
+	<script src="/plugin/love/love.js"></script>
+
+
+<!-- back to top -->
+
+	
+	<div id="totop">
+  		<a href="javascript:;"  name="TOTOP" class="fa fa-arrow-up" ></a>
+	</div>
+
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<script src="/plugin/vibrant/vibrant.js"></script>
 <script src="/plugin/chinese/chinese.js"></script>
-<script src="/plugin/imagelazyloader/yall.min.js"></script>
-<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/imgLazyLoader/yall.min.js"></script>
+<script src="/plugin/imgResize/jquery.resizeimagetoparent.min.js"></script>
 <script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
-<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/resizediv.js"></script>
 <script src="/js/main.js"></script>
 	</body>	
 </html>

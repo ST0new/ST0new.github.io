@@ -1,7 +1,7 @@
 <!--
 	作者：Sariay
-	时间：2018-08-26
-	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
 -->
 <!DOCTYPE html>
 <html class="html-loading">
@@ -23,28 +23,15 @@
   <link rel="shortcut icon" href="/img/favicon.ico">
 
   <!-- css -->
-  <link rel="stylesheet" href="/css/Annie.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/Annie.css">
   
   <!-- jquery -->
-	<script src="/plugin/jquery/jquery.min.js"></script>
+	<script src="/js/jquery.min.js"></script>
 
-<script>
-    const CONFIG_BGIMAGE = {
-      mode: 'random',
-      normalSrc: '/img/header-bg.jpg',
-      randomYouMax: 110,
-      randomYouSrc: 'https://www.st0ne.club/Random-img/',
-	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
-	  preloaderEnable: true
-    }
-	
-    const CONFIG_LEACLOUD_COUNT = {
-      enable: false,
-	  appId: 'AU8...',
-	  appKey: '4cU...',
-	  serverURLs: 'http' || ' '
-    }
-  </script>
+  <!-- leancloud -->
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script src="/js/leancloud.js"></script>
 </head>
 	<body>
 		<!-- Preloader -->
@@ -63,24 +50,105 @@
 
 
 <!-- header -->
-<header class="fixbackground bg-pan-br">
+<header class="fixbackground" data-img-mode="random" data-normal-src="/img/1.jpg" data-random-max="111" data-random-src="https://www.st0ne.club/Random-img/">
 	<div class="mask">
+		<!-- Logo and navigation -->
+		<div class="h-header">
+			<div id="logo">
+				<a href="/">
+						
+						<img src="/img/logo.png" alt="Logo">
+					
+				</a>
+			</div>
+			
+			<div id="navigation-show">
+				<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+		<li class="menu-links">
+			<a href="/links" class="menu-item-links">links</a>
+		</li>
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+			</div>				
+		</div>
+
 		<!-- motto -->
 		<div class="h-body">	
 			
-				<div class="motto text-shadow-pop-left">
-					<p class="content" id="motto-content">获取中...</p>
-					<p>-<p>
-					<p class="author" id="motto-author">Just a minute...</p>
-				</div>
+				<p class="motto"></p>
 			
 		</div>
 		
 		<!-- others: such as time... -->			
 		<div class="h-footer">
-			<a href="javascript:;" id="read-more" class="scroll-down">
-				<span class="icon-anchor1 animation-scroll-down"></span>
+			<a href="javascript:;" id="read-more"><i class="fa fa-angle-double-down" aria-hidden="true"></i>
 			</a>
+
+			
+				<!-- 
+	This is only a demo, please go to "https://time.is" to set your city time! 
+-->
+<style type="text/css">
+	.header-date {
+		font-size: 1.6rem;
+		color: #fff;
+		position: absolute;
+		bottom: 5px;
+		right: 1rem;
+		writing-mode: tb-rl;
+	}	
+	
+	.header-date a {
+		border-bottom: none;
+	}
+
+	@media only screen and (max-width: 768 ) {
+		.header-date {
+			font-size: 1rem;
+		}			
+	}
+</style>
+<div class="header-date">
+	<a href="https://time.is/Beijing" id="time_is_link" rel="nofollow" ></a>
+	<span id="Beijing_z43d"></span>
+</div>
+<script src="//widget.time.is/zh.js"></script>
+<script>
+	time_is_widget.init({
+		Beijing_z43d:{
+			template:"DATE", 
+			date_format:"year年 monthname dnum日"
+		}
+	});
+</script>
+			
 		</div>
 	</div>
 </header>
@@ -90,7 +158,7 @@
 	<div id="progress-bar"></div>
 
 	<!-- Progress percent -->
-	<div id="progress-percentage"><span>0.0%</span></div>
+	<div id="progress-percentage"><h1>0.0%</h1></div>
 
 	<div class="toc-switch"><span class="switch-button">目录</span></div>
 
@@ -101,9 +169,6 @@
 		
 	</p>
 
-	
-	
-
 	<!-- Nav trigger for navigation-H-->
 	<a class="nav-trigger"><span></span></a>
 </div>
@@ -111,39 +176,35 @@
 <!-- Navigation in div(id="navigation-H") -->
 <nav class="nav-container" id="cd-nav">
 	<div class="nav-header">
-		<span class="logo"> 
-			<img src="/img/logo.png">
-		</span>
+		<h3>Navigation</h3>
 		<a href="javascript:;" class="nav-close"></a>
 	</div>
-	
 	<div class="nav-body">
-		<ul id="global-nav">
+		<ul>
 	
 		<li class="menu-home">
-			<a href="/" class="menu-item-home" target="_blank">主页</a>
+			<a href="/" class="menu-item-home">主页</a>
 		</li>
-		
 	
 		<li class="menu-archive">
-			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+			<a href="/archives" class="menu-item-archive">归档</a>
 		</li>
-		
 	
 		<li class="menu-categories">
-			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+			<a href="/categories" class="menu-item-categories">分类</a>
 		</li>
-		
 	
 		<li class="menu-tags">
-			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+			<a href="/tags" class="menu-item-tags">标签</a>
 		</li>
-		
 	
 		<li class="menu-about">
-			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+			<a href="/about" class="menu-item-about">关于</a>
 		</li>
-		
+	
+		<li class="menu-links">
+			<a href="/links" class="menu-item-links">links</a>
+		</li>
 	
 
 	
@@ -153,55 +214,42 @@
 	
 </ul>
 	</div>
-	
 	<div class="nav-footer">
-		<ul id="global-social">
+		<ul>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<span class="icon-one"><span class="path1"></span><span class="path2"></span></span>
+				<i class="fa fa-github"></i>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<span class="icon-zhihu"></span>
+				<i class="fa fa-weibo"></i>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<span class="icon-github"></span>
+				<i class="fa fa-pinterest"></i>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<span class="icon-sina-weibo "></span>
+				<i class="fa fa-instagram"></i>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<span class="icon-pinterest2"></span>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<span class="icon-instagram"></span>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<span class="icon-twitter"></span>
+				<i class="fa fa-twitter"></i>
 			</a>
 		</li>
 	
 		<li>
 			<a href="/atom.xml" target="_blank">
-				<span class="icon-rss"></span>
+				<i class="fa fa-rss"></i>
 			</a>
 		</li>
 			
@@ -219,29 +267,33 @@
 	<!--pure style-->
 	<div class="layout-pure">
 	<div id="layout-pure">	
-		
-			<div class="post" id="post">
-				<div class="post-text">
-					<div class="post-title" id="post-title-index">			
-						
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2020/03/10/逆向/androidstudio安装报错/" itemprop="url">
 		Andorid Studio 安装报错 解决
 	</a>
 
-					</div>
+				</div>
 
-					<div class="post-content">
-						
-							Andorid Studio 安装报错 解决小记安装了一下午的AndroidStudio 一直报错，安装不上sdk 实在头疼，查到资料改个hosts就搞定了，舒服
-将这两个写入c:\users\...
-						
-					</div>
+				<div class="post-content">
 					
-					<div class="post-meta">
-						<span>
-							发布于
-							<i>
-								
+						Andorid Studio 安装报错 解决小记安装了一下午的AndroidStudio 一直报错，安装不上sdk 实在头疼，查到资料改个hosts就搞定了，舒服
+将这两个写入c:\users\你电脑的名字\drivers\etc\hosts中 即可解决 不挂代理轻松安装sdk
+12203.208.43.101 dl-ssl.google.com203.208.43.101 dl.google.com
+
+
+					
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
 
 
 
@@ -254,47 +306,97 @@
 	  </time>
 	</a> 
 
-							</i>
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2020/03/10/逆向/androidstudio安装报错/_visitors" data-url="/2020/03/10/逆向/androidstudio安装报错/" data-title="Andorid Studio 安装报错 解决">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2020/03/10/逆向/androidstudio安装报错/_likes" data-url="/2020/03/10/逆向/androidstudio安装报错/" data-title="Andorid Studio 安装报错 解决" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2020/03/10/逆向/androidstudio安装报错/" title="阅读全文">阅读全文</a>	
 						</span>
-						
-						
-
-
-
-						
-							<span class="right">      	
-								<a href="/2020/03/10/逆向/androidstudio安装报错/" title="阅读全文">阅读全文</a>	
-							</span>
-						
-					</div>
+					
 				</div>
 			</div>
-		
-			<div class="post" id="post">
-				<div class="post-text">
-					<div class="post-title" id="post-title-index">			
-						
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2020/02/27/编程/python/python第一课 数据结构和算法/" itemprop="url">
 		python第一课 数据结构和算法
 	</a>
 
-					</div>
+				</div>
 
-					<div class="post-content">
-						
-							python第一课 数据结构和算法
+				<div class="post-content">
+					
+						python第一课 数据结构和算法
 注： 本文是对照https://python3-cookbook.readthedocs.io/ 学习 总结笔记 
 
 1.1  解压序列复制给多个变量问题
-现...
-						
-					</div>
+现在有一个包含 N 个元素的元组或者是序列，怎样将它里面的值解压后同时赋值给 N 个变量？
+解决方案
+元组：元组使用小括号与列表非常相似，创建元组只需要 tup = (1,2,3,4,5,6),通过逗隔开即可；查看当前变量是否属于元组可以通过type(tup) 来获取变量类型；并且 元组也可以通过 tup = “a”,”b”,”c” 这样来实现；元组只包含一个元素，需要在元素后面添加逗号，否则会被当...
 					
-					<div class="post-meta">
-						<span>
-							发布于
-							<i>
-								
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
 
 
 
@@ -307,50 +409,106 @@
 	  </time>
 	</a> 
 
-							</i>
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2020/02/27/编程/python/python第一课 数据结构和算法/_visitors" data-url="/2020/02/27/编程/python/python第一课 数据结构和算法/" data-title="python第一课 数据结构和算法">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2020/02/27/编程/python/python第一课 数据结构和算法/_likes" data-url="/2020/02/27/编程/python/python第一课 数据结构和算法/" data-title="python第一课 数据结构和算法" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2020/02/27/编程/python/python第一课 数据结构和算法/" title="阅读全文">阅读全文</a>	
 						</span>
-						
-						
-
-
-
-						
-							<span class="right">      	
-								<a href="/2020/02/27/编程/python/python第一课 数据结构和算法/" title="阅读全文">阅读全文</a>	
-							</span>
-						
-					</div>
+					
 				</div>
 			</div>
-		
-			<div class="post" id="post">
-				<div class="post-text">
-					<div class="post-title" id="post-title-index">			
-						
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2020/02/26/编程/python/python介绍/" itemprop="url">
 		python 入门简介
 	</a>
 
-					</div>
+				</div>
 
-					<div class="post-content">
-						
-							python 简介为了完成毕设 努力学习python
+				<div class="post-content">
+					
+						python 简介为了完成毕设 努力学习python
 
 python 是一种解释型语言
 pyhton 是交互式语言
 python是面向对象语言
 python是初学者语言 很简单
 
-0x01 py...
-						
-					</div>
+0x01 python区分只要有python2 和python3 之分
+0x02 python的特点这就不提了 全是优点
+python大法好
+0x03 python 变量类型字符串一般由数字、字母、下划线组成
+1str = &apos;xxxx&apos;
+
+方法
+列表支持字符、数字、字符串 甚至可以包含列表（嵌套）
+12list = [ &apos;runoob&apos;, 786 , 2.23, &apo...
 					
-					<div class="post-meta">
-						<span>
-							发布于
-							<i>
-								
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
 
 
 
@@ -363,49 +521,97 @@ python是初学者语言 很简单
 	  </time>
 	</a> 
 
-							</i>
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2020/02/26/编程/python/python介绍/_visitors" data-url="/2020/02/26/编程/python/python介绍/" data-title="python 入门简介">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2020/02/26/编程/python/python介绍/_likes" data-url="/2020/02/26/编程/python/python介绍/" data-title="python 入门简介" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2020/02/26/编程/python/python介绍/" title="阅读全文">阅读全文</a>	
 						</span>
-						
-						
-
-
-
-						
-							<span class="right">      	
-								<a href="/2020/02/26/编程/python/python介绍/" title="阅读全文">阅读全文</a>	
-							</span>
-						
-					</div>
+					
 				</div>
 			</div>
-		
-			<div class="post" id="post">
-				<div class="post-text">
-					<div class="post-title" id="post-title-index">			
-						
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2020/02/05/逆向/android学习之环境搭建/" itemprop="url">
 		android 安全之环境搭建（一）
 	</a>
 
-					</div>
+				</div>
 
-					<div class="post-content">
+				<div class="post-content">
+					
 						
-							
   
   
     Hey, password is required here.
     
   
-  2180d006303213985e487fd1170d435e54fb73b1db79...
-						
-					</div>
+  2180d006303213985e487fd1170d435e54fb73b1db7948858c7fc5e204c5737ce8d9ad2c2a5ae0e03acdf5ddf027fc70a53b784e0dc027fab7e0870a08580a986ed21d9637624ca6b8e82fa9be90bc4de71f2ace73c117650ebbf0a2eb0aae19362fd1fb0bb702bf2ea69ddb8520fa13a2dc9eaa2299c7b7e33d...
 					
-					<div class="post-meta">
-						<span>
-							发布于
-							<i>
-								
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
 
 
 
@@ -418,44 +624,96 @@ python是初学者语言 很简单
 	  </time>
 	</a> 
 
-							</i>
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2020/02/05/逆向/android学习之环境搭建/_visitors" data-url="/2020/02/05/逆向/android学习之环境搭建/" data-title="android 安全之环境搭建（一）">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2020/02/05/逆向/android学习之环境搭建/_likes" data-url="/2020/02/05/逆向/android学习之环境搭建/" data-title="android 安全之环境搭建（一）" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2020/02/05/逆向/android学习之环境搭建/" title="阅读全文">阅读全文</a>	
 						</span>
-						
-						
-
-
-
-						
-							<span class="right">      	
-								<a href="/2020/02/05/逆向/android学习之环境搭建/" title="阅读全文">阅读全文</a>	
-							</span>
-						
-					</div>
+					
 				</div>
 			</div>
-		
-			<div class="post" id="post">
-				<div class="post-text">
-					<div class="post-title" id="post-title-index">			
-						
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2019/10/27/CTF/wp/K&A UNCTF/" itemprop="url">
 		UNCTF竞技赛
 	</a>
 
-					</div>
+				</div>
 
-					<div class="post-content">
-						
-							UNCTFwp由K&amp;A整理
-WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Graph...
-						
-					</div>
+				<div class="post-content">
 					
-					<div class="post-meta">
-						<span>
-							发布于
-							<i>
-								
+						UNCTFwp由K&amp;A整理
+WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/GraphQL%20Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/GraphQL Injection)
+工具扫没扫出结果 没得到预期解
+这题应该是出题人的疏忽
+先看看可用对象 
+1234567891011121314151617181920212223242526272829303132333435363...
+					
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
 
 
 
@@ -468,35 +726,83 @@ WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/m
 	  </time>
 	</a> 
 
-							</i>
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2019/10/27/CTF/wp/K&A UNCTF/_visitors" data-url="/2019/10/27/CTF/wp/K&A UNCTF/" data-title="UNCTF竞技赛">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2019/10/27/CTF/wp/K&A UNCTF/_likes" data-url="/2019/10/27/CTF/wp/K&A UNCTF/" data-title="UNCTF竞技赛" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2019/10/27/CTF/wp/K&A UNCTF/" title="阅读全文">阅读全文</a>	
 						</span>
-						
-						
-
-
-
-						
-							<span class="right">      	
-								<a href="/2019/10/27/CTF/wp/K&A UNCTF/" title="阅读全文">阅读全文</a>	
-							</span>
-						
-					</div>
+					
 				</div>
 			</div>
-		
-			<div class="post" id="post">
-				<div class="post-text">
-					<div class="post-title" id="post-title-index">			
-						
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/" itemprop="url">
 		SQL注入(时间盲注)
 	</a>
 
-					</div>
+				</div>
 
-					<div class="post-content">
-						
-							了解盲注语法，如何利用盲注获取数据
+				<div class="post-content">
+					
+						了解盲注语法，如何利用盲注获取数据
 
 
 目标
@@ -504,15 +810,20 @@ WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/m
 掌握SQL注入语法
 掌握SQL注入原理
 了解SQL注入常用注释字符
-本题使用的工具  sqlmap，hackbar环境  物理机...
-						
-					</div>
+本题使用的工具  sqlmap，hackbar环境  物理机：windows10  虚拟机：kali
+
+时间盲注1 判断是否存在盲注
+
+可以发现判断有多种方式，只要能保证sleep()执行，就可以根据回显的时间判断是否存在时间注入
+123命令1 ：http:/ip/flag.php?type=1 and sleep(5) &apos;命令2：http://ip/flag.php?type=1 and if(ascii(substr(database(),1...
 					
-					<div class="post-meta">
-						<span>
-							发布于
-							<i>
-								
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
 
 
 
@@ -525,49 +836,103 @@ WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/m
 	  </time>
 	</a> 
 
-							</i>
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/_visitors" data-url="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/" data-title="SQL注入(时间盲注)">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/_likes" data-url="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/" data-title="SQL注入(时间盲注)" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/" title="阅读全文">阅读全文</a>	
 						</span>
-						
-						
-
-
-
-						
-							<span class="right">      	
-								<a href="/2019/10/04/CTF/墨者学院/SQL注人(时间盲注)/" title="阅读全文">阅读全文</a>	
-							</span>
-						
-					</div>
+					
 				</div>
 			</div>
-		
-			<div class="post" id="post">
-				<div class="post-text">
-					<div class="post-title" id="post-title-index">			
-						
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" itemprop="url">
 		实验吧-隐写-欢迎来到地狱
 	</a>
 
-					</div>
+				</div>
 
-					<div class="post-content">
-						
-							多重隐写+加密，需要清醒的认识，才能不坠入地狱
+				<div class="post-content">
+					
+						多重隐写+加密，需要清醒的认识，才能不坠入地狱
 
 
 实验吧隐写题欢迎来到地狱
 解压
 访问url，获取一个zip文件，解压发现存在3个文件 分别是jpg，doc，zip
-根据文件名去，首先我们去打...
-						
-					</div>
+根据文件名去，首先我们去打开第一个文件地狱伊始.jpg 打开提示文件错误。
+
+
+
+使用winhex打开查看，发现是jfif的文件，之后看到文件头标识不对，查询发现jfif的文件头是`FFD8FFFE00, .JPEG;.JPE;.JPG, &quot;JPGGraphic File&quot;` 我们添加文件头，方法：右键-&gt;edit-&gt;Paste zero bytes -&gt; 4 添加四个比特
+
+之后添加...
 					
-					<div class="post-meta">
-						<span>
-							发布于
-							<i>
-								
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
 
 
 
@@ -580,35 +945,83 @@ WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/m
 	  </time>
 	</a> 
 
-							</i>
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/_visitors" data-url="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" data-title="实验吧-隐写-欢迎来到地狱">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/_likes" data-url="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" data-title="实验吧-隐写-欢迎来到地狱" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" title="阅读全文">阅读全文</a>	
 						</span>
-						
-						
-
-
-
-						
-							<span class="right">      	
-								<a href="/2019/10/04/CTF/实验吧/实验吧-隐写-欢迎来到地狱/" title="阅读全文">阅读全文</a>	
-							</span>
-						
-					</div>
+					
 				</div>
 			</div>
-		
-			<div class="post" id="post">
-				<div class="post-text">
-					<div class="post-title" id="post-title-index">			
-						
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" itemprop="url">
 		实验吧-逆向工程-debug
 	</a>
 
-					</div>
+				</div>
 
-					<div class="post-content">
-						
-							了解函数运行，合适添加断点判断，获取一闪而过的flag
+				<div class="post-content">
+					
+						了解函数运行，合适添加断点判断，获取一闪而过的flag
 
 
 实验吧逆向工程debug
@@ -618,15 +1031,24 @@ WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/m
 
 尝试在linux下打开发现么没有返回值，
 
-在idaq里面去查看shi...
-						
-					</div>
+在idaq里面去查看shift+F12 查看字符串，发现有个printing flag
+
+这里想着如何可以进去，
+可以看到其实位置在0x804849b
+设置断点，查看
+一般设置在main 但是main没有定义
+[图片上传失败…(image-12bd86-1566818035404)] 
+这里查了下发现这几个可以代替
+程序启动的过程应该是这样的：
+_start -&gt; __libc_start_main -&gt; ma...
 					
-					<div class="post-meta">
-						<span>
-							发布于
-							<i>
-								
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
 
 
 
@@ -639,35 +1061,83 @@ WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/m
 	  </time>
 	</a> 
 
-							</i>
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/_visitors" data-url="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" data-title="实验吧-逆向工程-debug">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/_likes" data-url="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" data-title="实验吧-逆向工程-debug" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" title="阅读全文">阅读全文</a>	
 						</span>
-						
-						
-
-
-
-						
-							<span class="right">      	
-								<a href="/2019/10/04/CTF/实验吧/实验吧-逆向工程-debug/" title="阅读全文">阅读全文</a>	
-							</span>
-						
-					</div>
+					
 				</div>
 			</div>
-		
-			<div class="post" id="post">
-				<div class="post-text">
-					<div class="post-title" id="post-title-index">			
-						
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2019/10/04/CTF/实验吧/实验吧-密码学-传统密码+古典密码/" itemprop="url">
 		传统知识+古典密码
 	</a>
 
-					</div>
+				</div>
 
-					<div class="post-content">
-						
-							多种加密结合，一步一步解密，追寻真理
+				<div class="post-content">
+					
+						多种加密结合，一步一步解密，追寻真理
 
 
 实验吧密码学传统知识+古典密码
@@ -676,15 +1146,32 @@ WEB简单的备忘录[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/m
 信的背面还写有“+甲子”，请解出这段密文
 key：CTF{}
 
-查...
-						
-					</div>
+查一下得到了一份六十甲子顺序表
+
+
+
+获取到它的值：28 30 23 8 17 10 16 30
+
+题目后面说`+甲子` ：88 90 83 68 77 70 76 90
+
+对应ascii： XZSDMFLZ
+根据古典密码解密
+首先尝试栅栏密码： XMZFSLDZ
+在尝试凯撒密码：SHUANGYU
+
+得到flag
+CTF{SHUANGYU}
+
+附上python脚本
+12345678str = &qu...
 					
-					<div class="post-meta">
-						<span>
-							发布于
-							<i>
-								
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
 
 
 
@@ -697,48 +1184,103 @@ key：CTF{}
 	  </time>
 	</a> 
 
-							</i>
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2019/10/04/CTF/实验吧/实验吧-密码学-传统密码+古典密码/_visitors" data-url="/2019/10/04/CTF/实验吧/实验吧-密码学-传统密码+古典密码/" data-title="传统知识+古典密码">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2019/10/04/CTF/实验吧/实验吧-密码学-传统密码+古典密码/_likes" data-url="/2019/10/04/CTF/实验吧/实验吧-密码学-传统密码+古典密码/" data-title="传统知识+古典密码" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2019/10/04/CTF/实验吧/实验吧-密码学-传统密码+古典密码/" title="阅读全文">阅读全文</a>	
 						</span>
-						
-						
-
-
-
-						
-							<span class="right">      	
-								<a href="/2019/10/04/CTF/实验吧/实验吧-密码学-传统密码+古典密码/" title="阅读全文">阅读全文</a>	
-							</span>
-						
-					</div>
+					
 				</div>
 			</div>
-		
-			<div class="post" id="post">
-				<div class="post-text">
-					<div class="post-title" id="post-title-index">			
-						
+		</div>
+	
+		<div class="post" id="post">
+			<div class="post-text">
+				<div class="post-title" id="post-title-index">			
+					<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+					
 	<a href="/2019/10/04/CTF/实验吧/实验吧-密码学-变异凯撒/" itemprop="url">
 		变异凯撒
 	</a>
 
-					</div>
+				</div>
 
-					<div class="post-content">
-						
-							仔细观察凯撒加密，找寻其中的规律
+				<div class="post-content">
+					
+						仔细观察凯撒加密，找寻其中的规律
 
 
 实验吧密码学变异凯撒
 凯撒密码
-在密码学中，恺撒密码（英语：Caesar cipher），或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技...
-						
-					</div>
+在密码学中，恺撒密码（英语：Caesar cipher），或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术。它是一种替换加密的技术，明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。例如，当偏移量是3的时候，所有的字母A将被替换成D，B变成E，以此类推。这个加密方法是以罗马共和时期恺撒的名字命名的，当年恺撒曾用此方法与其将军们进行联系。
+
+
+看一下加密的密文
+加密密文：afZ_r9VYfScOeO_UL^RWUc  格式：flag{ }
+
+将加密的密文转成二进制
+97...
 					
-					<div class="post-meta">
-						<span>
-							发布于
-							<i>
-								
+				</div>
+				
+				<div class="post-meta">
+					<span>
+						发布于
+						<i>
+							
 
 
 
@@ -751,22 +1293,69 @@ key：CTF{}
 	  </time>
 	</a> 
 
-							</i>
+						</i>
+					</span>
+					
+					
+
+	
+    <span class="leancloud_visitors" id="/2019/10/04/CTF/实验吧/实验吧-密码学-变异凯撒/_visitors" data-url="/2019/10/04/CTF/实验吧/实验吧-密码学-变异凯撒/" data-title="变异凯撒">
+       	<i class="fa fa-eye"></i>
+       	热度
+        <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
+    </span>
+    
+
+
+
+	
+    <span class="leancloud_likes" id="/2019/10/04/CTF/实验吧/实验吧-密码学-变异凯撒/_likes" data-url="/2019/10/04/CTF/实验吧/实验吧-密码学-变异凯撒/" data-title="变异凯撒" rel="unlike">
+        <i class="fa fa-heart"></i>
+        喜欢
+        <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
+    </span>
+
+					
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+
+	<script>
+		var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT';	  
+        AnnieLeancloud(appid, appkey);         
+	</script>
+    
+
+	
+
+					
+						<span class="right">      	
+							<a href="/2019/10/04/CTF/实验吧/实验吧-密码学-变异凯撒/" title="阅读全文">阅读全文</a>	
 						</span>
-						
-						
-
-
-
-						
-							<span class="right">      	
-								<a href="/2019/10/04/CTF/实验吧/实验吧-密码学-变异凯撒/" title="阅读全文">阅读全文</a>	
-							</span>
-						
-					</div>
+					
 				</div>
 			</div>
-		
+		</div>
+	
 	</div>
 
 	
@@ -785,53 +1374,55 @@ key：CTF{}
 
 		<!--footer-->
 		<footer>
-	<div id="navigation-show">
-		<ul id="global-nav">
+	<div class="social">
+		<ul>
 	
-		<li class="menu-home">
-			<a href="/" class="menu-item-home" target="_blank">主页</a>
-		</li>
-		
-	
-		<li class="menu-archive">
-			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
-		</li>
-		
-	
-		<li class="menu-categories">
-			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
-		</li>
-		
-	
-		<li class="menu-tags">
-			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
-		</li>
-		
-	
-		<li class="menu-about">
-			<a href="/about" class="menu-item-about" target="_blank">关于</a>
-		</li>
-		
-	
-
-	
-		<li class="menu-search">
-			<a href="javascript:;" class="popup-trigger">搜索</a>
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
 		</li>
 	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-weibo"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-pinterest"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
 </ul>
-	</div>
 
+	</div>
+		
 	<div class="copyright">
 		<p>
 			 
-				&copy;2017 - 2020, content by Sariay. All Rights Reserved.
+				&copy;2019 - 2020, content by ST0new. All Rights Reserved.
 			
 			
-				<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
-			
-		</p>
-		<p>
 			
 
 	<!-- busuanzi -->
@@ -854,81 +1445,25 @@ key：CTF{}
 
 
 
+		</p>
+		<p>
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
 			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
 			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
 		</p>
 	</div>		
 </footer>
 		
-	<!-- Local or hitokoto! -->
+	<!-- set '1' to show motto in all pages! -->
 
 	<script src="/plugin/motto/motto.js"></script>
 	
 	<script type="text/javascript">
-		(function motto(){
-			let mottoText = getMingYanContent().split('</br> - </br>'),
-			
-			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
-			
-			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
-			
-			mottoTextContent = mottoTextContent.trim().substring(0, 100);
-		
-			$("#motto-content").html( mottoTextContent);
-			$("#motto-author").html( mottoTextFrom  );
-		})();	
+		$(".motto").html( getMingYanContent() );
 	</script>	
 
 
 
-<!-- love effect -->
-
-
-<!-- back to top -->
-
-	<div id="totop">
-	<span class="icon-circle-up"></span>
-</div>
-
-
-
-<!-- site analysis -->
-
-
-	<!-- site-analysis -->
-	
-	
-	
-	
-	
- 
-
-<!-- leancloud -->
-
-
-	<!-- leancloud -->
-	<!--
-	时间：2018-11-27
-	描述：
-		文章访问量：visitors
-		文章喜欢量：likes	
-		文章排行榜：topNPost
-		其他得说明：
-			01-Cookie相关的函数 
-				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
-			02-visitors相关的函数 
-				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
-				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
-			03-topNPost相关的函数
-				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
-			04-likes相关的函数，
-				参考了01 & 02进行简单的设计与实现
--->
-
-
-	
-
-  
 
 	<!--
 	时间：2018-10-3
@@ -937,7 +1472,7 @@ key：CTF{}
 		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
 		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
 -->
-<div class="popup search-popup local-search-popup scrollbar" >
+<div class="popup search-popup local-search-popup" >
 	<div class="local-search-container">
 		<span class="popup-btn-close">
       		ESC
@@ -953,6 +1488,23 @@ key：CTF{}
 		<div class="local-search-footer">
 			<div class="topN-post">				
 				
+
+   
+	<div id="topN">
+		<div class="topN-title" data-title= "热门文章"></div> 
+	</div>
+	
+    <script>
+        var appid = 'nvd69LH66AqtfBomoagKzq9T-gzGzoHsz',
+            appkey = 'tXeQfaUF0IR9Ir5vjSU0DnjT',
+            limitCount = 10;
+        if( $('#topN').length ){
+            AV.initialize(appid, appkey);
+            var Counter = AV.Object.extend("Counter");  
+            topNPost(Counter, limitCount);
+        }
+    </script>
+   
 								
 			</div>
 		</div>
@@ -960,7 +1512,7 @@ key：CTF{}
 </div>
 
 <script src="/plugin/search/ziploader.js"></script>
-<script src="/js/search.js"></script>
+<script src="/plugin/search/search.js"></script>
 
 <script type="text/javascript">
 	var search_path = 'search.json',
@@ -979,11 +1531,38 @@ key：CTF{}
 </script>
 
 
+<!-- love effect -->
+
+	<script src="/plugin/love/love.js"></script>
+
+
+<!-- back to top -->
+
+	
+	<div id="totop">
+  		<a href="javascript:;"  name="TOTOP" class="fa fa-arrow-up" ></a>
+	</div>
+
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<script src="/plugin/vibrant/vibrant.js"></script>
 <script src="/plugin/chinese/chinese.js"></script>
-<script src="/plugin/imagelazyloader/yall.min.js"></script>
-<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/imgLazyLoader/yall.min.js"></script>
+<script src="/plugin/imgResize/jquery.resizeimagetoparent.min.js"></script>
 <script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
-<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/resizediv.js"></script>
 <script src="/js/main.js"></script>
 	</body>	
 </html>
